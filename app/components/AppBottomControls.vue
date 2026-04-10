@@ -16,7 +16,7 @@ const introSectionId = 'intro'
 const { t, locale, setLocale } = useI18n()
 
 const activeSectionId = useState('active-section-id', () => introSectionId)
-const { isThemeReady, themeMode, toggleTheme } = useThemeMode()
+const { themeMode, toggleTheme } = useThemeMode()
 
 const navItems = computed(() => [{ id: introSectionId, label: t('nav.im'), icon: 'User' }])
 const themeIcon = computed(() => (themeMode.value === 'dark' ? MoonStar : Sun))
@@ -32,12 +32,7 @@ const toggleLocale = () => {
 <template>
   <div class="app-bottom-controls">
     <LiquidAnchorMenu v-if="props.showMenu" :items="navItems" :active-id="activeSectionId" />
-    <LiquidStateButton
-      v-if="isThemeReady"
-      :icon="themeIcon"
-      :label="themeButtonLabel"
-      @click="toggleTheme"
-    />
+    <LiquidStateButton :icon="themeIcon" :label="themeButtonLabel" @click="toggleTheme" />
     <LiquidStateButton
       :icon="Languages"
       :label="t('controls.switchLanguage')"

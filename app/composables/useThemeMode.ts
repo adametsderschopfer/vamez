@@ -7,7 +7,6 @@ export const useThemeMode = () => {
   })
 
   const themeMode = useState<ThemeMode>('theme-mode', () => themeCookie.value ?? 'light')
-  const isThemeReady = useState('theme-ready', () => false)
 
   useHead({
     script: [
@@ -39,7 +38,6 @@ export const useThemeMode = () => {
 
   onMounted(() => {
     applyTheme(themeMode.value)
-    isThemeReady.value = true
   })
 
   watch(
@@ -52,7 +50,6 @@ export const useThemeMode = () => {
   )
 
   return {
-    isThemeReady,
     themeMode,
     toggleTheme
   }
