@@ -112,7 +112,9 @@ const localeOptions = computed(() =>
   padding: 0.45rem 0.9rem;
   border-radius: 999px;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .home__locale-button--active {
@@ -151,7 +153,10 @@ const localeOptions = computed(() =>
   border: 1px solid transparent;
   padding: 0.7rem 1.2rem;
   border-radius: 999px;
-  transition: transform 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease,
+    background-color 0.15s ease;
 }
 
 .home__action:hover {
