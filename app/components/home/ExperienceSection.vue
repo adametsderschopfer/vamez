@@ -126,7 +126,7 @@ const experiences = [
   box-shadow: 0 18px 50px var(--glass-shadow);
   padding: 2rem;
 
-  animation: fadeInUp 0.6s ease-out calc(0.4s + var(--card-index) * 0.2s) both;
+  animation: fadeInUp 0.6s ease-out calc(0.4s + var(--card-index) * 0.2s) forwards;
 
   transition:
     transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),

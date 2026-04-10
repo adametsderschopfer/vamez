@@ -17,7 +17,7 @@ const footerText = `${t('footer.madeWith')} ${currentYear}`
 .app-footer {
   position: relative;
   width: 100%;
-  padding: 3rem 20px;
+  padding: 2rem 20px;
   padding-bottom: 8rem;
   margin-top: 4rem;
 }
