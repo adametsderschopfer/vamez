@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import HomeIntroSection from '@/components/home/HomeIntroSection.vue'
+import ExperienceSection from '@/components/home/ExperienceSection.vue'
+import AppFooter from '@/components/AppFooter.vue'
+
 const introSectionId = 'intro'
 
 const activeSectionId = useState('active-section-id', () => introSectionId)
