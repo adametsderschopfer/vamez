@@ -38,7 +38,9 @@ onBeforeUnmount(() => {
   <div class="landing">
     <div class="landing__anchors">
       <HomeIntroSection />
+      <ExperienceSection />
     </div>
+    <AppFooter />
   </div>
 </template>
 

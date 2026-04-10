@@ -13,7 +13,49 @@
       "role": "Engineer",
       "firstName": "Vladislav",
       "lastName": "Adamets"
+    },
+    "experience": {
+      "title": "Experience",
+      "company1": {
+        "title": "Tech Startup Inc",
+        "role": "Senior Full Stack Developer",
+        "period": "2022 - 2024",
+        "description": "Led development of high-load web applications using Vue.js and Node.js. Implemented microservices architecture and improved system performance by 40%."
+      },
+      "company2": {
+        "title": "Digital Agency",
+        "role": "Frontend Developer",
+        "period": "2020 - 2022",
+        "description": "Built responsive web interfaces for 20+ client projects. Optimized site performance and improved accessibility scores to WCAG AA standards."
+      },
+      "company3": {
+        "title": "Software House",
+        "role": "Junior Developer",
+        "period": "2019 - 2020",
+        "description": "Started my professional journey building web applications. Learned best practices in code quality, testing, and team collaboration."
+      },
+      "company4": {
+        "title": "Cloud Solutions Ltd",
+        "role": "DevOps Engineer",
+        "period": "2021 - 2023",
+        "description": "Managed cloud infrastructure on AWS and GCP. Implemented CI/CD pipelines, containerization with Docker, and automated deployment processes."
+      },
+      "company5": {
+        "title": "E-commerce Platform",
+        "role": "Backend Developer",
+        "period": "2020 - 2021",
+        "description": "Developed RESTful APIs and database systems for high-traffic e-commerce platform. Optimized queries and improved API response times by 35%."
+      },
+      "company6": {
+        "title": "Freelance Projects",
+        "role": "Full Stack Developer",
+        "period": "2018 - present",
+        "description": "Completed 15+ client projects including web applications, mobile apps, and landing pages. Maintained 100% client satisfaction rate."
+      }
     }
+  },
+  "footer": {
+    "madeWith": "Made with ❤️"
   },
   "error": {
     "client": {

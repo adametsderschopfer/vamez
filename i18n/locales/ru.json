@@ -13,7 +13,49 @@
       "role": "Инженер",
       "firstName": "Владислав",
       "lastName": "Адамец"
+    },
+    "experience": {
+      "title": "Опыт работы",
+      "company1": {
+        "title": "Tech Startup Inc",
+        "role": "Senior Full Stack Developer",
+        "period": "2022 - 2024",
+        "description": "Руководил разработкой высоконагруженных веб-приложений на Vue.js и Node.js. Внедрил архитектуру микросервисов и улучшил производительность системы на 40%."
+      },
+      "company2": {
+        "title": "Digital Agency",
+        "role": "Frontend Developer",
+        "period": "2020 - 2022",
+        "description": "Разработал отзывчивые веб-интерфейсы для 20+ проектов клиентов. Оптимизировал производительность сайтов и улучшил оценки доступности до WCAG AA."
+      },
+      "company3": {
+        "title": "Software House",
+        "role": "Junior Developer",
+        "period": "2019 - 2020",
+        "description": "Начал профессиональную карьеру с разработки веб-приложений. Изучил лучшие практики качества кода, тестирования и командного сотрудничества."
+      },
+      "company4": {
+        "title": "Cloud Solutions Ltd",
+        "role": "DevOps Engineer",
+        "period": "2021 - 2023",
+        "description": "Управлял облачной инфраструктурой на AWS и GCP. Внедрил pipelines CI/CD, контейнеризацию с Docker и автоматизацию развертывания."
+      },
+      "company5": {
+        "title": "E-commerce Platform",
+        "role": "Backend Developer",
+        "period": "2020 - 2021",
+        "description": "Разработал REST API и системы баз данных для высоконагруженной платформы электронной коммерции. Оптимизировал запросы и улучшил время ответа на 35%."
+      },
+      "company6": {
+        "title": "Freelance Projects",
+        "role": "Full Stack Developer",
+        "period": "2018 - present",
+        "description": "Завершил более 15 проектов для клиентов, включая веб-приложения, мобильные приложения и лендинги. Удовлетворение клиентов 100%."
+      }
     }
+  },
+  "footer": {
+    "madeWith": "Сделано с ❤️"
   },
   "error": {
     "client": {
