@@ -1,10 +1,6 @@
 {
   "nav": {
-    "home": "Home",
-    "summary": "Summary",
-    "experience": "Experience",
-    "skills": "Skills",
-    "links": "Links"
+    "im": "Я"
   },
   "controls": {
     "theme": "Theme",

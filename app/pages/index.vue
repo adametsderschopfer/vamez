@@ -2,21 +2,16 @@
 import { PhMoonStars, PhSun, PhTranslate } from '@phosphor-icons/vue'
 
 type ThemeMode = 'light' | 'dark'
+const introSectionId = 'intro'
 
 const { t, locale, setLocale } = useI18n()
 
 const themeMode = useState<ThemeMode>('theme-mode', () => 'dark')
-const activeSectionId = ref('home')
+const activeSectionId = ref(introSectionId)
 
-const navItems = computed(() => [
-  { id: 'home', label: t('nav.home'), icon: 'User' },
-  { id: 'summary', label: t('nav.summary'), icon: 'Briefcase' },
-  { id: 'experience', label: t('nav.experience'), icon: 'FileText' },
-  { id: 'skills', label: t('nav.skills'), icon: 'Lightning' },
-  { id: 'links', label: t('nav.links'), icon: 'Link' }
-])
+const navItems = computed(() => [{ id: introSectionId, label: t('nav.im'), icon: 'User' }])
 
-const anchorItems = ['home', 'summary', 'experience', 'skills', 'links']
+const anchorItems = [introSectionId]
 
 const themeIcon = computed(() => (themeMode.value === 'dark' ? PhMoonStars : PhSun))
 
@@ -102,12 +97,12 @@ onBeforeUnmount(() => {
 .landing {
   position: relative;
   width: 100%;
-  min-height: 500vh;
+  min-height: 100vh;
 }
 
 .landing__anchors {
   position: relative;
-  min-height: 500vh;
+  min-height: 100vh;
 }
 
 .landing__anchor {
