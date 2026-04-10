@@ -3,7 +3,7 @@ const { t } = useI18n()
 
 const currentYear = new Date().getFullYear()
 const footerText = `${t('footer.madeWith')} ${currentYear}`
-
+</script>
 
 <template>
   <footer class="app-footer">
