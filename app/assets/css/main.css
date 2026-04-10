@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap');
 
 :root {
-  --color-text: #edf6cf;
-  --color-text-soft: rgba(210, 226, 159, 0.72);
-  --color-accent: #c4e565;
-  --color-surface: #0a0d06;
+  --color-text: #384217;
+  --color-text-soft: rgba(86, 102, 40, 0.72);
+  --color-accent: #9fca3c;
+  --color-surface: #f6fbe7;
   --liquid-control-size: 3.55rem;
   --liquid-control-inset: 0.34rem;
-  --glass-bg: rgba(63, 79, 29, 0.46);
-  --glass-border: rgba(214, 243, 129, 0.14);
-  --glass-shadow: rgba(0, 0, 0, 0.38);
+  --glass-bg: rgba(230, 241, 193, 0.62);
+  --glass-border: rgba(145, 176, 63, 0.24);
+  --glass-shadow: rgba(79, 99, 27, 0.12);
 }
 
 *,
@@ -23,21 +23,21 @@ body {
   min-height: 100vh;
   font-family: 'Cinzel', Georgia, serif;
   color: var(--color-text);
-  background: linear-gradient(112deg, #060802 0%, #101507 30%, #18200a 62%, #273312 100%);
-}
-
-:root[data-theme='light'] {
-  --color-text: #384217;
-  --color-text-soft: rgba(86, 102, 40, 0.72);
-  --color-accent: #9fca3c;
-  --color-surface: #f6fbe7;
-  --glass-bg: rgba(230, 241, 193, 0.62);
-  --glass-border: rgba(145, 176, 63, 0.24);
-  --glass-shadow: rgba(79, 99, 27, 0.12);
-}
-
-:root[data-theme='light'] body {
   background: linear-gradient(155deg, #fbfdeb 0%, #f1f8d4 48%, #e5efb5 100%);
+}
+
+:root[data-theme='dark'] {
+  --color-text: #edf6cf;
+  --color-text-soft: rgba(210, 226, 159, 0.72);
+  --color-accent: #c4e565;
+  --color-surface: #0a0d06;
+  --glass-bg: rgba(63, 79, 29, 0.46);
+  --glass-border: rgba(214, 243, 129, 0.14);
+  --glass-shadow: rgba(0, 0, 0, 0.38);
+}
+
+:root[data-theme='dark'] body {
+  background: linear-gradient(112deg, #060802 0%, #101507 30%, #18200a 62%, #273312 100%);
 }
 
 html {

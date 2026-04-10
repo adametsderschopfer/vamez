@@ -1,11 +1,25 @@
 {
   "nav": {
-    "im": "Я"
+    "im": "Я",
+    "sectionNavigation": "Навигация по секциям"
   },
   "controls": {
-    "theme": "Theme",
-    "language": "Lang",
-    "themeDark": "Dark",
-    "themeLight": "Light"
+    "switchToDark": "Включить тёмную тему",
+    "switchToLight": "Включить светлую тему",
+    "switchLanguage": "Переключить язык"
+  },
+  "error": {
+    "client": {
+      "title": "Страница не найдена",
+      "description": "Похоже, такого адреса здесь нет."
+    },
+    "server": {
+      "eyebrow": "Ошибка сервера",
+      "title": "Что-то пошло не так",
+      "description": "Проблема возникла на нашей стороне. Попробуй обновить страницу позже."
+    },
+    "actions": {
+      "home": "На главную"
+    }
   }
 }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PhBriefcase, PhFileText, PhLightning, PhLink, PhUser } from '@phosphor-icons/vue'
+import { BriefcaseBusiness, FileText, Link2, User, Zap } from 'lucide-vue-next'
 
 type MenuIcon = 'User' | 'Briefcase' | 'FileText' | 'Lightning' | 'Link'
 
@@ -14,17 +14,19 @@ const props = defineProps<{
   activeId: string
 }>()
 
+const { t } = useI18n()
+
 const iconMap = {
-  User: PhUser,
-  Briefcase: PhBriefcase,
-  FileText: PhFileText,
-  Lightning: PhLightning,
-  Link: PhLink
+  User,
+  Briefcase: BriefcaseBusiness,
+  FileText,
+  Lightning: Zap,
+  Link: Link2
 } satisfies Record<MenuIcon, object>
 </script>
 
 <template>
-  <nav class="liquid-menu" aria-label="Section navigation">
+  <nav class="liquid-menu" :aria-label="t('nav.sectionNavigation')">
     <a
       v-for="item in props.items"
       :key="item.id"
@@ -33,13 +35,7 @@ const iconMap = {
       :href="`#${item.id}`"
       :aria-current="props.activeId === item.id ? 'page' : undefined"
     >
-      <component
-        :is="iconMap[item.icon]"
-        class="liquid-menu__icon"
-        :size="18"
-        weight="regular"
-        aria-hidden="true"
-      />
+      <component :is="iconMap[item.icon]" class="liquid-menu__icon" :size="18" aria-hidden="true" />
       <span class="liquid-menu__label">{{ item.label }}</span>
     </a>
   </nav>

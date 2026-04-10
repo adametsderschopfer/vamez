@@ -1,11 +1,25 @@
 {
   "nav": {
-    "im": "I'm"
+    "im": "I'm",
+    "sectionNavigation": "Section navigation"
   },
   "controls": {
-    "theme": "Theme",
-    "language": "Lang",
-    "themeDark": "Dark",
-    "themeLight": "Light"
+    "switchToDark": "Switch to dark theme",
+    "switchToLight": "Switch to light theme",
+    "switchLanguage": "Switch language"
+  },
+  "error": {
+    "client": {
+      "title": "Page Not Found",
+      "description": "It looks like this address does not exist."
+    },
+    "server": {
+      "eyebrow": "Server Error",
+      "title": "Something Went Wrong",
+      "description": "The issue happened on our side. Try refreshing the page a bit later."
+    },
+    "actions": {
+      "home": "Back Home"
+    }
   }
 }

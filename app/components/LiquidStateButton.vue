@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import type { Component } from 'vue'
+
 defineProps<{
-  icon: object
+  icon: Component
+  label: string
 }>()
 
 defineEmits<{
@@ -9,8 +12,14 @@ defineEmits<{
 </script>
 
 <template>
-  <button class="liquid-state-button" type="button" @click="$emit('click')">
-    <component :is="icon" class="liquid-state-button__icon" :size="18" weight="regular" />
+  <button
+    class="liquid-state-button"
+    type="button"
+    :aria-label="label"
+    :title="label"
+    @click="$emit('click')"
+  >
+    <component :is="icon" class="liquid-state-button__icon" :size="18" />
   </button>
 </template>
 

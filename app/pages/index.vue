@@ -1,43 +1,13 @@
 <script setup lang="ts">
-import { PhMoonStars, PhSun, PhTranslate } from '@phosphor-icons/vue'
-
-type ThemeMode = 'light' | 'dark'
 const introSectionId = 'intro'
 
-const { t, locale, setLocale } = useI18n()
-
-const themeMode = useState<ThemeMode>('theme-mode', () => 'dark')
-const activeSectionId = ref(introSectionId)
-
-const navItems = computed(() => [{ id: introSectionId, label: t('nav.im'), icon: 'User' }])
-
+const activeSectionId = useState('active-section-id', () => introSectionId)
 const anchorItems = [introSectionId]
-
-const themeIcon = computed(() => (themeMode.value === 'dark' ? PhMoonStars : PhSun))
-
-const applyTheme = (mode: ThemeMode) => {
-  if (import.meta.client) {
-    document.documentElement.dataset.theme = mode
-  }
-}
-
-const toggleTheme = () => {
-  themeMode.value = themeMode.value === 'dark' ? 'light' : 'dark'
-}
-
-const toggleLocale = () => {
-  setLocale(locale.value === 'ru' ? 'en' : 'ru')
-}
 
 let observer: IntersectionObserver | null = null
 
 onMounted(() => {
-  const storedTheme = localStorage.getItem('theme-mode')
-  if (storedTheme === 'light' || storedTheme === 'dark') {
-    themeMode.value = storedTheme
-  }
-
-  applyTheme(themeMode.value)
+  activeSectionId.value = introSectionId
 
   observer = new IntersectionObserver(
     (entries) => {
@@ -60,14 +30,6 @@ onMounted(() => {
   })
 })
 
-watch(themeMode, (value) => {
-  if (import.meta.client) {
-    localStorage.setItem('theme-mode', value)
-  }
-
-  applyTheme(value)
-})
-
 onBeforeUnmount(() => {
   observer?.disconnect()
 })
@@ -83,12 +45,6 @@ onBeforeUnmount(() => {
         class="landing__anchor"
         data-anchor
       />
-    </div>
-
-    <div class="landing__bottom-row">
-      <LiquidAnchorMenu :items="navItems" :active-id="activeSectionId" />
-      <LiquidStateButton :icon="themeIcon" @click="toggleTheme" />
-      <LiquidStateButton :icon="PhTranslate" @click="toggleLocale" />
     </div>
   </div>
 </template>
@@ -110,34 +66,7 @@ onBeforeUnmount(() => {
   scroll-margin-top: 6rem;
 }
 
-.landing__bottom-row {
-  position: fixed;
-  left: 50%;
-  bottom: 2rem;
-  z-index: 30;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  transform: translateX(-50%);
-}
-
-@media (max-width: 960px) {
-  .landing__bottom-row {
-    width: calc(100% - 1rem);
-    bottom: 1rem;
-    justify-content: center;
-  }
-}
-
 @media (max-width: 640px) {
-  .landing__bottom-row {
-    width: calc(100% - 1rem);
-    left: 0.5rem;
-    right: 0.5rem;
-    gap: 0.5rem;
-    transform: none;
-  }
-
   .landing__anchor {
     height: 84vh;
   }
