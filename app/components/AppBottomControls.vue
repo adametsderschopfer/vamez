@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Languages, MoonStar, Sun } from 'lucide-vue-next'
+import { useThemeMode } from '../composables/useThemeMode'
 
 const props = withDefaults(
   defineProps<{

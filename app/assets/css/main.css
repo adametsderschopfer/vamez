@@ -1,10 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Rubik+Mono+One&display=swap');
 
 :root {
   --color-text: #384217;
   --color-text-soft: rgba(86, 102, 40, 0.72);
   --color-accent: #9fca3c;
   --color-surface: #f6fbe7;
+  --font-body: 'Cinzel', Georgia, serif;
+  --font-heading: 'Rubik Mono One', 'Cinzel', Georgia, serif;
   --liquid-control-size: 3.55rem;
   --liquid-control-inset: 0.34rem;
   --glass-bg: rgba(230, 241, 193, 0.62);
@@ -21,9 +23,20 @@
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: 'Cinzel', Georgia, serif;
+  font-family: var(--font-body);
   color: var(--color-text);
   background: linear-gradient(155deg, #fbfdeb 0%, #f1f8d4 48%, #e5efb5 100%);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.05;
 }
 
 :root[data-theme='dark'] {
