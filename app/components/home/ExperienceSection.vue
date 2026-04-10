@@ -109,15 +109,17 @@ const experiences = [
   position: relative;
   height: 600px;
   perspective: 1000px;
+  overflow: visible;
 }
 
 .experience-card {
   position: absolute;
   width: clamp(280px, 90vw, 500px);
   height: 280px;
-  top: calc(var(--card-index) * 40px);
+  top: 0;
   left: 0;
   z-index: calc(100 - var(--card-index));
+  transform: translateY(calc(var(--card-index) * 40px));
 
   border: 1px solid var(--glass-border);
   border-radius: 1.5rem;
