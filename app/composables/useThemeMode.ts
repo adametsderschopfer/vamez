@@ -1,7 +1,13 @@
 export type ThemeMode = 'light' | 'dark'
 
 export const useThemeMode = () => {
-  const themeMode = useState<ThemeMode>('theme-mode', () => 'light')
+  const themeCookie = useCookie<ThemeMode>('theme-mode', {
+    default: () => 'light',
+    sameSite: 'lax'
+  })
+
+  const themeMode = useState<ThemeMode>('theme-mode', () => themeCookie.value ?? 'light')
+  const isThemeReady = useState('theme-ready', () => false)
 
   useHead({
     script: [
@@ -9,7 +15,8 @@ export const useThemeMode = () => {
         key: 'theme-init',
         innerHTML: `
           try {
-            const storedTheme = localStorage.getItem('theme-mode')
+            const cookieMatch = document.cookie.match(/(?:^|; )theme-mode=(dark|light)(?:;|$)/)
+            const storedTheme = cookieMatch ? decodeURIComponent(cookieMatch[1]) : 'light'
             const theme = storedTheme === 'dark' || storedTheme === 'light' ? storedTheme : 'light'
             document.documentElement.dataset.theme = theme
           } catch {
@@ -31,23 +38,21 @@ export const useThemeMode = () => {
   }
 
   onMounted(() => {
-    const storedTheme = localStorage.getItem('theme-mode')
-    if (storedTheme === 'light' || storedTheme === 'dark') {
-      themeMode.value = storedTheme
-    }
-
     applyTheme(themeMode.value)
+    isThemeReady.value = true
   })
 
-  watch(themeMode, (value) => {
-    if (import.meta.client) {
-      localStorage.setItem('theme-mode', value)
-    }
-
-    applyTheme(value)
-  })
+  watch(
+    themeMode,
+    (value) => {
+      themeCookie.value = value
+      applyTheme(value)
+    },
+    { immediate: true }
+  )
 
   return {
+    isThemeReady,
     themeMode,
     toggleTheme
   }

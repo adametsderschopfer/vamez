@@ -1,13 +1,23 @@
+import { fileURLToPath } from 'node:url'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+  alias: {
+    '@': fileURLToPath(new URL('./app', import.meta.url))
+  },
   modules: ['@nuxt/eslint', '@nuxtjs/i18n'],
-  css: ['~/assets/css/main.css'],
+  css: ['@/assets/css/main.css'],
   i18n: {
     defaultLocale: 'ru',
     strategy: 'no_prefix',
-    detectBrowserLanguage: false,
+    detectBrowserLanguage: {
+      alwaysRedirect: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
+      useCookie: true
+    },
     langDir: 'locales',
     locales: [
       { code: 'ru', name: 'Русский', file: 'ru.json' },
