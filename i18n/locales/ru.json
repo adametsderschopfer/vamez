@@ -1,13 +1,15 @@
 {
-  "brand": "Vamez",
-  "heroTitle": "Домашняя страница проекта",
-  "heroSubtitle": "Nuxt-приложение с шрифтом Cinzel и готовой локализацией.",
-  "ctaPrimary": "Начать работу",
-  "ctaSecondary": "Документация",
-  "cardOneTitle": "Локализация",
-  "cardOneText": "Переключайте язык интерфейса между русским и английским.",
-  "cardTwoTitle": "Типографика",
-  "cardTwoText": "Основной шрифт проекта подключён из Google Fonts: Cinzel.",
-  "cardThreeTitle": "Структура",
-  "cardThreeText": "Стили страницы оформлены по BEM-lite с простыми селекторами."
+  "nav": {
+    "home": "Home",
+    "summary": "Summary",
+    "experience": "Experience",
+    "skills": "Skills",
+    "links": "Links"
+  },
+  "controls": {
+    "theme": "Theme",
+    "language": "Lang",
+    "themeDark": "Dark",
+    "themeLight": "Light"
+  }
 }

@@ -1,10 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap');
 
 :root {
-  --color-text: #2e3a0d;
-  --color-text-soft: #5b6b1f;
-  --color-accent: #96b300;
-  --color-surface: #fbffe3;
+  --color-text: #f2ece5;
+  --color-text-soft: rgba(242, 236, 229, 0.72);
+  --color-accent: #ffb84d;
+  --color-surface: #0e0b0b;
+  --liquid-control-size: 3.55rem;
+  --liquid-control-inset: 0.34rem;
+  --glass-bg: rgba(91, 70, 60, 0.48);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: rgba(0, 0, 0, 0.34);
 }
 
 *,
@@ -19,9 +24,31 @@ body {
   font-family: 'Cinzel', Georgia, serif;
   color: var(--color-text);
   background:
-    radial-gradient(circle at 20% 20%, rgba(240, 255, 132, 0.42), transparent 35%),
-    radial-gradient(circle at 80% 0%, rgba(197, 227, 84, 0.36), transparent 40%),
-    linear-gradient(145deg, #fffff0 0%, #edf89c 100%);
+    radial-gradient(circle at 66% 37%, rgba(255, 139, 50, 0.92), rgba(255, 139, 50, 0.04) 24%),
+    radial-gradient(circle at 84% 18%, rgba(255, 219, 196, 0.58), rgba(255, 219, 196, 0) 26%),
+    radial-gradient(circle at 18% 22%, rgba(24, 27, 37, 0.92), rgba(24, 27, 37, 0.12) 34%),
+    linear-gradient(108deg, #030409 0%, #0d0d14 28%, #35211b 58%, #dbc4be 100%);
+}
+
+:root[data-theme='light'] {
+  --color-text: #1d2636;
+  --color-text-soft: #5b6b84;
+  --color-accent: #6f8fb7;
+  --color-surface: #f5f8ff;
+  --glass-bg: rgba(194, 209, 232, 0.42);
+  --glass-border: rgba(106, 127, 160, 0.36);
+  --glass-shadow: rgba(17, 29, 47, 0.16);
+}
+
+:root[data-theme='light'] body {
+  background:
+    radial-gradient(circle at 18% 14%, rgba(130, 157, 197, 0.28), transparent 36%),
+    radial-gradient(circle at 78% 4%, rgba(176, 195, 225, 0.24), transparent 42%),
+    linear-gradient(155deg, #f9fbff 0%, #e8eff9 48%, #f3f7ff 100%);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 a,

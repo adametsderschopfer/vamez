@@ -1,13 +1,15 @@
 {
-  "brand": "Vamez",
-  "heroTitle": "Project Home Page",
-  "heroSubtitle": "Nuxt app with Cinzel typography and ready-to-use localization.",
-  "ctaPrimary": "Get Started",
-  "ctaSecondary": "Documentation",
-  "cardOneTitle": "Localization",
-  "cardOneText": "Switch interface language between Russian and English.",
-  "cardTwoTitle": "Typography",
-  "cardTwoText": "The main project font is loaded from Google Fonts: Cinzel.",
-  "cardThreeTitle": "Structure",
-  "cardThreeText": "The page styles follow BEM-lite with simple selectors."
+  "nav": {
+    "home": "Home",
+    "summary": "Summary",
+    "experience": "Experience",
+    "skills": "Skills",
+    "links": "Links"
+  },
+  "controls": {
+    "theme": "Theme",
+    "language": "Lang",
+    "themeDark": "Dark",
+    "themeLight": "Light"
+  }
 }
