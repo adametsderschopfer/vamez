@@ -2,7 +2,6 @@
 const introSectionId = 'intro'
 
 const activeSectionId = useState('active-section-id', () => introSectionId)
-const anchorItems = [introSectionId]
 
 let observer: IntersectionObserver | null = null
 
@@ -38,13 +37,7 @@ onBeforeUnmount(() => {
 <template>
   <div class="landing">
     <div class="landing__anchors">
-      <div
-        v-for="anchorId in anchorItems"
-        :id="anchorId"
-        :key="anchorId"
-        class="landing__anchor"
-        data-anchor
-      />
+      <HomeIntroSection />
     </div>
   </div>
 </template>
@@ -59,16 +52,5 @@ onBeforeUnmount(() => {
 .landing__anchors {
   position: relative;
   min-height: 100vh;
-}
-
-.landing__anchor {
-  height: 100vh;
-  scroll-margin-top: 6rem;
-}
-
-@media (max-width: 640px) {
-  .landing__anchor {
-    height: 84vh;
-  }
 }
 </style>

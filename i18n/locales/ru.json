@@ -8,6 +8,13 @@
     "switchToLight": "Включить светлую тему",
     "switchLanguage": "Переключить язык"
   },
+  "home": {
+    "intro": {
+      "role": "Инженер",
+      "firstName": "Владислав",
+      "lastName": "Адамец"
+    }
+  },
   "error": {
     "client": {
       "title": "Страница не найдена",

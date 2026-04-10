@@ -10,7 +10,7 @@ export default defineNuxtConfig({
   modules: ['@nuxt/eslint', '@nuxtjs/i18n'],
   css: ['@/assets/css/main.css'],
   i18n: {
-    defaultLocale: 'ru',
+    defaultLocale: 'en',
     strategy: 'no_prefix',
     detectBrowserLanguage: {
       alwaysRedirect: true,

@@ -8,6 +8,13 @@
     "switchToLight": "Switch to light theme",
     "switchLanguage": "Switch language"
   },
+  "home": {
+    "intro": {
+      "role": "Engineer",
+      "firstName": "Vladislav",
+      "lastName": "Adamets"
+    }
+  },
   "error": {
     "client": {
       "title": "Page Not Found",

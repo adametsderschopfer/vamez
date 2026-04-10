@@ -1,8 +1,9 @@
 :root {
-  --color-text: #384217;
-  --color-text-soft: rgba(86, 102, 40, 0.72);
+  --color-text: #222;
+  --color-text-soft: rgba(34, 34, 34, 0.72);
   --color-accent: #9fca3c;
   --color-surface: #f6fbe7;
+  --color-black: #222;
   --font-body:
     -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Helvetica,
     Arial, sans-serif;
@@ -43,8 +44,8 @@ h6 {
 }
 
 :root[data-theme='dark'] {
-  --color-text: #edf6cf;
-  --color-text-soft: rgba(210, 226, 159, 0.72);
+  --color-text: #ffffff;
+  --color-text-soft: rgba(255, 255, 255, 0.72);
   --color-accent: #c4e565;
   --color-surface: #0a0d06;
   --glass-bg: rgba(63, 79, 29, 0.46);
@@ -58,6 +59,17 @@ h6 {
 
 html {
   scroll-behavior: smooth;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 a,
