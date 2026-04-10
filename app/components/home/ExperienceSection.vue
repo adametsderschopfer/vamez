@@ -90,11 +90,13 @@ const experiences = [
   display: flex;
   flex-direction: column;
   justify-content: center;
+  z-index: 10;
+  will-change: transform;
 }
 
 .experience-section__header {
   margin-bottom: 4rem;
-  animation: fadeInUp 0.6s ease-out 0.2s both;
+  animation: fadeInUp 0.6s ease-out 0.2s forwards;
 }
 
 .experience-section__title {
