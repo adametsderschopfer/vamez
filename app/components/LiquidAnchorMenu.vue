@@ -68,15 +68,19 @@ const iconMap = {
   transition:
     background-color 0.2s ease,
     color 0.2s ease,
-    transform 0.2s ease;
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .liquid-menu__item:hover {
-  transform: translateY(-1px) scale(1.015);
+  transform: translateY(-2px) scale(1.08);
+}
+
+.liquid-menu__item:hover .liquid-menu__icon {
+  transform: scale(1.3) rotate(15deg);
 }
 
 .liquid-menu__item:active {
-  transform: scale(0.975);
+  transform: scale(0.95);
 }
 
 .liquid-menu__item--active {
@@ -87,6 +91,8 @@ const iconMap = {
 .liquid-menu__icon {
   flex: none;
   opacity: 0.92;
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .liquid-menu__label {

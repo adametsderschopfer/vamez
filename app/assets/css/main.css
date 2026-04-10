@@ -28,7 +28,9 @@ body {
   min-height: 100vh;
   font-family: var(--font-body);
   color: var(--color-text);
-  background: linear-gradient(155deg, #fbfdeb 0%, #f1f8d4 48%, #e5efb5 100%);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 28%),
+    linear-gradient(155deg, #fbfdeb 0%, #f1f8d4 48%, #e5efb5 100%);
 }
 
 h1,
@@ -54,7 +56,9 @@ h6 {
 }
 
 :root[data-theme='dark'] body {
-  background: linear-gradient(112deg, #060802 0%, #101507 30%, #18200a 62%, #273312 100%);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 30%),
+    linear-gradient(112deg, #060802 0%, #101507 30%, #18200a 62%, #273312 100%);
 }
 
 html {

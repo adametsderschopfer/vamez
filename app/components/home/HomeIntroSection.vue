@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Mail, Send } from 'lucide-vue-next'
+import { Mail, Send, Github } from 'lucide-vue-next'
 
 const { t } = useI18n()
 </script>
@@ -28,6 +28,15 @@ const { t } = useI18n()
           <a class="home-intro__contact-link" href="mailto:adametsderschopfer@yandex.ru">
             <Mail :size="18" class="home-intro__contact-icon" />
             adametsderschopfer@yandex.ru
+          </a>
+          <a
+            class="home-intro__contact-link"
+            href="https://github.com/adametsderschopfer"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Github :size="18" class="home-intro__contact-icon" />
+            GitHub
           </a>
         </div>
       </div>
@@ -124,11 +133,15 @@ const { t } = useI18n()
 
 .home-intro__contact-link:hover {
   color: var(--color-accent);
-  transform: translateX(2px);
+  transform: translateX(4px) scale(1.05);
+}
+
+.home-intro__contact-link:hover .home-intro__contact-icon {
+  transform: scale(1.2) rotate(12deg);
 }
 
 .home-intro__contact-link:active {
-  transform: translateX(0);
+  transform: translateX(0) scale(0.98);
 }
 
 .home-intro__contact-icon {
@@ -138,6 +151,8 @@ const { t } = useI18n()
   display: flex;
   align-items: center;
   justify-content: center;
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .home-intro__role {
@@ -162,6 +177,10 @@ const { t } = useI18n()
 
 .home-intro__contact-link:nth-child(2) {
   animation-delay: 1s;
+}
+
+.home-intro__contact-link:nth-child(3) {
+  animation-delay: 1.2s;
 }
 
 @media (max-width: 640px) {
