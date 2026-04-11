@@ -126,7 +126,7 @@ onBeforeUnmount(() => {
           :style="{
             top: `${skill.top}%`,
             right: `${skill.right}%`,
-            '--appear-delay': `${skill.delay}s`
+            '--appear-delay': `${0.5 + skill.delay}s`
           }"
         >{{ skill.label }}</span>
       </div>
@@ -208,8 +208,8 @@ onBeforeUnmount(() => {
   /* two-phase animation: appear once, then float forever */
   animation-fill-mode: both, none;
   animation-iteration-count: 1, infinite;
-  animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1), ease-in-out;
-  animation-delay: var(--appear-delay, 0s), calc(var(--appear-delay, 0s) + 0.7s);
+  animation-timing-function: ease-out, ease-in-out;
+  animation-delay: var(--appear-delay, 0s), calc(var(--appear-delay, 0s) + 1s);
 }
 
 .skill-bubble--highlight {
@@ -220,29 +220,31 @@ onBeforeUnmount(() => {
 .skill-bubble--sm {
   padding: 0.4rem 0.9rem;
   font-size: 0.78rem;
-  animation-name: fadeInUp, skillFloat1; /* overridden per float class */
-  animation-duration: 0.7s, 14s;
+  animation-duration: 1s, 14s;
 }
 
 .skill-bubble--md {
   padding: 0.5rem 1.1rem;
   font-size: 0.9rem;
-  animation-name: fadeInUp, skillFloat1;
-  animation-duration: 0.7s, 18s;
+  animation-duration: 1s, 18s;
 }
 
 .skill-bubble--lg {
   padding: 0.6rem 1.3rem;
   font-size: 1rem;
-  animation-name: fadeInUp, skillFloat1;
-  animation-duration: 0.7s, 22s;
+  animation-duration: 1s, 22s;
 }
 
-.skill-bubble--float-1 { animation-name: fadeInUp, skillFloat1; }
-.skill-bubble--float-2 { animation-name: fadeInUp, skillFloat2; }
-.skill-bubble--float-3 { animation-name: fadeInUp, skillFloat3; }
-.skill-bubble--float-4 { animation-name: fadeInUp, skillFloat4; }
-.skill-bubble--float-5 { animation-name: fadeInUp, skillFloat5; }
+.skill-bubble--float-1 { animation-name: skillAppear, skillFloat1; }
+.skill-bubble--float-2 { animation-name: skillAppear, skillFloat2; }
+.skill-bubble--float-3 { animation-name: skillAppear, skillFloat3; }
+.skill-bubble--float-4 { animation-name: skillAppear, skillFloat4; }
+.skill-bubble--float-5 { animation-name: skillAppear, skillFloat5; }
+
+@keyframes skillAppear {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
 
 @keyframes skillFloat1 {
   0%   { transform: translate(0px, 0px); }
