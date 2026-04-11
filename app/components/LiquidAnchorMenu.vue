@@ -120,7 +120,9 @@ const iconMap: Readonly<Record<MenuIcon, Component>> = {
   }
 
   .liquid-menu__item {
-    padding: 0 0.75rem;
+    width: calc(var(--liquid-control-size) - (var(--liquid-control-inset) * 2));
+    padding: 0;
+    justify-content: center;
   }
 }
 </style>

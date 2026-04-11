@@ -3,11 +3,9 @@ import { Mail, Send, Github } from 'lucide-vue-next'
 
 interface Skill {
   readonly label: string
-  readonly icon: string
   readonly size: 'sm' | 'md' | 'lg'
   readonly top: number
   readonly right: number
-  readonly delay: number
   readonly floatAnim: 1 | 2 | 3 | 4 | 5
   readonly highlighted?: boolean
 }
@@ -15,38 +13,45 @@ interface Skill {
 const { t } = useI18n()
 
 const SKILLS: readonly Skill[] = [
-  { label: 'TypeScript', icon: 'typescript.svg', size: 'lg', top: 12, right: 28, delay: 0,   floatAnim: 1, highlighted: true },
-  { label: 'React',      icon: 'react.svg',      size: 'md', top: 22, right: 8,  delay: 0.8, floatAnim: 3, highlighted: true },
-  { label: 'Vue',        icon: 'vue.svg',        size: 'sm', top: 8,  right: 12, delay: 1.6, floatAnim: 2, highlighted: true },
-  { label: 'Next.js',    icon: 'nextjs.svg',     size: 'md', top: 38, right: 22, delay: 0.4, floatAnim: 4 },
-  { label: 'React Native', icon: 'react.svg',    size: 'lg', top: 52, right: 6,  delay: 1.2, floatAnim: 5 },
-  { label: 'Node.js',    icon: 'nodejs.svg',     size: 'sm', top: 46, right: 36, delay: 2.0, floatAnim: 1 },
-  { label: 'GraphQL',    icon: 'graphql.svg',    size: 'md', top: 64, right: 18, delay: 0.6, floatAnim: 3 },
-  { label: 'Docker',     icon: 'docker.svg',     size: 'sm', top: 72, right: 38, delay: 1.8, floatAnim: 2 },
-  { label: 'PostgreSQL', icon: 'postgresql.svg', size: 'md', top: 78, right: 8,  delay: 1.0, floatAnim: 4 },
-  { label: 'Nest.js',    icon: 'nestjs.svg',     size: 'sm', top: 60, right: 42, delay: 2.4, floatAnim: 5 },
-  { label: 'Redux',      icon: 'redux.svg',      size: 'sm', top: 28, right: 44, delay: 1.4, floatAnim: 2 },
-  { label: 'Python',     icon: 'python.svg',     size: 'md', top: 86, right: 26, delay: 0.2, floatAnim: 1, highlighted: true },
-  { label: 'Kubernetes', icon: 'kubernetes.svg', size: 'sm', top: 18, right: 54, delay: 2.2, floatAnim: 3 },
-  { label: 'CI/CD',      icon: 'cicd.svg',       size: 'sm', top: 55, right: 54, delay: 1.6, floatAnim: 4 },
+  { label: 'TypeScript',   size: 'lg', top: 12, right: 28, floatAnim: 1, highlighted: true },
+  { label: 'React',        size: 'md', top: 22, right: 8,  floatAnim: 3, highlighted: true },
+  { label: 'Vue',          size: 'sm', top: 8,  right: 12, floatAnim: 2, highlighted: true },
+  { label: 'Next.js',      size: 'md', top: 38, right: 22, floatAnim: 4 },
+  { label: 'React Native', size: 'lg', top: 52, right: 6,  floatAnim: 5 },
+  { label: 'Node.js',      size: 'sm', top: 46, right: 36, floatAnim: 1 },
+  { label: 'GraphQL',      size: 'md', top: 64, right: 18, floatAnim: 3 },
+  { label: 'Docker',       size: 'sm', top: 72, right: 38, floatAnim: 2 },
+  { label: 'PostgreSQL',   size: 'md', top: 78, right: 8,  floatAnim: 4 },
+  { label: 'Nest.js',      size: 'sm', top: 60, right: 42, floatAnim: 5 },
+  { label: 'Redux',        size: 'sm', top: 28, right: 44, floatAnim: 2 },
+  { label: 'Python',       size: 'md', top: 86, right: 26, floatAnim: 1, highlighted: true },
+  { label: 'Kubernetes',   size: 'sm', top: 18, right: 54, floatAnim: 3 },
+  { label: 'CI/CD',        size: 'sm', top: 55, right: 54, floatAnim: 4 },
 ] as const
 
-const skillsAreaRef = ref<HTMLElement | null>(null)
+const panelRef = ref<HTMLElement | null>(null)
 const bubbleEls = ref<HTMLElement[]>([])
+let rafId: number | null = null
 
 function onMouseMove(e: MouseEvent): void {
-  bubbleEls.value.forEach((bubble) => {
-    if (!bubble) return
-    const rect = bubble.getBoundingClientRect()
-    const cx = rect.left + rect.width / 2
-    const cy = rect.top + rect.height / 2
-    const dx = e.clientX - cx
-    const dy = e.clientY - cy
-    const dist = Math.sqrt(dx * dx + dy * dy)
-    const maxDist = 180
-    const force = Math.max(0, 1 - dist / maxDist)
-    bubble.style.setProperty('--pull-x', `${dx * force * 0.28}px`)
-    bubble.style.setProperty('--pull-y', `${dy * force * 0.28}px`)
+  if (rafId !== null) return
+  rafId = requestAnimationFrame(() => {
+    bubbleEls.value.forEach((bubble) => {
+      if (!bubble) return
+      const rect = bubble.getBoundingClientRect()
+      const cx = rect.left + rect.width / 2
+      const cy = rect.top + rect.height / 2
+      const dx = e.clientX - cx
+      const dy = e.clientY - cy
+      const dist = Math.sqrt(dx * dx + dy * dy)
+      const maxDist = 160
+      const force = Math.max(0, 1 - dist / maxDist)
+      // ease the force with a curve so it feels more organic
+      const easedForce = force * force
+      bubble.style.setProperty('--pull-x', `${dx * easedForce * 0.3}px`)
+      bubble.style.setProperty('--pull-y', `${dy * easedForce * 0.3}px`)
+    })
+    rafId = null
   })
 }
 
@@ -59,19 +64,20 @@ function onMouseLeave(): void {
 }
 
 onMounted(() => {
-  skillsAreaRef.value?.addEventListener('mousemove', onMouseMove)
-  skillsAreaRef.value?.addEventListener('mouseleave', onMouseLeave)
+  panelRef.value?.addEventListener('mousemove', onMouseMove, { passive: true })
+  panelRef.value?.addEventListener('mouseleave', onMouseLeave)
 })
 
 onBeforeUnmount(() => {
-  skillsAreaRef.value?.removeEventListener('mousemove', onMouseMove)
-  skillsAreaRef.value?.removeEventListener('mouseleave', onMouseLeave)
+  panelRef.value?.removeEventListener('mousemove', onMouseMove)
+  panelRef.value?.removeEventListener('mouseleave', onMouseLeave)
+  if (rafId !== null) cancelAnimationFrame(rafId)
 })
 </script>
 
 <template>
   <section id="intro" class="home-intro" data-anchor>
-    <div class="home-intro__panel">
+    <div ref="panelRef" class="home-intro__panel">
       <div class="home-intro__content">
         <p class="home-intro__role">{{ t('home.intro.role') }}</p>
 
@@ -106,8 +112,8 @@ onBeforeUnmount(() => {
         </div>
       </div>
 
-      <div ref="skillsAreaRef" class="home-intro__skills" aria-hidden="true">
-        <div
+      <div class="home-intro__skills" aria-hidden="true">
+        <span
           v-for="(skill, i) in SKILLS"
           :key="skill.label"
           :ref="(el) => { if (el) bubbleEls[i] = el as HTMLElement }"
@@ -120,17 +126,9 @@ onBeforeUnmount(() => {
           :style="{
             top: `${skill.top}%`,
             right: `${skill.right}%`,
-            animationDelay: `${skill.delay}s`
+            '--appear-delay': `${skill.delay}s`
           }"
-        >
-          <img
-            :src="`/icons/tech/${skill.icon}`"
-            :alt="skill.label"
-            class="skill-bubble__icon"
-            draggable="false"
-          />
-          <span class="skill-bubble__label">{{ skill.label }}</span>
-        </div>
+        >{{ skill.label }}</span>
       </div>
     </div>
   </section>
@@ -181,7 +179,7 @@ onBeforeUnmount(() => {
   padding: clamp(2rem, 6vw, 5rem) 70px;
 }
 
-/* ── Floating skills area ── */
+/* ── Floating skills ── */
 
 .home-intro__skills {
   position: absolute;
@@ -190,137 +188,107 @@ onBeforeUnmount(() => {
   z-index: 0;
 }
 
-/* ── Individual bubble ── */
-
 .skill-bubble {
   position: absolute;
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  padding: 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+  font-weight: 600;
+  color: var(--color-text-soft);
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 4px 18px var(--glass-shadow);
-  opacity: 0;
-  animation-fill-mode: forwards;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 12px var(--glass-shadow);
   user-select: none;
   cursor: default;
-  /* CSS individual translate property — composes with animation transform */
+
+  /* magnetic pull — CSS individual translate composes on top of animation transform */
   translate: var(--pull-x, 0px) var(--pull-y, 0px);
-  transition: translate 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: translate 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* two-phase animation: appear once, then float forever */
+  animation-fill-mode: both, none;
+  animation-iteration-count: 1, infinite;
+  animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1), ease-in-out;
+  animation-delay: var(--appear-delay, 0s), calc(var(--appear-delay, 0s) + 0.7s);
 }
 
 .skill-bubble--highlight {
-  border-color: rgba(159, 202, 60, 0.45);
-  box-shadow:
-    0 4px 18px var(--glass-shadow),
-    0 0 14px rgba(159, 202, 60, 0.18);
+  color: var(--color-text);
+  border-color: rgba(159, 202, 60, 0.4);
 }
 
 .skill-bubble--sm {
-  width: 78px;
-  height: 78px;
-  animation-duration: 4.5s;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.78rem;
+  animation-name: fadeInUp, skillFloat1; /* overridden per float class */
+  animation-duration: 0.7s, 14s;
 }
 
 .skill-bubble--md {
-  width: 94px;
-  height: 94px;
-  animation-duration: 5.5s;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.9rem;
+  animation-name: fadeInUp, skillFloat1;
+  animation-duration: 0.7s, 18s;
 }
 
 .skill-bubble--lg {
-  width: 110px;
-  height: 110px;
-  animation-duration: 6.5s;
+  padding: 0.6rem 1.3rem;
+  font-size: 1rem;
+  animation-name: fadeInUp, skillFloat1;
+  animation-duration: 0.7s, 22s;
 }
 
-.skill-bubble--float-1 { animation-name: skillFloat1; }
-.skill-bubble--float-2 { animation-name: skillFloat2; }
-.skill-bubble--float-3 { animation-name: skillFloat3; }
-.skill-bubble--float-4 { animation-name: skillFloat4; }
-.skill-bubble--float-5 { animation-name: skillFloat5; }
-
-.skill-bubble__icon {
-  display: block;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.skill-bubble--sm .skill-bubble__icon { width: 28px; height: 28px; }
-.skill-bubble--md .skill-bubble__icon { width: 34px; height: 34px; }
-.skill-bubble--lg .skill-bubble__icon { width: 40px; height: 40px; }
-
-.skill-bubble__label {
-  color: var(--color-text-soft);
-  font-weight: 600;
-  line-height: 1.2;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-  padding: 0 4px;
-}
-
-.skill-bubble--sm .skill-bubble__label { font-size: 0.58rem; }
-.skill-bubble--md .skill-bubble__label { font-size: 0.64rem; }
-.skill-bubble--lg .skill-bubble__label { font-size: 0.7rem; }
-
-/* ── 5 chaotic float animations (X + Y + optional rotate) ── */
+.skill-bubble--float-1 { animation-name: fadeInUp, skillFloat1; }
+.skill-bubble--float-2 { animation-name: fadeInUp, skillFloat2; }
+.skill-bubble--float-3 { animation-name: fadeInUp, skillFloat3; }
+.skill-bubble--float-4 { animation-name: fadeInUp, skillFloat4; }
+.skill-bubble--float-5 { animation-name: fadeInUp, skillFloat5; }
 
 @keyframes skillFloat1 {
-  0%   { opacity: 0; transform: translate(0px, 12px); }
-  12%  { opacity: 1; }
-  30%  { transform: translate(9px, -13px); }
-  58%  { transform: translate(-6px, -21px); }
-  88%  { opacity: 1; }
-  100% { opacity: 0; transform: translate(0px, 12px); }
+  0%   { transform: translate(0px, 0px); }
+  18%  { transform: translate(18px, -28px); }
+  40%  { transform: translate(-12px, -44px); }
+  62%  { transform: translate(24px, -22px); }
+  82%  { transform: translate(-8px, -36px); }
+  100% { transform: translate(0px, 0px); }
 }
 
 @keyframes skillFloat2 {
-  0%   { opacity: 0; transform: translate(0px, 12px); }
-  12%  { opacity: 1; }
-  33%  { transform: translate(-13px, -15px); }
-  63%  { transform: translate(7px, -25px); }
-  88%  { opacity: 1; }
-  100% { opacity: 0; transform: translate(0px, 12px); }
+  0%   { transform: translate(0px, 0px); }
+  22%  { transform: translate(-24px, -32px); }
+  47%  { transform: translate(14px, -50px); }
+  70%  { transform: translate(-18px, -20px); }
+  88%  { transform: translate(10px, -38px); }
+  100% { transform: translate(0px, 0px); }
 }
 
 @keyframes skillFloat3 {
-  0%   { opacity: 0; transform: translate(0px, 12px); }
-  12%  { opacity: 1; }
-  22%  { transform: translate(15px, -7px); }
-  48%  { transform: translate(5px, -22px); }
-  72%  { transform: translate(-9px, -13px); }
-  88%  { opacity: 1; }
-  100% { opacity: 0; transform: translate(0px, 12px); }
+  0%   { transform: translate(0px, 0px); }
+  15%  { transform: translate(28px, -16px); }
+  38%  { transform: translate(10px, -46px); }
+  60%  { transform: translate(-20px, -28px); }
+  80%  { transform: translate(16px, -42px); }
+  100% { transform: translate(0px, 0px); }
 }
 
 @keyframes skillFloat4 {
-  0%   { opacity: 0; transform: translate(0px, 12px) rotate(0deg); }
-  12%  { opacity: 1; }
-  38%  { transform: translate(-11px, -20px) rotate(-3deg); }
-  68%  { transform: translate(14px, -14px) rotate(3deg); }
-  88%  { opacity: 1; }
-  100% { opacity: 0; transform: translate(0px, 12px) rotate(0deg); }
+  0%   { transform: translate(0px, 0px) rotate(0deg); }
+  25%  { transform: translate(-22px, -38px) rotate(-3deg); }
+  52%  { transform: translate(26px, -24px) rotate(2deg); }
+  75%  { transform: translate(-10px, -48px) rotate(-2deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
 }
 
 @keyframes skillFloat5 {
-  0%   { opacity: 0; transform: translate(0px, 12px) rotate(0deg); }
-  12%  { opacity: 1; }
-  28%  { transform: translate(11px, -9px) rotate(4deg); }
-  54%  { transform: translate(-15px, -19px) rotate(-3deg); }
-  78%  { transform: translate(5px, -11px) rotate(2deg); }
-  88%  { opacity: 1; }
-  100% { opacity: 0; transform: translate(0px, 12px) rotate(0deg); }
+  0%   { transform: translate(0px, 0px) rotate(0deg); }
+  20%  { transform: translate(22px, -20px) rotate(4deg); }
+  45%  { transform: translate(-28px, -40px) rotate(-3deg); }
+  68%  { transform: translate(16px, -52px) rotate(2deg); }
+  85%  { transform: translate(-6px, -26px) rotate(-1deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
 }
 
-/* ── Text elements ── */
+/* ── Text ── */
 
 .home-intro__role {
   align-self: flex-start;
@@ -393,9 +361,10 @@ onBeforeUnmount(() => {
 
 @media (max-width: 900px) {
   .home-intro__skills {
-    display: none;
+    opacity: 0.3;
   }
 }
+
 
 @media (max-width: 640px) {
   .home-intro {

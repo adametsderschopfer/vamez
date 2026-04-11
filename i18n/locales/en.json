@@ -34,6 +34,8 @@
         "years": "yr | yrs",
         "months": "mo | mo"
       },
+      "showEarlier": "Earlier positions",
+      "collapse": "Collapse",
       "company1": {
         "title": "ELM Technology",
         "role": "Senior Frontend Developer",

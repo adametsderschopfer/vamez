@@ -34,6 +34,8 @@
         "years": "год | года | лет",
         "months": "месяц | месяца | месяцев"
       },
+      "showEarlier": "Ранние места работы",
+      "collapse": "Свернуть",
       "company1": {
         "title": "ELM Technology",
         "role": "Senior Frontend Developer",
