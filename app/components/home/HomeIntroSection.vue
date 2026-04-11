@@ -243,15 +243,19 @@ onBeforeUnmount(() => {
 .skill-bubble--float-1 {
   animation-name: skillAppear, skillFloat1;
 }
+
 .skill-bubble--float-2 {
   animation-name: skillAppear, skillFloat2;
 }
+
 .skill-bubble--float-3 {
   animation-name: skillAppear, skillFloat3;
 }
+
 .skill-bubble--float-4 {
   animation-name: skillAppear, skillFloat4;
 }
+
 .skill-bubble--float-5 {
   animation-name: skillAppear, skillFloat5;
 }
@@ -260,6 +264,7 @@ onBeforeUnmount(() => {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -269,18 +274,23 @@ onBeforeUnmount(() => {
   0% {
     transform: translate(0, 0);
   }
+
   18% {
     transform: translate(18px, -28px);
   }
+
   40% {
     transform: translate(-12px, -44px);
   }
+
   62% {
     transform: translate(24px, -22px);
   }
+
   82% {
     transform: translate(-8px, -36px);
   }
+
   100% {
     transform: translate(0, 0);
   }
@@ -290,18 +300,23 @@ onBeforeUnmount(() => {
   0% {
     transform: translate(0, 0);
   }
+
   22% {
     transform: translate(-24px, -32px);
   }
+
   47% {
     transform: translate(14px, -50px);
   }
+
   70% {
     transform: translate(-18px, -20px);
   }
+
   88% {
     transform: translate(10px, -38px);
   }
+
   100% {
     transform: translate(0, 0);
   }
@@ -311,18 +326,23 @@ onBeforeUnmount(() => {
   0% {
     transform: translate(0, 0);
   }
+
   15% {
     transform: translate(28px, -16px);
   }
+
   38% {
     transform: translate(10px, -46px);
   }
+
   60% {
     transform: translate(-20px, -28px);
   }
+
   80% {
     transform: translate(16px, -42px);
   }
+
   100% {
     transform: translate(0, 0);
   }
@@ -332,15 +352,19 @@ onBeforeUnmount(() => {
   0% {
     transform: translate(0, 0) rotate(0deg);
   }
+
   25% {
     transform: translate(-22px, -38px) rotate(-3deg);
   }
+
   52% {
     transform: translate(26px, -24px) rotate(2deg);
   }
+
   75% {
     transform: translate(-10px, -48px) rotate(-2deg);
   }
+
   100% {
     transform: translate(0, 0) rotate(0deg);
   }
@@ -350,18 +374,23 @@ onBeforeUnmount(() => {
   0% {
     transform: translate(0, 0) rotate(0deg);
   }
+
   20% {
     transform: translate(22px, -20px) rotate(4deg);
   }
+
   45% {
     transform: translate(-28px, -40px) rotate(-3deg);
   }
+
   68% {
     transform: translate(16px, -52px) rotate(2deg);
   }
+
   85% {
     transform: translate(-6px, -26px) rotate(-1deg);
   }
+
   100% {
     transform: translate(0, 0) rotate(0deg);
   }
@@ -417,9 +446,11 @@ onBeforeUnmount(() => {
 .home-intro__contact-link:nth-child(1) {
   animation-delay: 0.8s;
 }
+
 .home-intro__contact-link:nth-child(2) {
   animation-delay: 1s;
 }
+
 .home-intro__contact-link:nth-child(3) {
   animation-delay: 1.2s;
 }
