@@ -11,6 +11,7 @@ withDefaults(
 const SECTION_IDS = {
   intro: 'intro',
   summary: 'summary',
+  projects: 'projects',
   experience: 'experience',
   contacts: 'contacts'
 } as const
@@ -21,10 +22,10 @@ const activeSectionId = useState('active-section-id', () => SECTION_IDS.intro)
 const navItems = computed<AnchorItem[]>(() => [
   { id: SECTION_IDS.intro, label: t('nav.im'), icon: 'User' },
   { id: SECTION_IDS.summary, label: t('nav.summary'), icon: 'FileText' },
+  { id: SECTION_IDS.projects, label: t('nav.projects'), icon: 'FolderKanban' },
   { id: SECTION_IDS.experience, label: t('nav.experience'), icon: 'Briefcase' },
   { id: SECTION_IDS.contacts, label: t('nav.contacts'), icon: 'AtSign' }
 ])
-
 </script>
 
 <template>

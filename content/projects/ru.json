@@ -1,0 +1,50 @@
+{
+  "locale": "ru",
+  "items": [
+    {
+      "id": "getarent",
+      "order": 1,
+      "title": "Getarent",
+      "description": "Маркетплейс каршеринга с бронированием, платежами и управлением автопарком. Руководил архитектурой и разрабатывал фичи на веб и мобильных платформах.",
+      "stack": ["React", "Next.js", "React Native", "Nest.js", "Kubernetes"],
+      "link": null,
+      "github": null
+    },
+    {
+      "id": "developer-portal",
+      "order": 2,
+      "title": "Портал разработчиков",
+      "description": "Полнофункциональный портал с WIKI, CMS, умным поиском с подсказками и интеллектуальным AI-ассистентом.",
+      "stack": ["React", "Next.js", "GraphQL", "Python", "Django", "PostgreSQL"],
+      "link": null,
+      "github": null
+    },
+    {
+      "id": "osago-widget",
+      "order": 3,
+      "title": "Виджет ОСАГО",
+      "description": "Встраиваемый виджет страхования для маркетплейса Wildberries. Построен как автономный Vue 3 компонент со сложной валидацией форм и интеграцией сторонних API.",
+      "stack": ["Vue 3", "TypeScript", "Python", "Django"],
+      "link": null,
+      "github": null
+    },
+    {
+      "id": "mozen-mobile",
+      "order": 4,
+      "title": "Mozen Mobile App",
+      "description": "Кроссплатформенное мобильное приложение с нуля с offline-first архитектурой, интеграцией Firebase и нативными Android-фичами через Kotlin.",
+      "stack": ["React Native", "Kotlin", "Firebase", "Parse Platform"],
+      "link": null,
+      "github": null
+    },
+    {
+      "id": "vamez",
+      "order": 5,
+      "title": "Это портфолио",
+      "description": "Персональный сайт-портфолио с glassmorphism дизайном, магнитными баблами навыков, тёмной темой, i18n и блогом на основе контента.",
+      "stack": ["Nuxt 4", "Vue 3", "TypeScript", "Nuxt Content"],
+      "link": "https://vamez.ru",
+      "github": "https://github.com/adametsderschopfer/vamez"
+    }
+  ]
+}

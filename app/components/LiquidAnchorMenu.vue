@@ -1,8 +1,23 @@
 <script setup lang="ts">
-import { AtSign, BriefcaseBusiness, FileText, Link2, User, Zap } from 'lucide-vue-next'
+import {
+  AtSign,
+  BriefcaseBusiness,
+  FileText,
+  FolderKanban,
+  Link2,
+  User,
+  Zap
+} from 'lucide-vue-next'
 import type { Component } from 'vue'
 
-export type MenuIcon = 'User' | 'Briefcase' | 'FileText' | 'Lightning' | 'Link' | 'AtSign'
+export type MenuIcon =
+  | 'User'
+  | 'Briefcase'
+  | 'FileText'
+  | 'FolderKanban'
+  | 'Lightning'
+  | 'Link'
+  | 'AtSign'
 
 export interface AnchorItem {
   id: string
@@ -21,6 +36,7 @@ const iconMap: Readonly<Record<MenuIcon, Component>> = {
   User,
   Briefcase: BriefcaseBusiness,
   FileText,
+  FolderKanban,
   Lightning: Zap,
   Link: Link2,
   AtSign

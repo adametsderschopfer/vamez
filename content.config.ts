@@ -14,6 +14,24 @@ export default defineContentConfig({
         tags: z.array(z.string()).default([])
       })
     }),
+    projects: defineCollection({
+      type: 'data',
+      source: 'projects/*.json',
+      schema: z.object({
+        locale: z.enum(['ru', 'en']),
+        items: z.array(
+          z.object({
+            id: z.string(),
+            order: z.number().int(),
+            title: z.string(),
+            description: z.string(),
+            stack: z.array(z.string()).default([]),
+            link: z.string().nullable().default(null),
+            github: z.string().nullable().default(null)
+          })
+        )
+      })
+    }),
     experience: defineCollection({
       type: 'data',
       source: 'experience/*.json',

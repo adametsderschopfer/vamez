@@ -8,6 +8,7 @@
     "home": "Главная",
     "summary": "Обо мне",
     "experience": "Опыт работы",
+    "projects": "Проекты",
     "contacts": "Контакты",
     "blog": "Блог",
     "sectionNavigation": "Навигация по секциям"
@@ -36,6 +37,9 @@
     "summary": {
       "title": "Обо мне",
       "text": "Senior Frontend Developer с 7+ годами опыта..."
+    },
+    "projects": {
+      "title": "Проекты"
     },
     "contacts": {
       "title": "Контакты"

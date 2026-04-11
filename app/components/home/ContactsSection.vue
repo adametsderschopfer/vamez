@@ -120,18 +120,15 @@ const contacts: readonly Contact[] = [
   display: flex;
   gap: 1.5rem;
   align-items: center;
-  padding: 1.75rem 1rem;
-  margin: 0 -1rem;
+  padding: 1.75rem 0;
   color: inherit;
   text-decoration: none;
   border-bottom: 1px solid var(--glass-border);
-  border-radius: 1rem;
   opacity: 0;
   transform: translateY(20px);
   transition:
     opacity 0.6s ease-out,
-    transform 0.6s ease-out,
-    background-color 0.25s ease;
+    transform 0.6s ease-out;
 }
 
 .contacts-section__container.is-revealed .contacts-section__item {
@@ -144,13 +141,11 @@ const contacts: readonly Contact[] = [
 }
 
 .contacts-section__item:hover {
-  background: var(--glass-bg);
-  transform: translateY(0) translateX(6px);
+  transform: translateY(0) translateX(10px);
 }
 
 .contacts-section__item:hover .contacts-section__item-icon {
   color: var(--color-accent);
-  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
   border-color: var(--color-accent);
 }
 
@@ -160,7 +155,7 @@ const contacts: readonly Contact[] = [
 }
 
 .contacts-section__item:active {
-  transform: translateX(2px) scale(0.99);
+  transform: translateX(4px) scale(0.99);
 }
 
 .contacts-section__item-icon {
@@ -175,8 +170,7 @@ const contacts: readonly Contact[] = [
   border-radius: 50%;
   transition:
     color 0.25s ease,
-    border-color 0.25s ease,
-    background-color 0.25s ease;
+    border-color 0.25s ease;
 }
 
 .contacts-section__item-body {
