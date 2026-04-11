@@ -39,6 +39,7 @@ function scrollToSection(id: string): void {
       class="liquid-menu__item"
       :class="{ 'liquid-menu__item--active': props.activeId === item.id }"
       :href="`#${item.id}`"
+      :aria-label="item.label"
       :aria-current="props.activeId === item.id ? 'page' : undefined"
       @click.prevent="scrollToSection(item.id)"
     >
