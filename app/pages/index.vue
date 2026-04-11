@@ -12,8 +12,14 @@ let rafId: number | null = null
 
 function updateActiveSection() {
   const sections = document.querySelectorAll<HTMLElement>('[data-anchor]')
-  const triggerY = window.scrollY + window.innerHeight * 0.35
 
+  const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 32
+  if (atBottom && sections.length > 0) {
+    activeSectionId.value = sections[sections.length - 1].id
+    return
+  }
+
+  const triggerY = window.scrollY + window.innerHeight * 0.35
   let currentId = sections[0]?.id ?? introSectionId
 
   for (const section of sections) {
