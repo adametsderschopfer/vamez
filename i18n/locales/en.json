@@ -1,6 +1,7 @@
 {
   "nav": {
     "im": "I'm",
+    "experience": "Work Experience",
     "sectionNavigation": "Section navigation"
   },
   "controls": {
@@ -15,42 +16,102 @@
       "lastName": "Adamets"
     },
     "experience": {
-      "title": "Experience",
+      "title": "Work Experience",
       "company1": {
-        "title": "Tech Startup Inc",
-        "role": "Senior Full Stack Developer",
-        "period": "2022 - 2024",
-        "description": "Led development of high-load web applications using Vue.js and Node.js. Implemented microservices architecture and improved system performance by 40%."
+        "title": "ELM Technologies",
+        "role": "Senior Frontend Developer",
+        "period": "July 2024 – Present",
+        "description": "Working on embeddable widget solutions and lead generation tools using Vue.js, with backend involvement in Python/Django to deliver full-cycle features.",
+        "tasks": [
+          "Developed embeddable widgets in Vue 2/3 for integration into third-party platforms",
+          "Built and maintained lead forms with complex validation and submission flows",
+          "Wrote unit and integration tests for Vue components to ensure stability",
+          "Contributed to backend development using Python and Django REST Framework"
+        ]
       },
       "company2": {
-        "title": "Digital Agency",
-        "role": "Frontend Developer",
-        "period": "2020 - 2022",
-        "description": "Built responsive web interfaces for 20+ client projects. Optimized site performance and improved accessibility scores to WCAG AA standards."
+        "title": "Mozen",
+        "role": "Senior Frontend Developer",
+        "period": "June 2024 – Present",
+        "description": "Full-cycle development across web and mobile platforms — from React Native apps to Next.js web migrations, working in a Scrumban team with Firebase and Parse Platform integrations.",
+        "tasks": [
+          "Developed and maintained a cross-platform mobile app in React Native with offline-first support",
+          "Built native Android features in Kotlin alongside the React Native codebase",
+          "Migrated web application to Next.js with SSR support and PWA optimization",
+          "Integrated Firebase (Auth, Firestore, Cloud Functions) and Parse Platform for scalable backend",
+          "Set up CI/CD pipelines for both mobile and web applications",
+          "Participated in code reviews and contributed to architecture decisions"
+        ]
       },
       "company3": {
-        "title": "Software House",
-        "role": "Junior Developer",
-        "period": "2019 - 2020",
-        "description": "Started my professional journey building web applications. Learned best practices in code quality, testing, and team collaboration."
+        "title": "Open Mobile Platform",
+        "role": "Lead Developer",
+        "period": "April 2024 – July 2024",
+        "description": "Technical lead for a developer portal project — designed architecture, led a development team, and delivered a full-featured platform with WIKI, CMS, search, and an intelligent assistant.",
+        "tasks": [
+          "Designed architecture for the developer portal with focus on content publication speed",
+          "Led technical direction and managed a team of developers",
+          "Implemented WIKI, forum, CMS, and a search system with history and smart suggestions",
+          "Built an intelligent assistant integrated into the developer portal",
+          "Configured and supported GitLab CI/CD pipelines for automated builds and deployments",
+          "Authored full project documentation covering architecture, infrastructure, and deployment"
+        ]
       },
       "company4": {
-        "title": "Cloud Solutions Ltd",
-        "role": "DevOps Engineer",
-        "period": "2021 - 2023",
-        "description": "Managed cloud infrastructure on AWS and GCP. Implemented CI/CD pipelines, containerization with Docker, and automated deployment processes."
+        "title": "Getarent",
+        "role": "Tech Lead / Developer",
+        "period": "July 2023 – April 2024",
+        "description": "Served as technical expert on a marketplace platform — contributed to product strategy, led architecture decisions, built new features, and managed infrastructure in Kubernetes.",
+        "tasks": [
+          "Developed new marketplace features and improved existing ones in React / Next.js",
+          "Participated in strategic sessions with top management and investors",
+          "Designed new architectural solutions and defined team coding standards",
+          "Managed infrastructure: deployed and optimized services in Kubernetes on Yandex Cloud",
+          "Wrote SQL scripts for data extraction and migrated logic to database level (views, triggers, procedures)",
+          "Conducted technical interviews and supported team in task planning and estimation"
+        ]
       },
       "company5": {
-        "title": "E-commerce Platform",
-        "role": "Backend Developer",
-        "period": "2020 - 2021",
-        "description": "Developed RESTful APIs and database systems for high-traffic e-commerce platform. Optimized queries and improved API response times by 35%."
+        "title": "IT Special",
+        "role": "Senior Frontend Developer",
+        "period": "December 2022 – July 2023",
+        "description": "Worked across multiple client projects in a consulting agency — from video streaming services to school management systems, handling both development and technical leadership tasks.",
+        "tasks": [
+          "Developed web applications in TypeScript with React / Next.js and Vue / Nuxt.js",
+          "Led Nuxt 2 to Nuxt 3 migration and maintained legacy codebases",
+          "Designed and built a menuboard constructor with Quick Resto integration",
+          "Developed a school schedule module for the iDesk system",
+          "Optimized Webpack build configuration on existing projects",
+          "Conducted technical interviews and prepared test assignments for candidates"
+        ]
       },
       "company6": {
-        "title": "Freelance Projects",
-        "role": "Full Stack Developer",
-        "period": "2018 - present",
-        "description": "Completed 15+ client projects including web applications, mobile apps, and landing pages. Maintained 100% client satisfaction rate."
+        "title": "Consalt Info",
+        "role": "Middle Frontend Developer",
+        "period": "January 2021 – December 2022",
+        "description": "Delivered a wide range of commercial projects — from admin panels and booking platforms to mobile apps and interactive 3D maps — growing from solid execution to active architectural involvement.",
+        "tasks": [
+          "Built an admin panel for managing suppliers, logistics, orders, and advertising",
+          "Developed a psychologist matching platform with booking and personal accounts",
+          "Created a 3D building map with apartment selection and application submission",
+          "Developed 2 React Native mobile apps released to production",
+          "Contributed to design system development and architecture discussions",
+          "Led sprint planning, task estimation, and team task distribution"
+        ]
+      },
+      "company7": {
+        "title": "ADD.Orange",
+        "role": "Web Developer",
+        "period": "February 2018 – September 2020",
+        "description": "Started professional career building client websites and internal tools — from WordPress and Bitrix projects to custom React applications, handling both frontend and backend independently.",
+        "tasks": [
+          "Designed project architecture and selected tech stacks for client projects",
+          "Developed WordPress and Bitrix websites with custom themes and admin panels",
+          "Built an informational portal with a custom PHP admin panel from scratch",
+          "Administered servers and managed deployments independently",
+          "Finalized UI designs and implemented pixel-perfect layouts",
+          "Delivered 2 full projects end-to-end — from client discussions to production"
+        ]
       }
     }
   },

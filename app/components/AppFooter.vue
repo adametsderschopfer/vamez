@@ -29,6 +29,7 @@ const footerText = `${t('footer.madeWith')} ${currentYear}`
   align-items: center;
   justify-content: flex-start;
 
+  margin: 0 30px;
   border: 1px solid color-mix(in srgb, var(--glass-border) 82%, rgba(255, 255, 255, 0.08));
   border-radius: 2rem;
   background:

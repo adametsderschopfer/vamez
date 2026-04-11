@@ -86,7 +86,7 @@ const { t } = useI18n()
   gap: 1.3rem;
   min-height: calc(100vh - 40px);
   max-width: 44rem;
-  padding: clamp(2rem, 6vw, 5rem);
+  padding: clamp(2rem, 6vw, 5rem) 70px;
 }
 
 .home-intro__role {

@@ -7,6 +7,11 @@ export default defineNuxtConfig({
   alias: {
     '@': fileURLToPath(new URL('./app', import.meta.url))
   },
+  app: {
+    head: {
+      title: 'Vamez'
+    }
+  },
   modules: ['@nuxt/eslint', '@nuxtjs/i18n'],
   css: ['@/assets/css/main.css'],
   i18n: {

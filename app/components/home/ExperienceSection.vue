@@ -1,50 +1,38 @@
 <script setup lang="ts">
-const { t } = useI18n()
+const { t, tm, rt } = useI18n()
 
-const experiences = [
-  {
-    id: 1,
-    title: t('home.experience.company1.title'),
-    role: t('home.experience.company1.role'),
-    period: t('home.experience.company1.period'),
-    description: t('home.experience.company1.description')
-  },
-  {
-    id: 2,
-    title: t('home.experience.company2.title'),
-    role: t('home.experience.company2.role'),
-    period: t('home.experience.company2.period'),
-    description: t('home.experience.company2.description')
-  },
-  {
-    id: 3,
-    title: t('home.experience.company3.title'),
-    role: t('home.experience.company3.role'),
-    period: t('home.experience.company3.period'),
-    description: t('home.experience.company3.description')
-  },
-  {
-    id: 4,
-    title: t('home.experience.company4.title'),
-    role: t('home.experience.company4.role'),
-    period: t('home.experience.company4.period'),
-    description: t('home.experience.company4.description')
-  },
-  {
-    id: 5,
-    title: t('home.experience.company5.title'),
-    role: t('home.experience.company5.role'),
-    period: t('home.experience.company5.period'),
-    description: t('home.experience.company5.description')
-  },
-  {
-    id: 6,
-    title: t('home.experience.company6.title'),
-    role: t('home.experience.company6.role'),
-    period: t('home.experience.company6.period'),
-    description: t('home.experience.company6.description')
-  }
-]
+const companyKeys = ['company1', 'company2', 'company3', 'company4', 'company5', 'company6', 'company7']
+
+const experiences = companyKeys.map((key, index) => ({
+  id: index + 1,
+  role: t(`home.experience.${key}.role`),
+  title: t(`home.experience.${key}.title`),
+  period: t(`home.experience.${key}.period`),
+  description: t(`home.experience.${key}.description`),
+  tasks: (tm(`home.experience.${key}.tasks`) as string[]).map((item) => rt(item))
+}))
+
+const itemRefs = ref<HTMLElement[]>([])
+const visibleItems = ref<Set<number>>(new Set())
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = Number((entry.target as HTMLElement).dataset.index)
+          visibleItems.value.add(index)
+          observer.unobserve(entry.target)
+        }
+      })
+    },
+    { threshold: 0.15 }
+  )
+
+  itemRefs.value.forEach((el) => {
+    if (el) observer.observe(el)
+  })
+})
 </script>
 
 <template>
@@ -54,21 +42,39 @@ const experiences = [
         <h2 class="experience-section__title">{{ t('home.experience.title') }}</h2>
       </div>
 
-      <div class="experience-section__cards-container">
+      <div class="experience-section__timeline">
+        <div class="experience-section__line" />
+
         <div
           v-for="(experience, index) in experiences"
           :key="experience.id"
-          class="experience-card"
-          :style="{ '--card-index': index }"
+          :ref="(el) => { if (el) itemRefs[index] = el as HTMLElement }"
+          class="experience-item"
+          :class="{ 'is-visible': visibleItems.has(index) }"
+          :data-index="index"
         >
-          <div class="experience-card__content">
-            <div class="experience-card__header">
-              <h3 class="experience-card__title">{{ experience.title }}</h3>
-              <span class="experience-card__period">{{ experience.period }}</span>
+          <div class="experience-item__dot" />
+
+          <div class="experience-item__body">
+            <div class="experience-item__header">
+              <div class="experience-item__meta">
+                <h3 class="experience-item__role">{{ experience.role }}</h3>
+                <span class="experience-item__company">{{ experience.title }}</span>
+              </div>
+              <span class="experience-item__period">{{ experience.period }}</span>
             </div>
 
-            <p class="experience-card__role">{{ experience.role }}</p>
-            <p class="experience-card__description">{{ experience.description }}</p>
+            <p class="experience-item__description">{{ experience.description }}</p>
+
+            <ul class="experience-item__tasks">
+              <li
+                v-for="(task, taskIndex) in experience.tasks"
+                :key="taskIndex"
+                class="experience-item__task"
+              >
+                {{ task.trim() }}
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -79,23 +85,16 @@ const experiences = [
 <style scoped>
 .experience-section {
   position: relative;
-  min-height: 400vh;
-  padding: 20px;
+  padding: 0 20px;
 }
 
 .experience-section__container {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  z-index: 10;
-  will-change: transform;
+  padding: clamp(2rem, 6vw, 4rem) 0;
 }
 
 .experience-section__header {
   margin-bottom: 4rem;
+  padding: 0 70px;
   animation: fadeInUp 0.6s ease-out 0.2s forwards;
 }
 
@@ -107,111 +106,157 @@ const experiences = [
   line-height: 1.1;
 }
 
-.experience-section__cards-container {
+.experience-section__timeline {
   position: relative;
-  height: 600px;
-  perspective: 1000px;
-  overflow: visible;
+  padding-left: calc(1.5rem + 70px);
+  padding-right: 70px;
 }
 
-.experience-card {
+.experience-section__line {
   position: absolute;
-  width: clamp(280px, 90vw, 500px);
-  height: 280px;
-  top: 0;
-  left: 0;
-  z-index: calc(100 - var(--card-index));
-  transform: translateY(calc(var(--card-index) * 40px));
+  left: 70px;
+  top: 0.5rem;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, var(--color-accent) 0%, transparent 100%);
+  opacity: 0.4;
+  pointer-events: none;
+}
 
-  border: 1px solid var(--glass-border);
-  border-radius: 1.5rem;
-  background: var(--glass-bg);
-  backdrop-filter: blur(24px);
-  box-shadow: 0 18px 50px var(--glass-shadow);
-  padding: 2rem;
-
-  animation: fadeInUp 0.6s ease-out calc(0.4s + var(--card-index) * 0.2s) forwards;
-
+.experience-item {
+  position: relative;
+  padding-bottom: 4rem;
+  opacity: 0;
+  transform: translateY(20px);
   transition:
-    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 0.4s ease;
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
 }
 
-.experience-card:hover {
-  transform: translateY(-12px) scale(1.02);
-  box-shadow: 0 24px 70px var(--glass-shadow);
+.experience-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.experience-card__content {
+.experience-item:last-child {
+  padding-bottom: 0;
+}
+
+.experience-item__dot {
+  position: absolute;
+  left: calc(-1.5rem - 0.6rem);
+  top: 0.4rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: var(--color-accent);
+  border: 2px solid var(--color-surface);
+  box-shadow: 0 0 0 2px var(--color-accent);
+  z-index: 2;
+}
+
+.experience-item__body {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
-.experience-card__header {
+.experience-item__header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 2rem;
 }
 
-.experience-card__title {
+.experience-item__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.experience-item__role {
   margin: 0;
   color: var(--color-text);
-  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-  font-weight: 600;
-  line-height: 1.2;
-  flex: 1;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
-.experience-card__period {
-  flex-shrink: 0;
+.experience-item__company {
   color: var(--color-accent);
-  font-size: 0.9rem;
-  font-weight: 600;
-  white-space: nowrap;
-  letter-spacing: 0.05em;
-}
-
-.experience-card__role {
-  margin: 0;
-  color: var(--color-text-soft);
-  font-size: 1rem;
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
   font-weight: 500;
 }
 
-.experience-card__description {
-  margin: 0;
-  color: var(--color-text-soft);
-  font-size: clamp(0.9rem, 1.2vw, 1rem);
-  line-height: 1.6;
-  flex: 1;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+.experience-item__period {
+  flex-shrink: 0;
+  color: var(--color-text);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-weight: 700;
+  white-space: nowrap;
 }
 
-@media (max-width: 640px) {
-  .experience-section {
-    min-height: 250vh;
+.experience-item__description {
+  margin: 0;
+  color: var(--color-text-soft);
+  font-size: clamp(1rem, 1.3vw, 1.1rem);
+  line-height: 1.8;
+  max-width: 80ch;
+}
+
+.experience-item__tasks {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.experience-item__task {
+  position: relative;
+  padding-left: 1.5rem;
+  color: var(--color-text-soft);
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+  line-height: 1.6;
+}
+
+.experience-item__task::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+}
+
+@media (max-width: 768px) {
+  .experience-section__timeline {
+    padding-left: 2.5rem;
+    padding-right: 20px;
   }
 
-  .experience-section__container {
-    padding: 0;
-  }
-
-  .experience-card {
-    width: calc(100vw - 28px);
+  .experience-section__line {
+    left: 0.5rem;
   }
 
   .experience-section__header {
-    margin-bottom: 2rem;
+    padding: 0 20px;
+    margin-bottom: 2.5rem;
   }
 
-  .experience-section__title {
-    font-size: clamp(1.8rem, 5vw, 2.5rem);
+  .experience-item__dot {
+    left: -1.55rem;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .experience-item__header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .experience-item {
+    padding-bottom: 3rem;
   }
 }
 </style>

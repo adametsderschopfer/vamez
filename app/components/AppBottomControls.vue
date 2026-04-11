@@ -12,13 +12,17 @@ const props = withDefaults(
 )
 
 const introSectionId = 'intro'
+const experienceSectionId = 'experience'
 
 const { t, locale, setLocale } = useI18n()
 
 const activeSectionId = useState('active-section-id', () => introSectionId)
 const { themeMode, toggleTheme } = useThemeMode()
 
-const navItems = computed(() => [{ id: introSectionId, label: t('nav.im'), icon: 'User' }])
+const navItems = computed(() => [
+  { id: introSectionId, label: t('nav.im'), icon: 'User' },
+  { id: experienceSectionId, label: t('nav.experience'), icon: 'Briefcase' }
+])
 const themeIcon = computed(() => (themeMode.value === 'dark' ? MoonStar : Sun))
 const themeButtonLabel = computed(() =>
   themeMode.value === 'dark' ? t('controls.switchToLight') : t('controls.switchToDark')

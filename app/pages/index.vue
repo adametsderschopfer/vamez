@@ -14,17 +14,15 @@ onMounted(() => {
 
   observer = new IntersectionObserver(
     (entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
-
-      if (visible[0]) {
-        activeSectionId.value = (visible[0].target as HTMLElement).id
-      }
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          activeSectionId.value = (entry.target as HTMLElement).id
+        }
+      })
     },
     {
-      rootMargin: '-35% 0px -45% 0px',
-      threshold: [0.25, 0.45, 0.7]
+      rootMargin: '-40% 0px -40% 0px',
+      threshold: 0
     }
   )
 
