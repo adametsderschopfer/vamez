@@ -28,7 +28,11 @@ export const useThemeMode = () => {
 
   const applyTheme = (mode: ThemeMode) => {
     if (import.meta.client) {
+      document.documentElement.classList.add('theme-transition')
       document.documentElement.dataset.theme = mode
+      setTimeout(() => {
+        document.documentElement.classList.remove('theme-transition')
+      }, 400)
     }
   }
 

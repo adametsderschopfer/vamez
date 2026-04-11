@@ -65,6 +65,17 @@ html {
   scroll-behavior: smooth;
 }
 
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease !important;
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
