@@ -1,10 +1,11 @@
 <script setup lang="ts">
 const { t } = useI18n()
+const { containerRef, isRevealed } = useScrollReveal()
 </script>
 
 <template>
-  <section id="summary" class="summary-section" data-anchor>
-    <div class="summary-section__container">
+  <section id="summary" ref="containerRef" class="summary-section" data-anchor>
+    <div class="summary-section__container" :class="{ 'is-revealed': isRevealed }">
       <div class="summary-section__header">
         <h2 class="summary-section__title">{{ t('home.summary.title') }}</h2>
       </div>
@@ -28,7 +29,16 @@ const { t } = useI18n()
 .summary-section__header {
   padding: 0 70px;
   margin-bottom: 3rem;
-  animation: fadeInUp 0.6s ease-out 0.2s forwards;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+
+.summary-section__container.is-revealed .summary-section__header {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .summary-section__title {
@@ -42,7 +52,15 @@ const { t } = useI18n()
 .summary-section__content {
   padding: 0 70px;
   opacity: 0;
-  animation: fadeInUp 0.6s ease-out 0.35s forwards;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s ease-out 0.15s,
+    transform 0.6s ease-out 0.15s;
+}
+
+.summary-section__container.is-revealed .summary-section__content {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .summary-section__text {

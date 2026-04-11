@@ -8,10 +8,10 @@ interface Contact {
   readonly label: string
   readonly handle: string
   readonly external: boolean
-  readonly animDelay: string
 }
 
 const { t } = useI18n()
+const { containerRef, isRevealed } = useScrollReveal()
 
 const currentYear = new Date().getFullYear()
 
@@ -22,8 +22,7 @@ const contacts: readonly Contact[] = [
     icon: Send,
     label: 'Telegram',
     handle: '@adametsderschopfer',
-    external: true,
-    animDelay: '0.2s'
+    external: true
   },
   {
     key: 'email',
@@ -31,8 +30,7 @@ const contacts: readonly Contact[] = [
     icon: Mail,
     label: 'Email',
     handle: 'adametsderschopfer@yandex.ru',
-    external: false,
-    animDelay: '0.35s'
+    external: false
   },
   {
     key: 'github',
@@ -40,28 +38,27 @@ const contacts: readonly Contact[] = [
     icon: Github,
     label: 'GitHub',
     handle: 'adametsderschopfer',
-    external: true,
-    animDelay: '0.5s'
+    external: true
   }
 ]
 </script>
 
 <template>
-  <section id="contacts" class="contacts-section" data-anchor>
-    <div class="contacts-section__container">
+  <section id="contacts" ref="containerRef" class="contacts-section" data-anchor>
+    <div class="contacts-section__container" :class="{ 'is-revealed': isRevealed }">
       <div class="contacts-section__header">
         <h2 class="contacts-section__title">{{ t('home.contacts.title') }}</h2>
       </div>
 
       <div class="contacts-section__list">
         <a
-          v-for="contact in contacts"
+          v-for="(contact, i) in contacts"
           :key="contact.key"
           :href="contact.href"
           :target="contact.external ? '_blank' : undefined"
           :rel="contact.external ? 'noreferrer' : undefined"
           class="contacts-section__item"
-          :style="{ animationDelay: contact.animDelay }"
+          :style="{ transitionDelay: `${0.2 + i * 0.12}s` }"
         >
           <div class="contacts-section__item-icon">
             <component :is="contact.icon" :size="22" />
@@ -93,7 +90,16 @@ const contacts: readonly Contact[] = [
 .contacts-section__header {
   padding: 0 70px;
   margin-bottom: 3rem;
-  animation: fadeInUp 0.6s ease-out 0.2s forwards;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+
+.contacts-section__container.is-revealed .contacts-section__header {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .contacts-section__title {
@@ -114,13 +120,23 @@ const contacts: readonly Contact[] = [
   display: flex;
   gap: 1.5rem;
   align-items: center;
-  padding: 1.75rem 0;
+  padding: 1.75rem 1rem;
+  margin: 0 -1rem;
   color: inherit;
   text-decoration: none;
   border-bottom: 1px solid var(--glass-border);
+  border-radius: 1rem;
   opacity: 0;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  animation: fadeInUp 0.6s ease-out forwards;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out,
+    background-color 0.25s ease;
+}
+
+.contacts-section__container.is-revealed .contacts-section__item {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .contacts-section__item:first-child {
@@ -128,11 +144,13 @@ const contacts: readonly Contact[] = [
 }
 
 .contacts-section__item:hover {
-  transform: translateX(10px);
+  background: var(--glass-bg);
+  transform: translateY(0) translateX(6px);
 }
 
 .contacts-section__item:hover .contacts-section__item-icon {
   color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
   border-color: var(--color-accent);
 }
 
@@ -142,7 +160,7 @@ const contacts: readonly Contact[] = [
 }
 
 .contacts-section__item:active {
-  transform: translateX(4px) scale(0.99);
+  transform: translateX(2px) scale(0.99);
 }
 
 .contacts-section__item-icon {
@@ -157,7 +175,8 @@ const contacts: readonly Contact[] = [
   border-radius: 50%;
   transition:
     color 0.25s ease,
-    border-color 0.25s ease;
+    border-color 0.25s ease,
+    background-color 0.25s ease;
 }
 
 .contacts-section__item-body {

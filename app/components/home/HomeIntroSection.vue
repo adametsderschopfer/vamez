@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Mail, Send, Github } from 'lucide-vue-next'
+import { Mail, Send, Github, ChevronDown } from 'lucide-vue-next'
 
 interface Skill {
   readonly label: string
@@ -32,6 +32,25 @@ const SKILLS: readonly Skill[] = [
 const panelRef = ref<HTMLElement | null>(null)
 const bubbleEls = ref<HTMLElement[]>([])
 let rafId: number | null = null
+
+// Typing effect
+const roleText = computed(() => t('home.intro.role'))
+const displayedRole = ref('')
+const typingDone = ref(false)
+
+function startTyping() {
+  const text = roleText.value
+  let i = 0
+  const interval = setInterval(() => {
+    if (i < text.length) {
+      displayedRole.value = text.slice(0, i + 1)
+      i++
+    } else {
+      typingDone.value = true
+      clearInterval(interval)
+    }
+  }, 70)
+}
 
 function onMouseMove(e: MouseEvent): void {
   if (rafId !== null) return
@@ -66,6 +85,7 @@ function onMouseLeave(): void {
 onMounted(() => {
   panelRef.value?.addEventListener('mousemove', onMouseMove, { passive: true })
   panelRef.value?.addEventListener('mouseleave', onMouseLeave)
+  setTimeout(startTyping, 600)
 })
 
 onBeforeUnmount(() => {
@@ -79,7 +99,12 @@ onBeforeUnmount(() => {
   <section id="intro" class="home-intro" data-anchor>
     <div ref="panelRef" class="home-intro__panel">
       <div class="home-intro__content">
-        <p class="home-intro__role">{{ t('home.intro.role') }}</p>
+        <p class="home-intro__role">
+          <span>{{ displayedRole }}</span>
+          <span class="home-intro__cursor" :class="{ 'home-intro__cursor--hidden': typingDone }"
+            >|</span
+          >
+        </p>
 
         <h1 class="home-intro__title">
           <span class="home-intro__title-line">{{ t('home.intro.firstName') }}</span>
@@ -112,6 +137,10 @@ onBeforeUnmount(() => {
         </div>
       </div>
 
+      <a href="#summary" class="home-intro__scroll-hint" aria-label="Scroll down">
+        <ChevronDown :size="24" />
+      </a>
+
       <div class="home-intro__skills" aria-hidden="true">
         <span
           v-for="(skill, i) in SKILLS"
@@ -130,7 +159,7 @@ onBeforeUnmount(() => {
           :style="{
             top: `${skill.top}%`,
             right: `${skill.right}%`,
-            '--appear-delay': `${0.5 + skill.delay}s`
+            '--appear-delay': `${0.5 + i * 0.1}s`
           }"
           >{{ skill.label }}</span
         >
@@ -396,17 +425,74 @@ onBeforeUnmount(() => {
   }
 }
 
+/* ── Scroll indicator ── */
+
+.home-intro__scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--color-text-soft);
+  text-decoration: none;
+  opacity: 0;
+  transform: translateX(-50%);
+  animation:
+    fadeIn 0.6s ease-out 2s forwards,
+    scrollBounce 2s ease-in-out 2.6s infinite;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 0.5;
+  }
+}
+
+@keyframes scrollBounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(8px);
+  }
+}
+
+/* ── Typing cursor ── */
+
+.home-intro__cursor {
+  font-weight: 400;
+  color: var(--color-accent);
+  animation: blink 0.7s step-end infinite;
+}
+
+.home-intro__cursor--hidden {
+  opacity: 0;
+  animation: none;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
 /* ── Text ── */
 
 .home-intro__role {
   align-self: flex-start;
+  min-height: 1.5em;
   margin: 0;
   font-size: clamp(0.9rem, 1.4vw, 1.15rem);
   font-weight: 600;
   color: var(--color-accent);
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  animation: fadeInUp 0.6s ease-out 0.2s both;
 }
 
 .home-intro__title {
