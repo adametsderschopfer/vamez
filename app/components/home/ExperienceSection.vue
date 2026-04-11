@@ -1,22 +1,8 @@
 <script setup lang="ts">
-const { t, tm, rt } = useI18n()
-
-type CompanyKey =
-  | 'company1'
-  | 'company2'
-  | 'company3'
-  | 'company4'
-  | 'company5'
-  | 'company6'
-  | 'company7'
-
-interface DateRange {
-  readonly start: string
-  readonly end: string | null
-}
+const { t, locale } = useI18n()
 
 interface Experience {
-  id: number
+  id: string
   role: string
   title: string
   period: string
@@ -27,27 +13,26 @@ interface Experience {
   achievements: string[]
 }
 
-const COMPANY_KEYS: readonly CompanyKey[] = [
-  'company1',
-  'company2',
-  'company3',
-  'company4',
-  'company5',
-  'company6',
-  'company7'
-]
-
-const RAW_DATES: Readonly<Record<CompanyKey, DateRange>> = {
-  company1: { start: '2024-06', end: null },
-  company2: { start: '2024-07', end: null },
-  company3: { start: '2024-04', end: '2024-07' },
-  company4: { start: '2023-07', end: '2024-04' },
-  company5: { start: '2022-12', end: '2023-07' },
-  company6: { start: '2021-01', end: '2022-12' },
-  company7: { start: '2018-02', end: '2020-09' }
+interface ExperienceItemContent {
+  id: string
+  order: number
+  role: string
+  title: string
+  period: string
+  start: string
+  end: string | null
+  description: string
+  stack: string[]
+  tasks: string[]
+  achievements: string[]
 }
 
-const CAREER_START = '2018-02'
+interface ExperienceContent {
+  locale: 'ru' | 'en'
+  careerStart: string
+  items: ExperienceItemContent[]
+}
+
 const INITIAL_VISIBLE = 3
 
 function calcDuration(start: string, end: string | null): string {
@@ -67,28 +52,50 @@ function calcDuration(start: string, end: string | null): string {
   return parts.join(' ')
 }
 
-function resolveStringArray(key: string): string[] {
-  return (tm(key) as string[]).map((item) => rt(item))
-}
-
-const totalExperience = computed(() => calcDuration(CAREER_START, null))
-
-const experiences = computed<Experience[]>(() =>
-  COMPANY_KEYS.map((key, index) => ({
-    id: index + 1,
-    role: t(`home.experience.${key}.role`),
-    title: t(`home.experience.${key}.title`),
-    period: t(`home.experience.${key}.period`),
-    duration: calcDuration(RAW_DATES[key].start, RAW_DATES[key].end),
-    description: t(`home.experience.${key}.description`),
-    stack: resolveStringArray(`home.experience.${key}.stack`),
-    tasks: resolveStringArray(`home.experience.${key}.tasks`),
-    achievements: resolveStringArray(`home.experience.${key}.achievements`)
-  }))
+const { data } = await useAsyncData(
+  () => `experience-${locale.value}`,
+  () => queryCollection('experience').where('locale', '=', locale.value).first(),
+  { watch: [locale] }
 )
 
+const experienceContent = computed<ExperienceContent | null>(() => {
+  const item = data.value
+
+  if (
+    !item ||
+    (item.locale !== 'ru' && item.locale !== 'en') ||
+    typeof item.careerStart !== 'string' ||
+    !Array.isArray(item.items)
+  ) {
+    return null
+  }
+
+  return item as ExperienceContent
+})
+
+const totalExperience = computed(() => {
+  const careerStart = experienceContent.value?.careerStart ?? '2018-02'
+  return calcDuration(careerStart, null)
+})
+
+const experiences = computed<Experience[]>(() => {
+  const items = [...(experienceContent.value?.items ?? [])].sort((a, b) => a.order - b.order)
+
+  return items.map((item) => ({
+    id: item.id,
+    role: item.role,
+    title: item.title,
+    period: item.period,
+    duration: calcDuration(item.start, item.end),
+    description: item.description,
+    stack: item.stack,
+    tasks: item.tasks,
+    achievements: item.achievements
+  }))
+})
+
 const showAll = ref(false)
-const hiddenCount = computed(() => experiences.value.length - INITIAL_VISIBLE)
+const hiddenCount = computed(() => Math.max(0, experiences.value.length - INITIAL_VISIBLE))
 const visibleExperiences = computed(() =>
   showAll.value ? experiences.value : experiences.value.slice(0, INITIAL_VISIBLE)
 )
@@ -127,6 +134,23 @@ watch(showAll, async (val) => {
     observeAll()
   }
 })
+
+watch(
+  () => locale.value,
+  () => {
+    showAll.value = false
+    visibleItems.value = new Set()
+    itemRefs.value = []
+  }
+)
+
+watch(
+  () => visibleExperiences.value.map((experience) => experience.id),
+  async () => {
+    await nextTick()
+    observeAll()
+  }
+)
 
 onBeforeUnmount(() => {
   observer?.disconnect()
