@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { AtSign, BriefcaseBusiness, FileText, Link2, User, Zap } from 'lucide-vue-next'
+import type { Component } from 'vue'
 
-type MenuIcon = 'User' | 'Briefcase' | 'FileText' | 'Lightning' | 'Link' | 'AtSign'
+export type MenuIcon = 'User' | 'Briefcase' | 'FileText' | 'Lightning' | 'Link' | 'AtSign'
 
-type AnchorItem = {
+export interface AnchorItem {
   id: string
   label: string
   icon: MenuIcon
@@ -16,14 +17,14 @@ const props = defineProps<{
 
 const { t } = useI18n()
 
-const iconMap = {
+const iconMap: Readonly<Record<MenuIcon, Component>> = {
   User,
   Briefcase: BriefcaseBusiness,
   FileText,
   Lightning: Zap,
   Link: Link2,
-  AtSign
-} satisfies Record<MenuIcon, object>
+  AtSign,
+}
 </script>
 
 <template>
@@ -36,7 +37,12 @@ const iconMap = {
       :href="`#${item.id}`"
       :aria-current="props.activeId === item.id ? 'page' : undefined"
     >
-      <component :is="iconMap[item.icon]" class="liquid-menu__icon" :size="18" aria-hidden="true" />
+      <component
+        :is="iconMap[item.icon]"
+        class="liquid-menu__icon"
+        :size="18"
+        aria-hidden="true"
+      />
       <span class="liquid-menu__label">{{ item.label }}</span>
     </a>
   </nav>
@@ -92,8 +98,7 @@ const iconMap = {
 .liquid-menu__icon {
   flex: none;
   opacity: 0.92;
-  transition:
-    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .liquid-menu__label {

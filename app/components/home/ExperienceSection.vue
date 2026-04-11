@@ -1,28 +1,62 @@
 <script setup lang="ts">
 const { t, tm, rt } = useI18n()
 
-const companyKeys = ['company1', 'company2', 'company3', 'company4', 'company5', 'company6', 'company7']
+type CompanyKey =
+  | 'company1'
+  | 'company2'
+  | 'company3'
+  | 'company4'
+  | 'company5'
+  | 'company6'
+  | 'company7'
 
-const rawDates: Record<string, { start: string; end: string | null }> = {
+interface DateRange {
+  readonly start: string
+  readonly end: string | null
+}
+
+interface Experience {
+  id: number
+  role: string
+  title: string
+  period: string
+  duration: string
+  description: string
+  stack: string[]
+  tasks: string[]
+  achievements: string[]
+}
+
+const COMPANY_KEYS: readonly CompanyKey[] = [
+  'company1',
+  'company2',
+  'company3',
+  'company4',
+  'company5',
+  'company6',
+  'company7',
+]
+
+const RAW_DATES: Readonly<Record<CompanyKey, DateRange>> = {
   company1: { start: '2024-07', end: null },
   company2: { start: '2024-06', end: null },
   company3: { start: '2024-04', end: '2024-07' },
   company4: { start: '2023-07', end: '2024-04' },
   company5: { start: '2022-12', end: '2023-07' },
   company6: { start: '2021-01', end: '2022-12' },
-  company7: { start: '2018-02', end: '2020-09' }
+  company7: { start: '2018-02', end: '2020-09' },
 }
 
 function calcDuration(start: string, end: string | null): string {
-  const [sy, sm] = start.split('-').map(Number)
+  const [sy, sm] = start.split('-').map(Number) as [number, number]
   const now = new Date()
   const [ey, em] = end
-    ? end.split('-').map(Number)
-    : [now.getFullYear(), now.getMonth() + 1]
+    ? (end.split('-').map(Number) as [number, number])
+    : ([now.getFullYear(), now.getMonth() + 1] as [number, number])
 
-  let months = (ey - sy) * 12 + (em - sm)
-  const years = Math.floor(months / 12)
-  months = months % 12
+  let totalMonths = (ey - sy) * 12 + (em - sm)
+  const years = Math.floor(totalMonths / 12)
+  const months = totalMonths % 12
 
   const parts: string[] = []
   if (years > 0) parts.push(`${years} ${t('home.experience.duration.years', years)}`)
@@ -30,17 +64,21 @@ function calcDuration(start: string, end: string | null): string {
   return parts.join(' ')
 }
 
-const experiences = computed(() =>
-  companyKeys.map((key, index) => ({
+function resolveStringArray(key: string): string[] {
+  return (tm(key) as string[]).map((item) => rt(item))
+}
+
+const experiences = computed<Experience[]>(() =>
+  COMPANY_KEYS.map((key, index) => ({
     id: index + 1,
     role: t(`home.experience.${key}.role`),
     title: t(`home.experience.${key}.title`),
     period: t(`home.experience.${key}.period`),
-    duration: calcDuration(rawDates[key].start, rawDates[key].end),
+    duration: calcDuration(RAW_DATES[key].start, RAW_DATES[key].end),
     description: t(`home.experience.${key}.description`),
-    stack: (tm(`home.experience.${key}.stack`) as string[]).map((item) => rt(item)),
-    tasks: (tm(`home.experience.${key}.tasks`) as string[]).map((item) => rt(item)),
-    achievements: (tm(`home.experience.${key}.achievements`) as string[]).map((item) => rt(item))
+    stack: resolveStringArray(`home.experience.${key}.stack`),
+    tasks: resolveStringArray(`home.experience.${key}.tasks`),
+    achievements: resolveStringArray(`home.experience.${key}.achievements`),
   }))
 )
 
@@ -121,7 +159,9 @@ onMounted(() => {
             </div>
 
             <div v-if="experience.achievements.length" class="experience-item__block">
-              <h4 class="experience-item__block-title experience-item__block-title--accent">{{ t('home.experience.labels.achievements') }}</h4>
+              <h4 class="experience-item__block-title experience-item__block-title--accent">
+                {{ t('home.experience.labels.achievements') }}
+              </h4>
               <ul class="experience-item__list">
                 <li
                   v-for="(item, aIndex) in experience.achievements"

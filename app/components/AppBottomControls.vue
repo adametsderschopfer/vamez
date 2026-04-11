@@ -1,45 +1,46 @@
 <script setup lang="ts">
 import { Languages, MoonStar, Sun } from 'lucide-vue-next'
 import { useThemeMode } from '@/composables/useThemeMode'
+import type { AnchorItem } from '@/components/LiquidAnchorMenu.vue'
 
-const props = withDefaults(
+withDefaults(
   defineProps<{
     showMenu?: boolean
   }>(),
-  {
-    showMenu: false
-  }
+  { showMenu: false }
 )
 
-const introSectionId = 'intro'
-const summarySectionId = 'summary'
-const experienceSectionId = 'experience'
-const contactsSectionId = 'contacts'
+const SECTION_IDS = {
+  intro: 'intro',
+  summary: 'summary',
+  experience: 'experience',
+  contacts: 'contacts',
+} as const
 
 const { t, locale, setLocale } = useI18n()
-
-const activeSectionId = useState('active-section-id', () => introSectionId)
+const activeSectionId = useState('active-section-id', () => SECTION_IDS.intro)
 const { themeMode, toggleTheme } = useThemeMode()
 
-const navItems = computed(() => [
-  { id: introSectionId, label: t('nav.im'), icon: 'User' },
-  { id: summarySectionId, label: t('nav.summary'), icon: 'FileText' },
-  { id: experienceSectionId, label: t('nav.experience'), icon: 'Briefcase' },
-  { id: contactsSectionId, label: t('nav.contacts'), icon: 'AtSign' }
+const navItems = computed<AnchorItem[]>(() => [
+  { id: SECTION_IDS.intro,      label: t('nav.im'),         icon: 'User' },
+  { id: SECTION_IDS.summary,    label: t('nav.summary'),    icon: 'FileText' },
+  { id: SECTION_IDS.experience, label: t('nav.experience'), icon: 'Briefcase' },
+  { id: SECTION_IDS.contacts,   label: t('nav.contacts'),   icon: 'AtSign' },
 ])
+
 const themeIcon = computed(() => (themeMode.value === 'dark' ? MoonStar : Sun))
 const themeButtonLabel = computed(() =>
   themeMode.value === 'dark' ? t('controls.switchToLight') : t('controls.switchToDark')
 )
 
-const toggleLocale = () => {
+function toggleLocale(): void {
   setLocale(locale.value === 'ru' ? 'en' : 'ru')
 }
 </script>
 
 <template>
   <div class="app-bottom-controls">
-    <LiquidAnchorMenu v-if="props.showMenu" :items="navItems" :active-id="activeSectionId" />
+    <LiquidAnchorMenu v-if="showMenu" :items="navItems" :active-id="activeSectionId" />
     <LiquidStateButton :icon="themeIcon" :label="themeButtonLabel" @click="toggleTheme" />
     <LiquidStateButton
       :icon="Languages"
