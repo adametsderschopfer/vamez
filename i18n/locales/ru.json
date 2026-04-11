@@ -5,15 +5,27 @@
   },
   "nav": {
     "im": "Я",
+    "home": "Главная",
     "summary": "Обо мне",
     "experience": "Опыт работы",
     "contacts": "Контакты",
+    "blog": "Блог",
     "sectionNavigation": "Навигация по секциям"
   },
   "controls": {
     "switchToDark": "Включить тёмную тему",
     "switchToLight": "Включить светлую тему",
-    "switchLanguage": "Переключить язык"
+    "switchLanguage": "Переключить язык",
+    "openMenu": "Открыть меню",
+    "closeMenu": "Закрыть меню"
+  },
+  "blog": {
+    "title": "Блог",
+    "subtitle": "Наброски о программировании, AI и рабочем процессе.",
+    "backToBlog": "Назад к блогу",
+    "tags": "Теги",
+    "allTags": "Все теги",
+    "showMore": "Показать ещё"
   },
   "home": {
     "intro": {

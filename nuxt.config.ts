@@ -4,6 +4,19 @@ import { fileURLToPath } from 'node:url'
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+  nitro: {
+    compressPublicAssets: {
+      gzip: true,
+      brotli: true
+    },
+    prerender: {
+      crawlLinks: true,
+      routes: ['/']
+    }
+  },
+  routeRules: {
+    '/**': { prerender: true }
+  },
   alias: {
     '@': fileURLToPath(new URL('./app', import.meta.url))
   },
@@ -23,7 +36,7 @@ export default defineNuxtConfig({
       ]
     }
   },
-  modules: ['@nuxt/eslint', '@nuxtjs/i18n'],
+  modules: ['@nuxt/eslint', '@nuxt/content', '@nuxtjs/i18n'],
   css: ['@/assets/css/main.css'],
   i18n: {
     defaultLocale: 'en',

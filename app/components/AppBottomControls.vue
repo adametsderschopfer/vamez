@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { Languages, MoonStar, Sun } from 'lucide-vue-next'
-import { useThemeMode } from '@/composables/useThemeMode'
 import type { AnchorItem } from '@/components/LiquidAnchorMenu.vue'
 
 withDefaults(
@@ -17,9 +15,8 @@ const SECTION_IDS = {
   contacts: 'contacts'
 } as const
 
-const { t, locale, setLocale } = useI18n()
+const { t } = useI18n()
 const activeSectionId = useState('active-section-id', () => SECTION_IDS.intro)
-const { themeMode, toggleTheme } = useThemeMode()
 
 const navItems = computed<AnchorItem[]>(() => [
   { id: SECTION_IDS.intro, label: t('nav.im'), icon: 'User' },
@@ -28,25 +25,12 @@ const navItems = computed<AnchorItem[]>(() => [
   { id: SECTION_IDS.contacts, label: t('nav.contacts'), icon: 'AtSign' }
 ])
 
-const themeIcon = computed(() => (themeMode.value === 'dark' ? MoonStar : Sun))
-const themeButtonLabel = computed(() =>
-  themeMode.value === 'dark' ? t('controls.switchToLight') : t('controls.switchToDark')
-)
-
-function toggleLocale(): void {
-  setLocale(locale.value === 'ru' ? 'en' : 'ru')
-}
 </script>
 
 <template>
   <div class="app-bottom-controls">
     <LiquidAnchorMenu v-if="showMenu" :items="navItems" :active-id="activeSectionId" />
-    <LiquidStateButton :icon="themeIcon" :label="themeButtonLabel" @click="toggleTheme" />
-    <LiquidStateButton
-      :icon="Languages"
-      :label="t('controls.switchLanguage')"
-      @click="toggleLocale"
-    />
+    <AppQuickMenu />
   </div>
 </template>
 
