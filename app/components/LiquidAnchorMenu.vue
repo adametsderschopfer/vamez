@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { BriefcaseBusiness, FileText, Link2, User, Zap } from 'lucide-vue-next'
+import { AtSign, BriefcaseBusiness, FileText, Link2, User, Zap } from 'lucide-vue-next'
 
-type MenuIcon = 'User' | 'Briefcase' | 'FileText' | 'Lightning' | 'Link'
+type MenuIcon = 'User' | 'Briefcase' | 'FileText' | 'Lightning' | 'Link' | 'AtSign'
 
 type AnchorItem = {
   id: string
@@ -21,7 +21,8 @@ const iconMap = {
   Briefcase: BriefcaseBusiness,
   FileText,
   Lightning: Zap,
-  Link: Link2
+  Link: Link2,
+  AtSign
 } satisfies Record<MenuIcon, object>
 </script>
 
@@ -103,9 +104,18 @@ const iconMap = {
 
 @media (max-width: 960px) {
   .liquid-menu {
-    width: 100%;
     overflow-x: auto;
     justify-content: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .liquid-menu__label {
+    display: none;
+  }
+
+  .liquid-menu__item {
+    padding: 0 0.75rem;
   }
 }
 </style>

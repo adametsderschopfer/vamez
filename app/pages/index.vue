@@ -1,38 +1,46 @@
 <script setup lang="ts">
 import HomeIntroSection from '@/components/home/HomeIntroSection.vue'
+import SummarySection from '@/components/home/SummarySection.vue'
 import ExperienceSection from '@/components/home/ExperienceSection.vue'
-import AppFooter from '@/components/AppFooter.vue'
+import ContactsSection from '@/components/home/ContactsSection.vue'
 
 const introSectionId = 'intro'
 
 const activeSectionId = useState('active-section-id', () => introSectionId)
 
-let observer: IntersectionObserver | null = null
+let rafId: number | null = null
+
+function updateActiveSection() {
+  const sections = document.querySelectorAll<HTMLElement>('[data-anchor]')
+  const triggerY = window.scrollY + window.innerHeight * 0.35
+
+  let currentId = sections[0]?.id ?? introSectionId
+
+  for (const section of sections) {
+    if (section.offsetTop <= triggerY) {
+      currentId = section.id
+    }
+  }
+
+  activeSectionId.value = currentId
+}
+
+function onScroll() {
+  if (rafId !== null) return
+  rafId = requestAnimationFrame(() => {
+    updateActiveSection()
+    rafId = null
+  })
+}
 
 onMounted(() => {
-  activeSectionId.value = introSectionId
-
-  observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          activeSectionId.value = (entry.target as HTMLElement).id
-        }
-      })
-    },
-    {
-      rootMargin: '-40% 0px -40% 0px',
-      threshold: 0
-    }
-  )
-
-  document.querySelectorAll<HTMLElement>('[data-anchor]').forEach((sectionElement) => {
-    observer?.observe(sectionElement)
-  })
+  updateActiveSection()
+  window.addEventListener('scroll', onScroll, { passive: true })
 })
 
 onBeforeUnmount(() => {
-  observer?.disconnect()
+  window.removeEventListener('scroll', onScroll)
+  if (rafId !== null) cancelAnimationFrame(rafId)
 })
 </script>
 
@@ -40,9 +48,10 @@ onBeforeUnmount(() => {
   <div class="landing">
     <div class="landing__anchors">
       <HomeIntroSection />
+      <SummarySection />
       <ExperienceSection />
+      <ContactsSection />
     </div>
-    <AppFooter />
   </div>
 </template>
 

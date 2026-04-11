@@ -359,7 +359,7 @@ onMounted(() => {
   }
 
   .experience-item__dot {
-    left: -1.55rem;
+    left: -2.5rem;
     width: 1rem;
     height: 1rem;
   }

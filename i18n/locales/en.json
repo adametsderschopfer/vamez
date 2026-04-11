@@ -1,7 +1,9 @@
 {
   "nav": {
     "im": "I'm",
+    "summary": "About",
     "experience": "Work Experience",
+    "contacts": "Contacts",
     "sectionNavigation": "Section navigation"
   },
   "controls": {
@@ -14,6 +16,13 @@
       "role": "Engineer. Pragmatic.",
       "firstName": "Vladislav",
       "lastName": "Adamets"
+    },
+    "summary": {
+      "title": "About",
+      "text": "Senior Frontend Developer with 7+ years of experience..."
+    },
+    "contacts": {
+      "title": "Contacts"
     },
     "experience": {
       "title": "Work Experience",

@@ -12,7 +12,9 @@ const props = withDefaults(
 )
 
 const introSectionId = 'intro'
+const summarySectionId = 'summary'
 const experienceSectionId = 'experience'
+const contactsSectionId = 'contacts'
 
 const { t, locale, setLocale } = useI18n()
 
@@ -21,7 +23,9 @@ const { themeMode, toggleTheme } = useThemeMode()
 
 const navItems = computed(() => [
   { id: introSectionId, label: t('nav.im'), icon: 'User' },
-  { id: experienceSectionId, label: t('nav.experience'), icon: 'Briefcase' }
+  { id: summarySectionId, label: t('nav.summary'), icon: 'FileText' },
+  { id: experienceSectionId, label: t('nav.experience'), icon: 'Briefcase' },
+  { id: contactsSectionId, label: t('nav.contacts'), icon: 'AtSign' }
 ])
 const themeIcon = computed(() => (themeMode.value === 'dark' ? MoonStar : Sun))
 const themeButtonLabel = computed(() =>
