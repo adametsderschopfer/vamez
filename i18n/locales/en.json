@@ -41,6 +41,35 @@
       "showEarlier": "Earlier positions",
       "collapse": "Collapse",
       "company1": {
+        "title": "Mozen",
+        "role": "Senior Frontend Developer",
+        "period": "June 2024 – Present",
+        "description": "Full-cycle development across web and mobile platforms — React Native apps, Next.js web migration, Firebase and Parse Platform integrations in a Scrumban team.",
+        "stack": [
+          "React",
+          "React Native",
+          "Next.js",
+          "Redux",
+          "MobX",
+          "Kotlin",
+          "Firebase",
+          "Parse Platform",
+          "PWA"
+        ],
+        "tasks": [
+          "Developed and maintained a cross-platform mobile app in React Native",
+          "Built native Android features in Kotlin alongside the React Native codebase",
+          "Migrated web application to Next.js with SSR support and PWA optimization",
+          "Integrated Firebase (Auth, Firestore, Cloud Functions) and Parse Platform for scalable backend",
+          "Set up CI/CD pipelines for both mobile and web applications",
+          "Participated in code reviews and contributed to architecture decisions"
+        ],
+        "achievements": [
+          "Delivered a cross-platform mobile app in React Native from scratch to production",
+          "Implemented Parse Platform with offline-first functionality and fast data sync"
+        ]
+      },
+      "company2": {
         "title": "ELM Technology",
         "role": "Senior Frontend Developer",
         "period": "July 2024 – Present",
@@ -55,31 +84,23 @@
         ],
         "achievements": []
       },
-      "company2": {
-        "title": "Mozen",
-        "role": "Senior Frontend Developer",
-        "period": "June 2024 – Present",
-        "description": "Full-cycle development across web and mobile platforms — React Native apps, Next.js web migration, Firebase and Parse Platform integrations in a Scrumban team.",
-        "stack": ["React", "React Native", "Next.js", "Redux", "MobX", "Kotlin", "Firebase", "Parse Platform", "PWA"],
-        "tasks": [
-          "Developed and maintained a cross-platform mobile app in React Native",
-          "Built native Android features in Kotlin alongside the React Native codebase",
-          "Migrated web application to Next.js with SSR support and PWA optimization",
-          "Integrated Firebase (Auth, Firestore, Cloud Functions) and Parse Platform for scalable backend",
-          "Set up CI/CD pipelines for both mobile and web applications",
-          "Participated in code reviews and contributed to architecture decisions"
-        ],
-        "achievements": [
-          "Delivered a cross-platform mobile app in React Native from scratch to production",
-          "Implemented Parse Platform with offline-first functionality and fast data sync"
-        ]
-      },
       "company3": {
         "title": "Open Mobile Platform",
         "role": "Lead Developer",
         "period": "April 2024 – July 2024",
         "description": "Technical lead for a developer portal — designed architecture, led the team, and delivered a full-featured platform with WIKI, CMS, smart search, and an intelligent assistant.",
-        "stack": ["TypeScript", "React", "Next.js", "Redux", "GraphQL", "Python", "Django", "PostgreSQL", "Docker", "GitLab CI/CD"],
+        "stack": [
+          "TypeScript",
+          "React",
+          "Next.js",
+          "Redux",
+          "GraphQL",
+          "Python",
+          "Django",
+          "PostgreSQL",
+          "Docker",
+          "GitLab CI/CD"
+        ],
         "tasks": [
           "Designed architecture for the developer portal with focus on content publication speed",
           "Led technical direction and managed a team of developers",
@@ -99,7 +120,18 @@
         "role": "Tech Lead / Developer",
         "period": "July 2023 – April 2024",
         "description": "TechLead on a car-sharing marketplace — contributed to product strategy, led architecture decisions, built new features, and managed cloud infrastructure in Kubernetes.",
-        "stack": ["TypeScript", "React", "Next.js", "React Native", "Nest.js", "PostgreSQL", "TypeORM", "Kubernetes", "Docker", "Yandex Cloud"],
+        "stack": [
+          "TypeScript",
+          "React",
+          "Next.js",
+          "React Native",
+          "Nest.js",
+          "PostgreSQL",
+          "TypeORM",
+          "Kubernetes",
+          "Docker",
+          "Yandex Cloud"
+        ],
         "tasks": [
           "Developed new marketplace features and improved existing ones in React / Next.js",
           "Participated in strategic sessions with top management and investors",
@@ -120,7 +152,17 @@
         "role": "Senior Frontend Developer",
         "period": "December 2022 – July 2023",
         "description": "Worked across multiple client projects — from a popular video streaming service to school management systems, focusing on frontend development.",
-        "stack": ["TypeScript", "React", "Next.js", "Vue", "Nuxt.js", "Strapi", "Nest.js", "WordPress", "Bitrix"],
+        "stack": [
+          "TypeScript",
+          "React",
+          "Next.js",
+          "Vue",
+          "Nuxt.js",
+          "Strapi",
+          "Nest.js",
+          "WordPress",
+          "Bitrix"
+        ],
         "tasks": [
           "Developed web applications in TypeScript with React / Next.js and Vue / Nuxt.js",
           "Led Nuxt 2 to Nuxt 3 migration and maintained legacy codebases",
@@ -159,7 +201,18 @@
         "role": "Web Developer",
         "period": "February 2018 – September 2020",
         "description": "Started professional career building client websites and internal tools — from WordPress and Bitrix projects to custom React applications, independently handling frontend and backend.",
-        "stack": ["TypeScript", "React", "Redux", "SCSS", "Webpack", "Gulp", "PHP", "WordPress", "Bitrix", "Joomla"],
+        "stack": [
+          "TypeScript",
+          "React",
+          "Redux",
+          "SCSS",
+          "Webpack",
+          "Gulp",
+          "PHP",
+          "WordPress",
+          "Bitrix",
+          "Joomla"
+        ],
         "tasks": [
           "Designed project architecture and selected tech stacks for client projects",
           "Developed WordPress and Bitrix websites with custom themes and admin panels",

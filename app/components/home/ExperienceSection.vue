@@ -38,8 +38,8 @@ const COMPANY_KEYS: readonly CompanyKey[] = [
 ]
 
 const RAW_DATES: Readonly<Record<CompanyKey, DateRange>> = {
-  company1: { start: '2024-07', end: null },
-  company2: { start: '2024-06', end: null },
+  company1: { start: '2024-06', end: null },
+  company2: { start: '2024-07', end: null },
   company3: { start: '2024-04', end: '2024-07' },
   company4: { start: '2023-07', end: '2024-04' },
   company5: { start: '2022-12', end: '2023-07' },
