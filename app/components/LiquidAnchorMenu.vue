@@ -25,6 +25,10 @@ const iconMap: Readonly<Record<MenuIcon, Component>> = {
   Link: Link2,
   AtSign
 }
+
+function scrollToSection(id: string): void {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+}
 </script>
 
 <template>
@@ -36,6 +40,7 @@ const iconMap: Readonly<Record<MenuIcon, Component>> = {
       :class="{ 'liquid-menu__item--active': props.activeId === item.id }"
       :href="`#${item.id}`"
       :aria-current="props.activeId === item.id ? 'page' : undefined"
+      @click.prevent="scrollToSection(item.id)"
     >
       <component :is="iconMap[item.icon]" class="liquid-menu__icon" :size="18" aria-hidden="true" />
       <span class="liquid-menu__label">{{ item.label }}</span>

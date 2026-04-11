@@ -10,7 +10,6 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: 'Vladislav Adamets',
-      titleTemplate: '%s — Vladislav Adamets',
       charset: 'utf-8',
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
