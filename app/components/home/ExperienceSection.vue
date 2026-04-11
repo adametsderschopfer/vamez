@@ -28,8 +28,13 @@ interface Experience {
 }
 
 const COMPANY_KEYS: readonly CompanyKey[] = [
-  'company1', 'company2', 'company3', 'company4',
-  'company5', 'company6', 'company7',
+  'company1',
+  'company2',
+  'company3',
+  'company4',
+  'company5',
+  'company6',
+  'company7'
 ]
 
 const RAW_DATES: Readonly<Record<CompanyKey, DateRange>> = {
@@ -39,7 +44,7 @@ const RAW_DATES: Readonly<Record<CompanyKey, DateRange>> = {
   company4: { start: '2023-07', end: '2024-04' },
   company5: { start: '2022-12', end: '2023-07' },
   company6: { start: '2021-01', end: '2022-12' },
-  company7: { start: '2018-02', end: '2020-09' },
+  company7: { start: '2018-02', end: '2020-09' }
 }
 
 const CAREER_START = '2018-02'
@@ -78,7 +83,7 @@ const experiences = computed<Experience[]>(() =>
     description: t(`home.experience.${key}.description`),
     stack: resolveStringArray(`home.experience.${key}.stack`),
     tasks: resolveStringArray(`home.experience.${key}.tasks`),
-    achievements: resolveStringArray(`home.experience.${key}.achievements`),
+    achievements: resolveStringArray(`home.experience.${key}.achievements`)
   }))
 )
 
@@ -142,7 +147,11 @@ onBeforeUnmount(() => {
         <div
           v-for="(experience, index) in visibleExperiences"
           :key="experience.id"
-          :ref="(el) => { if (el) itemRefs[index] = el as HTMLElement }"
+          :ref="
+            (el) => {
+              if (el) itemRefs[index] = el as HTMLElement
+            }
+          "
           class="experience-item"
           :class="{ 'is-visible': visibleItems.has(index) }"
           :data-index="index"
@@ -168,7 +177,8 @@ onBeforeUnmount(() => {
                 v-for="(tech, techIndex) in experience.stack"
                 :key="techIndex"
                 class="experience-item__tag"
-              >{{ tech }}</span>
+                >{{ tech }}</span
+              >
             </div>
 
             <div v-if="experience.tasks.length" class="experience-item__block">
@@ -178,7 +188,9 @@ onBeforeUnmount(() => {
                   v-for="(task, taskIndex) in experience.tasks"
                   :key="taskIndex"
                   class="experience-item__list-item"
-                >{{ task.trim() }}</li>
+                >
+                  {{ task.trim() }}
+                </li>
               </ul>
             </div>
 
@@ -191,7 +203,9 @@ onBeforeUnmount(() => {
                   v-for="(item, aIndex) in experience.achievements"
                   :key="aIndex"
                   class="experience-item__list-item experience-item__list-item--accent"
-                >{{ item.trim() }}</li>
+                >
+                  {{ item.trim() }}
+                </li>
               </ul>
             </div>
           </div>
@@ -199,11 +213,7 @@ onBeforeUnmount(() => {
 
         <!-- expand / collapse -->
         <div class="experience-section__toggle">
-          <button
-            v-if="!showAll"
-            class="experience-section__toggle-btn"
-            @click="showAll = true"
-          >
+          <button v-if="!showAll" class="experience-section__toggle-btn" @click="showAll = true">
             <span class="experience-section__toggle-icon" aria-hidden="true">↑</span>
             {{ t('home.experience.showEarlier') }}
             <span class="experience-section__toggle-count">{{ hiddenCount }}</span>
@@ -213,7 +223,11 @@ onBeforeUnmount(() => {
             class="experience-section__toggle-btn experience-section__toggle-btn--collapse"
             @click="showAll = false"
           >
-            <span class="experience-section__toggle-icon experience-section__toggle-icon--down" aria-hidden="true">↑</span>
+            <span
+              class="experience-section__toggle-icon experience-section__toggle-icon--down"
+              aria-hidden="true"
+              >↑</span
+            >
             {{ t('home.experience.collapse') }}
           </button>
         </div>
@@ -234,49 +248,49 @@ onBeforeUnmount(() => {
 
 .experience-section__header {
   display: flex;
+  gap: 1rem;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 4rem;
   padding: 0 70px;
-  animation: fadeInUp 0.6s ease-out 0.2s forwards;
+  margin-bottom: 4rem;
   opacity: 0;
+  animation: fadeInUp 0.6s ease-out 0.2s forwards;
 }
 
 .experience-section__title {
   margin: 0;
-  color: var(--color-text);
   font-size: clamp(2rem, 6vw, 4.5rem);
   font-weight: 700;
   line-height: 1.1;
+  color: var(--color-text);
 }
 
 .experience-section__total {
   flex-shrink: 0;
   padding-bottom: 0.3em;
-  color: var(--color-text-soft);
   font-size: clamp(0.85rem, 1.2vw, 1rem);
   font-weight: 500;
-  opacity: 0.5;
+  color: var(--color-text-soft);
   letter-spacing: 0.03em;
   white-space: nowrap;
+  opacity: 0.5;
 }
 
 .experience-section__timeline {
   position: relative;
-  padding-left: calc(1.5rem + 70px);
   padding-right: 70px;
+  padding-left: calc(1.5rem + 70px);
 }
 
 .experience-section__line {
   position: absolute;
-  left: 70px;
   top: 0.5rem;
   bottom: 0;
+  left: 70px;
   width: 1px;
+  pointer-events: none;
   background: linear-gradient(180deg, var(--color-accent) 0%, transparent 100%);
   opacity: 0.4;
-  pointer-events: none;
 }
 
 .experience-item {
@@ -300,15 +314,15 @@ onBeforeUnmount(() => {
 
 .experience-item__dot {
   position: absolute;
-  left: calc(-1.5rem - 0.6rem);
   top: 0.4rem;
+  left: calc(-1.5rem - 0.6rem);
+  z-index: 2;
   width: 1.2rem;
   height: 1.2rem;
-  border-radius: 50%;
   background: var(--color-accent);
   border: 2px solid var(--color-surface);
+  border-radius: 50%;
   box-shadow: 0 0 0 2px var(--color-accent);
-  z-index: 2;
 }
 
 .experience-item__body {
@@ -319,9 +333,9 @@ onBeforeUnmount(() => {
 
 .experience-item__header {
   display: flex;
+  gap: 2rem;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 2rem;
 }
 
 .experience-item__meta {
@@ -332,47 +346,47 @@ onBeforeUnmount(() => {
 
 .experience-item__role {
   margin: 0;
-  color: var(--color-text);
   font-size: clamp(1.4rem, 3vw, 2rem);
   font-weight: 700;
   line-height: 1.1;
+  color: var(--color-text);
   letter-spacing: -0.02em;
 }
 
 .experience-item__company {
-  color: var(--color-accent);
   font-size: clamp(0.95rem, 1.5vw, 1.1rem);
   font-weight: 500;
+  color: var(--color-accent);
 }
 
 .experience-item__dates {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.2rem;
   flex-shrink: 0;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: flex-end;
 }
 
 .experience-item__duration {
-  color: var(--color-text);
   font-size: clamp(1rem, 1.5vw, 1.1rem);
   font-weight: 700;
+  color: var(--color-text);
   white-space: nowrap;
 }
 
 .experience-item__period {
-  color: var(--color-text-soft);
   font-size: 0.9rem;
-  opacity: 0.6;
+  color: var(--color-text-soft);
   white-space: nowrap;
+  opacity: 0.6;
 }
 
 .experience-item__description {
+  max-width: 80ch;
   margin: 0;
-  color: var(--color-text-soft);
   font-size: clamp(1rem, 1.3vw, 1.1rem);
   line-height: 1.8;
-  max-width: 80ch;
+  color: var(--color-text-soft);
 }
 
 .experience-item__stack {
@@ -383,13 +397,13 @@ onBeforeUnmount(() => {
 
 .experience-item__tag {
   padding: 0.3rem 0.8rem;
-  border-radius: 999px;
-  border: 1px solid var(--glass-border);
-  background: var(--glass-bg);
-  color: var(--color-text-soft);
   font-size: 0.85rem;
   font-weight: 500;
+  color: var(--color-text-soft);
   white-space: nowrap;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
 }
 
 .experience-item__block {
@@ -402,9 +416,9 @@ onBeforeUnmount(() => {
   margin: 0;
   font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
   color: var(--color-text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   opacity: 0.6;
 }
 
@@ -414,27 +428,27 @@ onBeforeUnmount(() => {
 }
 
 .experience-item__list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .experience-item__list-item {
   position: relative;
   padding-left: 1.5rem;
-  color: var(--color-text-soft);
   font-size: clamp(0.95rem, 1.2vw, 1.05rem);
   line-height: 1.6;
+  color: var(--color-text-soft);
 }
 
 .experience-item__list-item::before {
-  content: '—';
   position: absolute;
   left: 0;
   color: var(--color-text-soft);
+  content: '—';
   opacity: 0.5;
 }
 
@@ -446,24 +460,24 @@ onBeforeUnmount(() => {
 /* ── Toggle button ── */
 
 .experience-section__toggle {
-  margin-top: 3rem;
   display: flex;
   align-items: center;
+  margin-top: 3rem;
 }
 
 .experience-section__toggle-btn {
   display: inline-flex;
-  align-items: center;
   gap: 0.6rem;
+  align-items: center;
   padding: 0.6rem 1.2rem 0.6rem 1rem;
-  border-radius: 999px;
-  border: 1px solid var(--glass-border);
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  color: var(--color-text-soft);
   font-size: 0.88rem;
   font-weight: 600;
+  color: var(--color-text-soft);
   cursor: pointer;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
   transition:
     border-color 0.2s ease,
     color 0.2s ease,
@@ -471,8 +485,8 @@ onBeforeUnmount(() => {
 }
 
 .experience-section__toggle-btn:hover {
-  border-color: var(--color-accent);
   color: var(--color-text);
+  border-color: var(--color-accent);
   transform: translateY(-2px);
 }
 
@@ -481,8 +495,8 @@ onBeforeUnmount(() => {
 }
 
 .experience-section__toggle-icon {
-  font-size: 0.9rem;
   display: inline-block;
+  font-size: 0.9rem;
   transform: rotate(180deg); /* arrow pointing down = show more */
   transition: transform 0.3s ease;
 }
@@ -497,18 +511,18 @@ onBeforeUnmount(() => {
   justify-content: center;
   width: 1.4rem;
   height: 1.4rem;
-  border-radius: 50%;
-  background: rgba(159, 202, 60, 0.15);
-  border: 1px solid rgba(159, 202, 60, 0.3);
-  color: var(--color-accent);
   font-size: 0.72rem;
   font-weight: 700;
+  color: var(--color-accent);
+  background: rgba(159, 202, 60, 0.15);
+  border: 1px solid rgba(159, 202, 60, 0.3);
+  border-radius: 50%;
 }
 
 @media (max-width: 768px) {
   .experience-section__timeline {
-    padding-left: 2.5rem;
     padding-right: 20px;
+    padding-left: 2.5rem;
   }
 
   .experience-section__line {
@@ -516,11 +530,11 @@ onBeforeUnmount(() => {
   }
 
   .experience-section__header {
-    padding: 0 20px;
-    margin-bottom: 2.5rem;
-    align-items: flex-start;
     flex-direction: column;
     gap: 0.25rem;
+    align-items: flex-start;
+    padding: 0 20px;
+    margin-bottom: 2.5rem;
   }
 
   .experience-item__dot {

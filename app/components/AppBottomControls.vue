@@ -14,7 +14,7 @@ const SECTION_IDS = {
   intro: 'intro',
   summary: 'summary',
   experience: 'experience',
-  contacts: 'contacts',
+  contacts: 'contacts'
 } as const
 
 const { t, locale, setLocale } = useI18n()
@@ -22,10 +22,10 @@ const activeSectionId = useState('active-section-id', () => SECTION_IDS.intro)
 const { themeMode, toggleTheme } = useThemeMode()
 
 const navItems = computed<AnchorItem[]>(() => [
-  { id: SECTION_IDS.intro,      label: t('nav.im'),         icon: 'User' },
-  { id: SECTION_IDS.summary,    label: t('nav.summary'),    icon: 'FileText' },
+  { id: SECTION_IDS.intro, label: t('nav.im'), icon: 'User' },
+  { id: SECTION_IDS.summary, label: t('nav.summary'), icon: 'FileText' },
   { id: SECTION_IDS.experience, label: t('nav.experience'), icon: 'Briefcase' },
-  { id: SECTION_IDS.contacts,   label: t('nav.contacts'),   icon: 'AtSign' },
+  { id: SECTION_IDS.contacts, label: t('nav.contacts'), icon: 'AtSign' }
 ])
 
 const themeIcon = computed(() => (themeMode.value === 'dark' ? MoonStar : Sun))
@@ -53,29 +53,29 @@ function toggleLocale(): void {
 <style scoped>
 .app-bottom-controls {
   position: fixed;
-  left: 50%;
   bottom: 2rem;
+  left: 50%;
   z-index: 30;
   display: flex;
-  align-items: center;
   gap: 0.75rem;
+  align-items: center;
   transform: translateX(-50%);
 }
 
 @media (max-width: 960px) {
   .app-bottom-controls {
-    width: calc(100% - 1rem);
     bottom: 1rem;
     justify-content: center;
+    width: calc(100% - 1rem);
   }
 }
 
 @media (max-width: 640px) {
   .app-bottom-controls {
-    width: calc(100% - 1rem);
-    left: 0.5rem;
     right: 0.5rem;
+    left: 0.5rem;
     gap: 0.5rem;
+    width: calc(100% - 1rem);
     transform: none;
   }
 }

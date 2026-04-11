@@ -9,6 +9,10 @@
     "keyframes-name-pattern": null,
     "custom-property-pattern": null,
     "alpha-value-notation": null,
-    "color-function-notation": null
+    "color-function-notation": null,
+    "color-function-alias-notation": null,
+    "value-keyword-case": null,
+    "media-feature-range-notation": null,
+    "no-descending-specificity": null
   }
 }

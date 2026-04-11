@@ -63,42 +63,42 @@ const contentMap = computed(() =>
 
 .error-screen__content {
   display: grid;
-  justify-items: center;
   gap: 0.9rem;
+  justify-items: center;
   max-width: 42rem;
   text-align: center;
 }
 
 .error-screen__eyebrow {
   margin: 0;
-  color: var(--color-accent);
   font-size: clamp(0.8rem, 1.2vw, 1rem);
-  letter-spacing: 0.14em;
+  color: var(--color-accent);
   text-transform: uppercase;
+  letter-spacing: 0.14em;
 }
 
 .error-screen__code {
   margin: 0;
-  color: color-mix(in srgb, var(--color-text) 86%, transparent);
   font-size: clamp(4.5rem, 14vw, 10rem);
   font-weight: 700;
   line-height: 0.9;
+  color: color-mix(in srgb, var(--color-text) 86%, transparent);
 }
 
 .error-screen__title {
   margin: 0;
-  color: var(--color-text);
   font-size: clamp(1.6rem, 4vw, 3.25rem);
   font-weight: 600;
   line-height: 1;
+  color: var(--color-text);
 }
 
 .error-screen__description {
-  margin: 0;
   max-width: 30rem;
-  color: var(--color-text-soft);
+  margin: 0;
   font-size: clamp(0.95rem, 1.5vw, 1.15rem);
   line-height: 1.65;
+  color: var(--color-text-soft);
 }
 
 .error-screen__home-link {
@@ -107,14 +107,14 @@ const contentMap = computed(() =>
   justify-content: center;
   min-height: 3.25rem;
   padding: 0 1.4rem;
-  border: 1px solid var(--glass-border);
-  border-radius: 999px;
-  background: var(--glass-bg);
   color: var(--color-text);
   text-decoration: none;
+  cursor: pointer;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
   box-shadow: 0 18px 50px var(--glass-shadow);
   backdrop-filter: blur(24px);
-  cursor: pointer;
   transition:
     transform 0.2s ease,
     border-color 0.2s ease,

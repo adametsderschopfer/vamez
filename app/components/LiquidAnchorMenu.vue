@@ -23,7 +23,7 @@ const iconMap: Readonly<Record<MenuIcon, Component>> = {
   FileText,
   Lightning: Zap,
   Link: Link2,
-  AtSign,
+  AtSign
 }
 </script>
 
@@ -37,12 +37,7 @@ const iconMap: Readonly<Record<MenuIcon, Component>> = {
       :href="`#${item.id}`"
       :aria-current="props.activeId === item.id ? 'page' : undefined"
     >
-      <component
-        :is="iconMap[item.icon]"
-        class="liquid-menu__icon"
-        :size="18"
-        aria-hidden="true"
-      />
+      <component :is="iconMap[item.icon]" class="liquid-menu__icon" :size="18" aria-hidden="true" />
       <span class="liquid-menu__label">{{ item.label }}</span>
     </a>
   </nav>
@@ -51,27 +46,27 @@ const iconMap: Readonly<Record<MenuIcon, Component>> = {
 <style scoped>
 .liquid-menu {
   display: inline-flex;
-  align-items: center;
   gap: 0.35rem;
+  align-items: center;
   min-height: var(--liquid-control-size);
   padding: var(--liquid-control-inset);
-  border-radius: 999px;
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
-  backdrop-filter: blur(24px);
+  border-radius: 999px;
   box-shadow: 0 18px 42px var(--glass-shadow);
+  backdrop-filter: blur(24px);
 }
 
 .liquid-menu__item {
   display: inline-flex;
-  align-items: center;
   gap: 0.5rem;
+  align-items: center;
   min-height: calc(var(--liquid-control-size) - (var(--liquid-control-inset) * 2));
   padding: 0 1rem;
-  border-radius: 999px;
-  text-decoration: none;
   color: var(--color-text-soft);
+  text-decoration: none;
   cursor: pointer;
+  border-radius: 999px;
   transition:
     background-color 0.2s ease,
     color 0.2s ease,
@@ -91,8 +86,8 @@ const iconMap: Readonly<Record<MenuIcon, Component>> = {
 }
 
 .liquid-menu__item--active {
-  background: rgba(255, 255, 255, 0.94);
   color: #231b15;
+  background: rgba(255, 255, 255, 0.94);
 }
 
 .liquid-menu__icon {
@@ -109,8 +104,8 @@ const iconMap: Readonly<Record<MenuIcon, Component>> = {
 
 @media (max-width: 960px) {
   .liquid-menu {
-    overflow-x: auto;
     justify-content: flex-start;
+    overflow-x: auto;
   }
 }
 
@@ -120,9 +115,9 @@ const iconMap: Readonly<Record<MenuIcon, Component>> = {
   }
 
   .liquid-menu__item {
+    justify-content: center;
     width: calc(var(--liquid-control-size) - (var(--liquid-control-inset) * 2));
     padding: 0;
-    justify-content: center;
   }
 }
 </style>

@@ -31,13 +31,13 @@ defineEmits<{
   width: var(--liquid-control-size);
   height: var(--liquid-control-size);
   padding: 0;
+  color: var(--color-text);
+  cursor: pointer;
+  background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: 999px;
-  background: var(--glass-bg);
-  color: var(--color-text);
   box-shadow: 0 18px 50px var(--glass-shadow);
   backdrop-filter: blur(24px);
-  cursor: pointer;
   transition:
     transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
     border-color 0.2s ease,
@@ -60,7 +60,6 @@ defineEmits<{
   flex: none;
   color: var(--color-text);
   opacity: 0.92;
-  transition:
-    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 </style>

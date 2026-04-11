@@ -24,8 +24,8 @@
 }
 
 body {
-  margin: 0;
   min-height: 100vh;
+  margin: 0;
   font-family: var(--font-body);
   color: var(--color-text);
   background:
@@ -41,12 +41,12 @@ h5,
 h6 {
   font-family: var(--font-heading);
   font-weight: 600;
-  letter-spacing: -0.03em;
   line-height: 1.02;
+  letter-spacing: -0.03em;
 }
 
 :root[data-theme='dark'] {
-  --color-text: #ffffff;
+  --color-text: #fff;
   --color-text-soft: rgba(255, 255, 255, 0.72);
   --color-accent: #c4e565;
   --color-surface: #0a0d06;
@@ -70,6 +70,7 @@ html {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
