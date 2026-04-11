@@ -3,14 +3,16 @@ const { t, tm, rt } = useI18n()
 
 const companyKeys = ['company1', 'company2', 'company3', 'company4', 'company5', 'company6', 'company7']
 
-const experiences = companyKeys.map((key, index) => ({
-  id: index + 1,
-  role: t(`home.experience.${key}.role`),
-  title: t(`home.experience.${key}.title`),
-  period: t(`home.experience.${key}.period`),
-  description: t(`home.experience.${key}.description`),
-  tasks: (tm(`home.experience.${key}.tasks`) as string[]).map((item) => rt(item))
-}))
+const experiences = computed(() =>
+  companyKeys.map((key, index) => ({
+    id: index + 1,
+    role: t(`home.experience.${key}.role`),
+    title: t(`home.experience.${key}.title`),
+    period: t(`home.experience.${key}.period`),
+    description: t(`home.experience.${key}.description`),
+    tasks: (tm(`home.experience.${key}.tasks`) as string[]).map((item) => rt(item))
+  }))
+)
 
 const itemRefs = ref<HTMLElement[]>([])
 const visibleItems = ref<Set<number>>(new Set())
