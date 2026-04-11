@@ -9,7 +9,10 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: 'Vamez'
+      title: 'Vamez',
+      link: [
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }
+      ]
     }
   },
   modules: ['@nuxt/eslint', '@nuxtjs/i18n'],
