@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "description": "Portfolio of Vladislav Adamets — Senior Frontend Developer with 7+ years of experience in React, Vue, TypeScript, Next.js and full-stack development.",
+    "ogTitle": "Vladislav Adamets — Senior Frontend Developer"
+  },
   "nav": {
     "im": "I'm",
     "summary": "About",

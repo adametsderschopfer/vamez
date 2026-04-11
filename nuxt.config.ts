@@ -10,8 +10,17 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: 'Vladislav Adamets',
+      titleTemplate: '%s — Vladislav Adamets',
+      charset: 'utf-8',
+      meta: [
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'author', content: 'Vladislav Adamets' },
+        { name: 'theme-color', content: '#111111' },
+        { name: 'robots', content: 'index, follow' },
+      ],
       link: [
-        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'canonical', href: 'https://vamez.ru' },
       ]
     }
   },

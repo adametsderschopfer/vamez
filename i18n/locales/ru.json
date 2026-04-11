@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "description": "Портфолио Владислава Адамца — Senior Frontend Developer с 7+ годами опыта в React, Vue, TypeScript, Next.js и full-stack разработке.",
+    "ogTitle": "Владислав Адамец — Senior Frontend Developer"
+  },
   "nav": {
     "im": "Я",
     "summary": "Обо мне",
