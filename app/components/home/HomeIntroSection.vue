@@ -89,7 +89,7 @@ onBeforeUnmount(() => {
         <div class="home-intro__contacts">
           <a
             class="home-intro__contact-link"
-            href="http://t.me/adametsderschopfer"
+            href="https://t.me/adametsderschopfer"
             target="_blank"
             rel="noreferrer"
           >

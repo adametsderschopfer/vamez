@@ -31,7 +31,9 @@ const isHomePage = computed(() => route.path === '/')
 <template>
   <div class="app-shell">
     <NuxtRouteAnnouncer />
-    <NuxtPage />
+    <main>
+      <NuxtPage />
+    </main>
     <AppBottomControls :show-menu="isHomePage" />
   </div>
 </template>

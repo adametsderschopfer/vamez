@@ -18,7 +18,7 @@ const currentYear = new Date().getFullYear()
 const contacts: readonly Contact[] = [
   {
     key: 'telegram',
-    href: 'http://t.me/adametsderschopfer',
+    href: 'https://t.me/adametsderschopfer',
     icon: Send,
     label: 'Telegram',
     handle: '@adametsderschopfer',

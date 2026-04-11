@@ -204,7 +204,7 @@ onBeforeUnmount(() => {
             class="experience-section__toggle-btn"
             @click="showAll = true"
           >
-            <span class="experience-section__toggle-icon">↑</span>
+            <span class="experience-section__toggle-icon" aria-hidden="true">↑</span>
             {{ t('home.experience.showEarlier') }}
             <span class="experience-section__toggle-count">{{ hiddenCount }}</span>
           </button>
@@ -213,7 +213,7 @@ onBeforeUnmount(() => {
             class="experience-section__toggle-btn experience-section__toggle-btn--collapse"
             @click="showAll = false"
           >
-            <span class="experience-section__toggle-icon experience-section__toggle-icon--down">↑</span>
+            <span class="experience-section__toggle-icon experience-section__toggle-icon--down" aria-hidden="true">↑</span>
             {{ t('home.experience.collapse') }}
           </button>
         </div>
