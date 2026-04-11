@@ -11,43 +11,60 @@
   },
   "home": {
     "intro": {
-      "role": "Engineer",
+      "role": "Engineer. Pragmatic.",
       "firstName": "Vladislav",
       "lastName": "Adamets"
     },
     "experience": {
       "title": "Work Experience",
+      "labels": {
+        "tasks": "Responsibilities",
+        "achievements": "Achievements"
+      },
+      "duration": {
+        "years": "yr | yrs",
+        "months": "mo | mo"
+      },
       "company1": {
-        "title": "ELM Technologies",
+        "title": "ELM Technology",
         "role": "Senior Frontend Developer",
         "period": "July 2024 – Present",
         "description": "Working on embeddable widget solutions and lead generation tools using Vue.js, with backend involvement in Python/Django to deliver full-cycle features.",
+        "stack": ["Vue 3", "Python", "Django", "DRF"],
         "tasks": [
-          "Developed embeddable widgets in Vue 2/3 for integration into third-party platforms",
+          "Developed embeddable widgets in Vue 3 for integration into third-party platforms",
+          "Built an OSAGO insurance widget for the Wildberries marketplace",
           "Built and maintained lead forms with complex validation and submission flows",
           "Wrote unit and integration tests for Vue components to ensure stability",
           "Contributed to backend development using Python and Django REST Framework"
-        ]
+        ],
+        "achievements": []
       },
       "company2": {
         "title": "Mozen",
         "role": "Senior Frontend Developer",
         "period": "June 2024 – Present",
-        "description": "Full-cycle development across web and mobile platforms — from React Native apps to Next.js web migrations, working in a Scrumban team with Firebase and Parse Platform integrations.",
+        "description": "Full-cycle development across web and mobile platforms — React Native apps, Next.js web migration, Firebase and Parse Platform integrations in a Scrumban team.",
+        "stack": ["React", "React Native", "Next.js", "Redux", "MobX", "Kotlin", "Firebase", "Parse Platform", "PWA"],
         "tasks": [
-          "Developed and maintained a cross-platform mobile app in React Native with offline-first support",
+          "Developed and maintained a cross-platform mobile app in React Native",
           "Built native Android features in Kotlin alongside the React Native codebase",
           "Migrated web application to Next.js with SSR support and PWA optimization",
           "Integrated Firebase (Auth, Firestore, Cloud Functions) and Parse Platform for scalable backend",
           "Set up CI/CD pipelines for both mobile and web applications",
           "Participated in code reviews and contributed to architecture decisions"
+        ],
+        "achievements": [
+          "Delivered a cross-platform mobile app in React Native from scratch to production",
+          "Implemented Parse Platform with offline-first functionality and fast data sync"
         ]
       },
       "company3": {
         "title": "Open Mobile Platform",
         "role": "Lead Developer",
         "period": "April 2024 – July 2024",
-        "description": "Technical lead for a developer portal project — designed architecture, led a development team, and delivered a full-featured platform with WIKI, CMS, search, and an intelligent assistant.",
+        "description": "Technical lead for a developer portal — designed architecture, led the team, and delivered a full-featured platform with WIKI, CMS, smart search, and an intelligent assistant.",
+        "stack": ["TypeScript", "React", "Next.js", "Redux", "GraphQL", "Python", "Django", "PostgreSQL", "Docker", "GitLab CI/CD"],
         "tasks": [
           "Designed architecture for the developer portal with focus on content publication speed",
           "Led technical direction and managed a team of developers",
@@ -55,13 +72,19 @@
           "Built an intelligent assistant integrated into the developer portal",
           "Configured and supported GitLab CI/CD pipelines for automated builds and deployments",
           "Authored full project documentation covering architecture, infrastructure, and deployment"
+        ],
+        "achievements": [
+          "Identified performance bottlenecks, developed and got approved a resolution plan",
+          "Automated build and deployment for dev environments via GitLab CI/CD",
+          "Wrote complete project documentation covering deployment, architecture, and infrastructure"
         ]
       },
       "company4": {
         "title": "Getarent",
         "role": "Tech Lead / Developer",
         "period": "July 2023 – April 2024",
-        "description": "Served as technical expert on a marketplace platform — contributed to product strategy, led architecture decisions, built new features, and managed infrastructure in Kubernetes.",
+        "description": "TechLead on a car-sharing marketplace — contributed to product strategy, led architecture decisions, built new features, and managed cloud infrastructure in Kubernetes.",
+        "stack": ["TypeScript", "React", "Next.js", "React Native", "Nest.js", "PostgreSQL", "TypeORM", "Kubernetes", "Docker", "Yandex Cloud"],
         "tasks": [
           "Developed new marketplace features and improved existing ones in React / Next.js",
           "Participated in strategic sessions with top management and investors",
@@ -69,13 +92,20 @@
           "Managed infrastructure: deployed and optimized services in Kubernetes on Yandex Cloud",
           "Wrote SQL scripts for data extraction and migrated logic to database level (views, triggers, procedures)",
           "Conducted technical interviews and supported team in task planning and estimation"
+        ],
+        "achievements": [
+          "Applied DDD architecture principles and design patterns for self-documented, scalable code",
+          "Integrated Strapi CMS into the project",
+          "Implemented full API and project structure documentation, improving design efficiency",
+          "Gained deep GitLab CI/CD expertise"
         ]
       },
       "company5": {
         "title": "IT Special",
         "role": "Senior Frontend Developer",
         "period": "December 2022 – July 2023",
-        "description": "Worked across multiple client projects in a consulting agency — from video streaming services to school management systems, handling both development and technical leadership tasks.",
+        "description": "Worked across multiple client projects — from a popular video streaming service to school management systems, focusing on frontend development.",
+        "stack": ["TypeScript", "React", "Next.js", "Vue", "Nuxt.js", "Strapi", "Nest.js", "WordPress", "Bitrix"],
         "tasks": [
           "Developed web applications in TypeScript with React / Next.js and Vue / Nuxt.js",
           "Led Nuxt 2 to Nuxt 3 migration and maintained legacy codebases",
@@ -83,34 +113,48 @@
           "Developed a school schedule module for the iDesk system",
           "Optimized Webpack build configuration on existing projects",
           "Conducted technical interviews and prepared test assignments for candidates"
+        ],
+        "achievements": [
+          "Built a frontend design system and successfully managed and mentored a junior developer",
+          "Worked on a popular video streaming service"
         ]
       },
       "company6": {
         "title": "Consalt Info",
         "role": "Middle Frontend Developer",
         "period": "January 2021 – December 2022",
-        "description": "Delivered a wide range of commercial projects — from admin panels and booking platforms to mobile apps and interactive 3D maps — growing from solid execution to active architectural involvement.",
+        "description": "Delivered a wide range of commercial projects — from admin panels and booking platforms to mobile apps and interactive 3D maps — growing from execution to active architectural involvement.",
+        "stack": ["TypeScript", "React", "React Native", "Redux", "MobX", "Vue", "Vuex", "Bitrix"],
         "tasks": [
-          "Built an admin panel for managing suppliers, logistics, orders, and advertising",
+          "Participated in developing an admin panel for managing suppliers, logistics, orders, and advertising",
           "Developed a psychologist matching platform with booking and personal accounts",
           "Created a 3D building map with apartment selection and application submission",
-          "Developed 2 React Native mobile apps released to production",
+          "Built a flower bouquet color configurator",
           "Contributed to design system development and architecture discussions",
           "Led sprint planning, task estimation, and team task distribution"
+        ],
+        "achievements": [
+          "Delivered 2 React Native mobile apps to production",
+          "Confidently mastered Vue 2 and transitioned to Composition API",
+          "Gained experience in Bitrix 24 portal feature development"
         ]
       },
       "company7": {
         "title": "ADD.Orange",
         "role": "Web Developer",
         "period": "February 2018 – September 2020",
-        "description": "Started professional career building client websites and internal tools — from WordPress and Bitrix projects to custom React applications, handling both frontend and backend independently.",
+        "description": "Started professional career building client websites and internal tools — from WordPress and Bitrix projects to custom React applications, independently handling frontend and backend.",
+        "stack": ["TypeScript", "React", "Redux", "SCSS", "Webpack", "Gulp", "PHP", "WordPress", "Bitrix", "Joomla"],
         "tasks": [
           "Designed project architecture and selected tech stacks for client projects",
           "Developed WordPress and Bitrix websites with custom themes and admin panels",
           "Built an informational portal with a custom PHP admin panel from scratch",
-          "Administered servers and managed deployments independently",
-          "Finalized UI designs and implemented pixel-perfect layouts",
-          "Delivered 2 full projects end-to-end — from client discussions to production"
+          "Administered servers independently",
+          "Implemented pixel-perfect layouts"
+        ],
+        "achievements": [
+          "Delivered 2 full projects end-to-end — from client discussions to production",
+          "Built confident React knowledge enabling entry into large commercial projects"
         ]
       }
     }

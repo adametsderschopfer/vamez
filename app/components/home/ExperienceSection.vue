@@ -3,14 +3,44 @@ const { t, tm, rt } = useI18n()
 
 const companyKeys = ['company1', 'company2', 'company3', 'company4', 'company5', 'company6', 'company7']
 
+const rawDates: Record<string, { start: string; end: string | null }> = {
+  company1: { start: '2024-07', end: null },
+  company2: { start: '2024-06', end: null },
+  company3: { start: '2024-04', end: '2024-07' },
+  company4: { start: '2023-07', end: '2024-04' },
+  company5: { start: '2022-12', end: '2023-07' },
+  company6: { start: '2021-01', end: '2022-12' },
+  company7: { start: '2018-02', end: '2020-09' }
+}
+
+function calcDuration(start: string, end: string | null): string {
+  const [sy, sm] = start.split('-').map(Number)
+  const now = new Date()
+  const [ey, em] = end
+    ? end.split('-').map(Number)
+    : [now.getFullYear(), now.getMonth() + 1]
+
+  let months = (ey - sy) * 12 + (em - sm)
+  const years = Math.floor(months / 12)
+  months = months % 12
+
+  const parts: string[] = []
+  if (years > 0) parts.push(`${years} ${t('home.experience.duration.years', years)}`)
+  if (months > 0) parts.push(`${months} ${t('home.experience.duration.months', months)}`)
+  return parts.join(' ')
+}
+
 const experiences = computed(() =>
   companyKeys.map((key, index) => ({
     id: index + 1,
     role: t(`home.experience.${key}.role`),
     title: t(`home.experience.${key}.title`),
     period: t(`home.experience.${key}.period`),
+    duration: calcDuration(rawDates[key].start, rawDates[key].end),
     description: t(`home.experience.${key}.description`),
-    tasks: (tm(`home.experience.${key}.tasks`) as string[]).map((item) => rt(item))
+    stack: (tm(`home.experience.${key}.stack`) as string[]).map((item) => rt(item)),
+    tasks: (tm(`home.experience.${key}.tasks`) as string[]).map((item) => rt(item)),
+    achievements: (tm(`home.experience.${key}.achievements`) as string[]).map((item) => rt(item))
   }))
 )
 
@@ -63,20 +93,43 @@ onMounted(() => {
                 <h3 class="experience-item__role">{{ experience.role }}</h3>
                 <span class="experience-item__company">{{ experience.title }}</span>
               </div>
-              <span class="experience-item__period">{{ experience.period }}</span>
+              <div class="experience-item__dates">
+                <span class="experience-item__duration">{{ experience.duration }}</span>
+                <span class="experience-item__period">{{ experience.period }}</span>
+              </div>
             </div>
 
             <p class="experience-item__description">{{ experience.description }}</p>
 
-            <ul class="experience-item__tasks">
-              <li
-                v-for="(task, taskIndex) in experience.tasks"
-                :key="taskIndex"
-                class="experience-item__task"
-              >
-                {{ task.trim() }}
-              </li>
-            </ul>
+            <div v-if="experience.stack.length" class="experience-item__stack">
+              <span
+                v-for="(tech, techIndex) in experience.stack"
+                :key="techIndex"
+                class="experience-item__tag"
+              >{{ tech }}</span>
+            </div>
+
+            <div v-if="experience.tasks.length" class="experience-item__block">
+              <h4 class="experience-item__block-title">{{ t('home.experience.labels.tasks') }}</h4>
+              <ul class="experience-item__list">
+                <li
+                  v-for="(task, taskIndex) in experience.tasks"
+                  :key="taskIndex"
+                  class="experience-item__list-item"
+                >{{ task.trim() }}</li>
+              </ul>
+            </div>
+
+            <div v-if="experience.achievements.length" class="experience-item__block">
+              <h4 class="experience-item__block-title experience-item__block-title--accent">{{ t('home.experience.labels.achievements') }}</h4>
+              <ul class="experience-item__list">
+                <li
+                  v-for="(item, aIndex) in experience.achievements"
+                  :key="aIndex"
+                  class="experience-item__list-item experience-item__list-item--accent"
+                >{{ item.trim() }}</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -191,12 +244,27 @@ onMounted(() => {
   font-weight: 500;
 }
 
-.experience-item__period {
+.experience-item__dates {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
   flex-shrink: 0;
+}
+
+.experience-item__duration {
   color: var(--color-text);
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
   font-weight: 700;
   white-space: nowrap;
+}
+
+.experience-item__period {
+  color: var(--color-text-soft);
+  font-size: 0.9rem;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0.6;
 }
 
 .experience-item__description {
@@ -207,16 +275,54 @@ onMounted(() => {
   max-width: 80ch;
 }
 
-.experience-item__tasks {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+.experience-item__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.experience-item__tag {
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  color: var(--color-text-soft);
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.experience-item__block {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-.experience-item__task {
+.experience-item__block-title {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-soft);
+  opacity: 0.6;
+}
+
+.experience-item__block-title--accent {
+  color: var(--color-accent);
+  opacity: 1;
+}
+
+.experience-item__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.experience-item__list-item {
   position: relative;
   padding-left: 1.5rem;
   color: var(--color-text-soft);
@@ -224,11 +330,17 @@ onMounted(() => {
   line-height: 1.6;
 }
 
-.experience-item__task::before {
+.experience-item__list-item::before {
   content: '—';
   position: absolute;
   left: 0;
+  color: var(--color-text-soft);
+  opacity: 0.5;
+}
+
+.experience-item__list-item--accent::before {
   color: var(--color-accent);
+  opacity: 1;
 }
 
 @media (max-width: 768px) {
