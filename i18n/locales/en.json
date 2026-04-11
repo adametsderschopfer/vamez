@@ -8,7 +8,6 @@
     "home": "Home",
     "summary": "About",
     "experience": "Work Experience",
-    "projects": "Projects",
     "contacts": "Contacts",
     "blog": "Blog",
     "sectionNavigation": "Section navigation"
@@ -37,9 +36,6 @@
     "summary": {
       "title": "About",
       "text": "Senior Frontend Developer with 7+ years of experience..."
-    },
-    "projects": {
-      "title": "Projects"
     },
     "contacts": {
       "title": "Contacts"
