@@ -88,6 +88,17 @@ html.theme-transition *::after {
   }
 }
 
+/* Transform-only slide — element stays visible (good for LCP) */
+@keyframes slideUp {
+  from {
+    transform: translateY(16px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
 a,
 button,
 input,

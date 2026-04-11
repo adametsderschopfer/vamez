@@ -416,7 +416,9 @@ onBeforeUnmount(() => {
   line-height: 0.92;
   color: var(--color-text);
   text-wrap: balance;
-  animation: fadeInUp 0.6s ease-out 0.4s both;
+
+  /* transform-only animation: element stays visible for LCP, just slides up */
+  animation: slideUp 0.6s ease-out 0.4s both;
 }
 
 .home-intro__title-line {
