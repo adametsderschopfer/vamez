@@ -25,8 +25,9 @@ const SKILLS: readonly Skill[] = [
   { label: 'Nest.js', size: 'sm', top: 60, right: 42, floatAnim: 5 },
   { label: 'Redux', size: 'sm', top: 28, right: 44, floatAnim: 2 },
   { label: 'Python', size: 'md', top: 86, right: 26, floatAnim: 1, highlighted: true },
-  { label: 'Kubernetes', size: 'sm', top: 18, right: 54, floatAnim: 3 },
-  { label: 'CI/CD', size: 'sm', top: 55, right: 54, floatAnim: 4 }
+  { label: 'DDD', size: 'sm', top: 18, right: 54, floatAnim: 3 },
+  { label: 'CI/CD', size: 'sm', top: 55, right: 54, floatAnim: 4 },
+  { label: 'Clean Architecture', size: 'md', top: 34, right: 52, floatAnim: 5 }
 ] as const
 
 const panelRef = ref<HTMLElement | null>(null)

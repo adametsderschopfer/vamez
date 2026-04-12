@@ -23,7 +23,7 @@ const navItems = computed<AnchorItem[]>(() => [
   { id: SECTION_IDS.intro, label: t('nav.im'), icon: 'User' },
   { id: SECTION_IDS.summary, label: t('nav.summary'), icon: 'FileText' },
 
-  { id: SECTION_IDS.experience, label: t('nav.experience'), icon: 'Briefcase' },
+  // { id: SECTION_IDS.experience, label: t('nav.experience'), icon: 'Briefcase' },
   { id: SECTION_IDS.contacts, label: t('nav.contacts'), icon: 'AtSign' }
 ])
 </script>

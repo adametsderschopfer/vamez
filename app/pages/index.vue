@@ -1,9 +1,5 @@
 <script setup lang="ts">
 import HomeIntroSection from '@/components/home/HomeIntroSection.vue'
-import SummarySection from '@/components/home/SummarySection.vue'
-
-import ExperienceSection from '@/components/home/ExperienceSection.vue'
-import ContactsSection from '@/components/home/ContactsSection.vue'
 
 const introSectionId = 'intro'
 
@@ -55,10 +51,10 @@ onBeforeUnmount(() => {
   <div class="landing">
     <div class="landing__anchors">
       <HomeIntroSection />
-      <SummarySection />
+      <!--      <SummarySection />-->
 
-      <ExperienceSection />
-      <ContactsSection />
+      <!-- <ExperienceSection /> -->
+      <!--      <ContactsSection />-->
     </div>
   </div>
 </template>
