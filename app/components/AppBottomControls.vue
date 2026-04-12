@@ -17,9 +17,9 @@ const SECTION_IDS = {
 } as const
 
 const { t } = useI18n()
-const activeSectionId = useState('active-section-id', () => SECTION_IDS.intro)
+const _activeSectionId = useState('active-section-id', () => SECTION_IDS.intro)
 
-const navItems = computed<AnchorItem[]>(() => [
+const _navItems = computed<AnchorItem[]>(() => [
   { id: SECTION_IDS.intro, label: t('nav.im'), icon: 'User' },
   { id: SECTION_IDS.summary, label: t('nav.summary'), icon: 'FileText' },
 
@@ -30,7 +30,7 @@ const navItems = computed<AnchorItem[]>(() => [
 
 <template>
   <div class="app-bottom-controls">
-    <LiquidAnchorMenu v-if="showMenu" :items="navItems" :active-id="activeSectionId" />
+    <!--    <LiquidAnchorMenu v-if="showMenu" :items="navItems" :active-id="activeSectionId" />-->
     <AppQuickMenu />
   </div>
 </template>
