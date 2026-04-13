@@ -9,7 +9,13 @@ const props = defineProps<{
   error: NuxtError
 }>()
 
-const { t } = useI18n()
+let t: (key: string) => string = (key) => key
+try {
+  const i18n = useI18n()
+  t = i18n.t
+} catch {
+  // i18n not available in error context, use key as fallback
+}
 
 const statusCode = computed(() => props.error.statusCode ?? 500)
 const isClientError = computed(() => statusCode.value >= 400 && statusCode.value < 500)
@@ -42,8 +48,6 @@ const contentMap = computed(() =>
         <NuxtLink class="error-screen__home-link" to="/">{{ t('error.actions.home') }}</NuxtLink>
       </div>
     </main>
-
-    <AppBottomControls />
   </div>
 </template>
 
