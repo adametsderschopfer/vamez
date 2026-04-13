@@ -1,5 +1,7 @@
 pre-commit:
   parallel: true
+  env:
+    PATH: /Users/v_adamets/.nvm/versions/node/v24.14.1/bin:/usr/local/bin:/usr/bin:/bin
   commands:
     eslint:
       glob: "**/*.{js,ts,vue}"

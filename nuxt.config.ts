@@ -9,13 +9,17 @@ export default defineNuxtConfig({
       siteUrl: 'https://vamez.ru'
     }
   },
+  experimental: {
+    buildCache: true
+  },
   nitro: {
     compressPublicAssets: {
-      gzip: true,
+      gzip: false,
       brotli: true
     },
     prerender: {
-      crawlLinks: true,
+      concurrency: 10,
+      crawlLinks: false,
       routes: ['/', '/sitemap.xml']
     }
   },
@@ -50,6 +54,7 @@ export default defineNuxtConfig({
   css: ['@/assets/css/main.css'],
   vite: {
     build: {
+      sourcemap: false,
       minify: 'esbuild',
       cssMinify: 'esbuild'
     }

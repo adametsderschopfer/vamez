@@ -108,7 +108,7 @@ onBeforeUnmount(() => {
         </p>
 
         <h1 class="home-intro__title">
-          <span class="home-intro__title-line">{{ t('home.intro.firstName') }}</span>
+          <span class="home-intro__title-line">{{ `${t('home.intro.firstName')} ` }}</span>
           <span class="home-intro__title-line">{{ t('home.intro.lastName') }}</span>
         </h1>
 
@@ -566,7 +566,7 @@ onBeforeUnmount(() => {
 
 @media (max-width: 900px) {
   .home-intro__skills {
-    opacity: 0.3;
+    opacity: 0.1;
   }
 }
 
