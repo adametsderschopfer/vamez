@@ -29,7 +29,7 @@ export default defineNuxtConfig({
       headers: {
         'Content-Security-Policy': [
           "default-src 'self'",
-          "script-src 'self' 'unsafe-inline' https://mc.yandex.ru",
+          "script-src 'self' https://mc.yandex.ru",
           "style-src 'self' 'unsafe-inline'",
           "img-src 'self' data: https://mc.yandex.ru",
           "font-src 'self'",
@@ -37,7 +37,13 @@ export default defineNuxtConfig({
           "frame-src 'none'",
           "object-src 'none'",
           "base-uri 'self'"
-        ].join('; ')
+        ].join('; '),
+        'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+        'X-Frame-Options': 'DENY',
+        'X-Content-Type-Options': 'nosniff',
+        'Cross-Origin-Opener-Policy': 'same-origin',
+        'Referrer-Policy': 'strict-origin-when-cross-origin',
+        'Permissions-Policy': 'camera=(), microphone=(), geolocation=()'
       }
     }
   },

@@ -32,6 +32,7 @@ const SKILLS: readonly Skill[] = [
 
 const panelRef = ref<HTMLElement | null>(null)
 const bubbleEls = ref<HTMLElement[]>([])
+const skillsVisible = ref(false)
 let rafId: number | null = null
 
 // Typing effect
@@ -84,6 +85,7 @@ function onMouseLeave(): void {
 }
 
 onMounted(() => {
+  skillsVisible.value = true
   panelRef.value?.addEventListener('mousemove', onMouseMove, { passive: true })
   panelRef.value?.addEventListener('mouseleave', onMouseLeave)
   setTimeout(startTyping, 600)
@@ -142,7 +144,7 @@ onBeforeUnmount(() => {
         <ChevronDown :size="24" />
       </a>
 
-      <div class="home-intro__skills" aria-hidden="true">
+      <div v-if="skillsVisible" class="home-intro__skills" aria-hidden="true">
         <span
           v-for="(skill, i) in SKILLS"
           :key="skill.label"
@@ -188,7 +190,7 @@ onBeforeUnmount(() => {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.12),
     0 24px 70px var(--glass-shadow);
-  backdrop-filter: blur(28px);
+  backdrop-filter: blur(12px);
 }
 
 .home-intro__panel::before {
@@ -234,7 +236,6 @@ onBeforeUnmount(() => {
   border: 1px solid var(--glass-border);
   border-radius: 999px;
   box-shadow: 0 2px 12px var(--glass-shadow);
-  backdrop-filter: blur(10px);
 
   /* magnetic pull — CSS individual translate composes on top of animation transform */
   translate: var(--pull-x, 0) var(--pull-y, 0);
