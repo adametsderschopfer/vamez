@@ -47,6 +47,12 @@ export default defineNuxtConfig({
   },
   modules: ['@nuxt/eslint', '@nuxt/content', '@nuxtjs/i18n'],
   css: ['@/assets/css/main.css'],
+  vite: {
+    build: {
+      minify: 'esbuild',
+      cssMinify: 'esbuild'
+    }
+  },
   i18n: {
     defaultLocale: 'en',
     strategy: 'no_prefix',

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import HomeIntroSection from '@/components/home/HomeIntroSection.vue'
+import ContactsSection from '@/components/home/ContactsSection.vue'
 
 const introSectionId = 'intro'
 
@@ -54,7 +55,7 @@ onBeforeUnmount(() => {
       <!--      <SummarySection />-->
 
       <!-- <ExperienceSection /> -->
-      <!--      <ContactsSection />-->
+      <ContactsSection />
     </div>
   </div>
 </template>
