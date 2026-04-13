@@ -19,8 +19,8 @@ export default defineNuxtConfig({
     },
     prerender: {
       concurrency: 10,
-      crawlLinks: false,
-      routes: ['/', '/sitemap.xml']
+      crawlLinks: true,
+      routes: ['/', '/blog', '/sitemap.xml']
     }
   },
   routeRules: {
@@ -29,12 +29,12 @@ export default defineNuxtConfig({
       headers: {
         'Content-Security-Policy': [
           "default-src 'self'",
-          "script-src 'self' 'unsafe-inline' https://mc.yandex.ru",
+          "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://mc.yandex.ru",
           "style-src 'self' 'unsafe-inline'",
           "img-src 'self' data: https://mc.yandex.ru https://mc.yandex.com",
           "font-src 'self'",
           "connect-src 'self' https://mc.yandex.ru https://mc.yandex.com wss://mc.yandex.com",
-          "frame-src 'none'",
+          "frame-src https://mc.yandex.ru https://mc.yandex.com",
           "object-src 'none'",
           "base-uri 'self'"
         ].join('; '),
