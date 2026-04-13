@@ -1,14 +1,19 @@
 <script setup lang="ts">
 const { t, locale } = useI18n()
 const route = useRoute()
+const runtimeConfig = useRuntimeConfig()
 
-const BASE_URL = 'https://vamez.ru'
+const baseUrl = computed(() =>
+  String(runtimeConfig.public.siteUrl || 'https://vamez.ru').replace(/\/$/, '')
+)
+const canonicalUrl = computed(() => `${baseUrl.value}${route.path}`)
 
 useHead({
   htmlAttrs: {
-    lang: computed(() => locale.value),
+    lang: computed(() => locale.value)
   },
   title: computed(() => t('seo.ogTitle')),
+  link: [{ rel: 'canonical', href: canonicalUrl }],
   meta: [
     { name: 'description', content: computed(() => t('seo.description')) },
     // Open Graph
@@ -16,13 +21,13 @@ useHead({
     { property: 'og:site_name', content: 'Vamez' },
     { property: 'og:title', content: computed(() => t('seo.ogTitle')) },
     { property: 'og:description', content: computed(() => t('seo.description')) },
-    { property: 'og:url', content: computed(() => `${BASE_URL}${route.path}`) },
-    { property: 'og:locale', content: computed(() => locale.value === 'ru' ? 'ru_RU' : 'en_US') },
+    { property: 'og:url', content: canonicalUrl },
+    { property: 'og:locale', content: computed(() => (locale.value === 'ru' ? 'ru_RU' : 'en_US')) },
     // Twitter / X
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: computed(() => t('seo.ogTitle')) },
-    { name: 'twitter:description', content: computed(() => t('seo.description')) },
-  ],
+    { name: 'twitter:description', content: computed(() => t('seo.description')) }
+  ]
 })
 
 const isHomePage = computed(() => route.path === '/')

@@ -4,6 +4,11 @@ import { fileURLToPath } from 'node:url'
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+  runtimeConfig: {
+    public: {
+      siteUrl: 'https://vamez.ru'
+    }
+  },
   nitro: {
     compressPublicAssets: {
       gzip: true,
@@ -11,7 +16,7 @@ export default defineNuxtConfig({
     },
     prerender: {
       crawlLinks: true,
-      routes: ['/']
+      routes: ['/', '/sitemap.xml']
     }
   },
   routeRules: {
@@ -29,11 +34,9 @@ export default defineNuxtConfig({
         { name: 'author', content: 'Vladislav Adamets' },
         { name: 'theme-color', content: '#111111' },
         { name: 'robots', content: 'index, follow' },
+        { name: 'yandex-verification', content: '408e9c6c152e0036' }
       ],
-      link: [
-        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-        { rel: 'canonical', href: 'https://vamez.ru' },
-      ]
+      link: [{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }]
     }
   },
   modules: ['@nuxt/eslint', '@nuxt/content', '@nuxtjs/i18n'],
