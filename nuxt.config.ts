@@ -29,11 +29,11 @@ export default defineNuxtConfig({
       headers: {
         'Content-Security-Policy': [
           "default-src 'self'",
-          "script-src 'self' https://mc.yandex.ru",
+          "script-src 'self' 'unsafe-inline' https://mc.yandex.ru",
           "style-src 'self' 'unsafe-inline'",
-          "img-src 'self' data: https://mc.yandex.ru",
+          "img-src 'self' data: https://mc.yandex.ru https://mc.yandex.com",
           "font-src 'self'",
-          "connect-src 'self' https://mc.yandex.ru https://mc.yandex.com",
+          "connect-src 'self' https://mc.yandex.ru https://mc.yandex.com wss://mc.yandex.com",
           "frame-src 'none'",
           "object-src 'none'",
           "base-uri 'self'"
