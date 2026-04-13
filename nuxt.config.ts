@@ -24,7 +24,22 @@ export default defineNuxtConfig({
     }
   },
   routeRules: {
-    '/**': { prerender: true }
+    '/**': {
+      prerender: true,
+      headers: {
+        'Content-Security-Policy': [
+          "default-src 'self'",
+          "script-src 'self' 'unsafe-inline' https://mc.yandex.ru",
+          "style-src 'self' 'unsafe-inline'",
+          "img-src 'self' data: https://mc.yandex.ru",
+          "font-src 'self'",
+          "connect-src 'self' https://mc.yandex.ru https://mc.yandex.com",
+          "frame-src 'none'",
+          "object-src 'none'",
+          "base-uri 'self'"
+        ].join('; ')
+      }
+    }
   },
   alias: {
     '@': fileURLToPath(new URL('./app', import.meta.url))
