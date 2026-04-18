@@ -12,6 +12,12 @@ interface BlogPostListItem {
 
 const { t, locale } = useI18n()
 const route = useRoute()
+definePageMeta({
+  pageTransition: {
+    name: 'blog-page-transition',
+    mode: 'out-in'
+  }
+})
 
 const { data } = await useAsyncData(
   () => `blog-list-${locale.value}`,

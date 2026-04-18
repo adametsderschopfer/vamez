@@ -30,9 +30,9 @@ export default defineNuxtConfig({
         'Content-Security-Policy': [
           "default-src 'self'",
           "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://mc.yandex.ru",
-          "style-src 'self' 'unsafe-inline'",
+          "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
           "img-src 'self' data: https://mc.yandex.ru https://mc.yandex.com",
-          "font-src 'self'",
+          "font-src 'self' https://fonts.gstatic.com",
           "connect-src 'self' https://mc.yandex.ru https://mc.yandex.com wss://mc.yandex.com",
           "frame-src https://mc.yandex.ru https://mc.yandex.com",
           "object-src 'none'",

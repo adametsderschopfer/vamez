@@ -1,20 +1,25 @@
 :root {
-  --color-text: #222;
-  --color-text-soft: rgba(34, 34, 34, 0.72);
-  --color-accent: #9fca3c;
-  --color-surface: #f6fbe7;
-  --color-black: #222;
+  --color-white: #fff;
+  --color-white-rgb: 255, 255, 255;
+  --color-black-rgb: 5, 5, 8;
+  --color-accent-rgb: 0, 232, 123;
+  --color-text: #1a1b20;
+  --color-text-soft: rgba(26, 27, 32, 0.72);
+  --color-accent: #00e87b;
+  --color-accent-danger: #f44;
+  --color-surface: #f4f6f8;
+  --color-black: #050508;
   --font-body:
-    -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Helvetica,
-    Arial, sans-serif;
+    'Outfit', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue',
+    Helvetica, Arial, sans-serif;
   --font-heading:
-    -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica,
-    Arial, sans-serif;
+    'Outfit', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue',
+    Helvetica, Arial, sans-serif;
   --liquid-control-size: 3.55rem;
   --liquid-control-inset: 0.34rem;
-  --glass-bg: rgba(230, 241, 193, 0.62);
-  --glass-border: rgba(145, 176, 63, 0.24);
-  --glass-shadow: rgba(79, 99, 27, 0.12);
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(5, 5, 8, 0.14);
+  --glass-shadow: rgba(5, 5, 8, 0.12);
 }
 
 *,
@@ -29,8 +34,13 @@ body {
   font-family: var(--font-body);
   color: var(--color-text);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 28%),
-    linear-gradient(155deg, #fbfdeb 0%, #f1f8d4 48%, #e5efb5 100%);
+    linear-gradient(
+      180deg,
+      rgba(var(--color-white-rgb), 0.72),
+      rgba(var(--color-white-rgb), 0.3) 38%
+    ),
+    radial-gradient(circle at 10% 6%, rgba(var(--color-accent-rgb), 0.18), transparent 58%),
+    var(--color-surface);
 }
 
 h1,
@@ -46,19 +56,21 @@ h6 {
 }
 
 :root[data-theme='dark'] {
-  --color-text: #fff;
+  --color-text: var(--color-white);
   --color-text-soft: rgba(255, 255, 255, 0.72);
-  --color-accent: #c4e565;
-  --color-surface: #0a0d06;
-  --glass-bg: rgba(63, 79, 29, 0.46);
-  --glass-border: rgba(214, 243, 129, 0.14);
-  --glass-shadow: rgba(0, 0, 0, 0.38);
+  --color-accent: #00e87b;
+  --color-accent-danger: #f44;
+  --color-surface: #050508;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: rgba(0, 0, 0, 0.55);
 }
 
 :root[data-theme='dark'] body {
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 30%),
-    linear-gradient(112deg, #060802 0%, #101507 30%, #18200a 62%, #273312 100%);
+    radial-gradient(circle at 12% 0%, rgba(var(--color-accent-rgb), 0.12), transparent 52%),
+    radial-gradient(circle at 92% 88%, rgba(var(--color-accent-rgb), 0.08), transparent 54%),
+    var(--color-surface);
 }
 
 html {
@@ -105,4 +117,31 @@ input,
 textarea,
 select {
   font: inherit;
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-body);
+}
+
+.blog-page-transition-enter-active,
+.blog-page-transition-leave-active {
+  transition: opacity 0.26s ease;
+}
+
+.blog-page-transition-enter-from {
+  opacity: 0;
+}
+
+.blog-page-transition-leave-to {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-page-transition-enter-active,
+  .blog-page-transition-leave-active {
+    transition: opacity 0.01s linear;
+  }
 }

@@ -14,7 +14,15 @@ useHead({
     lang: computed(() => locale.value)
   },
   title: computed(() => t('seo.ogTitle')),
-  link: [{ rel: 'canonical', href: canonicalUrl }],
+  link: [
+    { rel: 'canonical', href: canonicalUrl },
+    { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+    { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+    {
+      rel: 'stylesheet',
+      href: 'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap'
+    }
+  ],
   script: [
     {
       key: 'yandex-metrika',

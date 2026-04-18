@@ -79,21 +79,13 @@ function scrollToSection(id: string): void {
     transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.liquid-menu__item:hover {
-  transform: translateY(-2px) scale(1.08);
-}
-
-.liquid-menu__item:hover .liquid-menu__icon {
-  transform: scale(1.3) rotate(15deg);
-}
-
 .liquid-menu__item:active {
   transform: scale(0.95);
 }
 
 .liquid-menu__item--active {
-  color: #231b15;
-  background: rgba(255, 255, 255, 0.94);
+  color: var(--color-black);
+  background: rgba(var(--color-white-rgb), 0.94);
 }
 
 .liquid-menu__icon {
@@ -106,6 +98,16 @@ function scrollToSection(id: string): void {
   font-size: clamp(0.74rem, 1vw, 0.9rem);
   font-weight: 600;
   white-space: nowrap;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .liquid-menu__item:hover {
+    transform: translateY(-2px) scale(1.08);
+  }
+
+  .liquid-menu__item:hover .liquid-menu__icon {
+    transform: scale(1.3) rotate(15deg);
+  }
 }
 
 @media (max-width: 960px) {

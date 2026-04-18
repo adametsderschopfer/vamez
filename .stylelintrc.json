@@ -6,6 +6,18 @@
   ],
   "rules": {
     "selector-class-pattern": null,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["deep"]
+      }
+    ],
+    "selector-pseudo-element-no-unknown": [
+      true,
+      {
+        "ignorePseudoElements": ["v-deep"]
+      }
+    ],
     "keyframes-name-pattern": null,
     "custom-property-pattern": null,
     "alpha-value-notation": null,

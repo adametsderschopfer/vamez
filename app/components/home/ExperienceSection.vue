@@ -508,12 +508,6 @@ onBeforeUnmount(() => {
     transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.experience-section__toggle-btn:hover {
-  color: var(--color-text);
-  border-color: var(--color-accent);
-  transform: translateY(-2px);
-}
-
 .experience-section__toggle-btn:active {
   transform: scale(0.97);
 }
@@ -538,9 +532,17 @@ onBeforeUnmount(() => {
   font-size: 0.72rem;
   font-weight: 700;
   color: var(--color-accent);
-  background: rgba(159, 202, 60, 0.15);
-  border: 1px solid rgba(159, 202, 60, 0.3);
+  background: rgba(var(--color-accent-rgb), 0.15);
+  border: 1px solid rgba(var(--color-accent-rgb), 0.3);
   border-radius: 50%;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .experience-section__toggle-btn:hover {
+    color: var(--color-text);
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+  }
 }
 
 @media (max-width: 768px) {

@@ -183,12 +183,12 @@ onBeforeUnmount(() => {
   min-height: calc(100vh - 40px);
   overflow: hidden;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 28%),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
-  border: 1px solid color-mix(in srgb, var(--glass-border) 82%, rgba(255, 255, 255, 0.08));
+    linear-gradient(180deg, rgba(var(--color-white-rgb), 0.1), transparent 28%),
+    linear-gradient(135deg, rgba(var(--color-white-rgb), 0.06), rgba(var(--color-white-rgb), 0.02));
+  border: 1px solid color-mix(in srgb, var(--glass-border) 82%, rgba(var(--color-white-rgb), 0.08));
   border-radius: 2rem;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 1px 0 rgba(var(--color-white-rgb), 0.12),
     0 24px 70px var(--glass-shadow);
   backdrop-filter: blur(12px);
 }
@@ -199,8 +199,8 @@ onBeforeUnmount(() => {
   pointer-events: none;
   content: '';
   background:
-    linear-gradient(110deg, rgba(255, 255, 255, 0.05), transparent 34%),
-    linear-gradient(0deg, rgba(0, 0, 0, 0.08), transparent 36%);
+    linear-gradient(110deg, rgba(var(--color-white-rgb), 0.05), transparent 34%),
+    linear-gradient(0deg, rgba(var(--color-black-rgb), 0.08), transparent 36%);
 }
 
 .home-intro__content {
@@ -250,7 +250,7 @@ onBeforeUnmount(() => {
 
 .skill-bubble--highlight {
   color: var(--color-text);
-  border-color: rgba(159, 202, 60, 0.4);
+  border-color: rgba(var(--color-accent-rgb), 0.4);
 }
 
 .skill-bubble--sm {
@@ -545,15 +545,6 @@ onBeforeUnmount(() => {
   animation-delay: 1.2s;
 }
 
-.home-intro__contact-link:hover {
-  color: var(--color-accent);
-  transform: translateX(4px) scale(1.05);
-}
-
-.home-intro__contact-link:hover .home-intro__contact-icon {
-  transform: scale(1.2) rotate(12deg);
-}
-
 .home-intro__contact-link:active {
   transform: translateX(0) scale(0.98);
 }
@@ -563,6 +554,17 @@ onBeforeUnmount(() => {
   margin-right: 0.6rem;
   opacity: 0.8;
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .home-intro__contact-link:hover {
+    color: var(--color-accent);
+    transform: translateX(4px) scale(1.05);
+  }
+
+  .home-intro__contact-link:hover .home-intro__contact-icon {
+    transform: scale(1.2) rotate(12deg);
+  }
 }
 
 @media (max-width: 900px) {

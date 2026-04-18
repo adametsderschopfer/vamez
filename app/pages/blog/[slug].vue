@@ -12,6 +12,12 @@ interface BlogPostDocument {
 
 const route = useRoute()
 const { locale } = useI18n()
+definePageMeta({
+  pageTransition: {
+    name: 'blog-page-transition',
+    mode: 'out-in'
+  }
+})
 
 const slug = computed(() => {
   const param = route.params.slug

@@ -2,6 +2,13 @@
 import HomeIntroSection from '@/components/home/HomeIntroSection.vue'
 import ContactsSection from '@/components/home/ContactsSection.vue'
 
+definePageMeta({
+  pageTransition: {
+    name: 'blog-page-transition',
+    mode: 'out-in'
+  }
+})
+
 const introSectionId = 'intro'
 
 const activeSectionId = useState('active-section-id', () => introSectionId)

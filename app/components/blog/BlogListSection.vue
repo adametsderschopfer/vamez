@@ -192,8 +192,8 @@ onBeforeUnmount(() => {
   --blog-list-card-min-height: 11rem;
 
   width: min(100% - 2rem, var(--blog-list-max-width));
-  margin: 0 auto;
   padding: clamp(4rem, 6vw, 6rem) 0 clamp(7rem, 10vw, 9rem);
+  margin: 0 auto;
 }
 
 .blog-list__main {
@@ -255,18 +255,17 @@ onBeforeUnmount(() => {
     border-color 0.22s ease;
 }
 
-.blog-list__link:hover,
 .blog-list__link:focus-visible {
-  transform: translateY(-2px);
-  border-color: color-mix(in srgb, var(--color-accent) 45%, var(--glass-border));
   outline: none;
+  border-color: color-mix(in srgb, var(--color-accent) 45%, var(--glass-border));
+  transform: translateY(-2px);
 }
 
 .blog-list__date {
   margin: 0;
   font-size: 0.86rem;
-  letter-spacing: 0.02em;
   color: var(--color-text-soft);
+  letter-spacing: 0.02em;
 }
 
 .blog-list__item-title {
@@ -304,9 +303,9 @@ onBeforeUnmount(() => {
 }
 
 .blog-list__show-more {
-  margin-top: 1rem;
   min-height: 2.7rem;
   padding: 0 1rem;
+  margin-top: 1rem;
   color: var(--color-text);
   cursor: pointer;
   background: color-mix(in srgb, var(--glass-bg) 92%, transparent);
@@ -317,11 +316,10 @@ onBeforeUnmount(() => {
     background-color 0.2s ease;
 }
 
-.blog-list__show-more:hover,
 .blog-list__show-more:focus-visible {
+  outline: none;
   background: color-mix(in srgb, var(--glass-border) 45%, transparent);
   transform: translateY(-1px);
-  outline: none;
 }
 
 .blog-list__filter-list {
@@ -338,9 +336,9 @@ onBeforeUnmount(() => {
 }
 
 .blog-list__filter-link {
+  position: relative;
   display: inline-flex;
   gap: 0.35rem;
-  position: relative;
   align-items: center;
   justify-content: space-between;
   width: fit-content;
@@ -358,11 +356,27 @@ onBeforeUnmount(() => {
     border-color 0.2s ease;
 }
 
-.blog-list__filter-link:hover,
 .blog-list__filter-link:focus-visible {
   color: var(--color-text);
-  background: color-mix(in srgb, var(--glass-border) 45%, transparent);
   outline: none;
+  background: color-mix(in srgb, var(--glass-border) 45%, transparent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .blog-list__link:hover {
+    border-color: color-mix(in srgb, var(--color-accent) 45%, var(--glass-border));
+    transform: translateY(-2px);
+  }
+
+  .blog-list__show-more:hover {
+    background: color-mix(in srgb, var(--glass-border) 45%, transparent);
+    transform: translateY(-1px);
+  }
+
+  .blog-list__filter-link:hover {
+    color: var(--color-text);
+    background: color-mix(in srgb, var(--glass-border) 45%, transparent);
+  }
 }
 
 .blog-list__filter-link--active {

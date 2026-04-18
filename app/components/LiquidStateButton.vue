@@ -44,14 +44,6 @@ defineEmits<{
     background-color 0.2s ease;
 }
 
-.liquid-state-button:hover {
-  transform: translateY(-2px) scale(1.08);
-}
-
-.liquid-state-button:hover .liquid-state-button__icon {
-  transform: scale(1.3) rotate(15deg);
-}
-
 .liquid-state-button:active {
   transform: scale(0.95);
 }
@@ -61,5 +53,15 @@ defineEmits<{
   color: var(--color-text);
   opacity: 0.92;
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .liquid-state-button:hover {
+    transform: translateY(-2px) scale(1.08);
+  }
+
+  .liquid-state-button:hover .liquid-state-button__icon {
+    transform: scale(1.3) rotate(15deg);
+  }
 }
 </style>

@@ -14,6 +14,9 @@ const { t } = useI18n()
 const { containerRef, isRevealed } = useScrollReveal()
 
 const currentYear = new Date().getFullYear()
+const footerText = computed(
+  () => `${t('footer.madeWith')} ${currentYear} • ${t('footer.rightsReserved')}`
+)
 
 const contacts: readonly Contact[] = [
   {
@@ -63,35 +66,90 @@ const contacts: readonly Contact[] = [
           <div class="contacts-section__item-icon">
             <component :is="contact.icon" :size="22" />
           </div>
-          <div class="contacts-section__item-body">
-            <span class="contacts-section__item-platform">{{ contact.label }}</span>
+
+          <div class="contacts-section__item-content">
+            <span class="contacts-section__item-label">{{ contact.label }}</span>
             <span class="contacts-section__item-handle">{{ contact.handle }}</span>
           </div>
-          <span class="contacts-section__item-arrow" aria-hidden="true">→</span>
+
+          <span class="contacts-section__item-action" aria-hidden="true">
+            {{ contact.external ? '↗' : '✉' }}
+          </span>
         </a>
       </div>
 
-      <p class="contacts-section__footer">{{ t('footer.madeWith') }} {{ currentYear }}</p>
+      <p class="contacts-section__footer">{{ footerText }}</p>
     </div>
   </section>
 </template>
 
 <style scoped>
 .contacts-section {
+  --contacts-panel-radius: 2rem;
+  --contacts-gap: 1rem;
+  --contacts-item-padding: 1.1rem;
+  --contacts-item-radius: 1.15rem;
+
   position: relative;
-  padding: 0 20px;
-  padding-bottom: 8rem;
+  padding: 0 1.25rem 8rem;
 }
 
 .contacts-section__container {
-  padding: clamp(2rem, 6vw, 4rem) 0;
+  position: relative;
+  width: 100%;
+  padding: clamp(1.35rem, 4vw, 2.1rem);
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 10% 12%,
+      color-mix(in srgb, var(--color-accent) 22%, transparent),
+      transparent 42%
+    ),
+    radial-gradient(
+      circle at 100% 100%,
+      color-mix(in srgb, var(--glass-border) 62%, transparent),
+      transparent 40%
+    ),
+    color-mix(in srgb, var(--glass-bg) 72%, transparent);
+  border: 1px solid color-mix(in srgb, var(--glass-border) 92%, transparent);
+  border-radius: var(--contacts-panel-radius);
+  box-shadow:
+    0 24px 60px color-mix(in srgb, var(--glass-shadow) 78%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--color-white) 28%, transparent);
+  isolation: isolate;
+  backdrop-filter: blur(16px);
+}
+
+.contacts-section__container::before,
+.contacts-section__container::after {
+  position: absolute;
+  z-index: -1;
+  content: '';
+  border-radius: 999px;
+}
+
+.contacts-section__container::before {
+  top: -18%;
+  left: -8%;
+  width: clamp(13rem, 22vw, 20rem);
+  aspect-ratio: 1;
+  background: color-mix(in srgb, var(--color-accent) 22%, transparent);
+  filter: blur(44px);
+}
+
+.contacts-section__container::after {
+  right: -16%;
+  bottom: -36%;
+  width: clamp(16rem, 28vw, 24rem);
+  aspect-ratio: 1;
+  background: color-mix(in srgb, var(--glass-border) 60%, transparent);
+  filter: blur(52px);
 }
 
 .contacts-section__header {
-  padding: 0 70px;
-  margin-bottom: 3rem;
+  margin-bottom: clamp(1.2rem, 3vw, 2rem);
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(16px);
   transition:
     opacity 0.6s ease-out,
     transform 0.6s ease-out;
@@ -104,58 +162,46 @@ const contacts: readonly Contact[] = [
 
 .contacts-section__title {
   margin: 0;
-  font-size: clamp(2rem, 6vw, 4.5rem);
-  font-weight: 700;
-  line-height: 1.1;
-  color: var(--color-text);
+  font-size: clamp(2.2rem, 8vw, 5.6rem);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
 }
 
 .contacts-section__list {
-  display: flex;
-  flex-direction: column;
-  padding: 0 70px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--contacts-gap);
 }
 
 .contacts-section__item {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-  padding: 1.75rem 0;
+  position: relative;
+  display: grid;
+  gap: 0.95rem;
+  min-height: clamp(9.5rem, 14vw, 11.2rem);
+  padding: var(--contacts-item-padding);
   color: inherit;
   text-decoration: none;
-  border-bottom: 1px solid var(--glass-border);
+  background: color-mix(in srgb, var(--glass-bg) 86%, transparent);
+  border: 1px solid color-mix(in srgb, var(--glass-border) 92%, transparent);
+  border-radius: var(--contacts-item-radius);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-white) 20%, transparent);
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(16px) scale(0.985);
   transition:
+    border-color 0.24s ease,
+    box-shadow 0.24s ease,
     opacity 0.6s ease-out,
-    transform 0.6s ease-out;
+    transform 0.6s ease-out,
+    background-color 0.24s ease;
 }
 
 .contacts-section__container.is-revealed .contacts-section__item {
   opacity: 1;
-  transform: translateY(0);
-}
-
-.contacts-section__item:first-child {
-  border-top: 1px solid var(--glass-border);
-}
-
-.contacts-section__item:hover {
-  transform: translateY(0) translateX(10px);
-}
-
-.contacts-section__item:hover .contacts-section__item-icon {
-  color: var(--color-accent);
-  border-color: var(--color-accent);
-}
-
-.contacts-section__item:hover .contacts-section__item-arrow {
-  opacity: 1;
-  transform: translateX(4px);
+  transform: translateY(0) scale(1);
 }
 
 .contacts-section__item:active {
-  transform: translateX(4px) scale(0.99);
+  transform: translateY(1px) scale(0.985);
 }
 
 .contacts-section__item-icon {
@@ -163,77 +209,110 @@ const contacts: readonly Contact[] = [
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 3rem;
+  height: 3rem;
   color: var(--color-text-soft);
-  border: 1px solid var(--glass-border);
-  border-radius: 50%;
+  background: color-mix(in srgb, var(--glass-bg) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--glass-border) 92%, transparent);
+  border-radius: 0.95rem;
   transition:
+    background-color 0.25s ease,
     color 0.25s ease,
-    border-color 0.25s ease;
+    border-color 0.25s ease,
+    transform 0.25s ease;
 }
 
-.contacts-section__item-body {
+.contacts-section__item-content {
   display: flex;
-  flex: 1;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.35rem;
   min-width: 0;
 }
 
-.contacts-section__item-platform {
-  font-size: clamp(1.4rem, 3vw, 2rem);
+.contacts-section__item-label {
+  margin: 0;
+  font-size: clamp(1.35rem, 2.8vw, 1.85rem);
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.05;
   color: var(--color-text);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.022em;
+  overflow-wrap: anywhere;
 }
 
 .contacts-section__item-handle {
+  margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: clamp(0.85rem, 1.3vw, 1rem);
+  font-size: clamp(0.84rem, 1.3vw, 0.97rem);
   color: var(--color-text-soft);
   white-space: nowrap;
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
-.contacts-section__item-arrow {
-  flex-shrink: 0;
-  font-size: 1.4rem;
-  color: var(--color-accent);
-  opacity: 0;
+.contacts-section__item-action {
+  place-self: end end;
+  font-size: 1.35rem;
+  line-height: 1;
+  color: color-mix(in srgb, var(--color-accent) 88%, var(--color-text));
+  opacity: 0.76;
   transition:
-    opacity 0.2s ease,
-    transform 0.3s ease;
+    opacity 0.24s ease,
+    transform 0.24s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contacts-section__item:hover {
+    background: color-mix(in srgb, var(--glass-bg) 94%, transparent);
+    border-color: color-mix(in srgb, var(--color-accent) 46%, var(--glass-border));
+    box-shadow:
+      0 18px 34px color-mix(in srgb, var(--glass-shadow) 65%, transparent),
+      inset 0 1px 0 color-mix(in srgb, var(--color-white) 30%, transparent);
+    transform: translateY(-6px);
+  }
+
+  .contacts-section__item:hover .contacts-section__item-icon {
+    color: var(--color-accent);
+    background: color-mix(in srgb, var(--glass-bg) 98%, transparent);
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+
+  .contacts-section__item:hover .contacts-section__item-action {
+    opacity: 1;
+    transform: translateX(4px);
+  }
 }
 
 .contacts-section__footer {
-  padding: 0 70px;
-  margin: 3rem 0 0;
-  font-size: 0.9rem;
+  margin: clamp(1.1rem, 2.4vw, 1.8rem) 0 0;
+  font-size: 0.85rem;
   font-weight: 500;
   color: var(--color-text-soft);
-  letter-spacing: 0.02em;
-  opacity: 0.4;
+  letter-spacing: 0.04em;
+  opacity: 0.55;
 }
 
-@media (max-width: 768px) {
-  .contacts-section__header,
-  .contacts-section__list,
-  .contacts-section__footer {
-    padding: 0 20px;
-  }
-
-  .contacts-section__item-platform {
-    font-size: clamp(1.2rem, 5vw, 1.5rem);
+@media (max-width: 980px) {
+  .contacts-section__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 640px) {
   .contacts-section {
-    padding: 0 14px;
-    padding-bottom: 7rem;
+    padding: 0 0.9rem 7rem;
+  }
+
+  .contacts-section__container {
+    border-radius: 1.4rem;
+  }
+
+  .contacts-section__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .contacts-section__item {
+    min-height: 8.6rem;
   }
 }
 </style>

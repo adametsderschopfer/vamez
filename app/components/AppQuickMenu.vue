@@ -92,12 +92,7 @@ onBeforeUnmount(() => {
     </button>
 
     <Transition name="quick-menu-panel">
-      <div
-        v-if="isOpen"
-        class="quick-menu__panel"
-        role="menu"
-        :aria-label="t('controls.openMenu')"
-      >
+      <div v-if="isOpen" class="quick-menu__panel" role="menu" :aria-label="t('controls.openMenu')">
         <NuxtLink
           v-for="(item, index) in quickMenuItems"
           :key="item.to"
@@ -171,14 +166,6 @@ onBeforeUnmount(() => {
     background-color 0.2s ease;
 }
 
-.quick-menu__toggle:hover {
-  transform: translateY(-2px) scale(1.08);
-}
-
-.quick-menu__toggle:hover .quick-menu__toggle-icon {
-  transform: scale(1.3) rotate(15deg);
-}
-
 .quick-menu__toggle:active {
   transform: scale(0.95);
 }
@@ -186,15 +173,15 @@ onBeforeUnmount(() => {
 .quick-menu__toggle-icon {
   flex: none;
   color: var(--color-text);
-  opacity: 0.92;
   pointer-events: none;
+  opacity: 0.92;
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .quick-menu__panel {
   position: absolute;
-  right: 0;
   bottom: calc(var(--liquid-control-size) + 0.45rem);
+  left: 50%;
   z-index: 32;
   display: grid;
   gap: 0.35rem;
@@ -205,7 +192,8 @@ onBeforeUnmount(() => {
   border-radius: 1rem;
   box-shadow: 0 18px 50px var(--glass-shadow);
   backdrop-filter: blur(24px);
-  transform-origin: right bottom;
+  transform: translateX(-50%);
+  transform-origin: center bottom;
   will-change: transform, opacity, clip-path, filter;
 }
 
@@ -238,12 +226,10 @@ onBeforeUnmount(() => {
   transition: background-color 0.2s ease;
 }
 
-.quick-menu__item:hover,
 .quick-menu__item:focus-visible,
-.quick-menu__action:hover,
 .quick-menu__action:focus-visible {
-  background: color-mix(in srgb, var(--glass-border) 45%, transparent);
   outline: none;
+  background: color-mix(in srgb, var(--glass-border) 45%, transparent);
 }
 
 .quick-menu__item-icon {
@@ -253,9 +239,9 @@ onBeforeUnmount(() => {
 .quick-menu__item-dot {
   width: 0.42rem;
   height: 0.42rem;
-  border-radius: 999px;
   background: transparent;
   border: 1px solid color-mix(in srgb, var(--color-text-soft) 45%, transparent);
+  border-radius: 999px;
   transition: background-color 0.2s ease;
 }
 
@@ -299,23 +285,38 @@ onBeforeUnmount(() => {
 .quick-menu-panel-enter-from,
 .quick-menu-panel-leave-to {
   opacity: 0;
-  transform: translateX(22px) scale(0.84) rotate(-4deg);
-  clip-path: inset(0 0 0 100% round 1rem);
   filter: blur(2px) saturate(0.8);
+  clip-path: inset(100% 0 0 0 round 1rem);
+  transform: translateX(-50%) translateY(14px) scale(0.84);
 }
 
 .quick-menu-panel-enter-to,
 .quick-menu-panel-leave-from {
   opacity: 1;
-  transform: translateX(0) scale(1) rotate(0deg);
-  clip-path: inset(0 0 0 0 round 1rem);
   filter: blur(0) saturate(1);
+  clip-path: inset(0 0 0 0 round 1rem);
+  transform: translateX(-50%) translateY(0) scale(1);
 }
 
 .quick-menu__item,
 .quick-menu__action {
   opacity: 1;
   transform: translateX(0) scale(1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .quick-menu__toggle:hover {
+    transform: translateY(-2px) scale(1.08);
+  }
+
+  .quick-menu__toggle:hover .quick-menu__toggle-icon {
+    transform: scale(1.3) rotate(15deg);
+  }
+
+  .quick-menu__item:hover,
+  .quick-menu__action:hover {
+    background: color-mix(in srgb, var(--glass-border) 45%, transparent);
+  }
 }
 
 .quick-menu-panel-enter-from .quick-menu__item,

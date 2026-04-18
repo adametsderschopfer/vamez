@@ -21,7 +21,7 @@
   },
   "blog": {
     "title": "Blog",
-    "subtitle": "Notes on frontend, architecture, and day-to-day engineering.",
+    "subtitle": "Sketches about programming, AI, and workflow.",
     "backToBlog": "Back to blog",
     "tags": "Tags",
     "allTags": "All tags",
@@ -29,7 +29,7 @@
   },
   "home": {
     "intro": {
-      "role": "Engineer. Pragmatic.",
+      "role": "Pragmatic.",
       "firstName": "Vladislav",
       "lastName": "Adamets"
     },
@@ -55,7 +55,8 @@
     }
   },
   "footer": {
-    "madeWith": "Made with ❤️"
+    "madeWith": "Made with ❤️",
+    "rightsReserved": "All rights reserved"
   },
   "error": {
     "client": {

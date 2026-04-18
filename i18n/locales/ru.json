@@ -55,7 +55,8 @@
     }
   },
   "footer": {
-    "madeWith": "Сделано с ❤️"
+    "madeWith": "Сделано с ❤️",
+    "rightsReserved": "Все права защищены"
   },
   "error": {
     "client": {

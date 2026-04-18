@@ -126,11 +126,13 @@ const contentMap = computed(() =>
     color 0.2s ease;
 }
 
-.error-screen__home-link:hover {
-  transform: translateY(-1px) scale(1.015);
-}
-
 .error-screen__home-link:active {
   transform: scale(0.975);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .error-screen__home-link:hover {
+    transform: translateY(-1px) scale(1.015);
+  }
 }
 </style>
