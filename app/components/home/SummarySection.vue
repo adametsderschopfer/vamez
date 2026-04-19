@@ -20,6 +20,7 @@ const { containerRef, isRevealed } = useScrollReveal()
 .summary-section {
   position: relative;
   padding: 0 20px;
+  overflow: hidden;
 }
 
 .summary-section__container {

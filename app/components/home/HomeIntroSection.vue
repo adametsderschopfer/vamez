@@ -34,22 +34,45 @@ const panelRef = ref<HTMLElement | null>(null)
 const bubbleEls = ref<HTMLElement[]>([])
 const skillsVisible = ref(false)
 let rafId: number | null = null
+let typingIntervalId: ReturnType<typeof setInterval> | null = null
+let typingTimeoutId: ReturnType<typeof setTimeout> | null = null
 
 // Typing effect
 const roleText = computed(() => t('home.intro.role'))
 const displayedRole = ref('')
 const typingDone = ref(false)
 
+function stopTyping() {
+  if (typingIntervalId !== null) {
+    clearInterval(typingIntervalId)
+    typingIntervalId = null
+  }
+
+  if (typingTimeoutId !== null) {
+    clearTimeout(typingTimeoutId)
+    typingTimeoutId = null
+  }
+}
+
 function startTyping() {
+  stopTyping()
+
   const text = roleText.value
   let i = 0
-  const interval = setInterval(() => {
+
+  displayedRole.value = ''
+  typingDone.value = false
+
+  typingIntervalId = setInterval(() => {
     if (i < text.length) {
       displayedRole.value = text.slice(0, i + 1)
       i++
     } else {
       typingDone.value = true
-      clearInterval(interval)
+      if (typingIntervalId !== null) {
+        clearInterval(typingIntervalId)
+        typingIntervalId = null
+      }
     }
   }, 70)
 }
@@ -88,14 +111,22 @@ onMounted(() => {
   skillsVisible.value = true
   panelRef.value?.addEventListener('mousemove', onMouseMove, { passive: true })
   panelRef.value?.addEventListener('mouseleave', onMouseLeave)
-  setTimeout(startTyping, 600)
+  typingTimeoutId = setTimeout(startTyping, 600)
 })
 
 onBeforeUnmount(() => {
+  stopTyping()
   panelRef.value?.removeEventListener('mousemove', onMouseMove)
   panelRef.value?.removeEventListener('mouseleave', onMouseLeave)
   if (rafId !== null) cancelAnimationFrame(rafId)
 })
+
+watch(
+  () => roleText.value,
+  () => {
+    startTyping()
+  }
+)
 </script>
 
 <template>
@@ -173,14 +204,14 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .home-intro {
-  min-height: 100vh;
+  min-height: 100dvh;
   padding: 20px;
   scroll-margin-top: 6rem;
 }
 
 .home-intro__panel {
   position: relative;
-  min-height: calc(100vh - 40px);
+  min-height: calc(100dvh - 40px);
   overflow: hidden;
   background:
     linear-gradient(180deg, rgba(var(--color-white-rgb), 0.1), transparent 28%),
@@ -212,7 +243,7 @@ onBeforeUnmount(() => {
   align-items: flex-start;
   justify-content: center;
   max-width: 44rem;
-  min-height: calc(100vh - 40px);
+  min-height: calc(100dvh - 40px);
   padding: clamp(2rem, 6vw, 5rem) 70px;
 }
 
@@ -580,7 +611,7 @@ onBeforeUnmount(() => {
 
   .home-intro__panel,
   .home-intro__content {
-    min-height: calc(100vh - 28px);
+    min-height: calc(100dvh - 28px);
   }
 
   .home-intro__panel {

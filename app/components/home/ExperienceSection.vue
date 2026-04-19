@@ -264,6 +264,7 @@ onBeforeUnmount(() => {
 .experience-section {
   position: relative;
   padding: 0 20px;
+  overflow: hidden;
 }
 
 .experience-section__container {

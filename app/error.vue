@@ -54,14 +54,14 @@ const contentMap = computed(() =>
 <style scoped>
 .error-screen {
   position: relative;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .error-screen__main {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 100dvh;
   padding: clamp(1.5rem, 4vw, 3rem);
 }
 

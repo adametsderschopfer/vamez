@@ -92,6 +92,7 @@ const contacts: readonly Contact[] = [
 
   position: relative;
   padding: 0 1.25rem 8rem;
+  overflow: hidden;
 }
 
 .contacts-section__container {
