@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Mail, Send, Github, ChevronDown } from 'lucide-vue-next'
+import { Mail, Send, Github } from 'lucide-vue-next'
 
 interface Skill {
   readonly label: string
@@ -13,69 +13,27 @@ interface Skill {
 const { t } = useI18n()
 
 const SKILLS: readonly Skill[] = [
-  { label: 'TypeScript', size: 'lg', top: 12, right: 28, floatAnim: 1, highlighted: true },
-  { label: 'React', size: 'md', top: 22, right: 8, floatAnim: 3, highlighted: true },
-  { label: 'Vue', size: 'sm', top: 8, right: 12, floatAnim: 2, highlighted: true },
-  { label: 'Next.js', size: 'md', top: 38, right: 22, floatAnim: 4 },
-  { label: 'React Native', size: 'lg', top: 52, right: 6, floatAnim: 5 },
-  { label: 'Node.js', size: 'sm', top: 46, right: 36, floatAnim: 1 },
-  { label: 'GraphQL', size: 'md', top: 64, right: 18, floatAnim: 3 },
-  { label: 'Docker', size: 'sm', top: 72, right: 38, floatAnim: 2 },
-  { label: 'PostgreSQL', size: 'md', top: 78, right: 8, floatAnim: 4 },
-  { label: 'Nest.js', size: 'sm', top: 60, right: 42, floatAnim: 5 },
-  { label: 'Redux', size: 'sm', top: 28, right: 44, floatAnim: 2 },
-  { label: 'Python', size: 'md', top: 86, right: 26, floatAnim: 1, highlighted: true },
-  { label: 'DDD', size: 'sm', top: 18, right: 54, floatAnim: 3 },
-  { label: 'CI/CD', size: 'sm', top: 55, right: 54, floatAnim: 4 },
-  { label: 'Clean Architecture', size: 'md', top: 34, right: 52, floatAnim: 5 }
+  { label: 'TypeScript', size: 'lg', top: 10, right: 68, floatAnim: 1, highlighted: true },
+  { label: 'React', size: 'md', top: 16, right: 16, floatAnim: 3, highlighted: true },
+  { label: 'Vue', size: 'sm', top: 72, right: 74, floatAnim: 2, highlighted: true },
+  { label: 'Next.js', size: 'md', top: 34, right: 7, floatAnim: 4 },
+  { label: 'React Native', size: 'lg', top: 76, right: 10, floatAnim: 5 },
+  { label: 'Node.js', size: 'sm', top: 52, right: 82, floatAnim: 1 },
+  { label: 'GraphQL', size: 'md', top: 58, right: 24, floatAnim: 3 },
+  { label: 'Docker', size: 'sm', top: 22, right: 58, floatAnim: 2 },
+  { label: 'PostgreSQL', size: 'md', top: 86, right: 34, floatAnim: 4 },
+  { label: 'Nest.js', size: 'sm', top: 40, right: 76, floatAnim: 5 },
+  { label: 'Redux', size: 'sm', top: 66, right: 56, floatAnim: 2 },
+  { label: 'Python', size: 'md', top: 12, right: 39, floatAnim: 1, highlighted: true },
+  { label: 'DDD', size: 'sm', top: 84, right: 66, floatAnim: 3 },
+  { label: 'CI/CD', size: 'sm', top: 50, right: 8, floatAnim: 4 },
+  { label: 'Clean Architecture', size: 'md', top: 31, right: 34, floatAnim: 5 }
 ] as const
 
 const panelRef = ref<HTMLElement | null>(null)
 const bubbleEls = ref<HTMLElement[]>([])
 const skillsVisible = ref(false)
 let rafId: number | null = null
-let typingIntervalId: ReturnType<typeof setInterval> | null = null
-let typingTimeoutId: ReturnType<typeof setTimeout> | null = null
-
-// Typing effect
-const roleText = computed(() => t('home.intro.role'))
-const displayedRole = ref('')
-const typingDone = ref(false)
-
-function stopTyping() {
-  if (typingIntervalId !== null) {
-    clearInterval(typingIntervalId)
-    typingIntervalId = null
-  }
-
-  if (typingTimeoutId !== null) {
-    clearTimeout(typingTimeoutId)
-    typingTimeoutId = null
-  }
-}
-
-function startTyping() {
-  stopTyping()
-
-  const text = roleText.value
-  let i = 0
-
-  displayedRole.value = ''
-  typingDone.value = false
-
-  typingIntervalId = setInterval(() => {
-    if (i < text.length) {
-      displayedRole.value = text.slice(0, i + 1)
-      i++
-    } else {
-      typingDone.value = true
-      if (typingIntervalId !== null) {
-        clearInterval(typingIntervalId)
-        typingIntervalId = null
-      }
-    }
-  }, 70)
-}
 
 function onMouseMove(e: MouseEvent): void {
   if (rafId !== null) return
@@ -111,35 +69,19 @@ onMounted(() => {
   skillsVisible.value = true
   panelRef.value?.addEventListener('mousemove', onMouseMove, { passive: true })
   panelRef.value?.addEventListener('mouseleave', onMouseLeave)
-  typingTimeoutId = setTimeout(startTyping, 600)
 })
 
 onBeforeUnmount(() => {
-  stopTyping()
   panelRef.value?.removeEventListener('mousemove', onMouseMove)
   panelRef.value?.removeEventListener('mouseleave', onMouseLeave)
   if (rafId !== null) cancelAnimationFrame(rafId)
 })
-
-watch(
-  () => roleText.value,
-  () => {
-    startTyping()
-  }
-)
 </script>
 
 <template>
   <section id="intro" class="home-intro" data-anchor>
     <div ref="panelRef" class="home-intro__panel">
       <div class="home-intro__content">
-        <p class="home-intro__role">
-          <span>{{ displayedRole }}</span>
-          <span class="home-intro__cursor" :class="{ 'home-intro__cursor--hidden': typingDone }"
-            >|</span
-          >
-        </p>
-
         <h1 class="home-intro__title">
           <span class="home-intro__title-line">{{ `${t('home.intro.firstName')} ` }}</span>
           <span class="home-intro__title-line">{{ t('home.intro.lastName') }}</span>
@@ -153,11 +95,11 @@ watch(
             rel="noreferrer"
           >
             <Send :size="18" class="home-intro__contact-icon" />
-            @adametsderschopfer
+            <span class="home-intro__contact-text">@adametsderschopfer</span>
           </a>
           <a class="home-intro__contact-link" href="mailto:adametsderschopfer@yandex.ru">
             <Mail :size="18" class="home-intro__contact-icon" />
-            adametsderschopfer@yandex.ru
+            <span class="home-intro__contact-text">adametsderschopfer@yandex.ru</span>
           </a>
           <a
             class="home-intro__contact-link"
@@ -166,14 +108,10 @@ watch(
             rel="noreferrer"
           >
             <Github :size="18" class="home-intro__contact-icon" />
-            GitHub
+            <span class="home-intro__contact-text">GitHub</span>
           </a>
         </div>
       </div>
-
-      <a href="#summary" class="home-intro__scroll-hint" aria-label="Scroll down">
-        <ChevronDown :size="24" />
-      </a>
 
       <div v-if="skillsVisible" class="home-intro__skills" aria-hidden="true">
         <span
@@ -204,6 +142,14 @@ watch(
 
 <style scoped>
 .home-intro {
+  --home-intro-panel-radius: 2rem;
+  --home-intro-edge-space: clamp(1rem, 2.7vw, 2.25rem);
+  --home-intro-content-width: 52rem;
+  --home-intro-grid-step: 72px;
+  --home-intro-grid-color: color-mix(in srgb, var(--glass-border) 64%, transparent);
+  --home-intro-axis-color: color-mix(in srgb, var(--color-accent) 20%, transparent);
+  --home-intro-ring-color: color-mix(in srgb, var(--color-accent) 18%, transparent);
+
   min-height: 100dvh;
   padding: 20px;
   scroll-margin-top: 6rem;
@@ -211,49 +157,116 @@ watch(
 
 .home-intro__panel {
   position: relative;
+  display: grid;
+  place-items: center;
   min-height: calc(100dvh - 40px);
   overflow: hidden;
-  background:
-    linear-gradient(180deg, rgba(var(--color-white-rgb), 0.1), transparent 28%),
-    linear-gradient(135deg, rgba(var(--color-white-rgb), 0.06), rgba(var(--color-white-rgb), 0.02));
+  background-image:
+    linear-gradient(180deg, rgba(var(--color-white-rgb), 0.12), transparent 34%),
+    linear-gradient(
+      90deg,
+      transparent calc(50% - 0.5px),
+      var(--home-intro-axis-color) calc(50% - 0.5px) calc(50% + 0.5px),
+      transparent calc(50% + 0.5px)
+    ),
+    linear-gradient(
+      0deg,
+      transparent calc(50% - 0.5px),
+      var(--home-intro-axis-color) calc(50% - 0.5px) calc(50% + 0.5px),
+      transparent calc(50% + 0.5px)
+    ),
+    repeating-radial-gradient(
+      circle at 50% 50%,
+      transparent 0 8.25rem,
+      var(--home-intro-ring-color) 8.32rem 8.38rem
+    ),
+    linear-gradient(
+      90deg,
+      transparent calc(50% - 0.5px),
+      var(--home-intro-grid-color) calc(50% - 0.5px) calc(50% + 0.5px),
+      transparent calc(50% + 0.5px)
+    ),
+    linear-gradient(
+      0deg,
+      transparent calc(50% - 0.5px),
+      var(--home-intro-grid-color) calc(50% - 0.5px) calc(50% + 0.5px),
+      transparent calc(50% + 0.5px)
+    ),
+    linear-gradient(135deg, rgba(var(--color-white-rgb), 0.07), rgba(var(--color-white-rgb), 0.02));
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat, repeat, no-repeat;
+  background-position: center;
+  background-size:
+    auto,
+    auto,
+    auto,
+    auto,
+    var(--home-intro-grid-step) 100%,
+    100% var(--home-intro-grid-step),
+    auto;
   border: 1px solid color-mix(in srgb, var(--glass-border) 82%, rgba(var(--color-white-rgb), 0.08));
-  border-radius: 2rem;
+  border-radius: var(--home-intro-panel-radius);
   box-shadow:
     inset 0 1px 0 rgba(var(--color-white-rgb), 0.12),
     0 24px 70px var(--glass-shadow);
+  isolation: isolate;
   backdrop-filter: blur(12px);
 }
 
-.home-intro__panel::before {
+.home-intro__panel::before,
+.home-intro__panel::after {
   position: absolute;
-  inset: 0;
   pointer-events: none;
   content: '';
-  background:
-    linear-gradient(110deg, rgba(var(--color-white-rgb), 0.05), transparent 34%),
-    linear-gradient(0deg, rgba(var(--color-black-rgb), 0.08), transparent 36%);
+}
+
+.home-intro__panel::before {
+  inset: var(--home-intro-edge-space);
+  border: 1px solid color-mix(in srgb, var(--glass-border) 58%, transparent);
+  border-radius: calc(var(--home-intro-panel-radius) - 0.7rem);
+  opacity: 0.58;
+}
+
+.home-intro__panel::after {
+  top: -24%;
+  left: 22%;
+  z-index: 0;
+  width: 56%;
+  height: 148%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-accent) 12%, transparent),
+    transparent
+  );
+  opacity: 0.5;
+  transform: rotate(18deg);
+  animation: introSweep 14s ease-in-out infinite alternate;
 }
 
 .home-intro__content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 1.3rem;
-  align-items: flex-start;
+  gap: 3.3rem;
+  align-items: center;
   justify-content: center;
-  max-width: 44rem;
+  width: min(100%, var(--home-intro-content-width));
   min-height: calc(100dvh - 40px);
-  padding: clamp(2rem, 6vw, 5rem) 70px;
+  padding: clamp(2rem, 7vw, 5.5rem);
+  margin-inline: auto;
+  text-align: center;
 }
 
 /* ── Floating skills ── */
 
 .home-intro__skills {
   position: absolute;
-  inset: 0;
-  z-index: 0;
+  inset: 7%;
+  z-index: 1;
   pointer-events: none;
+  opacity: 0.82;
+  mask-image: radial-gradient(ellipse at center, transparent 0 34%, #000 62%);
 }
 
 .skill-bubble {
@@ -458,82 +471,26 @@ watch(
   }
 }
 
-/* ── Scroll indicator ── */
+@keyframes introSweep {
+  from {
+    transform: translateX(-8%) rotate(18deg);
+  }
 
-.home-intro__scroll-hint {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  color: var(--color-text-soft);
-  text-decoration: none;
-  opacity: 0;
-  transform: translateX(-50%);
-  animation:
-    fadeIn 0.6s ease-out 2s forwards,
-    scrollBounce 2s ease-in-out 2.6s infinite;
-}
-
-@keyframes fadeIn {
   to {
-    opacity: 0.5;
-  }
-}
-
-@keyframes scrollBounce {
-  0%,
-  100% {
-    transform: translateX(-50%) translateY(0);
-  }
-
-  50% {
-    transform: translateX(-50%) translateY(8px);
-  }
-}
-
-/* ── Typing cursor ── */
-
-.home-intro__cursor {
-  font-weight: 400;
-  color: var(--color-accent);
-  animation: blink 0.7s step-end infinite;
-}
-
-.home-intro__cursor--hidden {
-  opacity: 0;
-  animation: none;
-}
-
-@keyframes blink {
-  50% {
-    opacity: 0;
+    transform: translateX(8%) rotate(18deg);
   }
 }
 
 /* ── Text ── */
 
-.home-intro__role {
-  align-self: flex-start;
-  min-height: 1.5em;
-  margin: 0;
-  font-size: clamp(0.9rem, 1.4vw, 1.15rem);
-  font-weight: 600;
-  color: var(--color-accent);
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-}
-
 .home-intro__title {
+  max-width: 11ch;
   margin: 0;
-  font-size: clamp(3.5rem, 10vw, 7.5rem);
+  font-size: clamp(3.7rem, 10vw, 8.6rem);
   font-weight: 700;
-  line-height: 0.92;
+  line-height: 0.88;
   color: var(--color-text);
+  text-align: center;
   text-wrap: balance;
 
   /* transform-only animation: element stays visible for LCP, just slides up */
@@ -545,8 +502,11 @@ watch(
 }
 
 .home-intro__contacts {
-  display: grid;
-  gap: 0.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+  max-width: 42rem;
   animation: fadeInUp 0.6s ease-out 0.6s both;
 }
 
@@ -554,12 +514,22 @@ watch(
   display: inline-flex;
   gap: 0.5rem;
   align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  padding: 0.72rem 0.95rem;
   font-size: clamp(1rem, 1.6vw, 1.2rem);
-  line-height: 1;
+  line-height: 1.15;
   color: var(--color-text-soft);
+  overflow-wrap: anywhere;
   text-decoration: none;
+  background: color-mix(in srgb, var(--glass-bg) 68%, transparent);
+  border: 1px solid color-mix(in srgb, var(--glass-border) 82%, transparent);
+  border-radius: 999px;
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-white) 22%, transparent);
   transition:
+    border-color 0.2s ease,
     color 0.2s ease,
+    background-color 0.2s ease,
     transform 0.2s ease;
   animation: fadeInUp 0.6s ease-out both;
 }
@@ -590,7 +560,9 @@ watch(
 @media (hover: hover) and (pointer: fine) {
   .home-intro__contact-link:hover {
     color: var(--color-accent);
-    transform: translateX(4px) scale(1.05);
+    background: color-mix(in srgb, var(--glass-bg) 86%, transparent);
+    border-color: color-mix(in srgb, var(--color-accent) 36%, var(--glass-border));
+    transform: translateY(-2px) scale(1.03);
   }
 
   .home-intro__contact-link:hover .home-intro__contact-icon {
@@ -600,7 +572,8 @@ watch(
 
 @media (max-width: 900px) {
   .home-intro__skills {
-    opacity: 0.1;
+    inset: 4%;
+    opacity: 0.16;
   }
 }
 
@@ -621,6 +594,67 @@ watch(
   .home-intro__content {
     max-width: none;
     padding: 1.5rem;
+  }
+
+  .home-intro__panel::before {
+    inset: 0.9rem;
+  }
+
+  .home-intro__skills {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-intro__title {
+    font-size: clamp(2.8rem, 12vw, 3.75rem);
+  }
+
+  .home-intro__contacts {
+    width: auto;
+    max-width: 100%;
+    padding: 0.4rem;
+    background: color-mix(in srgb, var(--glass-bg) 62%, transparent);
+    border: 1px solid color-mix(in srgb, var(--glass-border) 82%, transparent);
+    border-radius: 999px;
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-white) 18%, transparent);
+  }
+
+  .home-intro__contact-link {
+    width: 3.15rem;
+    height: 3.15rem;
+    padding: 0;
+  }
+
+  .home-intro__contact-icon {
+    margin-right: 0;
+  }
+
+  .home-intro__contact-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+    clip-path: inset(50%);
+  }
+}
+
+@media (max-width: 400px) {
+  .home-intro__title {
+    max-width: 100%;
+    font-size: clamp(2.65rem, 14.2vw, 3.55rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-intro__panel::after {
+    animation: none;
+  }
+
+  .skill-bubble {
+    animation-duration: 0.01s, 0.01s;
+    animation-iteration-count: 1, 1;
   }
 }
 </style>

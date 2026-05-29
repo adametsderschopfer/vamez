@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import HomeIntroSection from '@/components/home/HomeIntroSection.vue'
-import ContactsSection from '@/components/home/ContactsSection.vue'
 
 definePageMeta({
   pageTransition: {
@@ -62,7 +61,6 @@ onBeforeUnmount(() => {
       <!--      <SummarySection />-->
 
       <!-- <ExperienceSection /> -->
-      <ContactsSection />
     </div>
   </div>
 </template>

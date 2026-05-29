@@ -8,14 +8,19 @@ export interface AnchorItem {
   id: string
   label: string
   icon: MenuIcon
+  to?: string
 }
 
-const props = defineProps<{
-  items: AnchorItem[]
-  activeId: string
-}>()
+const props = withDefaults(
+  defineProps<{
+    items: AnchorItem[]
+    activeId?: string
+  }>(),
+  { activeId: '' }
+)
 
 const { t } = useI18n()
+const route = useRoute()
 
 const iconMap: Readonly<Record<MenuIcon, Component>> = {
   User,
@@ -29,23 +34,53 @@ const iconMap: Readonly<Record<MenuIcon, Component>> = {
 function scrollToSection(id: string): void {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 }
+
+function isItemActive(item: AnchorItem): boolean {
+  if (item.to === '/') return route.path === '/'
+  if (item.to) return route.path === item.to || route.path.startsWith(`${item.to}/`)
+
+  return props.activeId === item.id
+}
 </script>
 
 <template>
   <nav class="liquid-menu" :aria-label="t('nav.sectionNavigation')">
-    <a
-      v-for="item in props.items"
-      :key="item.id"
-      class="liquid-menu__item"
-      :class="{ 'liquid-menu__item--active': props.activeId === item.id }"
-      :href="`#${item.id}`"
-      :aria-label="item.label"
-      :aria-current="props.activeId === item.id ? 'page' : undefined"
-      @click.prevent="scrollToSection(item.id)"
-    >
-      <component :is="iconMap[item.icon]" class="liquid-menu__icon" :size="18" aria-hidden="true" />
-      <span class="liquid-menu__label">{{ item.label }}</span>
-    </a>
+    <template v-for="item in props.items" :key="item.id">
+      <NuxtLink
+        v-if="item.to"
+        class="liquid-menu__item"
+        :class="{ 'liquid-menu__item--active': isItemActive(item) }"
+        :to="item.to"
+        :aria-label="item.label"
+        :aria-current="isItemActive(item) ? 'page' : undefined"
+      >
+        <component
+          :is="iconMap[item.icon]"
+          class="liquid-menu__icon"
+          :size="18"
+          aria-hidden="true"
+        />
+        <span class="liquid-menu__label">{{ item.label }}</span>
+      </NuxtLink>
+
+      <a
+        v-else
+        class="liquid-menu__item"
+        :class="{ 'liquid-menu__item--active': isItemActive(item) }"
+        :href="`#${item.id}`"
+        :aria-label="item.label"
+        :aria-current="isItemActive(item) ? 'page' : undefined"
+        @click.prevent="scrollToSection(item.id)"
+      >
+        <component
+          :is="iconMap[item.icon]"
+          class="liquid-menu__icon"
+          :size="18"
+          aria-hidden="true"
+        />
+        <span class="liquid-menu__label">{{ item.label }}</span>
+      </a>
+    </template>
   </nav>
 </template>
 
@@ -83,7 +118,9 @@ function scrollToSection(id: string): void {
   transform: scale(0.95);
 }
 
-.liquid-menu__item--active {
+.liquid-menu__item--active,
+.liquid-menu__item[aria-current='page'],
+.liquid-menu__item.router-link-active {
   color: var(--color-black);
   background: rgba(var(--color-white-rgb), 0.94);
 }

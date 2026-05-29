@@ -1,26 +1,13 @@
 <script setup lang="ts">
-import { BookOpenText, House, Languages, Menu, MoonStar, Sun, X } from 'lucide-vue-next'
+import { Languages, Menu, MoonStar, Sun, X } from 'lucide-vue-next'
 import type { Component } from 'vue'
 import { useThemeMode } from '@/composables/useThemeMode'
-
-interface QuickMenuItem {
-  to: string
-  label: string
-  icon: Component
-}
 
 const { t, locale, setLocale } = useI18n()
 const { themeMode, toggleTheme } = useThemeMode()
 
 const isOpen = ref(false)
 const rootRef = ref<HTMLElement | null>(null)
-
-const quickMenuItems = computed<QuickMenuItem[]>(() => {
-  return [
-    { to: '/', label: t('nav.home'), icon: House },
-    { to: '/blog', label: t('nav.blog'), icon: BookOpenText }
-  ]
-})
 
 const toggleLabel = computed(() =>
   isOpen.value ? t('controls.closeMenu') : t('controls.openMenu')
@@ -57,18 +44,6 @@ function onDocumentClick(event: MouseEvent): void {
   closeMenu()
 }
 
-const route = useRoute()
-
-function isItemActive(path: string): boolean {
-  if (path === '/') {
-    return route.path === '/'
-  }
-
-  return route.path === path || route.path.startsWith(`${path}/`)
-}
-
-watch(() => route.fullPath, closeMenu)
-
 onMounted(() => {
   document.addEventListener('click', onDocumentClick)
 })
@@ -93,24 +68,6 @@ onBeforeUnmount(() => {
 
     <Transition name="quick-menu-panel">
       <div v-if="isOpen" class="quick-menu__panel" role="menu" :aria-label="t('controls.openMenu')">
-        <NuxtLink
-          v-for="(item, index) in quickMenuItems"
-          :key="item.to"
-          :to="item.to"
-          class="quick-menu__item"
-          :class="{ 'quick-menu__item--active': isItemActive(item.to) }"
-          :style="{ '--item-index': index }"
-          role="menuitem"
-          :aria-current="isItemActive(item.to) ? 'page' : undefined"
-          @click="closeMenu"
-        >
-          <span class="quick-menu__item-dot" aria-hidden="true" />
-          <component :is="item.icon" class="quick-menu__item-icon" :size="17" />
-          <span>{{ item.label }}</span>
-        </NuxtLink>
-
-        <div class="quick-menu__divider" aria-hidden="true" />
-
         <div class="quick-menu__actions-row">
           <button
             class="quick-menu__action"
@@ -118,7 +75,7 @@ onBeforeUnmount(() => {
             role="menuitem"
             :aria-label="themeActionLabel"
             :title="themeActionLabel"
-            :style="{ '--item-index': quickMenuItems.length }"
+            :style="{ '--item-index': 0 }"
             @click="toggleTheme"
           >
             <component :is="themeActionIcon" class="quick-menu__item-icon" :size="17" />
@@ -130,7 +87,7 @@ onBeforeUnmount(() => {
             role="menuitem"
             :aria-label="t('controls.switchLanguage')"
             :title="t('controls.switchLanguage')"
-            :style="{ '--item-index': quickMenuItems.length + 1 }"
+            :style="{ '--item-index': 1 }"
             @click="toggleLocale"
           >
             <Languages class="quick-menu__item-icon" :size="17" />

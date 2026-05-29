@@ -50,8 +50,6 @@ useHead({
     { name: 'twitter:image', content: socialImageUrl }
   ]
 })
-
-const isHomePage = computed(() => route.path === '/')
 </script>
 
 <template>
@@ -69,6 +67,6 @@ const isHomePage = computed(() => route.path === '/')
         />
       </div>
     </noscript>
-    <AppBottomControls :show-menu="isHomePage" />
+    <AppBottomControls />
   </div>
 </template>

@@ -1,36 +1,17 @@
 <script setup lang="ts">
 import type { AnchorItem } from '@/components/LiquidAnchorMenu.vue'
 
-withDefaults(
-  defineProps<{
-    showMenu?: boolean
-  }>(),
-  { showMenu: false }
-)
-
-const SECTION_IDS = {
-  intro: 'intro',
-  summary: 'summary',
-
-  experience: 'experience',
-  contacts: 'contacts'
-} as const
-
 const { t } = useI18n()
-const activeSectionId = useState('active-section-id', () => SECTION_IDS.intro)
 
 const navItems = computed<AnchorItem[]>(() => [
-  { id: SECTION_IDS.intro, label: t('nav.im'), icon: 'User' },
-  // { id: SECTION_IDS.summary, label: t('nav.summary'), icon: 'FileText' },
-
-  // { id: SECTION_IDS.experience, label: t('nav.experience'), icon: 'Briefcase' },
-  { id: SECTION_IDS.contacts, label: t('nav.contacts'), icon: 'AtSign' }
+  { id: 'home', to: '/', label: t('nav.im'), icon: 'User' },
+  { id: 'blog', to: '/blog', label: t('nav.blog'), icon: 'FileText' }
 ])
 </script>
 
 <template>
   <div class="app-bottom-controls">
-    <LiquidAnchorMenu v-if="showMenu" :items="navItems" :active-id="activeSectionId" />
+    <LiquidAnchorMenu :items="navItems" />
     <AppQuickMenu />
   </div>
 </template>
