@@ -9,7 +9,8 @@
     "summary": "Обо мне",
     "experience": "Опыт работы",
     "contacts": "Контакты",
-    "blog": "Блог",
+    "cv": "CV",
+    "blog": "Журнал",
     "sectionNavigation": "Навигация по секциям"
   },
   "controls": {
@@ -20,9 +21,13 @@
     "closeMenu": "Закрыть меню"
   },
   "blog": {
-    "title": "Блог",
-    "subtitle": "Наброски о программировании, AI и рабочем процессе.",
-    "backToBlog": "Назад к блогу",
+    "title": "Журнал",
+    "subtitle": "Заметки о разработке, продуктах и рабочем процессе.",
+    "backToBlog": "Назад к журналу",
+    "backToJournal": "К журналу",
+    "published": "Опубликовано",
+    "author": "Автор",
+    "readingTime": "Время чтения",
     "tags": "Теги",
     "allTags": "Все теги",
     "showMore": "Показать ещё"

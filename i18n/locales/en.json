@@ -9,7 +9,8 @@
     "summary": "About",
     "experience": "Work Experience",
     "contacts": "Contacts",
-    "blog": "Blog",
+    "cv": "CV",
+    "blog": "Journal",
     "sectionNavigation": "Section navigation"
   },
   "controls": {
@@ -20,9 +21,13 @@
     "closeMenu": "Close menu"
   },
   "blog": {
-    "title": "Blog",
-    "subtitle": "Sketches about programming, AI, and workflow.",
-    "backToBlog": "Back to blog",
+    "title": "Journal",
+    "subtitle": "Notes on engineering, products, and workflow.",
+    "backToBlog": "Back to journal",
+    "backToJournal": "Back to journal",
+    "published": "Published",
+    "author": "Author",
+    "readingTime": "Reading time",
     "tags": "Tags",
     "allTags": "All tags",
     "showMore": "Show more"

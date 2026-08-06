@@ -3,11 +3,13 @@ const { t, locale } = useI18n()
 const route = useRoute()
 const runtimeConfig = useRuntimeConfig()
 
+const appBaseUrl = computed(() => String(runtimeConfig.app.baseURL || '/').replace(/\/?$/, '/'))
 const baseUrl = computed(() =>
   String(runtimeConfig.public.siteUrl || 'https://vamez.ru').replace(/\/$/, '')
 )
 const canonicalUrl = computed(() => `${baseUrl.value}${route.path}`)
 const socialImageUrl = computed(() => `${baseUrl.value}/favicon-96x96.png`)
+const metrikaScriptUrl = computed(() => `${appBaseUrl.value}metrika.js`)
 
 useHead({
   htmlAttrs: {
@@ -26,7 +28,7 @@ useHead({
   script: [
     {
       key: 'yandex-metrika',
-      src: '/metrika.js',
+      src: metrikaScriptUrl,
       defer: true
     }
   ],
@@ -67,6 +69,5 @@ useHead({
         />
       </div>
     </noscript>
-    <AppBottomControls />
   </div>
 </template>

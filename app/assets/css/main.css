@@ -1,25 +1,23 @@
 :root {
-  --color-white: #fff;
-  --color-white-rgb: 255, 255, 255;
-  --color-black-rgb: 5, 5, 8;
-  --color-accent-rgb: 0, 232, 123;
-  --color-text: #1a1b20;
-  --color-text-soft: rgba(26, 27, 32, 0.72);
-  --color-accent: #00e87b;
+  --color-white: #f7f4ec;
+  --color-white-rgb: 247, 244, 236;
+  --color-black-rgb: 23, 23, 22;
+  --color-accent-rgb: 25, 121, 189;
+  --color-text: #171716;
+  --color-text-soft: rgba(23, 23, 22, 0.72);
+  --color-accent: #1979bd;
   --color-accent-danger: #f44;
-  --color-surface: #f4f6f8;
-  --color-black: #050508;
+  --color-surface: #f7f4ec;
+  --color-black: #171716;
   --font-body:
     'Outfit', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue',
     Helvetica, Arial, sans-serif;
   --font-heading:
     'Outfit', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue',
     Helvetica, Arial, sans-serif;
-  --liquid-control-size: 3.55rem;
-  --liquid-control-inset: 0.34rem;
-  --glass-bg: rgba(255, 255, 255, 0.72);
-  --glass-border: rgba(5, 5, 8, 0.14);
-  --glass-shadow: rgba(5, 5, 8, 0.12);
+  --glass-bg: rgba(247, 244, 236, 0.72);
+  --glass-border: rgba(23, 23, 22, 0.14);
+  --glass-shadow: rgba(23, 23, 22, 0.12);
 }
 
 *,
@@ -33,14 +31,7 @@ body {
   margin: 0;
   font-family: var(--font-body);
   color: var(--color-text);
-  background:
-    linear-gradient(
-      180deg,
-      rgba(var(--color-white-rgb), 0.72),
-      rgba(var(--color-white-rgb), 0.3) 38%
-    ),
-    radial-gradient(circle at 10% 6%, rgba(var(--color-accent-rgb), 0.18), transparent 58%),
-    var(--color-surface);
+  background: var(--color-surface);
 }
 
 h1,
@@ -58,19 +49,17 @@ h6 {
 :root[data-theme='dark'] {
   --color-text: var(--color-white);
   --color-text-soft: rgba(255, 255, 255, 0.72);
-  --color-accent: #00e87b;
+  --color-accent-rgb: 137, 205, 246;
+  --color-accent: #89cdf6;
   --color-accent-danger: #f44;
-  --color-surface: #050508;
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --color-surface: #191816;
+  --glass-bg: rgba(247, 244, 236, 0.03);
+  --glass-border: rgba(247, 244, 236, 0.1);
   --glass-shadow: rgba(0, 0, 0, 0.55);
 }
 
 :root[data-theme='dark'] body {
-  background:
-    radial-gradient(circle at 12% 0%, rgba(var(--color-accent-rgb), 0.12), transparent 52%),
-    radial-gradient(circle at 92% 88%, rgba(var(--color-accent-rgb), 0.08), transparent 54%),
-    var(--color-surface);
+  background: var(--color-surface);
 }
 
 html {
@@ -86,29 +75,6 @@ html.theme-transition *::after {
     color 0.4s ease,
     border-color 0.4s ease,
     box-shadow 0.4s ease !important;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Transform-only slide — element stays visible (good for LCP) */
-@keyframes slideUp {
-  from {
-    transform: translateY(16px);
-  }
-
-  to {
-    transform: translateY(0);
-  }
 }
 
 a,

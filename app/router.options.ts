@@ -1,12 +1,12 @@
 import type { RouterConfig } from '@nuxt/schema'
 
-const isBlogRoute = (path: string): boolean => path === '/blog' || path.startsWith('/blog/')
+const isJournalRoute = (path: string): boolean => path.startsWith('/journal/')
 
 export default <RouterConfig>{
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) return savedPosition
 
-    if (isBlogRoute(to.path) && isBlogRoute(from.path)) {
+    if (isJournalRoute(to.path) && isJournalRoute(from.path)) {
       return false
     }
 

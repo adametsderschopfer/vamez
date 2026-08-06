@@ -55,7 +55,7 @@ export default defineEventHandler(async (event) => {
   const blogContentRoot = resolve(process.cwd(), 'content', 'blog')
   const blogSlugs = await readMarkdownSlugs(blogContentRoot)
 
-  const paths = ['/', '/blog', ...blogSlugs.map((slug) => `/blog/${encodeURIComponent(slug)}`)]
+  const paths = ['/', ...blogSlugs.map((slug) => `/journal/${encodeURIComponent(slug)}`)]
 
   const xml =
     `<?xml version="1.0" encoding="UTF-8"?>\n` +

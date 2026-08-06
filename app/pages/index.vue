@@ -1,79 +1,36 @@
 <script setup lang="ts">
-import HomeIntroSection from '@/components/home/HomeIntroSection.vue'
+import HomeHeader from '@/components/home/HomeHeader.vue'
+import HomeHeroSection from '@/components/home/HomeHeroSection.vue'
+import HomeJournalSection from '@/components/home/HomeJournalSection.vue'
 
-definePageMeta({
-  pageTransition: {
-    name: 'blog-page-transition',
-    mode: 'out-in'
-  }
-})
-
-const introSectionId = 'intro'
-
-const activeSectionId = useState('active-section-id', () => introSectionId)
-
-let rafId: number | null = null
-
-function updateActiveSection() {
-  const sections = document.querySelectorAll<HTMLElement>('[data-anchor]')
-
-  const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 32
-  if (atBottom && sections.length > 0) {
-    activeSectionId.value = sections[sections.length - 1].id
-    return
-  }
-
-  const triggerY = window.scrollY + window.innerHeight * 0.35
-  let currentId = sections[0]?.id ?? introSectionId
-
-  for (const section of sections) {
-    if (section.offsetTop <= triggerY) {
-      currentId = section.id
-    }
-  }
-
-  activeSectionId.value = currentId
-}
-
-function onScroll() {
-  if (rafId !== null) return
-  rafId = requestAnimationFrame(() => {
-    updateActiveSection()
-    rafId = null
-  })
-}
-
-onMounted(() => {
-  updateActiveSection()
-  window.addEventListener('scroll', onScroll, { passive: true })
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('scroll', onScroll)
-  if (rafId !== null) cancelAnimationFrame(rafId)
-})
+const { themeMode } = useThemeMode()
 </script>
 
 <template>
-  <div class="landing">
-    <div class="landing__anchors">
-      <HomeIntroSection />
-      <!--      <SummarySection />-->
-
-      <!-- <ExperienceSection /> -->
-    </div>
+  <div class="home-page" :class="{ 'home-page--dark': themeMode === 'dark' }">
+    <HomeHeader />
+    <HomeHeroSection />
+    <HomeJournalSection />
   </div>
 </template>
 
 <style scoped>
-.landing {
+.home-page {
+  --home-page-background: #f7f4ec;
+  --home-page-contact: #171716;
+  --home-page-text: #1979bd;
+
   position: relative;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
   min-height: 100dvh;
+  color: var(--home-page-text);
+  background: var(--home-page-background);
 }
 
-.landing__anchors {
-  position: relative;
-  min-height: 100dvh;
+.home-page--dark {
+  --home-page-background: #191816;
+  --home-page-contact: #f7f4ec;
+  --home-page-text: #89cdf6;
 }
 </style>

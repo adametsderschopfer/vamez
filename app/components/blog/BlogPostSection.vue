@@ -5,6 +5,8 @@ interface BlogPostDocument {
   readonly title: string
   readonly description: string
   readonly date: string
+  readonly author?: string
+  readonly readingTime?: string
   readonly tags: string[]
   readonly body?: unknown
 }
@@ -26,25 +28,31 @@ const dateFormatter = computed(
 <template>
   <article class="blog-post">
     <header class="blog-post__header">
-      <p class="blog-post__date">{{ dateFormatter.format(new Date(props.post.date)) }}</p>
+      <NuxtLink to="/#journal" class="blog-post__back-link" :aria-label="t('blog.backToJournal')">
+        <ArrowLeft :size="18" />
+        <span>{{ t('blog.backToJournal') }}</span>
+      </NuxtLink>
+
+      <div class="blog-post__meta">
+        <p class="blog-post__meta-item">
+          <span>{{ t('blog.published') }}:</span>
+          {{ dateFormatter.format(new Date(props.post.date)) }}
+        </p>
+        <p v-if="props.post.author" class="blog-post__meta-item">
+          <span>{{ t('blog.author') }}:</span> {{ props.post.author }}
+        </p>
+        <p v-if="props.post.readingTime" class="blog-post__meta-item">
+          <span>{{ t('blog.readingTime') }}:</span> {{ props.post.readingTime }}
+        </p>
+      </div>
+
+      <h1 class="blog-post__title">{{ props.post.title }}</h1>
+
       <ul v-if="props.post.tags.length" class="blog-post__tags" :aria-label="t('blog.tags')">
-        <li v-for="tag in props.post.tags" :key="tag" class="blog-post__tag-item">
-          <NuxtLink :to="{ path: '/blog', query: { tags: tag } }" class="blog-post__tag">
-            {{ tag }}
-          </NuxtLink>
-        </li>
+        <li v-for="tag in props.post.tags" :key="tag" class="blog-post__tag">{{ tag }}</li>
       </ul>
-      <h1 class="blog-post__title">
-        <NuxtLink
-          to="/blog"
-          class="blog-post__title-back"
-          :aria-label="t('blog.backToBlog')"
-          :title="t('blog.backToBlog')"
-        >
-          <ArrowLeft :size="26" />
-        </NuxtLink>
-        <span>{{ props.post.title }}</span>
-      </h1>
+
+      <p class="blog-post__lead">{{ props.post.description }}</p>
     </header>
 
     <ContentRenderer class="blog-post__content" :value="props.post" />
@@ -53,55 +61,63 @@ const dateFormatter = computed(
 
 <style scoped>
 .blog-post {
-  --blog-post-max-width: 52rem;
+  --blog-post-page-inset: clamp(1.5rem, 5vw, 6.5rem);
 
-  width: min(100% - 2rem, var(--blog-post-max-width));
-  padding: clamp(4rem, 6vw, 6rem) 0 clamp(7rem, 10vw, 9rem);
+  width: calc(100% - (var(--blog-post-page-inset) * 2));
+  padding: clamp(2rem, 3vw, 3rem) 0 clamp(6rem, 10vw, 9rem);
   margin: 0 auto;
 }
 
 .blog-post__header {
   display: grid;
-  gap: 0.75rem;
+  gap: 1.25rem;
   margin-bottom: clamp(1.7rem, 3vw, 2.4rem);
 }
 
-.blog-post__date {
-  margin: 0;
+.blog-post__back-link {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  width: fit-content;
   font-size: 0.9rem;
-  color: var(--color-text-soft);
+  color: var(--journal-page-content);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.blog-post__back-link:hover {
+  opacity: 0.55;
+}
+
+.blog-post__back-link:focus-visible {
+  outline: 1px solid currentcolor;
+  outline-offset: 0.35rem;
+}
+
+.blog-post__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+}
+
+.blog-post__meta-item {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.4;
+  color: var(--journal-page-content);
+}
+
+.blog-post__meta-item span {
+  color: var(--journal-page-content);
 }
 
 .blog-post__title {
-  display: flex;
-  gap: 0.8rem;
-  align-items: center;
   margin: 0;
-  font-size: clamp(2rem, 6vw, 3.7rem);
-  line-height: 0.96;
-}
-
-.blog-post__title-back {
-  display: inline-flex;
-  flex: none;
-  align-items: center;
-  justify-content: center;
-  width: 2.1rem;
-  height: 2.1rem;
-  color: var(--color-text-soft);
-  text-decoration: none;
-  border-radius: 999px;
-  transition:
-    transform 0.2s ease,
-    color 0.2s ease,
-    background-color 0.2s ease;
-}
-
-.blog-post__title-back:focus-visible {
-  color: var(--color-text);
-  outline: none;
-  background: color-mix(in srgb, var(--glass-bg) 88%, transparent);
-  transform: translateX(-2px);
+  font-size: clamp(2.35rem, 5vw, 4.8rem);
+  font-weight: 500;
+  line-height: 0.94;
+  color: var(--journal-page-text);
+  letter-spacing: -0.055em;
 }
 
 .blog-post__tags {
@@ -113,67 +129,51 @@ const dateFormatter = computed(
   list-style: none;
 }
 
-.blog-post__tag-item {
-  margin: 0;
-}
-
 .blog-post__tag {
   display: inline-flex;
   align-items: center;
-  min-height: 1.7rem;
-  padding: 0 0.65rem;
-  font-size: 0.75rem;
+  padding: 0.35rem 0.55rem;
+  font-size: 0.7rem;
+  font-weight: 600;
   line-height: 1;
-  color: var(--color-text-soft);
-  text-decoration: none;
-  border: 1px solid color-mix(in srgb, var(--glass-border) 70%, transparent);
-  border-radius: 999px;
-  transition:
-    color 0.2s ease,
-    background-color 0.2s ease,
-    border-color 0.2s ease;
+  color: var(--journal-page-content);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid color-mix(in srgb, var(--journal-page-content) 35%, transparent);
+  border-radius: 0.2rem;
 }
 
-.blog-post__tag:focus-visible {
-  color: var(--color-text);
-  outline: none;
-  background: color-mix(in srgb, var(--glass-border) 45%, transparent);
-  border-color: color-mix(in srgb, var(--color-accent) 40%, var(--glass-border));
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .blog-post__title-back:hover {
-    color: var(--color-text);
-    background: color-mix(in srgb, var(--glass-bg) 88%, transparent);
-    transform: translateX(-2px);
-  }
-
-  .blog-post__tag:hover {
-    color: var(--color-text);
-    background: color-mix(in srgb, var(--glass-border) 45%, transparent);
-    border-color: color-mix(in srgb, var(--color-accent) 40%, var(--glass-border));
-  }
+.blog-post__lead {
+  margin: 0;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.5;
+  color: var(--journal-page-content);
 }
 
 .blog-post__content {
-  line-height: 1.8;
+  font-size: clamp(1.25rem, 1.65vw, 2rem);
+  line-height: 1.32;
+  color: var(--journal-page-content);
 }
 
 .blog-post__content ::v-deep(h2) {
-  margin: 2rem 0 0.85rem;
-  font-size: clamp(1.35rem, 3vw, 2rem);
+  margin: clamp(3rem, 5vw, 5rem) 0 1.25rem;
+  font-size: clamp(2rem, 2.7vw, 3.35rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
 }
 
 .blog-post__content ::v-deep(p) {
-  margin: 0 0 1rem;
+  margin: 0 0 clamp(1.75rem, 3vw, 3.5rem);
 }
 
 .blog-post__content ::v-deep(ul) {
-  padding-left: 1.2rem;
-  margin: 0 0 1rem;
+  padding-left: 1.5rem;
+  margin: 0 0 clamp(1.75rem, 3vw, 3.5rem);
 }
 
 .blog-post__content ::v-deep(li) {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.85rem;
 }
 </style>

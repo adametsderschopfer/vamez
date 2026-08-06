@@ -1,23 +1,21 @@
 <script setup lang="ts">
 import BlogPostSection from '@/components/blog/BlogPostSection.vue'
+import HomeHeader from '@/components/home/HomeHeader.vue'
 
-interface BlogPostDocument {
+interface JournalPostDocument {
   slug: string
   locale: 'ru' | 'en'
   title: string
   description: string
   date: string
+  author?: string
+  readingTime?: string
   tags: string[]
 }
 
 const route = useRoute()
 const { locale } = useI18n()
-definePageMeta({
-  pageTransition: {
-    name: 'blog-page-transition',
-    mode: 'out-in'
-  }
-})
+const { themeMode } = useThemeMode()
 
 const slug = computed(() => {
   const param = route.params.slug
@@ -25,7 +23,7 @@ const slug = computed(() => {
 })
 
 const { data: post } = await useAsyncData(
-  () => `blog-post-${locale.value}-${slug.value}`,
+  () => `journal-post-${locale.value}-${slug.value}`,
   () =>
     queryCollection('blog')
       .where('slug', '=', slug.value)
@@ -38,7 +36,7 @@ if (!post.value) {
   throw createError({ statusCode: 404, statusMessage: 'Post not found' })
 }
 
-const postDocument = computed<BlogPostDocument | null>(() => {
+const postDocument = computed<JournalPostDocument | null>(() => {
   const item = post.value
 
   if (
@@ -53,7 +51,7 @@ const postDocument = computed<BlogPostDocument | null>(() => {
     return null
   }
 
-  return item as BlogPostDocument
+  return item as JournalPostDocument
 })
 
 if (!postDocument.value) {
@@ -67,13 +65,27 @@ useHead({
 </script>
 
 <template>
-  <main class="blog-post-page">
+  <main class="journal-post-page" :class="{ 'journal-post-page--dark': themeMode === 'dark' }">
+    <HomeHeader />
     <BlogPostSection v-if="postDocument" :post="postDocument" />
   </main>
 </template>
 
 <style scoped>
-.blog-post-page {
+.journal-post-page {
+  --journal-page-background: #f7f4ec;
+  --journal-page-content: #171716;
+  --journal-page-text: #1979bd;
+
+  position: relative;
   min-height: 100dvh;
+  color: var(--journal-page-text);
+  background: var(--journal-page-background);
+}
+
+.journal-post-page--dark {
+  --journal-page-background: #191816;
+  --journal-page-content: #f7f4ec;
+  --journal-page-text: #89cdf6;
 }
 </style>
