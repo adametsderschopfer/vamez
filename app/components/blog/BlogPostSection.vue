@@ -16,6 +16,8 @@ const props = defineProps<{
 }>()
 
 const { locale, t } = useI18n()
+const localePath = useLocalePath()
+const journalPath = computed(() => localePath({ path: '/', hash: '#journal' }))
 
 const dateFormatter = computed(
   () =>
@@ -28,7 +30,11 @@ const dateFormatter = computed(
 <template>
   <article class="blog-post">
     <header class="blog-post__header">
-      <NuxtLink to="/#journal" class="blog-post__back-link" :aria-label="t('blog.backToJournal')">
+      <NuxtLink
+        :to="journalPath"
+        class="blog-post__back-link"
+        :aria-label="t('blog.backToJournal')"
+      >
         <ArrowLeft :size="18" />
         <span>{{ t('blog.backToJournal') }}</span>
       </NuxtLink>

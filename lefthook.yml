@@ -4,16 +4,16 @@ pre-commit:
     PATH: /Users/v_adamets/.nvm/versions/node/v24.14.1/bin:/usr/local/bin:/usr/bin:/bin
   commands:
     eslint:
-      glob: "**/*.{js,ts,vue}"
+      glob: '**/*.{js,ts,vue}'
       run: npx eslint --fix {staged_files} && git add {staged_files}
       stage_fixed: true
 
     prettier:
-      glob: "**/*.{js,ts,vue,css,json,md}"
+      glob: '**/*.{js,ts,vue,css,json,md}'
       run: npx prettier --write {staged_files} && git add {staged_files}
       stage_fixed: true
 
     stylelint:
-      glob: "**/*.{vue,css}"
+      glob: '**/*.{vue,css}'
       run: npx stylelint --fix {staged_files} && git add {staged_files}
       stage_fixed: true

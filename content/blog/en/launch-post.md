@@ -4,6 +4,7 @@ slug: launch-post
 title: I Finally Launched My Website
 description: A short note about starting my portfolio site and blog.
 date: 2026-04-11
+socialImage: /og/launch-post-en.png
 tags:
   - portfolio
 ---

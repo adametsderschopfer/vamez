@@ -9,6 +9,7 @@ interface JournalPost {
 }
 
 const { locale, t } = useI18n()
+const localePath = useLocalePath()
 
 const { data } = await useAsyncData(
   () => `home-journal-${locale.value}`,
@@ -47,7 +48,7 @@ const dateFormatter = computed(
 
     <ul class="home-journal__list">
       <li v-for="post in posts" :key="post.slug" class="home-journal__item">
-        <NuxtLink :to="`/journal/${post.slug}`" class="home-journal__link">
+        <NuxtLink :to="localePath(`/journal/${post.slug}`)" class="home-journal__link">
           <h3 class="home-journal__item-title">{{ post.title }}</h3>
 
           <ul v-if="post.tags.length" class="home-journal__tags" :aria-label="t('blog.tags')">

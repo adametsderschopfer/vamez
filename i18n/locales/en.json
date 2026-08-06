@@ -1,6 +1,6 @@
 {
   "seo": {
-    "description": "Portfolio of Vladislav Adamets — engineer",
+    "description": "Web development, products, and notes from a frontend developer's practice.",
     "ogTitle": "Vladislav Adamets"
   },
   "nav": {
@@ -9,7 +9,6 @@
     "summary": "About",
     "experience": "Work Experience",
     "contacts": "Contacts",
-    "cv": "CV",
     "blog": "Journal",
     "sectionNavigation": "Section navigation"
   },

@@ -1,6 +1,7 @@
 import { fileURLToPath } from 'node:url'
 
 const appBaseURL = (process.env.NUXT_APP_BASE_URL || '/').replace(/\/?$/, '/')
+const siteUrl = (process.env.NUXT_PUBLIC_SITE_URL || 'https://vamez.ru').replace(/\/$/, '')
 const publicAsset = (fileName: string) => `${appBaseURL}${fileName}`
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -9,7 +10,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
     public: {
-      siteUrl: 'https://vamez.ru'
+      siteUrl
     }
   },
   experimental: {
@@ -23,7 +24,7 @@ export default defineNuxtConfig({
     prerender: {
       concurrency: 10,
       crawlLinks: true,
-      routes: ['/', '/cv', '/sitemap.xml']
+      routes: ['/', '/en', '/sitemap.xml']
     }
   },
   routeRules: {
@@ -86,12 +87,13 @@ export default defineNuxtConfig({
   },
   i18n: {
     defaultLocale: 'ru',
-    strategy: 'no_prefix',
+    strategy: 'prefix_except_default',
     detectBrowserLanguage: false,
+    baseUrl: siteUrl,
     langDir: 'locales',
     locales: [
-      { code: 'ru', name: 'Русский', file: 'ru.json' },
-      { code: 'en', name: 'English', file: 'en.json' }
+      { code: 'ru', name: 'Русский', language: 'ru-RU', file: 'ru.json' },
+      { code: 'en', name: 'English', language: 'en-US', file: 'en.json' }
     ]
   }
 })

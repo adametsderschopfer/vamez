@@ -3,32 +3,30 @@ import { Moon, Sun } from 'lucide-vue-next'
 import type { Component } from 'vue'
 import { useThemeMode } from '@/composables/useThemeMode'
 
-const { t, locale, setLocale } = useI18n()
+const { t, locale } = useI18n()
 const { themeMode, toggleTheme } = useThemeMode()
+const switchLocalePath = useSwitchLocalePath()
 
 const languageCode = computed(() => locale.value.toUpperCase())
+const alternateLocale = computed(() => (locale.value === 'ru' ? 'en' : 'ru'))
+const alternateLocalePath = computed(() => switchLocalePath(alternateLocale.value))
 const themeIcon = computed<Component>(() => (themeMode.value === 'dark' ? Sun : Moon))
 const themeActionLabel = computed(() =>
   themeMode.value === 'dark' ? t('controls.switchToLight') : t('controls.switchToDark')
 )
-
-function toggleLocale(): void {
-  setLocale(locale.value === 'ru' ? 'en' : 'ru')
-}
 </script>
 
 <template>
   <header class="home-header">
     <nav class="home-header__navigation" :aria-label="t('nav.sectionNavigation')">
-      <button
+      <NuxtLink
         class="home-header__control home-header__language-control"
-        type="button"
         :aria-label="t('controls.switchLanguage')"
         :title="t('controls.switchLanguage')"
-        @click="toggleLocale"
+        :to="alternateLocalePath"
       >
         {{ languageCode }}
-      </button>
+      </NuxtLink>
 
       <button
         class="home-header__control home-header__theme-control"

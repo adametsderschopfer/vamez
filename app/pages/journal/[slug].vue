@@ -10,6 +10,7 @@ interface JournalPostDocument {
   date: string
   author?: string
   readingTime?: string
+  socialImage?: string
   tags: string[]
 }
 
@@ -46,6 +47,7 @@ const postDocument = computed<JournalPostDocument | null>(() => {
     typeof item.title !== 'string' ||
     typeof item.description !== 'string' ||
     typeof item.date !== 'string' ||
+    (typeof item.socialImage !== 'undefined' && typeof item.socialImage !== 'string') ||
     !Array.isArray(item.tags)
   ) {
     return null
@@ -58,10 +60,61 @@ if (!postDocument.value) {
   throw createError({ statusCode: 404, statusMessage: 'Post not found' })
 }
 
-useHead({
-  title: computed(() => `${postDocument.value?.title ?? 'Post'} | Vamez`),
-  meta: [{ name: 'description', content: computed(() => postDocument.value?.description ?? '') }]
+const runtimeConfig = useRuntimeConfig()
+const siteUrl = computed(() =>
+  String(runtimeConfig.public.siteUrl || 'https://vamez.ru').replace(/\/$/, '')
+)
+const postUrl = computed(() => `${siteUrl.value}${route.path}`)
+const postImageUrl = computed(() => {
+  const imagePath = postDocument.value?.socialImage || '/favicon-96x96.png'
+  return `${siteUrl.value}${imagePath}`
 })
+const localeLanguage = computed(() => (locale.value === 'ru' ? 'ru-RU' : 'en-US'))
+const postSchema = computed(() => ({
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  author: {
+    '@type': 'Person',
+    name: postDocument.value?.author || 'Vladislav Adamets'
+  },
+  datePublished: postDocument.value?.date,
+  description: postDocument.value?.description,
+  headline: postDocument.value?.title,
+  image: postImageUrl.value,
+  inLanguage: localeLanguage.value,
+  mainEntityOfPage: postUrl.value,
+  url: postUrl.value
+}))
+
+useSeoMeta({
+  title: () => `${postDocument.value?.title ?? 'Post'} | Vamez`,
+  description: () => postDocument.value?.description ?? '',
+  ogType: 'article',
+  ogTitle: () => postDocument.value?.title ?? '',
+  ogDescription: () => postDocument.value?.description ?? '',
+  ogUrl: postUrl,
+  ogImage: postImageUrl,
+  ogImageAlt: () => postDocument.value?.title ?? '',
+  ogImageType: 'image/png',
+  ogImageWidth: '1200',
+  ogImageHeight: '630',
+  articlePublishedTime: () => postDocument.value?.date ?? '',
+  articleAuthor: () => postDocument.value?.author || 'Vladislav Adamets',
+  twitterCard: 'summary_large_image',
+  twitterTitle: () => postDocument.value?.title ?? '',
+  twitterDescription: () => postDocument.value?.description ?? '',
+  twitterImage: postImageUrl
+})
+
+useHead(() => ({
+  script: [
+    {
+      key: 'blog-post-structured-data',
+      type: 'application/ld+json',
+      children: JSON.stringify(postSchema.value)
+    }
+  ]
+}))
 </script>
 
 <template>

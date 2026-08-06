@@ -16,11 +16,22 @@ function toAbsoluteUrl(baseUrl: string, path: string): string {
   return `${normalizedBase}${path}`
 }
 
-async function readMarkdownSlugs(contentRoot: string): Promise<string[]> {
-  const localeDirs = ['en', 'ru']
-  const slugs = new Set<string>()
+const blogLocales = ['en', 'ru'] as const
+type BlogLocale = (typeof blogLocales)[number]
 
-  for (const localeDir of localeDirs) {
+interface BlogRoute {
+  locale: BlogLocale
+  slug: string
+}
+
+function localizedPath(locale: BlogLocale, path: string): string {
+  return locale === 'ru' ? path : `/en${path}`
+}
+
+async function readMarkdownRoutes(contentRoot: string): Promise<BlogRoute[]> {
+  const routes = new Map<string, BlogRoute>()
+
+  for (const localeDir of blogLocales) {
     const localePath = resolve(contentRoot, localeDir)
 
     let entries: Awaited<ReturnType<typeof fs.readdir>> = []
@@ -42,20 +53,29 @@ async function readMarkdownSlugs(contentRoot: string): Promise<string[]> {
       if (!slugMatch) continue
 
       const slug = slugMatch[1].trim()
-      if (slug) slugs.add(slug)
+      if (slug) routes.set(`${localeDir}:${slug}`, { locale: localeDir, slug })
     }
   }
 
-  return Array.from(slugs).sort((a, b) => a.localeCompare(b))
+  return Array.from(routes.values()).sort((first, second) => {
+    const localeOrder = first.locale.localeCompare(second.locale)
+    return localeOrder === 0 ? first.slug.localeCompare(second.slug) : localeOrder
+  })
 }
 
 export default defineEventHandler(async (event) => {
   const runtimeConfig = useRuntimeConfig(event)
   const siteUrl = String(runtimeConfig.public.siteUrl || 'https://vamez.ru')
   const blogContentRoot = resolve(process.cwd(), 'content', 'blog')
-  const blogSlugs = await readMarkdownSlugs(blogContentRoot)
+  const blogRoutes = await readMarkdownRoutes(blogContentRoot)
 
-  const paths = ['/', ...blogSlugs.map((slug) => `/journal/${encodeURIComponent(slug)}`)]
+  const paths = [
+    '/',
+    '/en',
+    ...blogRoutes.map(({ locale, slug }) =>
+      localizedPath(locale, `/journal/${encodeURIComponent(slug)}`)
+    )
+  ]
 
   const xml =
     `<?xml version="1.0" encoding="UTF-8"?>\n` +

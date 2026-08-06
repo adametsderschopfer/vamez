@@ -4,6 +4,7 @@ slug: launch-post
 title: Наконец запустил свой сайт
 description: Коротко о старте портфолио, блога и планах на развитие.
 date: 2026-04-11
+socialImage: /og/launch-post-ru.png
 tags:
   - portfolio
 ---
