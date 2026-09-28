@@ -78,13 +78,6 @@ export default defineNuxtConfig({
   },
   modules: ['@nuxt/eslint', '@nuxtjs/i18n'],
   css: ['@/assets/css/main.css'],
-  vite: {
-    build: {
-      sourcemap: false,
-      minify: 'esbuild',
-      cssMinify: 'esbuild'
-    }
-  },
   i18n: {
     defaultLocale: 'ru',
     strategy: 'prefix_except_default',
