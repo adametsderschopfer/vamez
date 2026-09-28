@@ -62,7 +62,7 @@ export default defineNuxtConfig({
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'author', content: 'Vladislav Adamets' },
-        { name: 'theme-color', content: '#111111' },
+        { name: 'theme-color', content: '#eaece7' },
         { name: 'robots', content: 'index, follow' },
         { name: 'yandex-verification', content: '408e9c6c152e0036' }
       ],
@@ -76,7 +76,7 @@ export default defineNuxtConfig({
       ]
     }
   },
-  modules: ['@nuxt/eslint', '@nuxt/content', '@nuxtjs/i18n'],
+  modules: ['@nuxt/eslint', '@nuxtjs/i18n'],
   css: ['@/assets/css/main.css'],
   vite: {
     build: {

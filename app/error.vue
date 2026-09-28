@@ -62,39 +62,44 @@ const contentMap = computed(() =>
   align-items: center;
   justify-content: center;
   min-height: 100dvh;
-  padding: clamp(1.5rem, 4vw, 3rem);
+  padding: var(--page-gutter);
 }
 
 .error-screen__content {
   display: grid;
-  gap: 0.9rem;
-  justify-items: center;
-  max-width: 42rem;
-  text-align: center;
+  gap: 1rem;
+  justify-items: start;
+  width: min(100%, 48rem);
+  padding: clamp(2rem, 5vw, 5rem);
+  background: var(--card-surface);
+  border-radius: var(--card-radius);
 }
 
 .error-screen__eyebrow {
   margin: 0;
-  font-size: clamp(0.8rem, 1.2vw, 1rem);
-  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-muted);
   text-transform: uppercase;
   letter-spacing: 0.14em;
 }
 
 .error-screen__code {
   margin: 0;
-  font-size: clamp(4.5rem, 14vw, 10rem);
-  font-weight: 700;
+  font-size: clamp(5rem, 17vw, 11rem);
+  font-weight: 800;
   line-height: 0.9;
-  color: color-mix(in srgb, var(--color-text) 86%, transparent);
+  color: var(--ink);
+  letter-spacing: -0.1em;
 }
 
 .error-screen__title {
   margin: 0;
   font-size: clamp(1.6rem, 4vw, 3.25rem);
-  font-weight: 600;
-  line-height: 1;
-  color: var(--color-text);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--ink);
+  letter-spacing: -0.06em;
 }
 
 .error-screen__description {
@@ -102,7 +107,7 @@ const contentMap = computed(() =>
   margin: 0;
   font-size: clamp(0.95rem, 1.5vw, 1.15rem);
   line-height: 1.65;
-  color: var(--color-text-soft);
+  color: var(--ink-muted);
 }
 
 .error-screen__home-link {
@@ -111,28 +116,23 @@ const contentMap = computed(() =>
   justify-content: center;
   min-height: 3.25rem;
   padding: 0 1.4rem;
-  color: var(--color-text);
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1b221d;
   text-decoration: none;
   cursor: pointer;
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  background: var(--card-accent);
+  border: 0;
   border-radius: 999px;
-  box-shadow: 0 18px 50px var(--glass-shadow);
-  backdrop-filter: blur(24px);
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    background-color 0.2s ease,
-    color 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .error-screen__home-link:active {
   transform: scale(0.975);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .error-screen__home-link:hover {
-    transform: translateY(-1px) scale(1.015);
-  }
+.error-screen__home-link:hover {
+  transform: translateY(-2px);
 }
 </style>

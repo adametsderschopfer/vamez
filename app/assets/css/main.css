@@ -1,23 +1,57 @@
 :root {
-  --color-white: #f7f4ec;
-  --color-white-rgb: 247, 244, 236;
-  --color-black-rgb: 23, 23, 22;
-  --color-accent-rgb: 25, 121, 189;
-  --color-text: #171716;
-  --color-text-soft: rgba(23, 23, 22, 0.72);
-  --color-accent: #1979bd;
-  --color-accent-danger: #f44;
-  --color-surface: #f7f4ec;
-  --color-black: #171716;
-  --font-body:
-    'Outfit', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue',
-    Helvetica, Arial, sans-serif;
-  --font-heading:
-    'Outfit', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue',
-    Helvetica, Arial, sans-serif;
-  --glass-bg: rgba(247, 244, 236, 0.72);
-  --glass-border: rgba(23, 23, 22, 0.14);
-  --glass-shadow: rgba(23, 23, 22, 0.12);
+  --page-background: #eaece7;
+  --card-surface: #f9faf6;
+  --card-soft: #dfe4dd;
+  --card-purple: #dcd9f4;
+  --card-accent: #c5f36b;
+  --ink-on-accent: #1b221d;
+  --primary-button-background: #1b221d;
+  --primary-button-text: #f8faf4;
+  --card-dark: #1b221d;
+  --ink: #1b221d;
+  --ink-muted: #59635b;
+  --ink-on-dark: #f8faf4;
+  --line: rgba(27, 34, 29, 0.12);
+  --card-radius: clamp(1.35rem, 2.8vw, 2.25rem);
+  --page-gutter: clamp(1rem, 3vw, 2.5rem);
+  --grid-gap: clamp(0.75rem, 1.4vw, 1.25rem);
+  --contact-view-duration: 0.55s;
+  --contact-view-easing: cubic-bezier(0.22, 1, 0.36, 1);
+  --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'DM Mono', 'SFMono-Regular', Consolas, monospace;
+  --color-text: var(--ink);
+  --color-text-soft: var(--ink-muted);
+  --color-accent: #426e18;
+  --color-accent-rgb: 66, 110, 24;
+  --color-accent-danger: #da534d;
+  --color-surface: var(--page-background);
+  --color-white: #f8faf4;
+  --color-white-rgb: 248, 250, 244;
+  --color-black: #1b221d;
+  --color-black-rgb: 27, 34, 29;
+  --glass-bg: rgba(249, 250, 246, 0.82);
+  --glass-border: var(--line);
+  --glass-shadow: rgba(27, 34, 29, 0.1);
+}
+
+:root[data-theme='dark'] {
+  --page-background: #101612;
+  --card-surface: #1c241e;
+  --card-soft: #263329;
+  --card-purple: #343349;
+  --card-accent: #add65c;
+  --ink-on-accent: #1b221d;
+  --primary-button-background: #add65c;
+  --primary-button-text: var(--ink-on-accent);
+  --card-dark: #080d0a;
+  --ink: #f4f6f0;
+  --ink-muted: #a9b5a8;
+  --line: rgba(244, 246, 240, 0.13);
+  --color-accent: #c5f36b;
+  --color-accent-rgb: 197, 243, 107;
+  --color-surface: var(--page-background);
+  --glass-bg: rgba(28, 36, 30, 0.82);
+  --glass-shadow: rgba(0, 0, 0, 0.4);
 }
 
 *,
@@ -26,44 +60,59 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
+  min-width: 320px;
   min-height: 100dvh;
   margin: 0;
   font-family: var(--font-body);
-  color: var(--color-text);
-  background: var(--color-surface);
+  color: var(--ink);
+  background: var(--page-background);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-heading);
-  font-weight: 600;
-  line-height: 1.02;
-  letter-spacing: -0.03em;
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }
 
-:root[data-theme='dark'] {
-  --color-text: var(--color-white);
-  --color-text-soft: rgba(255, 255, 255, 0.72);
-  --color-accent-rgb: 137, 205, 246;
-  --color-accent: #89cdf6;
-  --color-accent-danger: #f44;
-  --color-surface: #191816;
-  --glass-bg: rgba(247, 244, 236, 0.03);
-  --glass-border: rgba(247, 244, 236, 0.1);
-  --glass-shadow: rgba(0, 0, 0, 0.55);
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
-:root[data-theme='dark'] body {
-  background: var(--color-surface);
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid currentcolor;
+  outline-offset: 4px;
 }
 
-html {
-  scroll-behavior: smooth;
+::selection {
+  color: var(--selection-text, var(--ink-on-accent));
+  background: var(--selection-background, var(--card-accent));
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+::view-transition-group(contact-card) {
+  animation-duration: var(--contact-view-duration);
+  animation-timing-function: var(--contact-view-easing);
+}
+
+::view-transition-old(contact-card) {
+  opacity: 0;
+  animation: none;
+}
+
+::view-transition-new(contact-card) {
+  animation: none;
 }
 
 html.theme-transition,
@@ -73,41 +122,15 @@ html.theme-transition *::after {
   transition:
     background-color 0.4s ease,
     color 0.4s ease,
-    border-color 0.4s ease,
-    box-shadow 0.4s ease !important;
-}
-
-a,
-button,
-input,
-textarea,
-select {
-  font: inherit;
-}
-
-code,
-pre,
-kbd,
-samp {
-  font-family: var(--font-body);
-}
-
-.blog-page-transition-enter-active,
-.blog-page-transition-leave-active {
-  transition: opacity 0.26s ease;
-}
-
-.blog-page-transition-enter-from {
-  opacity: 0;
-}
-
-.blog-page-transition-leave-to {
-  opacity: 0;
+    border-color 0.4s ease !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .blog-page-transition-enter-active,
-  .blog-page-transition-leave-active {
-    transition: opacity 0.01s linear;
+  html {
+    scroll-behavior: auto;
+  }
+
+  ::view-transition-group(contact-card) {
+    animation-duration: 0.01ms;
   }
 }

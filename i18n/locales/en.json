@@ -1,6 +1,6 @@
 {
   "seo": {
-    "description": "Web development, products, and notes from a frontend developer's practice.",
+    "description": "Vladislav Adamets — software engineering, web applications, and interfaces.",
     "ogTitle": "Vladislav Adamets"
   },
   "nav": {
@@ -9,7 +9,6 @@
     "summary": "About",
     "experience": "Work Experience",
     "contacts": "Contacts",
-    "blog": "Journal",
     "sectionNavigation": "Section navigation"
   },
   "controls": {
@@ -19,19 +18,46 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
   },
-  "blog": {
-    "title": "Journal",
-    "subtitle": "Notes on engineering, products, and workflow.",
-    "backToBlog": "Back to journal",
-    "backToJournal": "Back to journal",
-    "published": "Published",
-    "author": "Author",
-    "readingTime": "Reading time",
-    "tags": "Tags",
-    "allTags": "All tags",
-    "showMore": "Show more"
-  },
   "home": {
+    "hero": {
+      "titleStart": "I build systems",
+      "titleAccent": "that work.",
+      "description": "I tackle complex problems, design architecture, and turn ideas into reliable systems, from services to interfaces.",
+      "contactAction": "Get in touch",
+      "aboutAction": "More about me",
+      "identityLabel": "Hi, I'm"
+    },
+    "about": {
+      "eyebrow": "About me",
+      "title": "Making complexity clear.",
+      "description": "I care about products that feel simple to use and sound under the hood. I treat structure, interaction, and code quality as parts of the same problem.",
+      "focusLabel": "What I do",
+      "focus": {
+        "interfaces": "Interfaces and experience",
+        "engineering": "Engineering and architecture",
+        "systems": "Systems and processes"
+      },
+      "stackLabel": "Toolkit",
+      "stackTitle": "The right technology for the task."
+    },
+    "web": {
+      "eyebrow": "One focus area",
+      "title": "Web development",
+      "description": "Web is one place I apply an engineering approach: building services and interfaces that are easy to use and maintain."
+    },
+    "contact": {
+      "eyebrow": "Say hello",
+      "title": "Have an idea? Let's talk.",
+      "description": "Tell me about the challenge, the product, or just say hello. A good conversation is a place to start.",
+      "action": "Get in touch",
+      "closeAction": "Hide contacts",
+      "linksLabel": "Contact me",
+      "copied": "Copied",
+      "failed": "Could not copy"
+    },
+    "footer": {
+      "backToTop": "Back to top"
+    },
     "intro": {
       "role": "Pragmatic.",
       "firstName": "Vladislav",

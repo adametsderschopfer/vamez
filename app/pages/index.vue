@@ -1,36 +1,67 @@
 <script setup lang="ts">
-import HomeHeader from '@/components/home/HomeHeader.vue'
 import HomeHeroSection from '@/components/home/HomeHeroSection.vue'
-import HomeJournalSection from '@/components/home/HomeJournalSection.vue'
+import HomeAboutSection from '@/components/home/HomeAboutSection.vue'
+import HomeWebSection from '@/components/home/HomeWebSection.vue'
+import HomeContactSection from '@/components/home/HomeContactSection.vue'
+import HomeFooter from '@/components/home/HomeFooter.vue'
+import { ref } from 'vue'
 
-const { themeMode } = useThemeMode()
+useRevealOnScroll()
+const contactSection = ref<InstanceType<typeof HomeContactSection> | null>(null)
+
+function openContacts() {
+  void contactSection.value?.openContacts()
+}
 </script>
 
 <template>
-  <div class="home-page" :class="{ 'home-page--dark': themeMode === 'dark' }">
-    <HomeHeader />
-    <HomeHeroSection />
-    <HomeJournalSection />
+  <div id="top" class="home-page">
+    <div class="home-page__content">
+      <HomeHeroSection @open-contacts="openContacts" />
+      <HomeAboutSection />
+      <HomeWebSection class="home-page__reveal" data-reveal="idle" />
+      <HomeContactSection ref="contactSection" class="home-page__reveal" data-reveal="idle" />
+      <HomeFooter />
+    </div>
   </div>
 </template>
 
 <style scoped>
 .home-page {
-  --home-page-background: #f7f4ec;
-  --home-page-contact: #171716;
-  --home-page-text: #1979bd;
+  --home-reveal-distance: 1.25rem;
+  --home-reveal-duration: 0.65s;
 
-  position: relative;
-  display: flex;
-  flex-direction: column;
   min-height: 100dvh;
-  color: var(--home-page-text);
-  background: var(--home-page-background);
+  background: var(--page-background);
 }
 
-.home-page--dark {
-  --home-page-background: #191816;
-  --home-page-contact: #f7f4ec;
-  --home-page-text: #89cdf6;
+.home-page__content {
+  display: grid;
+  gap: var(--grid-gap);
+  width: min(100%, 1800px);
+  padding: var(--page-gutter) var(--page-gutter) 0;
+  margin: 0 auto;
+}
+
+.home-page__reveal {
+  transition:
+    opacity var(--home-reveal-duration) ease,
+    transform var(--home-reveal-duration) cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.home-page__reveal[data-reveal='pending'] {
+  opacity: 0.8;
+  transform: translateY(var(--home-reveal-distance));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-page__reveal {
+    transition: none;
+  }
+
+  .home-page__reveal[data-reveal='pending'] {
+    opacity: 1;
+    transform: none;
+  }
 }
 </style>

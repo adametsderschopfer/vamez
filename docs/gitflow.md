@@ -40,7 +40,7 @@
 - `feat: seo`
 - `chore: hide menu`
 - `revert: remove Projects section`
-- `feat(projects): add Projects section with Nuxt Content`
+- `feat(projects): add projects section`
 
 ## Pull Request
 
