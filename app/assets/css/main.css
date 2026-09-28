@@ -17,6 +17,7 @@
   --grid-gap: clamp(0.75rem, 1.4vw, 1.25rem);
   --contact-view-duration: 0.55s;
   --contact-view-easing: cubic-bezier(0.22, 1, 0.36, 1);
+  --project-view-duration: 0.55s;
   --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono: 'DM Mono', 'SFMono-Regular', Consolas, monospace;
   --color-text: var(--ink);
@@ -115,6 +116,20 @@ button:focus-visible {
   animation: none;
 }
 
+::view-transition-group(project-article) {
+  animation-duration: var(--project-view-duration);
+  animation-timing-function: var(--contact-view-easing);
+}
+
+::view-transition-old(project-article) {
+  opacity: 0;
+  animation: none;
+}
+
+::view-transition-new(project-article) {
+  animation: none;
+}
+
 html.theme-transition,
 html.theme-transition *,
 html.theme-transition *::before,
@@ -131,6 +146,10 @@ html.theme-transition *::after {
   }
 
   ::view-transition-group(contact-card) {
+    animation-duration: 0.01ms;
+  }
+
+  ::view-transition-group(project-article) {
     animation-duration: 0.01ms;
   }
 }

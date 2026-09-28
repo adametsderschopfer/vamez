@@ -12,6 +12,11 @@ const canonicalUrl = computed(() => `${baseUrl.value}${route.path}`)
 const socialImageUrl = computed(() => `${baseUrl.value}/favicon-96x96.png`)
 const metrikaScriptUrl = computed(() => `${appBaseUrl.value}metrika.js`)
 const localeLanguage = computed(() => (locale.value === 'ru' ? 'ru-RU' : 'en-US'))
+const isProjectsPage = computed(() => /\/projects\/?$/.test(route.path))
+const pageTitle = computed(() => t(isProjectsPage.value ? 'seo.projectsTitle' : 'seo.ogTitle'))
+const pageDescription = computed(() =>
+  t(isProjectsPage.value ? 'seo.projectsDescription' : 'seo.description')
+)
 const structuredData = computed(() => ({
   '@context': 'https://schema.org',
   '@graph': [
@@ -25,10 +30,10 @@ const structuredData = computed(() => ({
     {
       '@id': `${canonicalUrl.value}#webpage`,
       '@type': 'WebPage',
-      description: t('seo.description'),
+      description: pageDescription.value,
       inLanguage: localeLanguage.value,
       isPartOf: { '@id': `${baseUrl.value}/#website` },
-      name: t('seo.ogTitle'),
+      name: pageTitle.value,
       url: canonicalUrl.value
     }
   ]
@@ -36,7 +41,7 @@ const structuredData = computed(() => ({
 
 useHead(() => ({
   htmlAttrs: i18nHead.value.htmlAttrs,
-  title: t('seo.ogTitle'),
+  title: pageTitle.value,
   link: [
     ...(i18nHead.value.link || []),
     { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -60,19 +65,19 @@ useHead(() => ({
   ],
   meta: [
     ...(i18nHead.value.meta || []),
-    { name: 'description', content: t('seo.description') },
+    { name: 'description', content: pageDescription.value },
     { name: 'image', content: socialImageUrl.value },
     { property: 'og:type', content: 'website' },
     { property: 'og:site_name', content: 'Vamez' },
-    { property: 'og:title', content: t('seo.ogTitle') },
-    { property: 'og:description', content: t('seo.description') },
+    { property: 'og:title', content: pageTitle.value },
+    { property: 'og:description', content: pageDescription.value },
     { property: 'og:url', content: canonicalUrl.value },
     { property: 'og:image', content: socialImageUrl.value },
     { property: 'og:image:type', content: 'image/png' },
-    { property: 'og:image:alt', content: t('seo.ogTitle') },
+    { property: 'og:image:alt', content: pageTitle.value },
     { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: t('seo.ogTitle') },
-    { name: 'twitter:description', content: t('seo.description') },
+    { name: 'twitter:title', content: pageTitle.value },
+    { name: 'twitter:description', content: pageDescription.value },
     { name: 'twitter:image', content: socialImageUrl.value }
   ]
 }))

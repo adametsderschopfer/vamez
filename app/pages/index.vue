@@ -2,6 +2,7 @@
 import HomeHeroSection from '@/components/home/HomeHeroSection.vue'
 import HomeAboutSection from '@/components/home/HomeAboutSection.vue'
 import HomeWebSection from '@/components/home/HomeWebSection.vue'
+import HomeProjectsSection from '@/components/home/HomeProjectsSection.vue'
 import HomeContactSection from '@/components/home/HomeContactSection.vue'
 import HomeFooter from '@/components/home/HomeFooter.vue'
 import { ref } from 'vue'
@@ -20,6 +21,7 @@ function openContacts() {
       <HomeHeroSection @open-contacts="openContacts" />
       <HomeAboutSection />
       <HomeWebSection class="home-page__reveal" data-reveal="idle" />
+      <HomeProjectsSection class="home-page__reveal" data-reveal="idle" />
       <HomeContactSection ref="contactSection" class="home-page__reveal" data-reveal="idle" />
       <HomeFooter />
     </div>

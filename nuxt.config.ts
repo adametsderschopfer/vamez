@@ -24,7 +24,7 @@ export default defineNuxtConfig({
     prerender: {
       concurrency: 10,
       crawlLinks: true,
-      routes: ['/', '/en', '/sitemap.xml']
+      routes: ['/', '/en', '/projects', '/en/projects', '/sitemap.xml']
     }
   },
   routeRules: {
