@@ -4,6 +4,7 @@ import SiteControls from '@/components/home/SiteControls.vue'
 
 const { t } = useI18n()
 const localePath = useLocalePath()
+defineProps<{ showProjects: boolean }>()
 </script>
 
 <template>
@@ -17,7 +18,9 @@ const localePath = useLocalePath()
     </div>
     <div class="projects-hero__body">
       <h1 id="projects-hero-title" class="projects-hero__title">{{ t('projects.title') }}</h1>
-      <p class="projects-hero__description">{{ t('projects.description') }}</p>
+      <p class="projects-hero__description">
+        {{ t(showProjects ? 'projects.description' : 'projects.soonDescription') }}
+      </p>
     </div>
   </section>
 </template>

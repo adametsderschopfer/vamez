@@ -15,7 +15,13 @@ const localeLanguage = computed(() => (locale.value === 'ru' ? 'ru-RU' : 'en-US'
 const isProjectsPage = computed(() => /\/projects\/?$/.test(route.path))
 const pageTitle = computed(() => t(isProjectsPage.value ? 'seo.projectsTitle' : 'seo.ogTitle'))
 const pageDescription = computed(() =>
-  t(isProjectsPage.value ? 'seo.projectsDescription' : 'seo.description')
+  t(
+    isProjectsPage.value
+      ? import.meta.dev
+        ? 'seo.projectsDescription'
+        : 'seo.projectsComingSoonDescription'
+      : 'seo.description'
+  )
 )
 const structuredData = computed(() => ({
   '@context': 'https://schema.org',

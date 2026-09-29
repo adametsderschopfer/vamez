@@ -3,19 +3,29 @@ import ProjectsHeroSection from '@/components/projects/ProjectsHeroSection.vue'
 import ProjectsYearSection from '@/components/projects/ProjectsYearSection.vue'
 import ProjectsArticleDialog from '@/components/projects/ProjectsArticleDialog.vue'
 import ProjectsFilterSection from '@/components/projects/ProjectsFilterSection.vue'
-import { projectTechnologies, projectYears, projects, type ProjectLanguage } from '@/data/projects'
 
+const showProjects = import.meta.dev
 const { locale, t } = useI18n()
-const language = computed<ProjectLanguage>(() => (locale.value === 'en' ? 'en' : 'ru'))
+const { data: projectContent } = await useAsyncData('projects', () =>
+  showProjects ? queryCollection('projects').all() : Promise.resolve([])
+)
+const projects = computed(() =>
+  (projectContent.value ?? [])
+    .filter((project) => project.locale === locale.value)
+    .sort((first, second) => second.year - first.year || first.order - second.order)
+)
+const projectTechnologies = computed(() =>
+  [...new Set(projects.value.flatMap((project) => project.technologies))].sort()
+)
 const selectedTechnology = ref<string | null>(null)
 const filteredProjects = computed(() => {
   const technology = selectedTechnology.value
   return technology
-    ? projects.filter((project) => project.technologies.includes(technology))
-    : projects
+    ? projects.value.filter((project) => project.technologies.includes(technology))
+    : projects.value
 })
 const visibleYears = computed(() =>
-  projectYears.filter((year) => filteredProjects.value.some((project) => project.year === year))
+  [...new Set(filteredProjects.value.map((project) => project.year))].sort((a, b) => b - a)
 )
 const { selectedProject, transitionProjectId, dialogRef, openProject, closeProject } =
   useProjectDialog()
@@ -28,13 +38,11 @@ function projectsForYear(year: number) {
 <template>
   <div class="projects-page">
     <div class="projects-page__content" :inert="selectedProject ? true : undefined">
-      <ProjectsHeroSection />
-      <div class="projects-page__archive">
+      <ProjectsHeroSection :show-projects="showProjects" />
+      <div v-if="showProjects" class="projects-page__archive">
         <ProjectsFilterSection
           :technologies="projectTechnologies"
           :selected-technology="selectedTechnology"
-          :visible-count="filteredProjects.length"
-          :total-count="projects.length"
           @select="selectedTechnology = $event"
         />
         <div class="projects-page__years" :aria-label="t('projects.title')">
@@ -43,7 +51,6 @@ function projectsForYear(year: number) {
             :key="year"
             :year="year"
             :projects="projectsForYear(year)"
-            :language="language"
             :transition-project-id="transitionProjectId"
             :dialog-open="Boolean(selectedProject)"
             @select="openProject"
@@ -52,14 +59,13 @@ function projectsForYear(year: number) {
       </div>
       <footer class="projects-page__footer">
         <span>© {{ new Date().getFullYear() }} · {{ t('seo.ogTitle') }}</span>
-        <span>{{ t('projects.footer') }}</span>
+        <span v-if="showProjects">{{ t('projects.footer') }}</span>
       </footer>
     </div>
     <ProjectsArticleDialog
-      v-if="selectedProject"
+      v-if="showProjects && selectedProject"
       ref="dialogRef"
       :project="selectedProject"
-      :language="language"
       @close="closeProject"
     />
   </div>
@@ -73,7 +79,7 @@ function projectsForYear(year: number) {
 
 .projects-page__content {
   display: grid;
-  gap: clamp(3rem, 6vw, 6rem);
+  gap: clamp(2rem, 4vw, 4rem);
   width: min(100%, 1800px);
   padding: var(--page-gutter) var(--page-gutter) 0;
   margin: 0 auto;
@@ -81,7 +87,7 @@ function projectsForYear(year: number) {
 
 .projects-page__archive {
   display: grid;
-  gap: clamp(2rem, 4vw, 4rem);
+  gap: clamp(1.25rem, 2vw, 2rem);
 }
 
 .projects-page__years {

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { X } from 'lucide-vue-next'
-import type { Project, ProjectLanguage } from '@/data/projects'
+import type { Project } from '@/types/projects'
 
-defineProps<{ project: Project; language: ProjectLanguage }>()
+defineProps<{ project: Project }>()
 const emit = defineEmits<{ close: [] }>()
 const { t } = useI18n()
 const dialogRef = ref<HTMLElement | null>(null)
@@ -45,8 +45,8 @@ defineExpose({ focusClose })
       class="project-dialog"
       role="dialog"
       aria-modal="true"
-      :aria-labelledby="`project-dialog-title-${project.id}`"
-      :aria-describedby="`project-dialog-lead-${project.id}`"
+      :aria-labelledby="`project-dialog-title-${project.projectId}`"
+      :aria-describedby="`project-dialog-lead-${project.projectId}`"
       @keydown="handleKeydown"
     >
       <div class="project-dialog__topline">
@@ -62,24 +62,15 @@ defineExpose({ focusClose })
         </button>
       </div>
       <div class="project-dialog__header">
-        <span class="project-dialog__category">{{ project.category[language] }}</span>
-        <h2 :id="`project-dialog-title-${project.id}`" class="project-dialog__title">
-          {{ project.title[language] }}
+        <span class="project-dialog__category">{{ project.category }}</span>
+        <h2 :id="`project-dialog-title-${project.projectId}`" class="project-dialog__title">
+          {{ project.title }}
         </h2>
-        <p :id="`project-dialog-lead-${project.id}`" class="project-dialog__lead">
-          {{ project.article.lead[language] }}
+        <p :id="`project-dialog-lead-${project.projectId}`" class="project-dialog__lead">
+          {{ project.lead }}
         </p>
       </div>
-      <div class="project-dialog__content">
-        <section
-          v-for="section in project.article.sections"
-          :key="section.heading[language]"
-          class="project-dialog__section"
-        >
-          <h3 class="project-dialog__section-title">{{ section.heading[language] }}</h3>
-          <p class="project-dialog__section-body">{{ section.body[language] }}</p>
-        </section>
-      </div>
+      <ContentRenderer :value="project" class="project-dialog__content" />
       <div class="project-dialog__tags">
         <span v-for="technology in project.technologies" :key="technology">{{ technology }}</span>
       </div>
@@ -168,23 +159,18 @@ defineExpose({ focusClose })
 
 .project-dialog__content {
   display: grid;
-  gap: 1.5rem;
+  grid-template-columns: minmax(8rem, 0.35fr) minmax(0, 1fr);
+  gap: 1.5rem 1rem;
   padding: clamp(1.5rem, 3vw, 2.75rem) 0;
 }
 
-.project-dialog__section {
-  display: grid;
-  grid-template-columns: minmax(8rem, 0.35fr) minmax(0, 1fr);
-  gap: 1rem;
-}
-
-.project-dialog__section-title {
+.project-dialog__content :deep(h3) {
   margin: 0;
   font-size: 1rem;
   font-weight: 700;
 }
 
-.project-dialog__section-body {
+.project-dialog__content :deep(p) {
   margin: 0;
   font-size: 0.92rem;
   line-height: 1.7;
@@ -206,9 +192,13 @@ defineExpose({ focusClose })
 }
 
 @media (max-width: 600px) {
-  .project-dialog__section {
+  .project-dialog__content {
     grid-template-columns: 1fr;
-    gap: 0.35rem;
+    gap: 0.35rem 1rem;
+  }
+
+  .project-dialog__content :deep(p) {
+    margin-bottom: 1.2rem;
   }
 }
 </style>

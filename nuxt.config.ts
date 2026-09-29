@@ -76,7 +76,15 @@ export default defineNuxtConfig({
       ]
     }
   },
-  modules: ['@nuxt/eslint', '@nuxtjs/i18n'],
+  modules: ['@nuxt/eslint', '@nuxtjs/i18n', '@nuxt/content'],
+  content: {
+    experimental: {
+      sqliteConnector: 'native'
+    },
+    renderer: {
+      anchorLinks: false
+    }
+  },
   css: ['@/assets/css/main.css'],
   i18n: {
     defaultLocale: 'ru',

@@ -17,6 +17,7 @@
     "typecheck": "nuxt typecheck"
   },
   "dependencies": {
+    "@nuxt/content": "^3.16.1",
     "@nuxtjs/i18n": "^10.6.0",
     "lucide-vue-next": "^1.0.0",
     "nuxt": "^4.5.2",

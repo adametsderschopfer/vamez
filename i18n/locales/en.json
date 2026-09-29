@@ -3,22 +3,24 @@
     "description": "Vladislav Adamets — software engineering, web applications, and interfaces.",
     "ogTitle": "Vladislav Adamets",
     "projectsTitle": "My projects — Vladislav Adamets",
-    "projectsDescription": "A set of sample projects by year, from systems engineering to interfaces."
+    "projectsDescription": "A set of sample projects by year, from systems engineering to interfaces.",
+    "projectsComingSoonDescription": "Projects by Vladislav Adamets are coming soon."
   },
   "projects": {
     "teaser": {
       "eyebrow": "Selected work",
       "title": "My projects",
-      "description": "From system challenges to interfaces. Different directions, one story."
+      "description": "From system challenges to interfaces. Different directions, one story.",
+      "soonDescription": "I’m preparing a selection of work, from systems to interfaces.",
+      "soon": "Projects coming soon"
     },
     "back": "Back home",
     "title": "My projects",
     "description": "Engineering project concepts, from service architecture to interfaces. Open a card to explore the challenge and the approach behind it.",
-    "yearLabel": "Projects this year",
+    "soonDescription": "My projects will appear here soon. While I prepare them, take a look at the home page.",
     "filter": {
       "title": "Technologies",
-      "all": "All projects",
-      "count": "Showing {visible} of {total}"
+      "all": "All"
     },
     "openProject": "Open project",
     "close": "Close project",

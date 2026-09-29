@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { ArrowUpRight } from 'lucide-vue-next'
-import type { Project, ProjectLanguage } from '@/data/projects'
+import type { Project } from '@/types/projects'
 
 defineProps<{
   year: number
   projects: Project[]
-  language: ProjectLanguage
   transitionProjectId: string | null
   dialogOpen: boolean
 }>()
@@ -24,7 +23,6 @@ function selectProject(project: Project, event: MouseEvent) {
   <section class="projects-year" :aria-labelledby="`projects-year-${year}`">
     <div class="projects-year__marker">
       <h2 :id="`projects-year-${year}`" class="projects-year__number">{{ year }}</h2>
-      <span class="projects-year__label">{{ t('projects.yearLabel') }}</span>
     </div>
     <div class="projects-year__grid">
       <button
@@ -34,14 +32,14 @@ function selectProject(project: Project, event: MouseEvent) {
         :class="`projects-year__card--${project.tone}`"
         :style="{
           viewTransitionName:
-            transitionProjectId === project.id && !dialogOpen ? 'project-article' : undefined
+            transitionProjectId === project.projectId && !dialogOpen ? 'project-article' : undefined
         }"
         type="button"
-        :aria-label="`${t('projects.openProject')}: ${project.title[language]}`"
+        :aria-label="`${t('projects.openProject')}: ${project.title}`"
         @click="selectProject(project, $event)"
       >
         <span class="projects-year__card-topline">
-          <span>{{ project.index }} / {{ project.category[language] }}</span>
+          <span>{{ project.category }}</span>
           <ArrowUpRight
             class="projects-year__arrow"
             :size="19"
@@ -50,8 +48,8 @@ function selectProject(project: Project, event: MouseEvent) {
           />
         </span>
         <span class="projects-year__card-content">
-          <span class="projects-year__card-title">{{ project.title[language] }}</span>
-          <span class="projects-year__card-summary">{{ project.summary[language] }}</span>
+          <span class="projects-year__card-title">{{ project.title }}</span>
+          <span class="projects-year__card-summary">{{ project.description }}</span>
         </span>
         <span class="projects-year__card-tags" aria-hidden="true">
           <span v-for="technology in project.technologies" :key="technology">{{ technology }}</span>
@@ -71,9 +69,10 @@ function selectProject(project: Project, event: MouseEvent) {
 }
 
 .projects-year__marker {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  position: sticky;
+  top: var(--page-gutter);
+  z-index: 1;
+  align-self: start;
 }
 
 .projects-year__number {
@@ -84,18 +83,9 @@ function selectProject(project: Project, event: MouseEvent) {
   letter-spacing: -0.09em;
 }
 
-.projects-year__label {
-  margin-top: 1rem;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: var(--ink-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
 .projects-year__grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--grid-gap);
 }
 
@@ -104,7 +94,7 @@ function selectProject(project: Project, event: MouseEvent) {
   flex-direction: column;
   justify-content: space-between;
   min-width: 0;
-  min-height: clamp(17rem, 25vw, 24rem);
+  min-height: clamp(16rem, 22vw, 20rem);
   padding: clamp(1.25rem, 2.25vw, 2rem);
   color: var(--ink);
   text-align: left;
@@ -164,7 +154,7 @@ function selectProject(project: Project, event: MouseEvent) {
 }
 
 .projects-year__card-title {
-  font-size: clamp(1.8rem, 3.1vw, 3.2rem);
+  font-size: clamp(1.6rem, 2.3vw, 2.5rem);
   font-weight: 700;
   line-height: 1.03;
   letter-spacing: -0.07em;
@@ -190,19 +180,25 @@ function selectProject(project: Project, event: MouseEvent) {
   border-radius: 999px;
 }
 
+@media (max-width: 1100px) {
+  .projects-year__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 800px) {
   .projects-year {
     grid-template-columns: 1fr;
   }
 
   .projects-year__marker {
-    flex-direction: row;
-    gap: 1rem;
-    align-items: end;
+    top: 0;
+    padding: 0.75rem 0;
+    background: var(--page-background);
   }
 
-  .projects-year__label {
-    margin: 0 0 0.4rem;
+  .projects-year__number {
+    font-size: clamp(2.8rem, 9vw, 3.7rem);
   }
 }
 

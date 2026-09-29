@@ -1,8 +1,8 @@
-import { nextTick, onBeforeUnmount, ref } from 'vue'
-import type { Project } from '@/data/projects'
+import { nextTick, onBeforeUnmount, ref, shallowRef } from 'vue'
+import type { Project } from '@/types/projects'
 
 export function useProjectDialog() {
-  const selectedProject = ref<Project | null>(null)
+  const selectedProject = shallowRef<Project | null>(null)
   const transitionProjectId = ref<string | null>(null)
   const dialogRef = ref<{ focusClose: () => void } | null>(null)
   let returnFocus: HTMLButtonElement | null = null
@@ -24,7 +24,7 @@ export function useProjectDialog() {
     if (transitioning || selectedProject.value) return
     transitioning = true
     returnFocus = trigger
-    transitionProjectId.value = project.id
+    transitionProjectId.value = project.projectId
     await nextTick()
 
     try {

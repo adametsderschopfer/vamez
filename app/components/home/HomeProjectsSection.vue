@@ -3,26 +3,38 @@ import { ArrowUpRight } from 'lucide-vue-next'
 
 const { t } = useI18n()
 const localePath = useLocalePath()
+const showProjects = import.meta.dev
 </script>
 
 <template>
   <section class="home-projects" aria-labelledby="home-projects-title">
-    <NuxtLink class="home-projects__link" :to="localePath('/projects')">
+    <a
+      class="home-projects__card"
+      :class="{ 'home-projects__card--interactive': showProjects }"
+      :href="showProjects ? localePath('/projects') : undefined"
+    >
       <div class="home-projects__topline">
         <span>{{ t('projects.teaser.eyebrow') }}</span>
+        <span v-if="!showProjects" class="home-projects__notice">
+          {{ t('projects.teaser.soon') }}
+        </span>
       </div>
       <div class="home-projects__body">
         <div class="home-projects__copy">
           <h2 id="home-projects-title" class="home-projects__title">
             {{ t('projects.teaser.title') }}
           </h2>
-          <p class="home-projects__description">{{ t('projects.teaser.description') }}</p>
+          <p class="home-projects__description">
+            {{
+              t(showProjects ? 'projects.teaser.description' : 'projects.teaser.soonDescription')
+            }}
+          </p>
         </div>
-        <span class="home-projects__arrow" aria-hidden="true">
+        <span v-if="showProjects" class="home-projects__arrow" aria-hidden="true">
           <ArrowUpRight :size="32" :stroke-width="1.5" />
         </span>
       </div>
-    </NuxtLink>
+    </a>
   </section>
 </template>
 
@@ -31,7 +43,7 @@ const localePath = useLocalePath()
   min-width: 0;
 }
 
-.home-projects__link {
+.home-projects__card {
   --home-projects-padding: clamp(1.5rem, 3vw, 2.75rem);
 
   position: relative;
@@ -50,10 +62,20 @@ const localePath = useLocalePath()
 
 .home-projects__topline {
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: flex-start;
+  justify-content: space-between;
   font-family: var(--font-mono);
   font-size: 0.68rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
+}
+
+.home-projects__notice {
+  padding: 0.5rem 0.7rem;
+  background: var(--card-surface);
+  border-radius: 999px;
 }
 
 .home-projects__body {
@@ -101,8 +123,8 @@ const localePath = useLocalePath()
   transition: transform 0.22s ease;
 }
 
-.home-projects__link:hover .home-projects__arrow svg,
-.home-projects__link:focus-visible .home-projects__arrow svg {
+.home-projects__card--interactive:hover .home-projects__arrow svg,
+.home-projects__card--interactive:focus-visible .home-projects__arrow svg {
   transform: translate(3px, -3px);
 }
 
