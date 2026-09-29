@@ -336,6 +336,7 @@ const { startWords, accentWords, highlightDelay, highlightDuration } = useHeroTi
 
   .home-hero__title {
     font-size: clamp(2.75rem, 10vw, 4rem);
+    letter-spacing: -0.025em;
   }
 
   .home-hero__identity {
