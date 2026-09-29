@@ -315,6 +315,16 @@ const { startWords, accentWords, highlightDelay, highlightDuration } = useHeroTi
   }
 }
 
+@keyframes home-hero-mobile-highlight {
+  from {
+    background-size: 0 100%;
+  }
+
+  to {
+    background-size: 100% 100%;
+  }
+}
+
 @media (max-width: 900px) {
   .home-hero {
     grid-template-columns: 1fr;
@@ -339,6 +349,31 @@ const { startWords, accentWords, highlightDelay, highlightDuration } = useHeroTi
     letter-spacing: -0.025em;
   }
 
+  .home-hero__title-accent {
+    --home-hero-highlight-depth: 0.26em;
+
+    display: inline;
+    padding: 0;
+    margin-top: 0;
+    color: var(--ink);
+    background-image: linear-gradient(
+      to top,
+      var(--card-accent) var(--home-hero-highlight-depth),
+      transparent var(--home-hero-highlight-depth)
+    );
+    background-repeat: no-repeat;
+    /* stylelint-disable-next-line property-no-vendor-prefix -- Safari requires this prefix. */
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    animation: home-hero-mobile-highlight var(--highlight-duration) cubic-bezier(0.22, 1, 0.36, 1)
+      both;
+    animation-delay: var(--highlight-delay);
+  }
+
+  .home-hero__title-accent::before {
+    content: none;
+  }
+
   .home-hero__identity {
     min-height: 19rem;
   }
@@ -351,7 +386,8 @@ const { startWords, accentWords, highlightDelay, highlightDuration } = useHeroTi
   }
 
   .home-hero__title-word,
-  .home-hero__title-accent::before {
+  .home-hero__title-accent::before,
+  .home-hero__title-accent {
     animation: none;
   }
 
