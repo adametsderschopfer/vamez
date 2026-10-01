@@ -7,9 +7,19 @@ const emit = defineEmits<{ close: [] }>()
 const { t } = useI18n()
 const dialogRef = ref<HTMLElement | null>(null)
 const closeRef = ref<HTMLButtonElement | null>(null)
+const backdropRef = ref<HTMLElement | null>(null)
+const { playMotion } = useDialogMotion()
+
+onMounted(() => {
+  void playMotion('open', dialogRef.value, backdropRef.value)
+})
+
+function animateClose() {
+  return playMotion('close', dialogRef.value, backdropRef.value)
+}
 
 function focusClose() {
-  closeRef.value?.focus()
+  closeRef.value?.focus({ preventScroll: true })
 }
 
 function handleKeydown(event: KeyboardEvent) {
@@ -34,12 +44,12 @@ function handleKeydown(event: KeyboardEvent) {
   }
 }
 
-defineExpose({ focusClose })
+defineExpose({ focusClose, animateClose })
 </script>
 
 <template>
   <Teleport to="body">
-    <div class="project-dialog__backdrop" @click="emit('close')" />
+    <div ref="backdropRef" class="project-dialog__backdrop" @click="emit('close')" />
     <article
       ref="dialogRef"
       class="project-dialog"
@@ -102,7 +112,6 @@ defineExpose({ focusClose })
   background: var(--card-surface);
   border-radius: var(--card-radius);
   transform: translate(-50%, -50%);
-  view-transition-name: project-article;
 }
 
 .project-dialog__topline {

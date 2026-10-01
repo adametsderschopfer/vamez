@@ -1,8 +1,8 @@
 import { computed, type Ref } from 'vue'
 
-const characterDuration = 45
-const highlightDuration = 380
-const initialDelay = 120
+const characterDuration = 25
+const highlightDuration = 220
+const initialDelay = 80
 
 interface TypedWord {
   text: string

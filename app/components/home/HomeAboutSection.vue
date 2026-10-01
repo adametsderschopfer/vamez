@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Boxes, Braces, Workflow } from 'lucide-vue-next'
+import HomeCuriosityCard from '@/components/home/HomeCuriosityCard.vue'
 
 const { t } = useI18n()
 
@@ -8,8 +9,6 @@ const focusItems = [
   { key: 'systems', icon: Workflow },
   { key: 'interfaces', icon: Boxes }
 ] as const
-
-const technologies = ['TypeScript', 'Vue / Nuxt', 'React / Next', 'Node.js', 'Python']
 </script>
 
 <template>
@@ -28,21 +27,19 @@ const technologies = ['TypeScript', 'Vue / Nuxt', 'React / Next', 'Node.js', 'Py
       <ul class="home-about__focus-list">
         <li v-for="(item, index) in focusItems" :key="item.key" class="home-about__focus-item">
           <span class="home-about__focus-number">0{{ index + 1 }}</span>
-          <component :is="item.icon" :size="23" :stroke-width="1.5" aria-hidden="true" />
+          <component
+            :is="item.icon"
+            class="home-about__focus-icon"
+            :size="20"
+            :stroke-width="1.5"
+            aria-hidden="true"
+          />
           <span class="home-about__focus-name">{{ t(`home.about.focus.${item.key}`) }}</span>
         </li>
       </ul>
     </div>
 
-    <div class="home-about__stack home-about__reveal" data-reveal="idle">
-      <div class="home-about__card-heading home-about__card-heading--stack">
-        <h3 class="home-about__stack-title">{{ t('home.about.stackTitle') }}</h3>
-        <span class="home-about__stack-symbol">✳</span>
-      </div>
-      <ul class="home-about__technologies" :aria-label="t('home.about.stackLabel')">
-        <li v-for="technology in technologies" :key="technology">{{ technology }}</li>
-      </ul>
-    </div>
+    <HomeCuriosityCard class="home-about__curiosity home-about__reveal" data-reveal="idle" />
   </section>
 </template>
 
@@ -55,13 +52,13 @@ const technologies = ['TypeScript', 'Vue / Nuxt', 'React / Next', 'Node.js', 'Py
 }
 
 .home-about__intro,
-.home-about__focus,
-.home-about__stack {
+.home-about__focus {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 24rem;
   padding: clamp(1.5rem, 2.5vw, 2.3rem);
+  border: 1px solid var(--panel-border);
   border-radius: var(--card-radius);
 }
 
@@ -92,15 +89,21 @@ const technologies = ['TypeScript', 'Vue / Nuxt', 'React / Next', 'Node.js', 'Py
 
 .home-about__focus {
   --home-about-reveal-delay: 0.09s;
+  --focus-row-height: 3.85rem;
+  --focus-column-width: 1.5rem;
+  --focus-column-gap: 0.75rem;
+  --focus-row-padding: 0.85rem;
+  --focus-heading-gap: 1.25rem;
 
+  gap: var(--focus-heading-gap);
+  justify-content: flex-start;
   background: var(--card-surface);
   transition-delay: 0.09s;
 }
 
-.home-about__stack {
+.home-about__curiosity {
   --home-about-reveal-delay: 0.18s;
 
-  background: var(--card-purple);
   transition-delay: 0.18s;
 }
 
@@ -111,13 +114,9 @@ const technologies = ['TypeScript', 'Vue / Nuxt', 'React / Next', 'Node.js', 'Py
   justify-content: space-between;
 }
 
-.home-about__card-heading--stack {
-  align-items: flex-start;
-}
-
 .home-about__card-title {
   margin: 0;
-  font-size: clamp(1.3rem, 1.8vw, 1.75rem);
+  font-size: clamp(1.25rem, 1.6vw, 1.5rem);
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.055em;
@@ -139,70 +138,39 @@ const technologies = ['TypeScript', 'Vue / Nuxt', 'React / Next', 'Node.js', 'Py
   line-height: 1.6;
 }
 
-.home-about__focus-list,
-.home-about__technologies {
+.home-about__focus-list {
+  display: grid;
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-.home-about__focus-list {
-  display: grid;
-  margin-top: 2rem;
-}
-
 .home-about__focus-item {
   display: grid;
-  grid-template-columns: 2rem 2rem minmax(0, 1fr);
-  gap: 0.5rem;
+  grid-template-columns: var(--focus-column-width) var(--focus-column-width) minmax(0, 1fr);
+  gap: var(--focus-column-gap);
   align-items: center;
-  min-height: 5rem;
+  min-height: var(--focus-row-height);
+  padding: var(--focus-row-padding) 0;
   border-top: 1px solid var(--line);
 }
 
 .home-about__focus-number {
-  align-self: start;
-  padding-top: 1.2rem;
   font-family: var(--font-mono);
   font-size: 0.65rem;
   color: var(--ink-muted);
 }
 
+.home-about__focus-icon {
+  justify-self: center;
+  color: var(--ink-muted);
+}
+
 .home-about__focus-name {
-  font-size: clamp(0.95rem, 1.2vw, 1.2rem);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-}
-
-.home-about__stack-symbol {
-  flex: none;
-  margin-left: auto;
-  font-size: 1.3rem;
-}
-
-.home-about__stack-title {
-  min-width: 0;
-  max-width: 18ch;
-  margin: 0;
-  font-size: clamp(1.9rem, 2.3vw, 2.7rem);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.065em;
-}
-
-.home-about__technologies {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem;
-  margin-top: auto;
-}
-
-.home-about__technologies li {
-  padding: 0.55rem 0.75rem;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
+  font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
 }
 
 @keyframes home-about-enter {
@@ -222,9 +190,8 @@ const technologies = ['TypeScript', 'Vue / Nuxt', 'React / Next', 'Node.js', 'Py
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .home-about__stack {
+  .home-about__curiosity {
     grid-column: 1 / -1;
-    min-height: 11rem;
   }
 }
 
@@ -233,15 +200,18 @@ const technologies = ['TypeScript', 'Vue / Nuxt', 'React / Next', 'Node.js', 'Py
     grid-template-columns: 1fr;
   }
 
-  .home-about__intro,
-  .home-about__focus,
-  .home-about__stack {
+  .home-about__intro {
     grid-column: auto;
     min-height: 21rem;
   }
 
-  .home-about__stack {
-    min-height: 17rem;
+  .home-about__focus {
+    grid-column: auto;
+    min-height: 0;
+  }
+
+  .home-about__curiosity {
+    grid-column: auto;
   }
 }
 

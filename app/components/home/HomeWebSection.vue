@@ -5,7 +5,6 @@ const { t } = useI18n()
 <template>
   <section class="home-web" aria-labelledby="home-web-title">
     <div class="home-web__heading">
-      <span class="home-web__eyebrow">{{ t('home.web.eyebrow') }}</span>
       <h2 id="home-web-title" class="home-web__title">{{ t('home.web.title') }}</h2>
     </div>
     <p class="home-web__description">{{ t('home.web.description') }}</p>
@@ -23,19 +22,12 @@ const { t } = useI18n()
   min-height: 15rem;
   padding: var(--home-web-padding);
   background: var(--card-soft);
+  border: 1px solid var(--panel-border);
   border-radius: var(--card-radius);
 }
 
-.home-web__eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
 .home-web__title {
-  margin: 1.25rem 0 0;
+  margin: 0;
   font-size: clamp(2.1rem, 3.6vw, 4rem);
   font-weight: 700;
   line-height: 1.05;

@@ -47,7 +47,7 @@ const themeActionLabel = computed(() =>
   color: var(--ink-on-accent);
   background: var(--site-controls-tint);
   border: 1px solid color-mix(in srgb, var(--ink-on-accent) 13%, transparent);
-  border-radius: 999px;
+  border-radius: var(--control-radius);
 }
 
 .site-controls__button {
@@ -64,7 +64,7 @@ const themeActionLabel = computed(() =>
   cursor: pointer;
   background: transparent;
   border: 0;
-  border-radius: 50%;
+  border-radius: var(--control-radius);
   transition: background-color 0.2s ease;
 }
 

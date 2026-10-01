@@ -2,6 +2,7 @@
 import { ArrowDownRight, ArrowUpRight } from 'lucide-vue-next'
 import { computed } from 'vue'
 import SiteControls from '@/components/home/SiteControls.vue'
+import HomeIdentityGrid from '@/components/home/HomeIdentityGrid.vue'
 
 const { t } = useI18n()
 const { scrollToSection } = useSectionScroll()
@@ -93,6 +94,7 @@ const { startWords, accentWords, highlightDelay, highlightDuration } = useHeroTi
     </div>
 
     <div class="home-hero__identity">
+      <HomeIdentityGrid />
       <div class="home-hero__identity-top">
         <SiteControls class="home-hero__controls" />
       </div>
@@ -117,6 +119,7 @@ const { startWords, accentWords, highlightDelay, highlightDuration } = useHeroTi
 .home-hero__identity {
   min-height: clamp(30rem, 39vw, 36rem);
   padding: clamp(1.5rem, 3vw, 2.75rem);
+  border: 1px solid var(--panel-border);
   border-radius: var(--card-radius);
 }
 
@@ -209,8 +212,11 @@ const { startWords, accentWords, highlightDelay, highlightDuration } = useHeroTi
   gap: 1rem;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.84rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
   text-decoration: none;
 }
 
@@ -237,7 +243,7 @@ const { startWords, accentWords, highlightDelay, highlightDuration } = useHeroTi
   cursor: pointer;
   background: var(--primary-button-background);
   border: 0;
-  border-radius: 999px;
+  border-radius: var(--control-radius);
 }
 
 .home-hero__secondary-link {
@@ -248,15 +254,23 @@ const { startWords, accentWords, highlightDelay, highlightDuration } = useHeroTi
   --selection-text: var(--ink-on-dark);
   --selection-background: var(--card-dark);
 
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-width: 0;
   overflow: hidden;
   color: var(--ink-on-accent);
-  background: var(--card-accent);
+  background-color: var(--card-accent);
+  isolation: isolate;
   animation: home-hero-enter var(--home-reveal-duration) cubic-bezier(0.22, 1, 0.36, 1) both;
   animation-delay: 0.1s;
+}
+
+.home-hero__identity-top,
+.home-hero__identity-copy {
+  position: relative;
+  z-index: 1;
 }
 
 .home-hero__identity-top {

@@ -27,8 +27,7 @@ const filteredProjects = computed(() => {
 const visibleYears = computed(() =>
   [...new Set(filteredProjects.value.map((project) => project.year))].sort((a, b) => b - a)
 )
-const { selectedProject, transitionProjectId, dialogRef, openProject, closeProject } =
-  useProjectDialog()
+const { selectedProject, dialogRef, openProject, closeProject } = useProjectDialog()
 
 function projectsForYear(year: number) {
   return filteredProjects.value.filter((project) => project.year === year)
@@ -51,8 +50,6 @@ function projectsForYear(year: number) {
             :key="year"
             :year="year"
             :projects="projectsForYear(year)"
-            :transition-project-id="transitionProjectId"
-            :dialog-open="Boolean(selectedProject)"
             @select="openProject"
           />
         </div>

@@ -2,20 +2,19 @@
   "seo": {
     "description": "Vladislav Adamets — software engineering, web applications, and interfaces.",
     "ogTitle": "Vladislav Adamets",
-    "projectsTitle": "My projects — Vladislav Adamets",
+    "projectsTitle": "IT Track — Vladislav Adamets",
     "projectsDescription": "A set of sample projects by year, from systems engineering to interfaces.",
     "projectsComingSoonDescription": "Projects by Vladislav Adamets are coming soon."
   },
   "projects": {
     "teaser": {
-      "eyebrow": "Selected work",
-      "title": "My projects",
-      "description": "From system challenges to interfaces. Different directions, one story.",
-      "soonDescription": "I’m preparing a selection of work, from systems to interfaces.",
-      "soon": "Projects coming soon"
+      "title": "IT Track",
+      "description": "Projects, challenges, and experience in IT.",
+      "soonDescription": "Projects, challenges, and experience in IT.",
+      "soon": "clickable soon"
     },
     "back": "Back home",
-    "title": "My projects",
+    "title": "IT Track",
     "description": "Engineering project concepts, from service architecture to interfaces. Open a card to explore the challenge and the approach behind it.",
     "soonDescription": "My projects will appear here soon. While I prepare them, take a look at the home page.",
     "filter": {
@@ -52,7 +51,6 @@
       "identityLabel": "Hi, I'm"
     },
     "about": {
-      "eyebrow": "About me",
       "title": "Making complexity clear.",
       "description": "I care about products that feel simple to use and sound under the hood. I treat structure, interaction, and code quality as parts of the same problem.",
       "focusLabel": "What I do",
@@ -61,16 +59,10 @@
         "engineering": "Engineering and architecture",
         "systems": "Systems and processes"
       },
-      "stackLabel": "Toolkit",
-      "stackTitle": "The right technology for the task."
-    },
-    "web": {
-      "eyebrow": "One focus area",
-      "title": "Web development",
-      "description": "Web is one place I apply an engineering approach: building services and interfaces that are easy to use and maintain."
+      "curiosityTitle": "I like figuring things out.",
+      "curiosityDescription": "How systems are built, why they work, and what could be simpler."
     },
     "contact": {
-      "eyebrow": "Say hello",
       "title": "Have an idea? Let's talk.",
       "description": "Tell me about the challenge, the product, or just say hello. A good conversation is a place to start.",
       "action": "Get in touch",
@@ -106,6 +98,10 @@
       },
       "showEarlier": "Earlier positions",
       "collapse": "Collapse"
+    },
+    "web": {
+      "title": "Web development",
+      "description": "Web is one place I apply an engineering approach: building services and interfaces that are easy to use and maintain."
     }
   },
   "footer": {

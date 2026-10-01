@@ -5,8 +5,6 @@ import type { Project } from '@/types/projects'
 defineProps<{
   year: number
   projects: Project[]
-  transitionProjectId: string | null
-  dialogOpen: boolean
 }>()
 
 const emit = defineEmits<{ select: [project: Project, trigger: HTMLButtonElement] }>()
@@ -30,10 +28,6 @@ function selectProject(project: Project, event: MouseEvent) {
         :key="project.id"
         class="projects-year__card"
         :class="`projects-year__card--${project.tone}`"
-        :style="{
-          viewTransitionName:
-            transitionProjectId === project.projectId && !dialogOpen ? 'project-article' : undefined
-        }"
         type="button"
         :aria-label="`${t('projects.openProject')}: ${project.title}`"
         @click="selectProject(project, $event)"
