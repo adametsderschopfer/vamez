@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <rect width="32" height="32" rx="8" fill="#111"/>
-  <text x="16" y="22" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16" font-weight="700" fill="#9fca3c" text-anchor="middle" letter-spacing="-1">VA</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#254deb" />
+  <path d="M10 17h12l10 29 10-29h12L37 50H27z" fill="#f4f4f0" />
 </svg>

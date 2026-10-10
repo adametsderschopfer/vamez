@@ -27,16 +27,11 @@ defineProps<{ showProjects: boolean }>()
 
 <style scoped>
 .projects-hero {
-  --selection-text: var(--ink-on-dark);
-  --selection-background: var(--card-dark);
+  --projects-heading-space: clamp(3rem, 7vw, 6rem);
 
-  display: flex;
-  flex-direction: column;
-  min-height: clamp(22rem, 31vw, 31rem);
-  padding: clamp(1.5rem, 3vw, 2.75rem);
-  color: var(--ink-on-accent);
-  background: var(--card-accent);
-  border-radius: var(--card-radius);
+  display: grid;
+  gap: var(--projects-heading-space);
+  color: var(--ink);
 }
 
 .projects-hero__topline {
@@ -44,58 +39,69 @@ defineProps<{ showProjects: boolean }>()
   gap: 1rem;
   align-items: center;
   justify-content: space-between;
+  min-height: 3.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
 }
 
 .projects-hero__back {
   display: inline-flex;
-  gap: 0.45rem;
+  gap: 0.5rem;
   align-items: center;
-  font-size: 0.8rem;
-  font-weight: 700;
+  min-height: 2.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
   color: inherit;
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.25em;
+  transition: text-decoration-color 0.18s ease;
 }
 
-.projects-hero__back svg {
-  transition: transform 0.22s ease;
+.projects-hero__back:hover {
+  text-decoration-color: currentcolor;
 }
 
-.projects-hero__back:hover svg,
-.projects-hero__back:focus-visible svg {
-  transform: translate(-2px, -2px);
+.projects-hero__back:focus-visible {
+  outline: 2px solid var(--card-accent);
+  outline-offset: 0.3rem;
 }
 
 .projects-hero__body {
-  margin: auto 0;
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  padding-bottom: clamp(1.5rem, 3vw, 3rem);
 }
 
 .projects-hero__title {
   margin: 0;
-  font-size: clamp(4.2rem, 11vw, 12rem);
-  font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: -0.085em;
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 9vw, 6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
 }
 
 .projects-hero__description {
-  max-width: 35rem;
-  margin: clamp(1.5rem, 3vw, 2.5rem) 0 0;
-  font-size: clamp(0.95rem, 1.2vw, 1.18rem);
-  line-height: 1.6;
+  max-width: 55ch;
+  margin: 0;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.65;
 }
 
-@media (max-width: 600px) {
-  .projects-hero {
-    min-height: 24rem;
+@media (max-width: 380px) {
+  .projects-hero__topline {
+    gap: 0.5rem;
   }
 
-  .projects-hero__title {
-    font-size: clamp(3.7rem, 16vw, 6rem);
+  .projects-hero__back {
+    gap: 0.25rem;
+    font-size: 0.8rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .projects-hero__back svg {
+  .projects-hero__back {
     transition: none;
   }
 }

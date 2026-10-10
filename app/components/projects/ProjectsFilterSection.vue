@@ -11,7 +11,7 @@ const { t } = useI18n()
 <template>
   <div class="projects-filter" role="group" :aria-label="t('projects.filter.title')">
     <span class="projects-filter__label">{{ t('projects.filter.title') }}</span>
-    <div class="projects-filter__options" role="group" :aria-label="t('projects.filter.title')">
+    <div class="projects-filter__options">
       <button
         class="projects-filter__option"
         :class="{ 'projects-filter__option--selected': selectedTechnology === null }"
@@ -38,53 +38,49 @@ const { t } = useI18n()
 
 <style scoped>
 .projects-filter {
-  display: flex;
-  gap: clamp(0.75rem, 1.5vw, 1.5rem);
-  align-items: center;
+  --filter-target-size: 2.75rem;
+  --filter-gap: 0.5rem;
+
+  display: grid;
+  gap: 1rem;
   min-width: 0;
 }
 
 .projects-filter__label {
-  flex: none;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--ink-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.5;
 }
 
 .projects-filter__options {
   display: flex;
-  gap: 0.35rem;
+  flex-wrap: wrap;
+  gap: var(--filter-gap);
   min-width: 0;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.projects-filter__options::-webkit-scrollbar {
-  display: none;
 }
 
 .projects-filter__option {
-  flex: none;
-  min-height: 1.9rem;
-  padding: 0.25rem 0.6rem;
-  font-size: 0.68rem;
-  font-weight: 700;
+  min-width: var(--filter-target-size);
+  min-height: var(--filter-target-size);
+  padding: 0.65rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.3;
   color: var(--ink);
-  white-space: nowrap;
   cursor: pointer;
-  background: var(--card-surface);
+  background: transparent;
   border: 1px solid var(--line);
-  border-radius: 999px;
-  transition:
-    background-color 0.22s ease,
-    border-color 0.22s ease;
+  border-radius: var(--control-radius);
 }
 
-.projects-filter__option:hover,
+.projects-filter__option:hover {
+  background: var(--card-surface);
+  border-color: var(--ink);
+}
+
 .projects-filter__option:focus-visible {
-  border-color: var(--ink-muted);
+  outline: 2px solid var(--card-accent);
+  outline-offset: 0.2rem;
 }
 
 .projects-filter__option--selected {
@@ -93,15 +89,8 @@ const { t } = useI18n()
   border-color: var(--card-accent);
 }
 
-@media (max-width: 560px) {
-  .projects-filter__label {
-    font-size: 0.62rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .projects-filter__option {
-    transition: none;
-  }
+.projects-filter__option--selected:hover {
+  background: var(--card-accent);
+  border-color: var(--ink);
 }
 </style>

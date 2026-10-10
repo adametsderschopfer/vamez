@@ -62,13 +62,13 @@ export default defineNuxtConfig({
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'author', content: 'Vladislav Adamets' },
-        { name: 'theme-color', content: '#eaece7' },
+        { name: 'theme-color', content: '#e5e5e0' },
         { name: 'robots', content: 'index, follow' },
         { name: 'yandex-verification', content: '408e9c6c152e0036' }
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: publicAsset('favicon.svg') },
-        { rel: 'icon', type: 'image/x-icon', href: `${publicAsset('favicon.ico')}?v=20260413` },
+        { rel: 'icon', type: 'image/x-icon', href: `${publicAsset('favicon.ico')}?v=20261010` },
         { rel: 'icon', type: 'image/png', sizes: '48x48', href: publicAsset('favicon-48x48.png') },
         { rel: 'icon', type: 'image/png', sizes: '96x96', href: publicAsset('favicon-96x96.png') },
         { rel: 'apple-touch-icon', sizes: '180x180', href: publicAsset('apple-touch-icon.png') },

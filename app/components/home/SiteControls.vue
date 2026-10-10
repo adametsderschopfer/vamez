@@ -38,16 +38,13 @@ const themeActionLabel = computed(() =>
 
 <style scoped>
 .site-controls {
-  --site-controls-size: 2.55rem;
-  --site-controls-tint: color-mix(in srgb, var(--ink-on-accent) 10%, transparent);
+  --site-controls-size: 2.75rem;
 
   display: inline-flex;
+  flex: none;
   align-items: center;
-  padding: 0.18rem;
-  color: var(--ink-on-accent);
-  background: var(--site-controls-tint);
-  border: 1px solid color-mix(in srgb, var(--ink-on-accent) 13%, transparent);
-  border-radius: var(--control-radius);
+  color: var(--ink);
+  border: 1px solid var(--line);
 }
 
 .site-controls__button {
@@ -58,31 +55,21 @@ const themeActionLabel = computed(() =>
   height: var(--site-controls-size);
   padding: 0;
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   color: inherit;
   text-decoration: none;
   cursor: pointer;
   background: transparent;
   border: 0;
-  border-radius: var(--control-radius);
-  transition: background-color 0.2s ease;
 }
 
-.site-controls__button:hover,
-.site-controls__button:focus-visible {
-  background: var(--site-controls-tint);
+.site-controls__button:hover {
+  background: var(--card-soft);
 }
 
 .site-controls__divider {
-  flex: none;
+  align-self: stretch;
   width: 1px;
-  height: 1.2rem;
-  background: color-mix(in srgb, var(--ink-on-accent) 25%, transparent);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .site-controls__button {
-    transition: none;
-  }
+  background: var(--line);
 }
 </style>

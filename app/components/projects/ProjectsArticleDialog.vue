@@ -60,7 +60,7 @@ defineExpose({ focusClose, animateClose })
       @keydown="handleKeydown"
     >
       <div class="project-dialog__topline">
-        <span>{{ t('projects.example') }} / {{ project.year }}</span>
+        <span>{{ t('projects.example') }} / {{ project.year }} · {{ project.category }}</span>
         <button
           ref="closeRef"
           class="project-dialog__close"
@@ -72,7 +72,6 @@ defineExpose({ focusClose, animateClose })
         </button>
       </div>
       <div class="project-dialog__header">
-        <span class="project-dialog__category">{{ project.category }}</span>
         <h2 :id="`project-dialog-title-${project.projectId}`" class="project-dialog__title">
           {{ project.title }}
         </h2>
@@ -93,8 +92,7 @@ defineExpose({ focusClose, animateClose })
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: rgba(8, 13, 10, 0.7);
-  backdrop-filter: blur(0.35rem);
+  background: rgba(20, 20, 20, 0.7);
 }
 
 .project-dialog {
@@ -119,23 +117,20 @@ defineExpose({ focusClose, animateClose })
   gap: 1rem;
   align-items: center;
   justify-content: space-between;
-  font-family: var(--font-mono);
-  font-size: 0.67rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-size: 0.8125rem;
 }
 
 .project-dialog__close {
   display: grid;
   flex: none;
   place-items: center;
-  width: 2.7rem;
+  width: 2.75rem;
   aspect-ratio: 1;
   color: var(--ink);
   cursor: pointer;
   background: var(--card-soft);
   border: 0;
-  border-radius: 50%;
+  border-radius: var(--control-radius);
 }
 
 .project-dialog__header {
@@ -143,20 +138,12 @@ defineExpose({ focusClose, animateClose })
   border-bottom: 1px solid var(--line);
 }
 
-.project-dialog__category {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--ink-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
 .project-dialog__title {
   margin: 1rem 0;
-  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-size: clamp(2.5rem, 8vw, 5rem);
   font-weight: 700;
   line-height: 0.98;
-  letter-spacing: -0.085em;
+  letter-spacing: -0.035em;
 }
 
 .project-dialog__lead {
@@ -194,10 +181,9 @@ defineExpose({ focusClose, animateClose })
 
 .project-dialog__tags span {
   padding: 0.45rem 0.7rem;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.8125rem;
   background: var(--card-soft);
-  border-radius: 999px;
+  border-radius: var(--control-radius);
 }
 
 @media (max-width: 600px) {

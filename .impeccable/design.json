@@ -1,0 +1,412 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-10T18:05:01.379918Z",
+  "title": "Design System: Vamez",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Cobalt",
+        "tonalRamp": [
+          "oklch(15% 0.23992 266.01)",
+          "oklch(25% 0.23992 266.01)",
+          "oklch(35% 0.23992 266.01)",
+          "oklch(45% 0.23992 266.01)",
+          "oklch(55% 0.23992 266.01)",
+          "oklch(65% 0.23992 266.01)",
+          "oklch(80% 0.23992 266.01)",
+          "oklch(95% 0.23992 266.01)"
+        ]
+      },
+      "page-background": {
+        "role": "neutral",
+        "displayName": "Concrete",
+        "tonalRamp": [
+          "oklch(15% 0.00670 106.53)",
+          "oklch(25% 0.00670 106.53)",
+          "oklch(35% 0.00670 106.53)",
+          "oklch(45% 0.00670 106.53)",
+          "oklch(55% 0.00670 106.53)",
+          "oklch(65% 0.00670 106.53)",
+          "oklch(80% 0.00670 106.53)",
+          "oklch(95% 0.00670 106.53)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "tonalRamp": [
+          "oklch(15% 0.00530 106.50)",
+          "oklch(25% 0.00530 106.50)",
+          "oklch(35% 0.00530 106.50)",
+          "oklch(45% 0.00530 106.50)",
+          "oklch(55% 0.00530 106.50)",
+          "oklch(65% 0.00530 106.50)",
+          "oklch(80% 0.00530 106.50)",
+          "oklch(95% 0.00530 106.50)"
+        ]
+      },
+      "soft": {
+        "role": "neutral",
+        "displayName": "Soft concrete",
+        "tonalRamp": [
+          "oklch(15% 0.00677 106.54)",
+          "oklch(25% 0.00677 106.54)",
+          "oklch(35% 0.00677 106.54)",
+          "oklch(45% 0.00677 106.54)",
+          "oklch(55% 0.00677 106.54)",
+          "oklch(65% 0.00677 106.54)",
+          "oklch(80% 0.00677 106.54)",
+          "oklch(95% 0.00677 106.54)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15% 0.00000 0.00)",
+          "oklch(25% 0.00000 0.00)",
+          "oklch(35% 0.00000 0.00)",
+          "oklch(45% 0.00000 0.00)",
+          "oklch(55% 0.00000 0.00)",
+          "oklch(65% 0.00000 0.00)",
+          "oklch(80% 0.00000 0.00)",
+          "oklch(95% 0.00000 0.00)"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Muted ink",
+        "tonalRamp": [
+          "oklch(15% 0.00639 106.65)",
+          "oklch(25% 0.00639 106.65)",
+          "oklch(35% 0.00639 106.65)",
+          "oklch(45% 0.00639 106.65)",
+          "oklch(55% 0.00639 106.65)",
+          "oklch(65% 0.00639 106.65)",
+          "oklch(80% 0.00639 106.65)",
+          "oklch(95% 0.00639 106.65)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "tonalRamp": [
+          "oklch(15% 0.00978 113.21)",
+          "oklch(25% 0.00978 113.21)",
+          "oklch(35% 0.00978 113.21)",
+          "oklch(45% 0.00978 113.21)",
+          "oklch(55% 0.00978 113.21)",
+          "oklch(65% 0.00978 113.21)",
+          "oklch(80% 0.00978 113.21)",
+          "oklch(95% 0.00978 113.21)"
+        ]
+      },
+      "primary-text": {
+        "role": "neutral",
+        "displayName": "White",
+        "tonalRamp": [
+          "oklch(15% 0.00000 0.00)",
+          "oklch(25% 0.00000 0.00)",
+          "oklch(35% 0.00000 0.00)",
+          "oklch(45% 0.00000 0.00)",
+          "oklch(55% 0.00000 0.00)",
+          "oklch(65% 0.00000 0.00)",
+          "oklch(80% 0.00000 0.00)",
+          "oklch(95% 0.00000 0.00)"
+        ]
+      },
+      "dark-primary": {
+        "role": "primary",
+        "displayName": "Pale cobalt",
+        "tonalRamp": [
+          "oklch(15% 0.09168 271.29)",
+          "oklch(25% 0.09168 271.29)",
+          "oklch(35% 0.09168 271.29)",
+          "oklch(45% 0.09168 271.29)",
+          "oklch(55% 0.09168 271.29)",
+          "oklch(65% 0.09168 271.29)",
+          "oklch(80% 0.09168 271.29)",
+          "oklch(95% 0.09168 271.29)"
+        ]
+      },
+      "dark-page-background": {
+        "role": "neutral",
+        "displayName": "Dark concrete",
+        "tonalRamp": [
+          "oklch(15% 0.00000 0.00)",
+          "oklch(25% 0.00000 0.00)",
+          "oklch(35% 0.00000 0.00)",
+          "oklch(45% 0.00000 0.00)",
+          "oklch(55% 0.00000 0.00)",
+          "oklch(65% 0.00000 0.00)",
+          "oklch(80% 0.00000 0.00)",
+          "oklch(95% 0.00000 0.00)"
+        ]
+      },
+      "dark-surface": {
+        "role": "neutral",
+        "displayName": "Dark paper",
+        "tonalRamp": [
+          "oklch(15% 0.00000 0.00)",
+          "oklch(25% 0.00000 0.00)",
+          "oklch(35% 0.00000 0.00)",
+          "oklch(45% 0.00000 0.00)",
+          "oklch(55% 0.00000 0.00)",
+          "oklch(65% 0.00000 0.00)",
+          "oklch(80% 0.00000 0.00)",
+          "oklch(95% 0.00000 0.00)"
+        ]
+      },
+      "dark-soft": {
+        "role": "neutral",
+        "displayName": "Dark soft concrete",
+        "tonalRamp": [
+          "oklch(15% 0.00356 106.62)",
+          "oklch(25% 0.00356 106.62)",
+          "oklch(35% 0.00356 106.62)",
+          "oklch(45% 0.00356 106.62)",
+          "oklch(55% 0.00356 106.62)",
+          "oklch(65% 0.00356 106.62)",
+          "oklch(80% 0.00356 106.62)",
+          "oklch(95% 0.00356 106.62)"
+        ]
+      },
+      "dark-ink": {
+        "role": "neutral",
+        "displayName": "Light ink",
+        "tonalRamp": [
+          "oklch(15% 0.00929 106.57)",
+          "oklch(25% 0.00929 106.57)",
+          "oklch(35% 0.00929 106.57)",
+          "oklch(45% 0.00929 106.57)",
+          "oklch(55% 0.00929 106.57)",
+          "oklch(65% 0.00929 106.57)",
+          "oklch(80% 0.00929 106.57)",
+          "oklch(95% 0.00929 106.57)"
+        ]
+      },
+      "dark-ink-muted": {
+        "role": "neutral",
+        "displayName": "Light muted ink",
+        "tonalRamp": [
+          "oklch(15% 0.01123 106.67)",
+          "oklch(25% 0.01123 106.67)",
+          "oklch(35% 0.01123 106.67)",
+          "oklch(45% 0.01123 106.67)",
+          "oklch(55% 0.01123 106.67)",
+          "oklch(65% 0.01123 106.67)",
+          "oklch(80% 0.01123 106.67)",
+          "oklch(95% 0.01123 106.67)"
+        ]
+      },
+      "dark-line": {
+        "role": "neutral",
+        "displayName": "Dark rule",
+        "tonalRamp": [
+          "oklch(15% 0.00659 106.70)",
+          "oklch(25% 0.00659 106.70)",
+          "oklch(35% 0.00659 106.70)",
+          "oklch(45% 0.00659 106.70)",
+          "oklch(55% 0.00659 106.70)",
+          "oklch(65% 0.00659 106.70)",
+          "oklch(80% 0.00659 106.70)",
+          "oklch(95% 0.00659 106.70)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Home headline on larger screens."
+      },
+      "display-mobile": {
+        "displayName": "Mobile display",
+        "purpose": "Home headline at widths up to 600px."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Approach section heading."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Capability list names."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Home introductory copy."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Capability explanations."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Header section navigation."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "anchor-scroll",
+        "value": "smooth",
+        "purpose": "Section navigation; changes to auto for reduced motion."
+      },
+      {
+        "name": "archive-back-link",
+        "value": "text-decoration-color 0.18s ease",
+        "purpose": "Return-link underline feedback; removed for reduced motion."
+      },
+      {
+        "name": "article-open",
+        "value": "280ms cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Development article overlay opacity and transform; immediate for reduced motion."
+      },
+      {
+        "name": "article-close",
+        "value": "180ms cubic-bezier(0.4, 0, 1, 1)",
+        "purpose": "Development article overlay closing; immediate for reduced motion."
+      },
+      {
+        "name": "theme-change",
+        "value": "0ms",
+        "purpose": "Immediate light/dark token replacement."
+      },
+      {
+        "name": "error-return",
+        "value": "transform 0.2s ease",
+        "purpose": "Existing isolated error-page return action: translateY(-2px) hover and scale(0.975) active; removed for reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "archive-back-link-compact",
+        "value": "380px"
+      },
+      {
+        "name": "archive-row-and-footer",
+        "value": "560px"
+      },
+      {
+        "name": "home-hero-and-controls",
+        "value": "600px"
+      },
+      {
+        "name": "home-approach-and-project-strip",
+        "value": "760px"
+      },
+      {
+        "name": "home-contact-and-archive-year",
+        "value": "900px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary contact action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "A square accent action with a real contact-section destination.",
+      "html": "<a class=\"ds-primary\" href=\"#contacts\">Связаться<svg width=\"23\" height=\"23\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></a>",
+      "css": ".ds-primary{font-family:var(--font-body,'Golos Text',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif);display:inline-flex;gap:2rem;align-items:center;justify-content:space-between;min-height:3.75rem;padding:1rem 1.5rem;font-size:0.9375rem;font-weight:600;color:var(--ink-on-accent,#fff);text-decoration:none;background:var(--card-accent,#254deb);border:0;border-radius:0;cursor:pointer}.ds-primary:hover{background:color-mix(in srgb,var(--card-accent,#254deb) 85%,var(--ink,#141414))}.ds-primary:focus-visible{outline:2px solid currentColor;outline-offset:5px;}"
+    },
+    {
+      "name": "Header navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Plain section anchors; the complete header hides these links below 600px.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Навигация по странице\"><a class=\"ds-nav-link\" href=\"#about\">Обо мне</a><a class=\"ds-nav-link\" href=\"#contacts\">Контакты</a></nav>",
+      "css": ".ds-nav{font-family:var(--font-body,'Golos Text',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif);display:flex;gap:clamp(1rem,3vw,3rem);align-items:center}.ds-nav-link{display:inline-flex;align-items:center;min-height:2.75rem;font-size:0.875rem;font-weight:500;color:var(--ink,#141414);text-decoration:none;text-underline-offset:0.2em}.ds-nav-link:hover{text-decoration:underline}.ds-nav-link:focus-visible{outline:2px solid currentColor;outline-offset:5px;}"
+    },
+    {
+      "name": "Paired site controls",
+      "kind": "custom",
+      "refersTo": "site-control",
+      "description": "Language link and theme button share an outlined square-target group. Preview shows appearance only.",
+      "html": "<div class=\"ds-controls\"><a class=\"ds-control\" href=\"/en\" aria-label=\"Переключить язык\">RU</a><span class=\"ds-control-divider\" aria-hidden=\"true\"></span><button class=\"ds-control\" type=\"button\" aria-label=\"Включить тёмную тему\"><svg width=\"19\" height=\"19\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401\"/></svg></button></div>",
+      "css": ".ds-controls{font-family:var(--font-body,'Golos Text',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif);display:inline-flex;align-items:center;color:var(--ink,#141414);border:1px solid var(--line,#babbb4)}.ds-control{display:grid;place-items:center;width:2.75rem;height:2.75rem;padding:0;font-size:0.75rem;font-weight:600;color:inherit;text-decoration:none;background:transparent;border:0;border-radius:0;cursor:pointer}.ds-control:hover{background:var(--card-soft,#d8d8d3)}.ds-control:focus-visible{outline:2px solid currentColor;outline-offset:5px;}.ds-control-divider{align-self:stretch;width:1px;background:var(--line,#babbb4)}"
+    },
+    {
+      "name": "Contact row",
+      "kind": "custom",
+      "refersTo": "contact-row",
+      "description": "A direct destination in an open ruled contact list.",
+      "html": "<div class=\"ds-contact\"><a class=\"ds-contact-link\" href=\"https://t.me/adametsderschopfer\" target=\"_blank\" rel=\"noopener noreferrer\"><span class=\"ds-contact-text\"><span class=\"ds-contact-label\">Telegram</span><span class=\"ds-contact-detail\">@adametsderschopfer</span></span><svg width=\"19\" height=\"19\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></a></div>",
+      "css": ".ds-contact{font-family:var(--font-body,'Golos Text',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif);border-top:1px solid var(--line,#babbb4);border-bottom:1px solid var(--line,#babbb4)}.ds-contact-link{display:flex;gap:1rem;align-items:center;min-height:4.75rem;padding:1.25rem 0;color:var(--ink,#141414);text-decoration:none;background:transparent}.ds-contact-link:hover,.ds-contact-link:focus-visible{color:var(--card-accent,#254deb)}.ds-contact-link:focus-visible{outline:2px solid currentColor;outline-offset:5px;}.ds-contact-text{display:grid;gap:0.35rem;min-width:0}.ds-contact-label{font-size:1.2rem;font-weight:600;letter-spacing:-0.02em}.ds-contact-detail{font-size:0.875rem;line-height:1.4;color:var(--ink-muted,#565652);overflow-wrap:anywhere}.ds-contact-link svg{flex:none;margin-left:auto}"
+    },
+    {
+      "name": "Archive filter",
+      "kind": "chip",
+      "refersTo": "archive-filter",
+      "description": "An outlined technology filter with an accessible pressed state.",
+      "html": "<button class=\"ds-filter\" type=\"button\" aria-pressed=\"false\">Vue</button>",
+      "css": ".ds-filter{font-family:var(--font-body,'Golos Text',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif);min-width:2.75rem;min-height:2.75rem;padding:0.65rem 1rem;font-size:0.85rem;font-weight:500;line-height:1.3;color:var(--ink,#141414);background:transparent;border:1px solid var(--line,#babbb4);border-radius:var(--control-radius,0);cursor:pointer}.ds-filter:hover{background:var(--card-surface,#f4f4f0);border-color:var(--ink,#141414)}.ds-filter:focus-visible{outline:2px solid var(--card-accent,#254deb);outline-offset:0.2rem;}"
+    },
+    {
+      "name": "Selected archive filter",
+      "kind": "chip",
+      "refersTo": "archive-filter-selected",
+      "description": "Accent fill communicates the selected archive filter.",
+      "html": "<button class=\"ds-filter-selected\" type=\"button\" aria-pressed=\"true\">Все</button>",
+      "css": ".ds-filter-selected{font-family:var(--font-body,'Golos Text',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif);min-width:2.75rem;min-height:2.75rem;padding:0.65rem 1rem;font-size:0.85rem;font-weight:500;line-height:1.3;color:var(--ink-on-accent,#fff);background:var(--card-accent,#254deb);border:1px solid var(--card-accent,#254deb);border-radius:var(--control-radius,0);cursor:pointer}.ds-filter-selected:hover{border-color:var(--ink,#141414)}.ds-filter-selected:focus-visible{outline:2px solid var(--card-accent,#254deb);outline-offset:0.2rem;}"
+    },
+    {
+      "name": "Archive row",
+      "kind": "custom",
+      "refersTo": "archive-row",
+      "description": "A ruled archive action. Preview labels describe the existing sample-project state.",
+      "html": "<div class=\"ds-archive\"><button class=\"ds-archive-row\" type=\"button\"><span class=\"ds-archive-category\">Демонстрационный проект</span><span class=\"ds-archive-content\"><span class=\"ds-archive-title\">IT Track</span><span class=\"ds-archive-summary\">Концепты инженерных проектов — от архитектуры сервисов до интерфейсов.</span></span><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></button></div>",
+      "css": ".ds-archive{font-family:var(--font-body,'Golos Text',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif);border-bottom:1px solid var(--line,#babbb4)}.ds-archive-row{display:grid;grid-template-columns:minmax(6.5rem,0.28fr) minmax(0,1fr) auto;gap:clamp(1rem,2vw,2rem);align-items:start;width:100%;padding:clamp(1.5rem,2.5vw,2rem) 1rem;color:var(--ink,#141414);text-align:left;background:transparent;border:0;border-radius:var(--control-radius,0);cursor:pointer}.ds-archive-row:hover{background:var(--card-surface,#f4f4f0)}.ds-archive-row:focus-visible{outline:2px solid var(--card-accent,#254deb);outline-offset:0.2rem;}.ds-archive-category{padding-top:0.25rem;font-size:0.85rem;line-height:1.5;color:var(--ink-muted,#565652)}.ds-archive-content{display:grid;gap:0.75rem;min-width:0}.ds-archive-title{font-size:clamp(1.5rem,2.4vw,2.4rem);font-weight:600;line-height:1.15;letter-spacing:-0.03em}.ds-archive-summary{max-width:60ch;font-size:0.95rem;line-height:1.6}.ds-archive-row svg{margin-top:0.25rem}.ds-archive-row:hover .ds-archive-title,.ds-archive-row:hover svg{color:var(--card-accent,#254deb)}@media(max-width:560px){.ds-archive-row{grid-template-columns:minmax(0,1fr) auto;row-gap:1rem;padding-right:0;padding-left:0}.ds-archive-category{grid-column:1;padding:0}.ds-archive-content{grid-row:2;grid-column:1/-1}.ds-archive-row svg{grid-row:1;grid-column:2;margin:0}}"
+    },
+    {
+      "name": "Article technology tag",
+      "kind": "chip",
+      "refersTo": "article-tag",
+      "description": "A static neutral tag in the development article overlay.",
+      "html": "<span class=\"ds-article-tag\">Vue</span>",
+      "css": ".ds-article-tag{font-family:var(--font-body,'Golos Text',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif);display:inline-block;padding:0.45rem 0.7rem;font-size:0.8125rem;color:var(--ink,#141414);background:var(--card-soft,#d8d8d3);border-radius:var(--control-radius,0)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Engineering Monograph",
+    "overview": "Vamez gives an author and engineer a direct, material presence. Concrete gray, dense black typography and a cobalt action create the character of a pragmatic engineering publication. Scale, whitespace and thin rules carry the composition.\n\nThe system is brutal, beautiful, simple and pragmatic. Surfaces remain open; typography establishes hierarchy. Content appears immediately, and controls express their purpose without decoration.",
+    "keyCharacteristics": [
+      "Heavy Cyrillic and Latin typography from one family.",
+      "Open sections with thin functional separators.",
+      "Square controls and a restrained cobalt accent.",
+      "Responsive columns that become a clear reading sequence.",
+      "Immediate theme changes and visible keyboard focus."
+    ],
+    "rules": [
+      {
+        "name": "The Action Color Rule",
+        "body": "Accent color marks interaction and feedback; it does not become a decorative section background.",
+        "section": "colors"
+      },
+      {
+        "name": "The Single Family Rule",
+        "body": "Typography gains contrast through scale and weight within Golos Text rather than through extra display faces.",
+        "section": "typography"
+      },
+      {
+        "name": "The Open Surface Rule",
+        "body": "Present content as open sections and ruled rows. Reserve filled neutral surfaces for temporary reading content, error content and interaction states.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use Golos Text, the shared palette and square geometry.",
+      "Do let scale, whitespace and thin rules explain hierarchy.",
+      "Do preserve readable Russian and English wrapping at small widths.",
+      "Do keep keyboard focus, semantic landmarks and real anchor destinations.",
+      "Do use motion only for functional navigation or article state changes, respecting reduced motion."
+    ],
+    "donts": [
+      "Don't wrap ordinary content in decorative cards or grids.",
+      "Don't add rounded controls, shadows or ornamental section backgrounds.",
+      "Don't add typing effects, delayed reveals or decorative entrance animation.",
+      "Don't turn contact navigation into a modal.",
+      "Don't invent projects, achievements or client claims to fill the layout."
+    ]
+  }
+}

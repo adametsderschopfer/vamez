@@ -19,197 +19,184 @@ function selectProject(project: Project, event: MouseEvent) {
 
 <template>
   <section class="projects-year" :aria-labelledby="`projects-year-${year}`">
-    <div class="projects-year__marker">
-      <h2 :id="`projects-year-${year}`" class="projects-year__number">{{ year }}</h2>
-    </div>
-    <div class="projects-year__grid">
-      <button
-        v-for="project in projects"
-        :key="project.id"
-        class="projects-year__card"
-        :class="`projects-year__card--${project.tone}`"
-        type="button"
-        :aria-label="`${t('projects.openProject')}: ${project.title}`"
-        @click="selectProject(project, $event)"
-      >
-        <span class="projects-year__card-topline">
-          <span>{{ project.category }}</span>
+    <h2 :id="`projects-year-${year}`" class="projects-year__number">{{ year }}</h2>
+    <ul class="projects-year__list">
+      <li v-for="project in projects" :key="project.id" class="projects-year__item">
+        <button
+          class="projects-year__project"
+          type="button"
+          :aria-label="`${t('projects.openProject')}: ${project.title}`"
+          @click="selectProject(project, $event)"
+        >
+          <span class="projects-year__category">{{ project.category }}</span>
+          <span class="projects-year__content">
+            <span class="projects-year__title">{{ project.title }}</span>
+            <span class="projects-year__summary">{{ project.description }}</span>
+            <span class="projects-year__technologies">
+              <span
+                v-for="technology in project.technologies"
+                :key="technology"
+                class="projects-year__technology"
+              >
+                {{ technology }}
+              </span>
+            </span>
+          </span>
           <ArrowUpRight
             class="projects-year__arrow"
-            :size="19"
-            :stroke-width="1.6"
+            :size="24"
+            :stroke-width="1.5"
             aria-hidden="true"
           />
-        </span>
-        <span class="projects-year__card-content">
-          <span class="projects-year__card-title">{{ project.title }}</span>
-          <span class="projects-year__card-summary">{{ project.description }}</span>
-        </span>
-        <span class="projects-year__card-tags" aria-hidden="true">
-          <span v-for="technology in project.technologies" :key="technology">{{ technology }}</span>
-        </span>
-      </button>
-    </div>
+        </button>
+      </li>
+    </ul>
   </section>
 </template>
 
 <style scoped>
 .projects-year {
+  --archive-column-gap: clamp(2rem, 5vw, 5rem);
+  --archive-row-space: clamp(1.5rem, 2.5vw, 2rem);
+  --archive-row-inset: 1rem;
+
   display: grid;
-  grid-template-columns: minmax(9rem, 0.26fr) minmax(0, 1fr);
-  gap: var(--grid-gap);
-  padding-top: clamp(1.5rem, 3vw, 2.75rem);
+  grid-template-columns: minmax(6rem, 0.18fr) minmax(0, 1fr);
+  gap: var(--archive-column-gap);
+  padding-top: var(--archive-row-space);
   border-top: 1px solid var(--line);
 }
 
-.projects-year__marker {
+.projects-year__number {
   position: sticky;
   top: var(--page-gutter);
-  z-index: 1;
   align-self: start;
-}
-
-.projects-year__number {
   margin: 0;
-  font-size: clamp(3.4rem, 6vw, 6.5rem);
-  font-weight: 700;
-  line-height: 0.9;
-  letter-spacing: -0.09em;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  letter-spacing: -0.04em;
 }
 
-.projects-year__grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--grid-gap);
-}
-
-.projects-year__card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.projects-year__list {
   min-width: 0;
-  min-height: clamp(16rem, 22vw, 20rem);
-  padding: clamp(1.25rem, 2.25vw, 2rem);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.projects-year__item {
+  border-bottom: 1px solid var(--line);
+}
+
+.projects-year__project {
+  display: grid;
+  grid-template-columns: minmax(6.5rem, 0.28fr) minmax(0, 1fr) auto;
+  gap: clamp(1rem, 2vw, 2rem);
+  align-items: start;
+  width: 100%;
+  padding: var(--archive-row-space) var(--archive-row-inset);
   color: var(--ink);
   text-align: left;
   cursor: pointer;
+  background: transparent;
   border: 0;
-  border-radius: var(--card-radius);
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  border-radius: var(--control-radius);
 }
 
-.projects-year__card:hover,
-.projects-year__card:focus-visible {
-  transform: translateY(-4px);
-}
-
-.projects-year__card--accent {
-  color: var(--ink-on-accent);
-  background: var(--card-accent);
-}
-
-.projects-year__card--soft {
-  background: var(--card-soft);
-}
-
-.projects-year__card--purple {
-  background: var(--card-purple);
-}
-
-.projects-year__card--surface {
+.projects-year__project:hover {
   background: var(--card-surface);
 }
 
-.projects-year__card-topline {
+.projects-year__project:focus-visible {
+  outline: 2px solid var(--card-accent);
+  outline-offset: 0.2rem;
+}
+
+.projects-year__category {
+  padding-top: 0.25rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
+
+.projects-year__content {
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.projects-year__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.4vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.projects-year__summary {
+  max-width: 60ch;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.projects-year__technologies {
   display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-  justify-content: space-between;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  margin-top: 0.5rem;
+}
+
+.projects-year__technology {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--ink-muted);
 }
 
 .projects-year__arrow {
-  flex: none;
-  transition: transform 0.22s ease;
+  margin-top: 0.25rem;
 }
 
-.projects-year__card:hover .projects-year__arrow,
-.projects-year__card:focus-visible .projects-year__arrow {
-  transform: translate(2px, -2px);
+.projects-year__project:hover .projects-year__title,
+.projects-year__project:hover .projects-year__arrow {
+  color: var(--card-accent);
 }
 
-.projects-year__card-content {
-  display: grid;
-  gap: 0.8rem;
-  margin: 2.5rem 0;
-}
-
-.projects-year__card-title {
-  font-size: clamp(1.6rem, 2.3vw, 2.5rem);
-  font-weight: 700;
-  line-height: 1.03;
-  letter-spacing: -0.07em;
-}
-
-.projects-year__card-summary {
-  max-width: 29ch;
-  font-size: 0.85rem;
-  line-height: 1.5;
-}
-
-.projects-year__card-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-.projects-year__card-tags span {
-  padding: 0.35rem 0.55rem;
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  border: 1px solid currentcolor;
-  border-radius: 999px;
-}
-
-@media (max-width: 1100px) {
-  .projects-year__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .projects-year {
     grid-template-columns: 1fr;
-  }
-
-  .projects-year__marker {
-    top: 0;
-    padding: 0.75rem 0;
-    background: var(--page-background);
+    gap: 1.5rem;
   }
 
   .projects-year__number {
-    font-size: clamp(2.8rem, 9vw, 3.7rem);
+    position: static;
   }
 }
 
 @media (max-width: 560px) {
-  .projects-year__grid {
-    grid-template-columns: 1fr;
+  .projects-year__project {
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 1rem;
+    padding-right: 0;
+    padding-left: 0;
   }
 
-  .projects-year__card {
-    min-height: 17rem;
+  .projects-year__category {
+    grid-column: 1;
+    padding: 0;
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .projects-year__card,
+  .projects-year__content {
+    grid-row: 2;
+    grid-column: 1 / -1;
+  }
+
   .projects-year__arrow {
-    transition: none;
+    grid-row: 1;
+    grid-column: 2;
+    margin: 0;
   }
 }
 </style>

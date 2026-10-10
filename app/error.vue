@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import { errorMessages } from '@/data/errorMessages'
+
+useThemeMode()
+
 type NuxtError = {
+  url?: string
   statusCode?: number
   statusMessage?: string
   message?: string
@@ -9,43 +14,42 @@ const props = defineProps<{
   error: NuxtError
 }>()
 
-let t: (key: string) => string = (key) => key
-try {
-  const i18n = useI18n()
-  t = i18n.t
-} catch {
-  // i18n not available in error context, use key as fallback
-}
-
+const requestUrl = useRequestURL()
+const errorPath = ref(new URL(props.error.url || requestUrl.pathname, requestUrl.origin).pathname)
+const errorLocale = computed(() => (/^\/en(?:\/|$)/.test(errorPath.value) ? 'en' : 'ru'))
+onMounted(() => {
+  errorPath.value = window.location.pathname
+})
+const messages = computed(() => errorMessages[errorLocale.value])
+const homePath = computed(() => (errorLocale.value === 'en' ? '/en' : '/'))
 const statusCode = computed(() => props.error.statusCode ?? 500)
 const isClientError = computed(() => statusCode.value >= 400 && statusCode.value < 500)
-
 const contentMap = computed(() =>
-  isClientError.value
-    ? {
-        eyebrow: '',
-        title: t('error.client.title'),
-        description: t('error.client.description')
-      }
-    : {
-        eyebrow: t('error.server.eyebrow'),
-        title: t('error.server.title'),
-        description: t('error.server.description')
-      }
+  isClientError.value ? messages.value.client : messages.value.server
 )
+
+useHead(() => ({
+  htmlAttrs: { lang: errorLocale.value === 'en' ? 'en-US' : 'ru-RU', dir: 'ltr' },
+  title: `${statusCode.value} — ${contentMap.value.title}`,
+  meta: [
+    { name: 'robots', content: 'noindex, follow' },
+    { name: 'description', content: contentMap.value.description }
+  ]
+}))
 </script>
 
 <template>
   <div class="error-screen">
-    <main class="error-screen__main">
+    <main id="main-content" class="error-screen__main">
       <div class="error-screen__content">
-        <p v-if="contentMap.eyebrow" class="error-screen__eyebrow">{{ contentMap.eyebrow }}</p>
         <p class="error-screen__code">{{ statusCode }}</p>
         <h1 class="error-screen__title">{{ contentMap.title }}</h1>
         <p class="error-screen__description">
           {{ contentMap.description }}
         </p>
-        <NuxtLink class="error-screen__home-link" to="/">{{ t('error.actions.home') }}</NuxtLink>
+        <NuxtLink class="error-screen__home-link" :to="homePath">{{
+          messages.actions.home
+        }}</NuxtLink>
       </div>
     </main>
   </div>
@@ -75,22 +79,13 @@ const contentMap = computed(() =>
   border-radius: var(--card-radius);
 }
 
-.error-screen__eyebrow {
-  margin: 0;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--ink-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-}
-
 .error-screen__code {
   margin: 0;
   font-size: clamp(5rem, 17vw, 11rem);
   font-weight: 800;
   line-height: 0.9;
   color: var(--ink);
-  letter-spacing: -0.1em;
+  letter-spacing: -0.04em;
 }
 
 .error-screen__title {
@@ -99,7 +94,7 @@ const contentMap = computed(() =>
   font-weight: 700;
   line-height: 1.05;
   color: var(--ink);
-  letter-spacing: -0.06em;
+  letter-spacing: -0.03em;
 }
 
 .error-screen__description {
@@ -119,12 +114,12 @@ const contentMap = computed(() =>
   margin-top: 1rem;
   font-size: 0.85rem;
   font-weight: 700;
-  color: #1b221d;
+  color: var(--ink-on-accent);
   text-decoration: none;
   cursor: pointer;
   background: var(--card-accent);
   border: 0;
-  border-radius: 999px;
+  border-radius: var(--control-radius);
   transition: transform 0.2s ease;
 }
 
@@ -134,5 +129,11 @@ const contentMap = computed(() =>
 
 .error-screen__home-link:hover {
   transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .error-screen__home-link {
+    transition: none;
+  }
 }
 </style>

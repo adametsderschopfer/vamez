@@ -37,23 +37,25 @@ function projectsForYear(year: number) {
 <template>
   <div class="projects-page">
     <div class="projects-page__content" :inert="selectedProject ? true : undefined">
-      <ProjectsHeroSection :show-projects="showProjects" />
-      <div v-if="showProjects" class="projects-page__archive">
-        <ProjectsFilterSection
-          :technologies="projectTechnologies"
-          :selected-technology="selectedTechnology"
-          @select="selectedTechnology = $event"
-        />
-        <div class="projects-page__years" :aria-label="t('projects.title')">
-          <ProjectsYearSection
-            v-for="year in visibleYears"
-            :key="year"
-            :year="year"
-            :projects="projectsForYear(year)"
-            @select="openProject"
+      <main id="main-content" class="projects-page__main">
+        <ProjectsHeroSection :show-projects="showProjects" />
+        <div v-if="showProjects" class="projects-page__archive">
+          <ProjectsFilterSection
+            :technologies="projectTechnologies"
+            :selected-technology="selectedTechnology"
+            @select="selectedTechnology = $event"
           />
+          <div class="projects-page__years" :aria-label="t('projects.title')">
+            <ProjectsYearSection
+              v-for="year in visibleYears"
+              :key="year"
+              :year="year"
+              :projects="projectsForYear(year)"
+              @select="openProject"
+            />
+          </div>
         </div>
-      </div>
+      </main>
       <footer class="projects-page__footer">
         <span>© {{ new Date().getFullYear() }} · {{ t('seo.ogTitle') }}</span>
         <span v-if="showProjects">{{ t('projects.footer') }}</span>
@@ -77,9 +79,14 @@ function projectsForYear(year: number) {
 .projects-page__content {
   display: grid;
   gap: clamp(2rem, 4vw, 4rem);
-  width: min(100%, 1800px);
-  padding: var(--page-gutter) var(--page-gutter) 0;
+  width: min(100%, var(--content-width));
+  padding: 0 var(--page-gutter);
   margin: 0 auto;
+}
+
+.projects-page__main {
+  display: grid;
+  gap: var(--section-space);
 }
 
 .projects-page__archive {
@@ -97,8 +104,7 @@ function projectsForYear(year: number) {
   gap: 1rem;
   justify-content: space-between;
   padding: 1.5rem 0;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.8125rem;
   color: var(--ink-muted);
   border-top: 1px solid var(--line);
 }

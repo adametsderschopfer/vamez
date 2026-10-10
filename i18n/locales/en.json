@@ -1,7 +1,7 @@
 {
   "seo": {
-    "description": "Vladislav Adamets — software engineering, web applications, and interfaces.",
-    "ogTitle": "Vladislav Adamets",
+    "description": "Vladislav Adamets — author and engineer. System architecture, reliable services, and clear interfaces. Explore my approach, projects, and contact details.",
+    "ogTitle": "Vladislav Adamets — author and engineer",
     "projectsTitle": "IT Track — Vladislav Adamets",
     "projectsDescription": "A set of sample projects by year, from systems engineering to interfaces.",
     "projectsComingSoonDescription": "Projects by Vladislav Adamets are coming soon."
@@ -11,11 +11,11 @@
       "title": "IT Track",
       "description": "Projects, challenges, and experience in IT.",
       "soonDescription": "Projects, challenges, and experience in IT.",
-      "soon": "clickable soon"
+      "soon": "In preparation"
     },
     "back": "Back home",
     "title": "IT Track",
-    "description": "Engineering project concepts, from service architecture to interfaces. Open a card to explore the challenge and the approach behind it.",
+    "description": "Engineering project concepts, from service architecture to interfaces. Open a project to explore the challenge and the approach behind it.",
     "soonDescription": "My projects will appear here soon. While I prepare them, take a look at the home page.",
     "filter": {
       "title": "Technologies",
@@ -39,37 +39,44 @@
     "switchToLight": "Switch to light theme",
     "switchLanguage": "Switch language",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "skipToContent": "Skip to content"
   },
   "home": {
     "hero": {
-      "titleStart": "I build systems",
-      "titleAccent": "that work.",
-      "description": "I tackle complex problems, design architecture, and turn ideas into reliable systems, from services to interfaces.",
+      "titleStart": "Engineering thought,",
+      "titleAccent": "made tangible.",
+      "description": "I design systems, write code, and build interfaces. Turning complex challenges into clear solutions.",
       "contactAction": "Get in touch",
-      "aboutAction": "More about me",
-      "identityLabel": "Hi, I'm"
+      "aboutAction": "My approach",
+      "identityLabel": "Author. Engineer."
     },
     "about": {
-      "title": "Making complexity clear.",
-      "description": "I care about products that feel simple to use and sound under the hood. I treat structure, interaction, and code quality as parts of the same problem.",
+      "title": "Think deeper. Build simpler.",
+      "description": "I explore the problem, find its core, and build a coherent solution. Architecture, code, and interface are parts of the same system.",
       "focusLabel": "What I do",
       "focus": {
-        "interfaces": "Interfaces and experience",
-        "engineering": "Engineering and architecture",
+        "interfaces": "Interfaces",
+        "engineering": "Architecture and code",
         "systems": "Systems and processes"
       },
       "curiosityTitle": "I like figuring things out.",
-      "curiosityDescription": "How systems are built, why they work, and what could be simpler."
+      "curiosityDescription": "How systems are built, why they work, and what could be simpler.",
+      "focusDescription": {
+        "engineering": "From service architecture to reliable implementation.",
+        "systems": "Clear connections, sound structure, less unnecessary complexity.",
+        "interfaces": "Thoughtful behavior and usability for people."
+      }
     },
     "contact": {
-      "title": "Have an idea? Let's talk.",
-      "description": "Tell me about the challenge, the product, or just say hello. A good conversation is a place to start.",
+      "title": "Let's get to work.",
+      "description": "Tell me about your challenge or idea. Let's discuss how to solve it.",
       "action": "Get in touch",
       "closeAction": "Hide contacts",
       "linksLabel": "Contact me",
       "copied": "Copied",
-      "failed": "Could not copy"
+      "failed": "Could not copy",
+      "copyEmail": "Copy email address"
     },
     "footer": {
       "backToTop": "Back to top"
@@ -102,24 +109,11 @@
     "web": {
       "title": "Web development",
       "description": "Web is one place I apply an engineering approach: building services and interfaces that are easy to use and maintain."
-    }
+    },
+    "navigation": "Page navigation"
   },
   "footer": {
     "madeWith": "Made with ❤️",
     "rightsReserved": "All rights reserved"
-  },
-  "error": {
-    "client": {
-      "title": "Page Not Found",
-      "description": "It looks like this address does not exist."
-    },
-    "server": {
-      "eyebrow": "Server Error",
-      "title": "Something Went Wrong",
-      "description": "The issue happened on our side. Try refreshing the page a bit later."
-    },
-    "actions": {
-      "home": "Back Home"
-    }
   }
 }

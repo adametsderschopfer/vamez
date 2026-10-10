@@ -9,9 +9,9 @@ const year = new Date().getFullYear()
 <template>
   <footer class="home-footer">
     <span class="home-footer__copyright">© {{ year }} · {{ t('footer.rightsReserved') }}</span>
-    <a class="home-footer__top" href="#top" @click.prevent="scrollToSection('top')">
+    <a class="home-footer__top" href="#top" @click="scrollToSection('top', $event)">
       {{ t('home.footer.backToTop') }}
-      <ArrowUp class="home-footer__top-arrow" :size="15" :stroke-width="1.7" aria-hidden="true" />
+      <ArrowUp class="home-footer__top-arrow" :size="18" :stroke-width="1.7" aria-hidden="true" />
     </a>
   </footer>
 </template>
@@ -22,14 +22,14 @@ const year = new Date().getFullYear()
   gap: 1rem;
   align-items: center;
   justify-content: space-between;
-  min-height: 5rem;
-  padding: 1rem 0;
+  padding: 1.5rem 0 2rem;
+  border-top: 1px solid var(--line);
 }
 
 .home-footer__copyright,
 .home-footer__top {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
   color: var(--ink-muted);
 }
 
@@ -41,18 +41,18 @@ const year = new Date().getFullYear()
   text-decoration: none;
 }
 
-.home-footer__top-arrow {
-  transition: transform 0.22s ease;
+.home-footer__top:hover,
+.home-footer__top:focus-visible {
+  color: var(--card-accent);
 }
 
-.home-footer__top:hover .home-footer__top-arrow,
-.home-footer__top:focus-visible .home-footer__top-arrow {
-  transform: translateY(-2px);
-}
+@media (max-width: 560px) {
+  .home-footer {
+    align-items: flex-start;
+  }
 
-@media (prefers-reduced-motion: reduce) {
-  .home-footer__top-arrow {
-    transition: none;
+  .home-footer__copyright {
+    max-width: 22ch;
   }
 }
 </style>
