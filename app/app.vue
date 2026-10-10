@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { t, locale } = useI18n()
+const { scrollToSection } = useSectionScroll()
 const route = useRoute()
 const runtimeConfig = useRuntimeConfig()
 const i18nHead = useLocaleHead({ seo: true })
@@ -110,7 +111,13 @@ useHead(() => ({
 <template>
   <div class="app-shell">
     <NuxtRouteAnnouncer />
-    <a class="app-shell__skip" href="#main-content">{{ t('controls.skipToContent') }}</a>
+    <a
+      class="app-shell__skip"
+      href="#main-content"
+      @click="scrollToSection('main-content', $event)"
+    >
+      {{ t('controls.skipToContent') }}
+    </a>
     <NuxtPage />
     <noscript>
       <div>

@@ -1,7 +1,7 @@
-type HomeSectionId = 'about' | 'contacts' | 'top'
+type SectionId = 'about' | 'contacts' | 'top' | 'main-content'
 
 export function useSectionScroll() {
-  function scrollToSection(id: HomeSectionId, event?: MouseEvent) {
+  function scrollToSection(id: SectionId, event?: MouseEvent) {
     if (
       event &&
       (event.defaultPrevented ||
@@ -19,11 +19,10 @@ export function useSectionScroll() {
 
     event?.preventDefault()
 
-    if (window.location.hash === `#${id}`) {
-      section.scrollIntoView({ block: 'start' })
-    } else {
-      window.location.hash = id
-    }
+    section.scrollIntoView({ block: 'start' })
+
+    // Pointer navigation only scrolls; keyboard navigation also moves focus.
+    if (event && event.detail > 0) return
 
     const heading = section.querySelector<HTMLElement>('h1, h2') ?? section
     const needsTabIndex = !heading.hasAttribute('tabindex')
