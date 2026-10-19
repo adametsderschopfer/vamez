@@ -23,17 +23,8 @@ onNuxtReady(() => {
   analyticsReady.value = !import.meta.dev
 })
 const localeLanguage = computed(() => (locale.value === 'ru' ? 'ru-RU' : 'en-US'))
-const isProjectsPage = computed(() => /\/projects\/?$/.test(route.path))
-const pageTitle = computed(() => t(isProjectsPage.value ? 'seo.projectsTitle' : 'seo.ogTitle'))
-const pageDescription = computed(() =>
-  t(
-    isProjectsPage.value
-      ? import.meta.dev
-        ? 'seo.projectsDescription'
-        : 'seo.projectsComingSoonDescription'
-      : 'seo.description'
-  )
-)
+const pageTitle = computed(() => t('seo.ogTitle'))
+const pageDescription = computed(() => t('seo.description'))
 const personName = computed(() => `${t('home.intro.firstName')} ${t('home.intro.lastName')}`)
 const personId = computed(() => `${baseUrl.value}/#person`)
 const structuredData = computed(() => ({
@@ -75,6 +66,14 @@ useHead(() => ({
   htmlAttrs: i18nHead.value.htmlAttrs,
   title: pageTitle.value,
   link: i18nHead.value.link || [],
+  noscript: [
+    {
+      key: 'yandex-metrika-fallback',
+      tagPosition: 'bodyClose',
+      innerHTML:
+        '<div><img src="https://mc.yandex.ru/watch/108521187" style="position:absolute;left:-9999px" alt=""></div>'
+    }
+  ],
   script: [
     ...(analyticsReady.value
       ? [{ key: 'yandex-metrika', src: metrikaScriptUrl.value, defer: true }]
@@ -122,15 +121,6 @@ useHead(() => ({
     <ClientOnly>
       <InkCursor />
     </ClientOnly>
-    <noscript>
-      <div>
-        <img
-          src="https://mc.yandex.ru/watch/108521187"
-          style="position: absolute; left: -9999px"
-          alt=""
-        />
-      </div>
-    </noscript>
   </div>
 </template>
 

@@ -28,6 +28,7 @@ onMounted(() => {
         </h1>
       </div>
       <div class="home-hero__summary">
+        <p class="home-hero__role">{{ t('home.hero.role') }}</p>
         <i18n-t
           keypath="home.hero.description"
           tag="p"
@@ -58,11 +59,12 @@ onMounted(() => {
 
 <style scoped>
 .home-hero {
-  --hero-space: clamp(2rem, 4vw, 4rem);
-  --hero-title-gap: clamp(1.5rem, 3vw, 2.5rem);
+  --hero-space: clamp(3rem, 5vw, 5rem);
+  --hero-title-gap: clamp(1.5rem, 3vw, 3rem);
   --hero-summary-gap: clamp(1.25rem, 2vw, 1.5rem);
 
   position: relative;
+  overflow: clip;
   isolation: isolate;
 }
 
@@ -73,19 +75,31 @@ onMounted(() => {
   gap: var(--hero-title-gap);
   align-content: center;
   justify-items: center;
-  min-height: calc(100svh - var(--header-height));
+  min-height: max(42rem, calc(100svh - var(--header-height)));
   padding: var(--hero-space) 0;
 }
 
 .home-hero__name {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5.6vw, 6.5rem);
+  font-size: clamp(4rem, 12vw, 12rem);
   font-weight: 800;
-  line-height: 1;
+  line-height: 0.88;
   text-align: center;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.065em;
   text-wrap: balance;
+}
+
+.home-hero__first-name,
+.home-hero__last-name {
+  display: block;
+}
+
+.home-hero__role {
+  margin: 0;
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 
 .home-hero__summary {
@@ -133,11 +147,11 @@ onMounted(() => {
   padding: 1rem 1.25rem;
   font-size: 1rem;
   font-weight: 600;
-  color: var(--ink);
+  color: var(--ink-on-accent);
   text-decoration: none;
   cursor: pointer;
-  background: transparent;
-  border: 1px solid var(--line);
+  background: var(--card-accent);
+  border: 0;
   transition:
     transform var(--motion-fast) var(--ease-out),
     background-color var(--motion-fast) ease,
@@ -145,9 +159,8 @@ onMounted(() => {
 }
 
 .home-hero__contact:focus-visible {
-  color: var(--ink-on-accent);
-  background: var(--card-accent);
-  border-color: var(--card-accent);
+  color: var(--page-background);
+  background: var(--ink);
 }
 
 .home-hero__contact-arrow {
@@ -156,9 +169,8 @@ onMounted(() => {
 
 @media (hover: hover) and (pointer: fine) {
   .home-hero__contact:hover {
-    color: var(--ink-on-accent);
-    background: var(--card-accent);
-    border-color: var(--card-accent);
+    color: var(--page-background);
+    background: var(--ink);
   }
 }
 
@@ -176,11 +188,12 @@ onMounted(() => {
 
 @media (max-width: 600px) {
   .home-hero__body {
-    min-height: 0;
+    min-height: max(35rem, calc(90svh - var(--header-height)));
+    padding: 5rem 0;
   }
 
   .home-hero__name {
-    font-size: clamp(1.75rem, 8.3vw, 3.125rem);
+    font-size: clamp(2.75rem, 13.5vw, 5rem);
   }
 
   .home-hero__description {

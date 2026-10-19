@@ -9,12 +9,6 @@ const email = 'adametsderschopfer@yandex.ru'
 
 const contacts = [
   {
-    label: 'Telegram',
-    detail: '@adametsderschopfer',
-    href: 'https://t.me/adametsderschopfer',
-    external: true
-  },
-  {
     label: 'Email',
     detail: email,
     href: `mailto:${email}`,
@@ -43,6 +37,7 @@ async function copyEmail() {
     copyStatus.value = 'copied'
   } catch {
     copyStatus.value = 'failed'
+    return
   }
 
   copyStatusTimer = setTimeout(() => {
@@ -58,6 +53,18 @@ onBeforeUnmount(() => {
 
 <template>
   <div id="home-contact-links" class="home-contact-card">
+    <a
+      class="home-contact-card__primary"
+      href="https://t.me/adametsderschopfer"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span class="home-contact-card__primary-copy">
+        <span class="home-contact-card__primary-title">{{ t('home.contact.telegramAction') }}</span>
+        <span class="home-contact-card__primary-detail">{{ t('home.contact.telegramHint') }}</span>
+      </span>
+      <ArrowUpRight class="home-contact-card__primary-arrow" :size="40" aria-hidden="true" />
+    </a>
     <ul class="home-contact-card__links" :aria-label="t('home.contact.linksLabel')">
       <li v-for="contact in contacts" :key="contact.href" class="home-contact-card__item">
         <component
@@ -108,6 +115,9 @@ onBeforeUnmount(() => {
         </component>
       </li>
     </ul>
+    <a v-if="copyStatus === 'failed'" class="home-contact-card__fallback" :href="`mailto:${email}`">
+      {{ t('home.contact.emailHint') }}
+    </a>
     <span
       class="home-contact-card__announcement"
       role="status"
@@ -128,17 +138,67 @@ onBeforeUnmount(() => {
   min-width: 0;
 }
 
+.home-contact-card__primary {
+  display: flex;
+  gap: var(--contact-row-gap);
+  align-items: center;
+  justify-content: space-between;
+  min-height: 11rem;
+  padding: var(--contact-row-padding);
+  margin-bottom: 0.5rem;
+  color: var(--ink-on-accent);
+  text-decoration: none;
+  background: var(--card-accent);
+  transition:
+    background-color var(--motion-fast) ease,
+    color var(--motion-fast) ease;
+}
+
+.home-contact-card__primary-copy {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.home-contact-card__primary-title {
+  font-size: clamp(1.75rem, 4vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.home-contact-card__primary-detail {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.home-contact-card__primary-arrow {
+  flex: none;
+  transition: transform var(--motion-state) var(--ease-out);
+}
+
+.home-contact-card__primary:focus-visible {
+  color: var(--page-background);
+  background: var(--ink);
+}
+
+.home-contact-card__fallback {
+  display: inline-block;
+  padding: 1rem 0;
+  color: var(--card-accent);
+}
+
 .home-contact-card__links {
   display: grid;
   padding: 0;
   margin: 0;
   list-style: none;
-  border-top: 1px solid var(--line);
 }
 
 .home-contact-card__item {
   min-width: 0;
-  border-bottom: 1px solid var(--line);
+  margin-bottom: 0.5rem;
+  background: var(--card-surface);
 }
 
 .home-contact-card__link {
@@ -147,7 +207,7 @@ onBeforeUnmount(() => {
   gap: var(--contact-row-gap);
   align-items: center;
   width: 100%;
-  min-height: 7rem;
+  min-height: 6rem;
   padding: var(--contact-row-padding) var(--contact-row-inset);
   color: var(--ink);
   text-align: left;
@@ -193,7 +253,7 @@ onBeforeUnmount(() => {
 }
 
 .home-contact-card__link-label {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
   font-weight: 600;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -240,6 +300,11 @@ onBeforeUnmount(() => {
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .home-contact-card__primary:hover {
+    color: var(--page-background);
+    background: var(--ink);
+  }
+
   .home-contact-card__link:hover {
     color: var(--card-accent);
     background: var(--card-surface);
@@ -251,6 +316,10 @@ onBeforeUnmount(() => {
 }
 
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .home-contact-card__primary:hover .home-contact-card__primary-arrow {
+    transform: translate(0.25rem, -0.25rem);
+  }
+
   .home-contact-card__link:hover .home-contact-card__link-arrow {
     transform: translate(0.25rem, -0.25rem);
   }

@@ -28,10 +28,9 @@ const primitives = [
 
 <style scoped>
 .home-hero-primitives {
-  --primitive-size: clamp(7rem, 13vw, 14rem);
-  --primitive-color: #8197df;
-  --primitive-drift: 0.6rem;
-  --primitive-tilt: 3deg;
+  --primitive-size: clamp(5rem, 9vw, 10rem);
+  --primitive-color: var(--card-accent);
+  --primitive-travel: 2rem;
 
   position: absolute;
   inset: 0;
@@ -48,73 +47,88 @@ const primitives = [
 }
 
 .home-hero-primitives__item--code {
-  --primitive-duration: 6.4s;
-  --primitive-delay: -2s;
+  --primitive-delay: 0ms;
 
-  top: 10%;
-  left: 1%;
+  top: 9%;
+  left: 7%;
   rotate: -12deg;
 }
 
 .home-hero-primitives__item--circuit {
-  --primitive-duration: 7.8s;
-  --primitive-delay: -5s;
+  --primitive-delay: var(--motion-stagger);
   --primitive-color: var(--ink-muted);
 
-  top: 41%;
-  left: 2%;
+  top: 49%;
+  left: 3%;
   rotate: 8deg;
 }
 
 .home-hero-primitives__item--cube {
-  --primitive-duration: 8.2s;
-  --primitive-delay: -3s;
+  --primitive-delay: calc(var(--motion-stagger) * 2);
 
-  bottom: 6%;
-  left: 6%;
+  bottom: 8%;
+  left: 12%;
   rotate: -8deg;
 }
 
 .home-hero-primitives__item--brace {
-  --primitive-duration: 7s;
-  --primitive-delay: -4s;
+  --primitive-delay: calc(var(--motion-stagger) * 3);
   --primitive-color: var(--ink-muted);
 
-  top: 16%;
-  right: 3%;
+  top: 11%;
+  right: 8%;
   rotate: 16deg;
 }
 
 .home-hero-primitives__item--nut {
-  --primitive-duration: 8.6s;
-  --primitive-delay: -1s;
+  --primitive-delay: calc(var(--motion-stagger) * 4);
 
-  top: 60%;
-  right: 1%;
+  right: 9%;
+  bottom: 12%;
   rotate: -10deg;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .home-hero-primitives__item {
-    animation: primitive-float var(--primitive-duration) ease-in-out var(--primitive-delay) infinite
-      alternate;
+    animation: primitive-assemble var(--motion-entrance) var(--ease-out) var(--primitive-delay) both;
   }
 }
 
-@keyframes primitive-float {
+@keyframes primitive-assemble {
   from {
-    transform: translateY(calc(-1 * var(--primitive-drift)))
-      rotate(calc(-1 * var(--primitive-tilt)));
+    opacity: 0;
+    transform: translateY(var(--primitive-travel)) rotate(-20deg) scale(0.92);
   }
 
   to {
-    transform: translateY(var(--primitive-drift)) rotate(var(--primitive-tilt));
+    opacity: 1;
+    transform: translateY(0) rotate(0) scale(1);
   }
 }
 
 @media (max-width: 900px) {
   .home-hero-primitives {
+    --primitive-size: clamp(3rem, 9vw, 5rem);
+  }
+
+  .home-hero-primitives__item--circuit,
+  .home-hero-primitives__item--brace {
     display: none;
+  }
+
+  .home-hero-primitives__item--code {
+    top: 3%;
+    left: 3%;
+  }
+
+  .home-hero-primitives__item--cube {
+    bottom: 6%;
+    left: 4%;
+  }
+
+  .home-hero-primitives__item--nut {
+    right: 3%;
+    bottom: 5%;
   }
 }
 </style>

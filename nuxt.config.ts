@@ -24,7 +24,7 @@ export default defineNuxtConfig({
     prerender: {
       concurrency: 10,
       crawlLinks: true,
-      routes: ['/', '/en', '/projects', '/en/projects', '/sitemap.xml']
+      routes: ['/', '/en', '/sitemap.xml']
     }
   },
   routeRules: {
@@ -77,15 +77,7 @@ export default defineNuxtConfig({
       ]
     }
   },
-  modules: ['@nuxt/eslint', '@nuxtjs/i18n', '@nuxt/content'],
-  content: {
-    experimental: {
-      sqliteConnector: 'native'
-    },
-    renderer: {
-      anchorLinks: false
-    }
-  },
+  modules: ['@nuxt/eslint', '@nuxtjs/i18n'],
   css: ['@/assets/css/main.css'],
   i18n: {
     defaultLocale: 'ru',

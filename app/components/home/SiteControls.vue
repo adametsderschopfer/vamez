@@ -1,12 +1,22 @@
 <script setup lang="ts">
 import { Moon, Sun } from 'lucide-vue-next'
+import { shallowRef } from 'vue'
 
 const { t, locale } = useI18n()
 const { themeMode, toggleTheme } = useThemeMode()
 const switchLocalePath = useSwitchLocalePath()
+const isMounted = shallowRef(false)
+
+onMounted(() => {
+  isMounted.value = true
+})
 
 const alternateLocale = computed(() => (locale.value === 'ru' ? 'en' : 'ru'))
-const alternateLocalePath = computed(() => switchLocalePath(alternateLocale.value))
+const alternateLocalePath = computed(() => {
+  const path = switchLocalePath(alternateLocale.value)
+  // URL fragments are absent from the server request. Add them after hydration.
+  return isMounted.value ? path : path.split('#')[0]
+})
 const themeActionLabel = computed(() =>
   themeMode.value === 'dark' ? t('controls.switchToLight') : t('controls.switchToDark')
 )

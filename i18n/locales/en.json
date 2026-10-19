@@ -1,30 +1,7 @@
 {
   "seo": {
-    "description": "Vladislav Adamets — author and engineer. System architecture, reliable services, and clear interfaces. Explore my approach, projects, and contact details.",
-    "ogTitle": "Vladislav Adamets — author and engineer",
-    "projectsTitle": "IT Track — Vladislav Adamets",
-    "projectsDescription": "A set of sample projects by year, from systems engineering to interfaces.",
-    "projectsComingSoonDescription": "Projects by Vladislav Adamets are coming soon."
-  },
-  "projects": {
-    "teaser": {
-      "title": "IT Track",
-      "description": "Projects, challenges, and experience in IT.",
-      "soonDescription": "Projects, challenges, and experience in IT.",
-      "soon": "In preparation"
-    },
-    "back": "Back home",
-    "title": "IT Track",
-    "description": "Engineering project concepts, from service architecture to interfaces. Open a project to explore the challenge and the approach behind it.",
-    "soonDescription": "My projects will appear here soon. While I prepare them, take a look at the home page.",
-    "filter": {
-      "title": "Technologies",
-      "all": "All"
-    },
-    "openProject": "Open project",
-    "close": "Close project",
-    "example": "Sample project",
-    "footer": "Sample collection"
+    "description": "Vladislav Adamets — author and engineer. System architecture, reliable services, and clear interfaces. Get in touch to discuss your project.",
+    "ogTitle": "Vladislav Adamets — author and engineer"
   },
   "nav": {
     "im": "I'm",
@@ -44,9 +21,10 @@
   },
   "home": {
     "hero": {
+      "role": "Author and engineer.",
       "description": "I bring ideas to life through systems, code, and interfaces.{lineBreak}For {experience}, I've been turning complex challenges into {outcome}.",
       "outcome": "clear solutions",
-      "contactAction": "Get in touch"
+      "contactAction": "Discuss a project"
     },
     "contact": {
       "title": "Let's get to work.",
@@ -56,7 +34,10 @@
       "linksLabel": "Contact me",
       "copied": "Copied",
       "failed": "Could not copy",
-      "copyEmail": "Copy email address"
+      "copyEmail": "Copy email address",
+      "telegramAction": "Discuss on Telegram",
+      "telegramHint": "Tell me what you want to build.",
+      "emailHint": "Or send an email"
     },
     "footer": {
       "backToTop": "Back to top"

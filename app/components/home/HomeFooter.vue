@@ -8,22 +8,38 @@ const year = new Date().getFullYear()
 
 <template>
   <footer class="home-footer">
-    <span class="home-footer__copyright">© {{ year }} · {{ t('footer.rightsReserved') }}</span>
-    <a class="home-footer__top" href="#top" @click="scrollToSection('top', $event)">
-      {{ t('home.footer.backToTop') }}
-      <ArrowUp class="home-footer__top-arrow" :size="18" :stroke-width="1.7" aria-hidden="true" />
-    </a>
+    <div class="home-footer__wordmark" aria-hidden="true">vamez.</div>
+    <div class="home-footer__meta">
+      <span class="home-footer__copyright">© {{ year }} · {{ t('footer.rightsReserved') }}</span>
+      <a class="home-footer__top" href="#top" @click="scrollToSection('top', $event)">
+        {{ t('home.footer.backToTop') }}
+        <ArrowUp class="home-footer__top-arrow" :size="18" :stroke-width="1.7" aria-hidden="true" />
+      </a>
+    </div>
   </footer>
 </template>
 
 <style scoped>
 .home-footer {
+  display: grid;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding: 0 0 2rem;
+  overflow: clip;
+}
+
+.home-footer__wordmark {
+  margin-left: -0.04em;
+  font-size: clamp(5rem, 28vw, 32rem);
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.075em;
+}
+
+.home-footer__meta {
   display: flex;
   gap: 1rem;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem 0 2rem;
-  border-top: 1px solid var(--line);
 }
 
 .home-footer__copyright,
@@ -62,7 +78,7 @@ const year = new Date().getFullYear()
 }
 
 @media (max-width: 560px) {
-  .home-footer {
+  .home-footer__meta {
     align-items: flex-start;
   }
 

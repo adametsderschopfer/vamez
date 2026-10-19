@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import HomeContactCard from './HomeContactCard.vue'
-import HomeCampfireIcon from './HomeCampfireIcon.vue'
 
 const { t } = useI18n()
 </script>
@@ -10,7 +9,6 @@ const { t } = useI18n()
     <div class="home-contact__copy">
       <h2 id="home-contact-title" class="home-contact__title">
         <span>{{ t('home.contact.title') }}</span>
-        <HomeCampfireIcon />
       </h2>
       <p class="home-contact__description">{{ t('home.contact.description') }}</p>
     </div>
@@ -25,9 +23,8 @@ const { t } = useI18n()
 
   display: grid;
   gap: var(--contact-content-gap);
-  padding: var(--section-space) 0;
+  padding: 0 0 var(--section-space);
   scroll-margin-top: var(--page-gutter);
-  border-top: 1px solid var(--line);
 }
 
 .home-contact__copy {
