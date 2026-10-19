@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import HomeHeader from '@/components/home/HomeHeader.vue'
 import HomeHeroSection from '@/components/home/HomeHeroSection.vue'
-import HomeAboutSection from '@/components/home/HomeAboutSection.vue'
 import HomeProjectsSection from '@/components/home/HomeProjectsSection.vue'
 import HomeContactSection from '@/components/home/HomeContactSection.vue'
 import HomeFooter from '@/components/home/HomeFooter.vue'
@@ -13,7 +12,6 @@ import HomeFooter from '@/components/home/HomeFooter.vue'
       <HomeHeader />
       <main id="main-content">
         <HomeHeroSection />
-        <HomeAboutSection />
         <HomeProjectsSection />
         <HomeContactSection />
       </main>

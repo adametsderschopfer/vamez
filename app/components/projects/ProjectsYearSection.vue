@@ -106,8 +106,8 @@ function selectProject(project: Project, event: MouseEvent) {
   border-radius: var(--control-radius);
 }
 
-.projects-year__project:hover {
-  background: var(--card-surface);
+.projects-year__project:active {
+  background: var(--card-soft);
 }
 
 .projects-year__project:focus-visible {
@@ -157,11 +157,29 @@ function selectProject(project: Project, event: MouseEvent) {
 
 .projects-year__arrow {
   margin-top: 0.25rem;
+  transition: transform var(--motion-fast) var(--ease-out);
 }
 
-.projects-year__project:hover .projects-year__title,
-.projects-year__project:hover .projects-year__arrow {
+.projects-year__project:focus-visible .projects-year__title,
+.projects-year__project:focus-visible .projects-year__arrow {
   color: var(--card-accent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .projects-year__project:hover {
+    background: var(--card-surface);
+  }
+
+  .projects-year__project:hover .projects-year__title,
+  .projects-year__project:hover .projects-year__arrow {
+    color: var(--card-accent);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .projects-year__project:hover .projects-year__arrow {
+    transform: translate(0.25rem, -0.25rem);
+  }
 }
 
 @media (max-width: 900px) {

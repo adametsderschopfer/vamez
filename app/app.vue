@@ -119,6 +119,9 @@ useHead(() => ({
       {{ t('controls.skipToContent') }}
     </a>
     <NuxtPage />
+    <ClientOnly>
+      <InkCursor />
+    </ClientOnly>
     <noscript>
       <div>
         <img

@@ -16,9 +16,6 @@ const { scrollToSection } = useSectionScroll()
       vamez<span class="home-header__brand-dot">.</span>
     </a>
     <nav class="home-header__nav" :aria-label="t('home.navigation')">
-      <a class="home-header__link" href="#about" @click="scrollToSection('about', $event)">
-        {{ t('home.summary.title') }}
-      </a>
       <a class="home-header__link" href="#contacts" @click="scrollToSection('contacts', $event)">
         {{ t('home.contacts.title') }}
       </a>
@@ -29,10 +26,14 @@ const { scrollToSection } = useSectionScroll()
 
 <style scoped>
 .home-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: flex;
   gap: var(--grid-gap);
   align-items: center;
-  min-height: 6rem;
+  min-height: var(--header-height);
+  background: var(--page-background);
   border-bottom: 1px solid var(--ink);
 }
 
@@ -43,6 +44,11 @@ const { scrollToSection } = useSectionScroll()
   color: var(--ink);
   letter-spacing: -0.04em;
   text-decoration: none;
+}
+
+.home-header__brand:hover,
+.home-header__brand:focus-visible {
+  color: var(--card-accent);
 }
 
 .home-header__brand-dot {
@@ -57,6 +63,7 @@ const { scrollToSection } = useSectionScroll()
 }
 
 .home-header__link {
+  position: relative;
   display: inline-flex;
   align-items: center;
   min-height: 2.75rem;
@@ -66,15 +73,34 @@ const { scrollToSection } = useSectionScroll()
   text-decoration: none;
 }
 
-.home-header__link:hover {
-  text-decoration: underline;
+.home-header__link::after {
+  position: absolute;
+  right: 0;
+  bottom: 0.4rem;
+  left: 0;
+  height: 1px;
+  content: '';
+  background: var(--card-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--motion-fast) var(--ease-out);
+}
+
+.home-header__link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .home-header__link:hover {
+    color: var(--card-accent);
+  }
+
+  .home-header__link:hover::after {
+    transform: scaleX(1);
+  }
 }
 
 @media (max-width: 600px) {
-  .home-header {
-    min-height: 5rem;
-  }
-
   .home-header__nav {
     display: none;
   }

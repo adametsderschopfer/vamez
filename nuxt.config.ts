@@ -57,12 +57,13 @@ export default defineNuxtConfig({
   app: {
     baseURL: appBaseURL,
     head: {
+      htmlAttrs: { 'data-theme': 'dark' },
       title: 'Vladislav Adamets',
       charset: 'utf-8',
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'author', content: 'Vladislav Adamets' },
-        { name: 'theme-color', content: '#e5e5e0' },
+        { name: 'theme-color', content: '#171717' },
         { name: 'robots', content: 'index, follow' },
         { name: 'yandex-verification', content: '408e9c6c152e0036' }
       ],

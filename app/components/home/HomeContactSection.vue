@@ -19,11 +19,10 @@ const { t } = useI18n()
 
 <style scoped>
 .home-contact {
-  --contact-column-gap: clamp(2.5rem, 6vw, 6rem);
+  --contact-content-gap: clamp(2.5rem, 5vw, 4rem);
 
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-  gap: var(--contact-column-gap);
+  gap: var(--contact-content-gap);
   padding: var(--section-space) 0;
   scroll-margin-top: var(--page-gutter);
   border-top: 1px solid var(--line);
@@ -34,10 +33,10 @@ const { t } = useI18n()
 }
 
 .home-contact__title {
-  max-width: 13ch;
+  max-width: 18ch;
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 4.4vw, 4.8rem);
+  font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 700;
   line-height: 1.02;
   letter-spacing: -0.04em;
@@ -45,16 +44,10 @@ const { t } = useI18n()
 }
 
 .home-contact__description {
-  max-width: 29rem;
+  max-width: 38ch;
   margin: 1.5rem 0 0;
-  font-size: 1rem;
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
   line-height: 1.6;
   color: var(--ink-muted);
-}
-
-@media (max-width: 900px) {
-  .home-contact {
-    grid-template-columns: 1fr;
-  }
 }
 </style>

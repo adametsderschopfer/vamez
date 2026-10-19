@@ -1,8 +1,19 @@
 <script setup lang="ts">
-import { ArrowDownRight, ArrowUpRight } from 'lucide-vue-next'
+import { ArrowDown } from 'lucide-vue-next'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const { scrollToSection } = useSectionScroll()
+const careerStartYear = 2020
+const currentYear = useState('career-current-year', () => new Date().getFullYear())
+const experienceDuration = computed(() =>
+  new Intl.NumberFormat(locale.value, { style: 'unit', unit: 'year', unitDisplay: 'long' }).format(
+    currentYear.value - careerStartYear
+  )
+)
+
+onMounted(() => {
+  currentYear.value = new Date().getFullYear()
+})
 </script>
 
 <template>
@@ -19,16 +30,29 @@ const { scrollToSection } = useSectionScroll()
           </p>
           <p class="home-hero__role">{{ t('home.hero.identityLabel') }}</p>
         </div>
-        <p class="home-hero__description">{{ t('home.hero.description') }}</p>
+        <i18n-t
+          keypath="home.hero.description"
+          tag="p"
+          class="home-hero__description"
+          scope="global"
+        >
+          <template #experience>
+            <strong class="home-hero__experience">{{ experienceDuration }}</strong>
+          </template>
+          <template #outcome>
+            <strong class="home-hero__outcome">{{ t('home.hero.outcome') }}</strong>
+          </template>
+        </i18n-t>
         <a class="home-hero__contact" href="#contacts" @click="scrollToSection('contacts', $event)">
           {{ t('home.hero.contactAction') }}
-          <ArrowUpRight :size="23" :stroke-width="1.8" aria-hidden="true" />
+          <ArrowDown
+            class="home-hero__contact-arrow"
+            :size="23"
+            :stroke-width="1.8"
+            aria-hidden="true"
+          />
         </a>
       </div>
-      <a class="home-hero__more" href="#about" @click="scrollToSection('about', $event)">
-        {{ t('home.hero.aboutAction') }}
-        <ArrowDownRight :size="18" :stroke-width="1.8" aria-hidden="true" />
-      </a>
     </div>
   </section>
 </template>
@@ -86,6 +110,16 @@ const { scrollToSection } = useSectionScroll()
   line-height: 1.65;
 }
 
+.home-hero__experience {
+  font-weight: 600;
+  color: var(--card-accent);
+  white-space: nowrap;
+}
+
+.home-hero__outcome {
+  font-weight: 600;
+}
+
 .home-hero__contact {
   display: inline-flex;
   gap: 2rem;
@@ -100,26 +134,33 @@ const { scrollToSection } = useSectionScroll()
   cursor: pointer;
   background: var(--card-accent);
   border: 0;
+  transition: transform var(--motion-fast) var(--ease-out);
 }
 
-.home-hero__contact:hover {
+.home-hero__contact:focus-visible {
   background: color-mix(in srgb, var(--card-accent) 85%, var(--ink));
 }
 
-.home-hero__more {
-  display: inline-flex;
-  gap: 0.75rem;
-  align-items: center;
-  min-height: 2.75rem;
-  margin-top: clamp(2.5rem, 5vw, 5rem);
-  font-size: 0.875rem;
-  color: var(--ink-muted);
-  text-decoration: none;
+.home-hero__contact-arrow {
+  transition: transform var(--motion-fast) var(--ease-out);
 }
 
-.home-hero__more:hover {
-  color: var(--ink);
-  text-decoration: underline;
+@media (hover: hover) and (pointer: fine) {
+  .home-hero__contact:hover {
+    background: color-mix(in srgb, var(--card-accent) 85%, var(--ink));
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .home-hero__contact:hover .home-hero__contact-arrow {
+    transform: translateY(0.25rem);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .home-hero__contact:active {
+    transform: scale(0.97);
+  }
 }
 
 @media (max-width: 900px) {
@@ -151,10 +192,6 @@ const { scrollToSection } = useSectionScroll()
 
   .home-hero__description {
     max-width: 38ch;
-  }
-
-  .home-hero__more {
-    margin-top: 1.5rem;
   }
 }
 </style>

@@ -11,7 +11,12 @@ defineProps<{ showProjects: boolean }>()
   <section class="projects-hero" aria-labelledby="projects-hero-title">
     <div class="projects-hero__topline">
       <NuxtLink class="projects-hero__back" :to="localePath('/')">
-        <ArrowUpLeft :size="18" :stroke-width="1.7" aria-hidden="true" />
+        <ArrowUpLeft
+          class="projects-hero__back-arrow"
+          :size="18"
+          :stroke-width="1.7"
+          aria-hidden="true"
+        />
         {{ t('projects.back') }}
       </NuxtLink>
       <SiteControls />
@@ -55,11 +60,23 @@ defineProps<{ showProjects: boolean }>()
   text-decoration: underline;
   text-decoration-color: transparent;
   text-underline-offset: 0.25em;
-  transition: text-decoration-color 0.18s ease;
 }
 
-.projects-hero__back:hover {
-  text-decoration-color: currentcolor;
+.projects-hero__back-arrow {
+  transition: transform var(--motion-fast) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .projects-hero__back:hover {
+    color: var(--card-accent);
+    text-decoration-color: currentcolor;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .projects-hero__back:hover .projects-hero__back-arrow {
+    transform: translate(-0.25rem, -0.25rem);
+  }
 }
 
 .projects-hero__back:focus-visible {
@@ -97,12 +114,6 @@ defineProps<{ showProjects: boolean }>()
   .projects-hero__back {
     gap: 0.25rem;
     font-size: 0.8rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .projects-hero__back {
-    transition: none;
   }
 }
 </style>

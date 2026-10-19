@@ -41,9 +41,24 @@ const year = new Date().getFullYear()
   text-decoration: none;
 }
 
-.home-footer__top:hover,
 .home-footer__top:focus-visible {
   color: var(--card-accent);
+}
+
+.home-footer__top-arrow {
+  transition: transform var(--motion-fast) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .home-footer__top:hover {
+    color: var(--card-accent);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .home-footer__top:hover .home-footer__top-arrow {
+    transform: translateY(-0.25rem);
+  }
 }
 
 @media (max-width: 560px) {

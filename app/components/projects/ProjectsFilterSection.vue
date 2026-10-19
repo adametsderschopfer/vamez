@@ -71,9 +71,10 @@ const { t } = useI18n()
   background: transparent;
   border: 1px solid var(--line);
   border-radius: var(--control-radius);
+  transition: transform var(--motion-fast) var(--ease-out);
 }
 
-.projects-filter__option:hover {
+.projects-filter__option:active {
   background: var(--card-surface);
   border-color: var(--ink);
 }
@@ -89,8 +90,21 @@ const { t } = useI18n()
   border-color: var(--card-accent);
 }
 
-.projects-filter__option--selected:hover {
-  background: var(--card-accent);
-  border-color: var(--ink);
+@media (hover: hover) and (pointer: fine) {
+  .projects-filter__option:hover {
+    background: var(--card-surface);
+    border-color: var(--ink);
+  }
+
+  .projects-filter__option--selected:hover {
+    background: var(--card-accent);
+    border-color: var(--ink);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .projects-filter__option:active {
+    transform: scale(0.97);
+  }
 }
 </style>

@@ -68,7 +68,7 @@ defineExpose({ focusClose, animateClose })
           :aria-label="t('projects.close')"
           @click="emit('close')"
         >
-          <X :size="21" :stroke-width="1.7" aria-hidden="true" />
+          <X class="project-dialog__close-icon" :size="21" :stroke-width="1.7" aria-hidden="true" />
         </button>
       </div>
       <div class="project-dialog__header">
@@ -131,6 +131,36 @@ defineExpose({ focusClose, animateClose })
   background: var(--card-soft);
   border: 0;
   border-radius: var(--control-radius);
+  transition: transform var(--motion-fast) var(--ease-out);
+}
+
+.project-dialog__close:focus-visible,
+.project-dialog__close:active {
+  color: var(--ink-on-accent);
+  background: var(--card-accent);
+}
+
+.project-dialog__close-icon {
+  transition: transform var(--motion-fast) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .project-dialog__close:hover {
+    color: var(--ink-on-accent);
+    background: var(--card-accent);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .project-dialog__close:hover .project-dialog__close-icon {
+    transform: rotate(90deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .project-dialog__close:active {
+    transform: scale(0.94);
+  }
 }
 
 .project-dialog__header {

@@ -46,27 +46,10 @@
     "hero": {
       "titleStart": "Engineering thought,",
       "titleAccent": "made tangible.",
-      "description": "I design systems, write code, and build interfaces. Turning complex challenges into clear solutions.",
+      "description": "I design systems, write code, and build interfaces. For {experience}, I've been turning complex challenges into {outcome}.",
+      "outcome": "clear solutions",
       "contactAction": "Get in touch",
-      "aboutAction": "My approach",
       "identityLabel": "Author. Engineer."
-    },
-    "about": {
-      "title": "Think deeper. Build simpler.",
-      "description": "I explore the problem, find its core, and build a coherent solution. Architecture, code, and interface are parts of the same system.",
-      "focusLabel": "What I do",
-      "focus": {
-        "interfaces": "Interfaces",
-        "engineering": "Architecture and code",
-        "systems": "Systems and processes"
-      },
-      "curiosityTitle": "I like figuring things out.",
-      "curiosityDescription": "How systems are built, why they work, and what could be simpler.",
-      "focusDescription": {
-        "engineering": "From service architecture to reliable implementation.",
-        "systems": "Clear connections, sound structure, less unnecessary complexity.",
-        "interfaces": "Thoughtful behavior and usability for people."
-      }
     },
     "contact": {
       "title": "Let's get to work.",

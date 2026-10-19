@@ -30,8 +30,8 @@ const themeActionLabel = computed(() =>
       :title="themeActionLabel"
       @click="toggleTheme"
     >
-      <Sun v-if="themeMode === 'dark'" :size="19" :stroke-width="1.8" />
-      <Moon v-else :size="19" :stroke-width="1.8" />
+      <Sun v-if="themeMode === 'dark'" class="site-controls__icon" :size="19" :stroke-width="1.8" />
+      <Moon v-else class="site-controls__icon" :size="19" :stroke-width="1.8" />
     </button>
   </div>
 </template>
@@ -61,10 +61,36 @@ const themeActionLabel = computed(() =>
   cursor: pointer;
   background: transparent;
   border: 0;
+  transition: transform var(--motion-fast) var(--ease-out);
 }
 
-.site-controls__button:hover {
-  background: var(--card-soft);
+.site-controls__button:focus-visible,
+.site-controls__button:active {
+  color: var(--ink-on-accent);
+  background: var(--card-accent);
+}
+
+.site-controls__icon {
+  transition: transform var(--motion-fast) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-controls__button:hover {
+    color: var(--ink-on-accent);
+    background: var(--card-accent);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .site-controls__button:hover .site-controls__icon {
+    transform: rotate(20deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-controls__button:active {
+    transform: scale(0.94);
+  }
 }
 
 .site-controls__divider {

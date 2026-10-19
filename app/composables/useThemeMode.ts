@@ -2,15 +2,16 @@ export type ThemeMode = 'light' | 'dark'
 
 export function useThemeMode() {
   const themeCookie = useCookie<ThemeMode>('theme-mode', {
-    default: () => 'light',
+    default: () => 'dark',
     sameSite: 'lax',
     maxAge: 60 * 60 * 24 * 365
   })
   const themeMode = useState<ThemeMode>('theme-mode', () =>
-    themeCookie.value === 'dark' ? 'dark' : 'light'
+    themeCookie.value === 'light' ? 'light' : 'dark'
   )
 
   useHead(() => ({
+    htmlAttrs: { 'data-theme': themeMode.value },
     script: [
       {
         key: 'theme-init',
@@ -18,9 +19,9 @@ export function useThemeMode() {
         innerHTML: `
           try {
             const cookie = document.cookie.match(/(?:^|; )theme-mode=(dark|light)(?:;|$)/)
-            document.documentElement.dataset.theme = cookie ? cookie[1] : 'light'
+            document.documentElement.dataset.theme = cookie ? cookie[1] : 'dark'
           } catch {
-            document.documentElement.dataset.theme = 'light'
+            document.documentElement.dataset.theme = 'dark'
           }
         `
       }
@@ -49,7 +50,7 @@ export function useThemeMode() {
 
   onMounted(() => {
     // Prerendered HTML carries the default theme; the early script reads the actual cookie.
-    themeMode.value = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'
+    themeMode.value = document.documentElement.dataset.theme === 'light' ? 'light' : 'dark'
     applyTheme(themeMode.value)
   })
 
