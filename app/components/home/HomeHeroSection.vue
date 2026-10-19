@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ArrowDown } from 'lucide-vue-next'
+import HomeHeroPrimitives from './HomeHeroPrimitives.vue'
 
 const { t, locale } = useI18n()
 const { scrollToSection } = useSectionScroll()
@@ -18,24 +19,22 @@ onMounted(() => {
 
 <template>
   <section class="home-hero" aria-labelledby="home-hero-title">
+    <HomeHeroPrimitives />
     <div class="home-hero__body">
-      <h1 id="home-hero-title" class="home-hero__title">
-        <span class="home-hero__title-line">{{ t('home.hero.titleStart') }}{{ ' ' }}</span>
-        <span class="home-hero__title-line">{{ t('home.hero.titleAccent') }}</span>
-      </h1>
+      <div class="home-hero__identity">
+        <h1 id="home-hero-title" class="home-hero__name">
+          <span class="home-hero__first-name">{{ t('home.intro.firstName') }}{{ ' ' }}</span>
+          <span class="home-hero__last-name">{{ t('home.intro.lastName') }}</span>
+        </h1>
+      </div>
       <div class="home-hero__summary">
-        <div class="home-hero__identity">
-          <p class="home-hero__name">
-            {{ t('home.intro.firstName') }} {{ t('home.intro.lastName') }}
-          </p>
-          <p class="home-hero__role">{{ t('home.hero.identityLabel') }}</p>
-        </div>
         <i18n-t
           keypath="home.hero.description"
           tag="p"
           class="home-hero__description"
           scope="global"
         >
+          <template #lineBreak><br /></template>
           <template #experience>
             <strong class="home-hero__experience">{{ experienceDuration }}</strong>
           </template>
@@ -59,55 +58,58 @@ onMounted(() => {
 
 <style scoped>
 .home-hero {
-  --hero-space: clamp(3rem, 7vw, 7rem);
+  --hero-space: clamp(2rem, 4vw, 4rem);
+  --hero-title-gap: clamp(1.5rem, 3vw, 2.5rem);
+  --hero-summary-gap: clamp(1.25rem, 2vw, 1.5rem);
+
+  position: relative;
+  isolation: isolate;
 }
 
 .home-hero__body {
-  padding: var(--hero-space) 0 clamp(2.5rem, 5vw, 5rem);
-}
-
-.home-hero__title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(3.25rem, 9vw, 8rem);
-  font-weight: 800;
-  line-height: 1.02;
-  letter-spacing: -0.04em;
-}
-
-.home-hero__title-line {
-  display: block;
-}
-
-.home-hero__summary {
+  position: relative;
+  z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) auto;
-  gap: clamp(1.5rem, 4vw, 4rem);
-  align-items: start;
-  padding-top: clamp(2.5rem, 5vw, 5rem);
-}
-
-.home-hero__identity {
-  padding-top: 0.25rem;
+  gap: var(--hero-title-gap);
+  align-content: center;
+  justify-items: center;
+  min-height: calc(100svh - var(--header-height));
+  padding: var(--hero-space) 0;
 }
 
 .home-hero__name {
   margin: 0;
-  font-size: clamp(1rem, 1.3vw, 1.25rem);
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5.6vw, 6.5rem);
+  font-weight: 800;
+  line-height: 1;
+  text-align: center;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
 }
 
-.home-hero__role {
-  margin: 0.5rem 0 0;
-  font-size: 0.875rem;
-  color: var(--ink-muted);
+.home-hero__summary {
+  display: grid;
+  gap: var(--hero-summary-gap);
+  justify-items: center;
+  width: min(100%, 40rem);
+  text-align: center;
+}
+
+.home-hero__identity {
+  display: grid;
+  gap: 1.5rem;
+  justify-items: center;
+  min-width: 0;
 }
 
 .home-hero__description {
-  max-width: 42ch;
+  max-width: 48ch;
   margin: 0;
-  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  font-size: clamp(1rem, 1.35vw, 1.25rem);
   line-height: 1.65;
+  color: var(--ink-muted);
+  text-wrap: pretty;
 }
 
 .home-hero__experience {
@@ -118,6 +120,7 @@ onMounted(() => {
 
 .home-hero__outcome {
   font-weight: 600;
+  color: var(--ink);
 }
 
 .home-hero__contact {
@@ -125,20 +128,26 @@ onMounted(() => {
   gap: 2rem;
   align-items: center;
   justify-content: space-between;
+  min-width: min(100%, 14rem);
   min-height: 3.75rem;
-  padding: 1rem 1.5rem;
-  font-size: 0.9375rem;
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
   font-weight: 600;
-  color: var(--ink-on-accent);
+  color: var(--ink);
   text-decoration: none;
   cursor: pointer;
-  background: var(--card-accent);
-  border: 0;
-  transition: transform var(--motion-fast) var(--ease-out);
+  background: transparent;
+  border: 1px solid var(--line);
+  transition:
+    transform var(--motion-fast) var(--ease-out),
+    background-color var(--motion-fast) ease,
+    color var(--motion-fast) ease;
 }
 
 .home-hero__contact:focus-visible {
-  background: color-mix(in srgb, var(--card-accent) 85%, var(--ink));
+  color: var(--ink-on-accent);
+  background: var(--card-accent);
+  border-color: var(--card-accent);
 }
 
 .home-hero__contact-arrow {
@@ -147,7 +156,9 @@ onMounted(() => {
 
 @media (hover: hover) and (pointer: fine) {
   .home-hero__contact:hover {
-    background: color-mix(in srgb, var(--card-accent) 85%, var(--ink));
+    color: var(--ink-on-accent);
+    background: var(--card-accent);
+    border-color: var(--card-accent);
   }
 }
 
@@ -163,35 +174,17 @@ onMounted(() => {
   }
 }
 
-@media (max-width: 900px) {
-  .home-hero__summary {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
-  }
-
-  .home-hero__contact {
-    grid-column: 2;
-    justify-self: start;
-  }
-}
-
 @media (max-width: 600px) {
-  .home-hero__title {
-    font-size: clamp(2.5rem, 8.7vw, 3.5rem);
-    line-height: 1.08;
+  .home-hero__body {
+    min-height: 0;
   }
 
-  .home-hero__summary {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .home-hero__contact {
-    grid-column: auto;
-    width: 100%;
+  .home-hero__name {
+    font-size: clamp(1.75rem, 8.3vw, 3.125rem);
   }
 
   .home-hero__description {
-    max-width: 38ch;
+    max-width: 36ch;
   }
 }
 </style>

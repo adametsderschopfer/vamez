@@ -44,12 +44,9 @@
   },
   "home": {
     "hero": {
-      "titleStart": "Engineering thought,",
-      "titleAccent": "made tangible.",
-      "description": "I design systems, write code, and build interfaces. For {experience}, I've been turning complex challenges into {outcome}.",
+      "description": "I bring ideas to life through systems, code, and interfaces.{lineBreak}For {experience}, I've been turning complex challenges into {outcome}.",
       "outcome": "clear solutions",
-      "contactAction": "Get in touch",
-      "identityLabel": "Author. Engineer."
+      "contactAction": "Get in touch"
     },
     "contact": {
       "title": "Let's get to work.",

@@ -44,12 +44,9 @@
   },
   "home": {
     "hero": {
-      "titleStart": "Воплощение",
-      "titleAccent": "инженерной мысли.",
-      "description": "Проектирую системы, пишу код и собираю интерфейсы. Уже {experience} превращаю сложные задачи в {outcome}.",
+      "description": "Воплощаю идеи в системах, коде и интерфейсах.{lineBreak}Уже {experience} превращаю сложные задачи в {outcome}.",
       "outcome": "понятные решения",
-      "contactAction": "Связаться",
-      "identityLabel": "Автор. Инженер."
+      "contactAction": "Связаться"
     },
     "contact": {
       "title": "Перейдём к делу.",

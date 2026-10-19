@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import HomeContactCard from './HomeContactCard.vue'
+import HomeCampfireIcon from './HomeCampfireIcon.vue'
 
 const { t } = useI18n()
 </script>
@@ -8,7 +9,8 @@ const { t } = useI18n()
   <section id="contacts" class="home-contact" aria-labelledby="home-contact-title">
     <div class="home-contact__copy">
       <h2 id="home-contact-title" class="home-contact__title">
-        {{ t('home.contact.title') }}
+        <span>{{ t('home.contact.title') }}</span>
+        <HomeCampfireIcon />
       </h2>
       <p class="home-contact__description">{{ t('home.contact.description') }}</p>
     </div>
@@ -33,6 +35,9 @@ const { t } = useI18n()
 }
 
 .home-contact__title {
+  display: flex;
+  gap: 0.3em;
+  align-items: center;
   max-width: 18ch;
   margin: 0;
   font-family: var(--font-display);
@@ -44,7 +49,7 @@ const { t } = useI18n()
 }
 
 .home-contact__description {
-  max-width: 38ch;
+  max-width: 65ch;
   margin: 1.5rem 0 0;
   font-size: clamp(1rem, 1.4vw, 1.125rem);
   line-height: 1.6;
