@@ -20,10 +20,11 @@ const { t } = useI18n()
 <style scoped>
 .home-contact {
   --contact-content-gap: clamp(2.5rem, 5vw, 4rem);
+  --contact-bottom-space: clamp(2rem, 4vw, 4rem);
 
   display: grid;
   gap: var(--contact-content-gap);
-  padding: 0 0 var(--section-space);
+  padding: 0 0 var(--contact-bottom-space);
   scroll-margin-top: var(--page-gutter);
 }
 

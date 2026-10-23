@@ -1,0 +1,61 @@
+{
+  "businessName": "ИП Адамец Владислав Андреевич",
+  "inn": "391303532354",
+  "ogrnip": "324390000049180",
+  "registrationDate": "2024-09-02",
+  "region": {
+    "ru": "Калининградская область",
+    "en": "Kaliningrad region"
+  },
+  "citizenship": {
+    "ru": "Российская Федерация",
+    "en": "Russian Federation"
+  },
+  "status": {
+    "label": { "ru": "Действующий ИП", "en": "Active individual entrepreneur" },
+    "asOf": "2026-06-04"
+  },
+  "activity": {
+    "code": "62.01",
+    "label": {
+      "ru": "Разработка компьютерного программного обеспечения",
+      "en": "Computer programming activities"
+    }
+  },
+  "additionalActivities": [
+    {
+      "code": "62.02",
+      "label": {
+        "ru": "Деятельность консультативная и работы в области компьютерных технологий",
+        "en": "Computer consultancy activities"
+      }
+    },
+    {
+      "code": "47.91.2",
+      "label": {
+        "ru": "Торговля розничная, осуществляемая непосредственно при помощи информационно-коммуникационной сети Интернет",
+        "en": "Retail sale via the Internet"
+      }
+    }
+  ],
+  "taxAuthority": {
+    "code": "3900",
+    "name": {
+      "ru": "Управление Федеральной налоговой службы по Калининградской области",
+      "en": "Federal Tax Service Directorate for the Kaliningrad region"
+    }
+  },
+  "pensionRegistration": {
+    "number": "1324430295",
+    "date": "2024-09-05",
+    "authorityCode": "039",
+    "authority": {
+      "ru": "Отделение Фонда пенсионного и социального страхования Российской Федерации по Калининградской области",
+      "en": "Pension and Social Insurance Fund of the Russian Federation, Kaliningrad regional branch"
+    }
+  },
+  "sme": {
+    "category": { "ru": "Микропредприятие", "en": "Microenterprise" },
+    "inclusionDate": "2024-10-10"
+  }
+}

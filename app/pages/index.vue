@@ -3,6 +3,7 @@ import HomeHeader from '@/components/home/HomeHeader.vue'
 import HomeHeroSection from '@/components/home/HomeHeroSection.vue'
 import HomeCasesSection from '@/components/home/HomeCasesSection.vue'
 import HomeContactSection from '@/components/home/HomeContactSection.vue'
+import HomeLegalSection from '@/components/home/HomeLegalSection.vue'
 import HomeFooter from '@/components/home/HomeFooter.vue'
 </script>
 
@@ -14,6 +15,7 @@ import HomeFooter from '@/components/home/HomeFooter.vue'
         <HomeHeroSection />
         <HomeCasesSection />
         <HomeContactSection />
+        <HomeLegalSection />
       </main>
       <HomeFooter />
     </div>

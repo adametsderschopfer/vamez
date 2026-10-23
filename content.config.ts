@@ -1,6 +1,7 @@
 import { defineCollection, defineContentConfig, z } from '@nuxt/content'
 
 const localizedText = z.object({ ru: z.string(), en: z.string() })
+const legalActivity = z.object({ code: z.string(), label: localizedText })
 const image = z.object({
   src: z.string(),
   width: z.number().int().positive(),
@@ -9,6 +10,29 @@ const image = z.object({
 
 export default defineContentConfig({
   collections: {
+    legal: defineCollection({
+      type: 'data',
+      source: 'legal/*.json',
+      schema: z.object({
+        businessName: z.string(),
+        inn: z.string().regex(/^\d{12}$/),
+        ogrnip: z.string().regex(/^\d{15}$/),
+        registrationDate: z.string().date(),
+        region: localizedText,
+        citizenship: localizedText,
+        status: z.object({ label: localizedText, asOf: z.string().date() }),
+        activity: legalActivity,
+        additionalActivities: z.array(legalActivity),
+        taxAuthority: z.object({ code: z.string(), name: localizedText }),
+        pensionRegistration: z.object({
+          number: z.string(),
+          date: z.string().date(),
+          authorityCode: z.string(),
+          authority: localizedText
+        }),
+        sme: z.object({ category: localizedText, inclusionDate: z.string().date() })
+      })
+    }),
     companies: defineCollection({
       type: 'data',
       source: 'companies/*.json',
