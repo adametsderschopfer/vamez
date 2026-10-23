@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import golosCyrillic from '@/assets/fonts/golos-text-cyrillic.woff2?url'
+import golosLatin from '@/assets/fonts/golos-text-latin.woff2?url'
+
 const { t, locale } = useI18n()
 const { scrollToSection } = useSectionScroll()
 const route = useRoute()
@@ -65,7 +68,16 @@ const structuredData = computed(() => ({
 useHead(() => ({
   htmlAttrs: i18nHead.value.htmlAttrs,
   title: pageTitle.value,
-  link: i18nHead.value.link || [],
+  link: [
+    ...[golosCyrillic, golosLatin].map((href) => ({
+      rel: 'preload' as const,
+      as: 'font' as const,
+      type: 'font/woff2',
+      crossorigin: 'anonymous' as const,
+      href
+    })),
+    ...(i18nHead.value.link || [])
+  ],
   noscript: [
     {
       key: 'yandex-metrika-fallback',
