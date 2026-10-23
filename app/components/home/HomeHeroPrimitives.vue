@@ -6,7 +6,7 @@ import brace from '@/assets/images/hero-primitives/brace.webp'
 import nut from '@/assets/images/hero-primitives/nut.webp'
 
 const root = useTemplateRef<HTMLElement>('primitives')
-useFloatingPrimitives(root)
+useFloatingMotion(root, { selector: '.home-hero-primitives__item' })
 
 const primitives = [
   { name: 'code', image: code },
@@ -25,7 +25,8 @@ const primitives = [
       class="home-hero-primitives__item"
       :class="`home-hero-primitives__item--${primitive.name}`"
       :style="{ '--primitive-image': `url(${primitive.image})` }"
-    />
+      ><span class="home-hero-primitives__surface" data-hero-react="shape"
+    /></span>
   </div>
 </template>
 
@@ -45,8 +46,14 @@ const primitives = [
   position: absolute;
   width: var(--primitive-size);
   aspect-ratio: 1;
+}
+
+.home-hero-primitives__surface {
+  position: absolute;
+  inset: 0;
   background: var(--primitive-color);
   mask: var(--primitive-image) center / contain no-repeat;
+  transform: var(--hero-pointer-transform, none);
 }
 
 .home-hero-primitives__item--code {

@@ -1,9 +1,18 @@
 <script setup lang="ts">
 import { ArrowDown } from 'lucide-vue-next'
 import HomeHeroPrimitives from './HomeHeroPrimitives.vue'
+import HomeHeroLiquidFilters from './HomeHeroLiquidFilters.vue'
 
 const { t, locale } = useI18n()
 const { scrollToSection } = useSectionScroll()
+const hero = useTemplateRef<HTMLElement>('hero')
+const filterId = useId()
+const nameFilterId = `${filterId}-hero-name`
+const detailFilterId = `${filterId}-hero-detail`
+const { entering } = useHeroEntrance(hero)
+useFloatingMotion(hero, { selector: '.home-hero__float', driftDistance: 4, rotationRange: 0.6 })
+useFloatingMotion(hero, { selector: '.home-hero__letter', driftDistance: 2, rotationRange: 3.5 })
+useHeroPointerMotion(hero)
 const careerStartYear = 2020
 const currentYear = useState('career-current-year', () => new Date().getFullYear())
 const experienceDuration = computed(() =>
@@ -18,21 +27,57 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="home-hero" aria-labelledby="home-hero-title">
+  <section
+    ref="hero"
+    class="home-hero"
+    aria-labelledby="home-hero-title"
+    :style="{
+      '--hero-name-filter': `url(#${nameFilterId})`,
+      '--hero-detail-filter': `url(#${detailFilterId})`
+    }"
+  >
+    <HomeHeroLiquidFilters :name-id="nameFilterId" :detail-id="detailFilterId" />
     <HomeHeroPrimitives />
-    <div class="home-hero__body">
-      <div class="home-hero__identity">
-        <h1 id="home-hero-title" class="home-hero__name">
-          <span class="home-hero__first-name">{{ t('home.intro.firstName') }}{{ ' ' }}</span>
-          <span class="home-hero__last-name">{{ t('home.intro.lastName') }}</span>
+    <div class="home-hero__body" :inert="entering">
+      <div class="home-hero__identity home-hero__float">
+        <h1
+          id="home-hero-title"
+          class="home-hero__name"
+          :aria-label="`${t('home.intro.firstName')} ${t('home.intro.lastName')}`"
+        >
+          <span class="home-hero__first-name" data-hero-enter
+            ><span
+              v-for="(letter, index) in Array.from(t('home.intro.firstName'))"
+              :key="index"
+              class="home-hero__letter"
+              data-hero-react="letter"
+              aria-hidden="true"
+              >{{ letter }}</span
+            >{{ '\u00a0' }}</span
+          >
+          <br />
+          <span class="home-hero__last-name" data-hero-enter
+            ><span
+              v-for="(letter, index) in Array.from(t('home.intro.lastName'))"
+              :key="index"
+              class="home-hero__letter"
+              data-hero-react="letter"
+              aria-hidden="true"
+              >{{ letter }}</span
+            ></span
+          >
         </h1>
       </div>
       <div class="home-hero__summary">
-        <p class="home-hero__role">{{ t('home.hero.role') }}</p>
+        <p class="home-hero__role home-hero__float" data-hero-enter data-hero-react="detail">
+          {{ t('home.hero.role') }}
+        </p>
         <i18n-t
           keypath="home.hero.description"
           tag="p"
-          class="home-hero__description"
+          class="home-hero__description home-hero__float"
+          data-hero-enter
+          data-hero-react="detail"
           scope="global"
         >
           <template #lineBreak><br /></template>
@@ -43,15 +88,21 @@ onMounted(() => {
             <strong class="home-hero__outcome">{{ t('home.hero.outcome') }}</strong>
           </template>
         </i18n-t>
-        <a class="home-hero__contact" href="#contacts" @click="scrollToSection('contacts', $event)">
-          {{ t('home.hero.contactAction') }}
-          <ArrowDown
-            class="home-hero__contact-arrow"
-            :size="23"
-            :stroke-width="1.8"
-            aria-hidden="true"
-          />
-        </a>
+        <div class="home-hero__action home-hero__float" data-hero-enter data-hero-react="detail">
+          <a
+            class="home-hero__contact"
+            href="#contacts"
+            @click="scrollToSection('contacts', $event)"
+          >
+            {{ t('home.hero.contactAction') }}
+            <ArrowDown
+              class="home-hero__contact-arrow"
+              :size="23"
+              :stroke-width="1.8"
+              aria-hidden="true"
+            />
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -86,16 +137,37 @@ onMounted(() => {
   font-weight: 800;
   line-height: 0.88;
   text-align: center;
-  letter-spacing: -0.065em;
+  letter-spacing: -0.005em;
   text-wrap: balance;
 }
 
 .home-hero__first-name,
 .home-hero__last-name {
-  display: block;
+  display: inline-block;
+}
+
+.home-hero__letter {
+  display: inline-block;
+  transform: var(--hero-pointer-transform, none);
+}
+
+.home-hero__first-name {
+  --hero-enter-delay: 0ms;
+}
+
+.home-hero__last-name {
+  --hero-enter-delay: calc(var(--motion-stagger) * 2);
+}
+
+.home-hero__action {
+  --hero-enter-delay: calc(var(--motion-stagger) * 8);
+
+  width: min(100%, 15rem);
 }
 
 .home-hero__role {
+  --hero-enter-delay: calc(var(--motion-stagger) * 4);
+
   margin: 0;
   font-size: clamp(1.25rem, 2vw, 1.75rem);
   font-weight: 500;
@@ -119,6 +191,8 @@ onMounted(() => {
 }
 
 .home-hero__description {
+  --hero-enter-delay: calc(var(--motion-stagger) * 6);
+
   width: 100%;
   max-width: 34rem;
   min-block-size: 3lh;
@@ -188,8 +262,34 @@ onMounted(() => {
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  .home-hero__name {
+    filter: var(--hero-name-filter);
+  }
+
+  .home-hero__role,
+  .home-hero__description,
+  .home-hero__action {
+    filter: var(--hero-detail-filter);
+  }
+
+  [data-hero-enter] {
+    animation: hero-appear var(--motion-entrance) var(--ease-out) var(--hero-enter-delay) both;
+  }
+
   .home-hero__contact:active {
     transform: scale(0.97);
+  }
+}
+
+@keyframes hero-appear {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem) var(--hero-pointer-transform, translate(0));
+  }
+
+  to {
+    opacity: 1;
+    transform: var(--hero-pointer-transform, translate(0));
   }
 }
 

@@ -1,21 +1,30 @@
 import type { Ref } from 'vue'
 
-const driftDistance = 12
-const rotationRange = 4
 const minimumDuration = 18000
 const durationVariation = 12000
 const waypointCount = 6
 const floatEasing = 'cubic-bezier(0.77, 0, 0.175, 1)'
 
-export function useFloatingPrimitives(root: Readonly<Ref<HTMLElement | null>>) {
+export function useFloatingMotion(
+  root: Readonly<Ref<HTMLElement | null>>,
+  {
+    selector,
+    driftDistance = 12,
+    rotationRange = 4
+  }: {
+    selector: string
+    driftDistance?: number
+    rotationRange?: number
+  }
+) {
   let cleanup = () => {}
+  let refresh = () => {}
 
   onMounted(() => {
     if (!root.value) return
 
-    const elements = Array.from(
-      root.value.querySelectorAll<HTMLElement>('.home-hero-primitives__item')
-    )
+    const container = root.value
+    let elements = Array.from(container.querySelectorAll<HTMLElement>(selector))
     const media = window.matchMedia('(prefers-reduced-motion: no-preference)')
     let animations: Animation[] = []
     let inView = true
@@ -51,6 +60,17 @@ export function useFloatingPrimitives(root: Readonly<Ref<HTMLElement | null>>) {
       updatePlayback()
     }
 
+    refresh = () => {
+      const current = Array.from(container.querySelectorAll<HTMLElement>(selector))
+      if (
+        current.length === elements.length &&
+        current.every((element, index) => element === elements[index])
+      )
+        return
+      elements = current
+      createMotion()
+    }
+
     const observer = new IntersectionObserver(([entry]) => {
       inView = entry?.isIntersecting ?? false
       updatePlayback()
@@ -68,5 +88,6 @@ export function useFloatingPrimitives(root: Readonly<Ref<HTMLElement | null>>) {
     }
   })
 
+  onUpdated(() => refresh())
   onBeforeUnmount(() => cleanup())
 }
