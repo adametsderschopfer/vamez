@@ -5,6 +5,9 @@ import cube from '@/assets/images/hero-primitives/cube.webp'
 import brace from '@/assets/images/hero-primitives/brace.webp'
 import nut from '@/assets/images/hero-primitives/nut.webp'
 
+const root = useTemplateRef<HTMLElement>('primitives')
+useFloatingPrimitives(root)
+
 const primitives = [
   { name: 'code', image: code },
   { name: 'circuit', image: circuit },
@@ -15,7 +18,7 @@ const primitives = [
 </script>
 
 <template>
-  <div class="home-hero-primitives" aria-hidden="true">
+  <div ref="primitives" class="home-hero-primitives" aria-hidden="true">
     <span
       v-for="primitive in primitives"
       :key="primitive.name"

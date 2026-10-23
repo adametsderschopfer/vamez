@@ -1,0 +1,21 @@
+{
+  "key": "mozen",
+  "order": 1,
+  "name": "Mozen",
+  "logo": "/images/companies/mozen-light.svg",
+  "logoDark": "/images/companies/mozen.svg",
+  "url": "https://mozen.ru/",
+  "tone": "accent",
+  "industry": {
+    "ru": "Финтех и сервисы для такси",
+    "en": "Fintech and taxi services"
+  },
+  "period": {
+    "ru": "Июнь 2024 — настоящее время",
+    "en": "June 2024 — present"
+  },
+  "statement": {
+    "ru": "Мобильные сервисы для водителей и таксопарков.",
+    "en": "Mobile services for drivers and taxi fleets."
+  }
+}

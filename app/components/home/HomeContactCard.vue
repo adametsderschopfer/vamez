@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onBeforeUnmount, shallowRef } from 'vue'
-import { ArrowUpRight, Check, Copy } from 'lucide-vue-next'
+import { ArrowUpRight, Check, Copy, Github, Mail, Send, Youtube } from 'lucide-vue-next'
 
 const { t } = useI18n()
 const copyStatus = shallowRef<'copied' | 'failed' | null>(null)
@@ -10,18 +10,21 @@ const email = 'adametsderschopfer@yandex.ru'
 const contacts = [
   {
     label: 'Email',
+    icon: Mail,
     detail: email,
     href: `mailto:${email}`,
     external: false
   },
   {
     label: 'GitHub',
+    icon: Github,
     detail: 'adametsderschopfer',
     href: 'https://github.com/adametsderschopfer',
     external: true
   },
   {
     label: 'YouTube',
+    icon: Youtube,
     detail: '@vlad_adamets',
     href: 'https://www.youtube.com/@vlad_adamets',
     external: true
@@ -60,7 +63,14 @@ onBeforeUnmount(() => {
       rel="noopener noreferrer"
     >
       <span class="home-contact-card__primary-copy">
-        <span class="home-contact-card__primary-title">{{ t('home.contact.telegramAction') }}</span>
+        <span class="home-contact-card__primary-title">
+          <Send
+            class="home-contact-card__brand home-contact-card__brand--primary"
+            :stroke-width="1.6"
+            aria-hidden="true"
+          />
+          {{ t('home.contact.telegramAction') }}
+        </span>
         <span class="home-contact-card__primary-detail">{{ t('home.contact.telegramHint') }}</span>
       </span>
       <ArrowUpRight class="home-contact-card__primary-arrow" :size="40" aria-hidden="true" />
@@ -87,7 +97,15 @@ onBeforeUnmount(() => {
           @click="contact.label === 'Email' && copyEmail()"
         >
           <span class="home-contact-card__link-text">
-            <span class="home-contact-card__link-label">{{ contact.label }}</span>
+            <span class="home-contact-card__link-label">
+              <component
+                :is="contact.icon"
+                class="home-contact-card__brand"
+                :stroke-width="1.6"
+                aria-hidden="true"
+              />
+              {{ contact.label }}
+            </span>
             <span
               v-if="contact.label === 'Email' && copyStatus"
               class="home-contact-card__link-detail home-contact-card__copy-status"
@@ -134,6 +152,8 @@ onBeforeUnmount(() => {
   --contact-row-padding: clamp(1.5rem, 3vw, 2.5rem);
   --contact-row-inset: clamp(0.75rem, 1.5vw, 1.5rem);
   --contact-row-gap: clamp(1rem, 3vw, 2.5rem);
+  --contact-icon-gap: 0.75rem;
+  --contact-hover-surface: color-mix(in srgb, var(--card-accent) 12%, var(--card-surface));
 
   min-width: 0;
 }
@@ -161,6 +181,9 @@ onBeforeUnmount(() => {
 }
 
 .home-contact-card__primary-title {
+  display: flex;
+  gap: var(--contact-icon-gap);
+  align-items: center;
   font-size: clamp(1.75rem, 4vw, 3.5rem);
   font-weight: 600;
   line-height: 1.1;
@@ -168,7 +191,8 @@ onBeforeUnmount(() => {
 }
 
 .home-contact-card__primary-detail {
-  font-size: 1rem;
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
   line-height: 1.5;
 }
 
@@ -185,6 +209,8 @@ onBeforeUnmount(() => {
 .home-contact-card__fallback {
   display: inline-block;
   padding: 1rem 0;
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
   color: var(--card-accent);
 }
 
@@ -222,7 +248,7 @@ onBeforeUnmount(() => {
 
 .home-contact-card__link:focus-visible {
   color: var(--card-accent);
-  background: var(--card-surface);
+  background: var(--contact-hover-surface);
 }
 
 .home-contact-card__link::after {
@@ -253,17 +279,39 @@ onBeforeUnmount(() => {
 }
 
 .home-contact-card__link-label {
+  display: flex;
+  gap: var(--contact-icon-gap);
+  align-items: center;
   font-size: clamp(1.5rem, 2.5vw, 2rem);
   font-weight: 600;
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
 
+.home-contact-card__brand {
+  flex: none;
+  width: 1.75rem;
+  height: 1.75rem;
+  color: inherit;
+  transition: color var(--motion-fast) ease;
+}
+
+.home-contact-card__brand--primary {
+  width: clamp(2rem, 4vw, 3rem);
+  height: clamp(2rem, 4vw, 3rem);
+}
+
 .home-contact-card__link-detail {
-  font-size: clamp(0.875rem, 1.4vw, 1.125rem);
+  font-size: clamp(var(--font-size-label), 1.4vw, var(--font-size-body));
+  font-weight: var(--font-weight-body);
   line-height: 1.4;
   color: var(--ink-muted);
   overflow-wrap: anywhere;
+  transition: color var(--motion-fast) ease;
+}
+
+.home-contact-card__link:focus-visible .home-contact-card__link-detail {
+  color: var(--ink);
 }
 
 .home-contact-card__link-arrow {
@@ -307,7 +355,11 @@ onBeforeUnmount(() => {
 
   .home-contact-card__link:hover {
     color: var(--card-accent);
-    background: var(--card-surface);
+    background: var(--contact-hover-surface);
+  }
+
+  .home-contact-card__link:hover .home-contact-card__link-detail {
+    color: var(--ink);
   }
 
   .home-contact-card__link:hover::after {

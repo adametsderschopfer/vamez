@@ -48,7 +48,8 @@ const { t } = useI18n()
 .home-contact__description {
   max-width: 65ch;
   margin: 1.5rem 0 0;
-  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-body);
   line-height: 1.6;
   color: var(--ink-muted);
 }

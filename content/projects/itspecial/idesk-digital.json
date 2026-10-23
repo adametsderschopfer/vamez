@@ -1,0 +1,25 @@
+{
+  "key": "idesk-digital",
+  "company": "itspecial",
+  "order": 1,
+  "title": { "ru": "iDESK Digital Signage", "en": "iDESK Digital Signage" },
+  "description": {
+    "ru": "Система удалённого управления контентом на интерактивных экранах и менюбордах.",
+    "en": "A system for remotely managing content on interactive displays and digital menu boards."
+  },
+  "contribution": {
+    "ru": "Дорабатывал и развивал существующий продукт iDesk. Разработал конструктор менюбордов: редактирование шаблонов и интеграцию с Quick Resto для получения актуальных цен.",
+    "en": "Maintained and extended the existing iDesk product. Built a menu board editor with editable templates and Quick Resto integration for up-to-date prices."
+  },
+  "url": "https://itspecial.net/portfolio/digital",
+  "preview": {
+    "src": "/images/projects/idesk-digital.png",
+    "alt": {
+      "ru": "Цифровые менюборды в кафе — изображение из кейса iDESK Digital Signage",
+      "en": "Digital menu boards in a cafe, from the iDESK Digital Signage case study"
+    },
+    "width": 1440,
+    "height": 900,
+    "kind": "photo"
+  }
+}

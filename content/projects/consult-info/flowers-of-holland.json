@@ -1,0 +1,29 @@
+{
+  "key": "flowers-of-holland",
+  "company": "consult-info",
+  "order": 1,
+  "logo": {
+    "src": "/images/projects/flowers-of-holland-logo.png",
+    "width": 264,
+    "height": 75
+  },
+  "title": {
+    "ru": "Цветы Голландии",
+    "en": "Flowers of Holland"
+  },
+  "description": {
+    "ru": "Интернет-магазин цветов с доставкой по Калининграду и области. Конструктор букетов, каталог с выбором цвета, размера и упаковки и оформление заказа.",
+    "en": "An online flower shop delivering across Kaliningrad and the surrounding region. A bouquet builder, a catalog with color, size, and wrapping options, and checkout."
+  },
+  "url": "https://www.consult-info.ru/portfolio/tsvety-gollandii/",
+  "preview": {
+    "src": "/images/projects/flowers-of-holland.png",
+    "alt": {
+      "ru": "Главная страница «Цветов Голландии» с конструктором букетов",
+      "en": "Flowers of Holland homepage with the bouquet builder"
+    },
+    "width": 1792,
+    "height": 819,
+    "kind": "website"
+  }
+}

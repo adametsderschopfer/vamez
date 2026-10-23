@@ -1,0 +1,29 @@
+{
+  "key": "driver-app",
+  "company": "mozen",
+  "order": 1,
+  "title": {
+    "ru": "Приложение для водителей",
+    "en": "Driver app"
+  },
+  "description": {
+    "ru": "Приложение для водителей такси: моментальные выплаты, пополнение баланса таксометра и сервисы таксопарка в телефоне.",
+    "en": "A taxi driver app with instant payouts, taxi account top-ups, and fleet services on the phone."
+  },
+  "contribution": {
+    "ru": "Переписывал приложение с нативных Android- и iOS-версий на React Native — переносил две отдельные реализации в общую кодовую базу.",
+    "en": "Rewrote the native Android and iOS apps in React Native, bringing two separate implementations into a shared codebase."
+  },
+  "stack": ["React Native", "Android", "iOS"],
+  "url": "https://mozen.ru/solutions/taxi",
+  "preview": {
+    "src": "/images/projects/mozen-driver.webp",
+    "alt": {
+      "ru": "Экран приложения Mozen: баланс водителя и история операций",
+      "en": "Mozen app screen showing the driver balance and transaction history"
+    },
+    "width": 679,
+    "height": 1400,
+    "kind": "app"
+  }
+}

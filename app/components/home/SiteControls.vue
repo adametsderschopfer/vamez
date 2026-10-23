@@ -64,8 +64,8 @@ const themeActionLabel = computed(() =>
   width: var(--site-controls-size);
   height: var(--site-controls-size);
   padding: 0;
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
   color: inherit;
   text-decoration: none;
   cursor: pointer;

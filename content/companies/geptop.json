@@ -1,0 +1,28 @@
+{
+  "key": "geptop",
+  "order": 2,
+  "name": "Гептоп",
+  "logo": "/images/companies/geptop.svg",
+  "logoDark": "/images/companies/geptop.svg",
+  "logoKind": "symbol",
+  "logoMonochrome": true,
+  "url": "https://getarent.ru/",
+  "tone": "paper",
+  "status": "closed",
+  "industry": {
+    "ru": "Маркетплейс Getarent",
+    "en": "Getarent marketplace"
+  },
+  "period": {
+    "ru": "Июль 2023 — апрель 2024",
+    "en": "July 2023 — April 2024"
+  },
+  "role": {
+    "ru": "TechLead / Developer",
+    "en": "TechLead / Developer"
+  },
+  "statement": {
+    "ru": "Приложение, веб-платформа, сервисы и инфраструктура Getarent.",
+    "en": "The Getarent app, web platform, services, and infrastructure."
+  }
+}

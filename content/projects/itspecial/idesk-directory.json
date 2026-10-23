@@ -1,0 +1,25 @@
+{
+  "key": "idesk-directory",
+  "company": "itspecial",
+  "order": 2,
+  "title": { "ru": "iDESK Digital Directory", "en": "iDESK Digital Directory" },
+  "description": {
+    "ru": "Интерактивная навигация по торговым центрам и учебным учреждениям через сенсорные терминалы.",
+    "en": "Interactive navigation through shopping centers and educational institutions using touchscreen kiosks."
+  },
+  "contribution": {
+    "ru": "Занимался доработкой существующего проекта. Поддерживал старые модули iDesk, устранял легаси-код и развивал клиентскую часть системы.",
+    "en": "Worked on improvements to the existing project. Maintained legacy iDesk modules, cleaned up legacy code, and developed the system’s frontend."
+  },
+  "url": "https://itspecial.net/portfolio/directory",
+  "preview": {
+    "src": "/images/projects/idesk-directory.png",
+    "alt": {
+      "ru": "Сенсорный навигационный терминал iDESK в торговом центре",
+      "en": "An iDESK touchscreen navigation kiosk in a shopping center"
+    },
+    "width": 4240,
+    "height": 2412,
+    "kind": "photo"
+  }
+}

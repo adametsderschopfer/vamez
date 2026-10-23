@@ -20,6 +20,18 @@
     "skipToContent": "Skip to content"
   },
   "home": {
+    "cases": {
+      "navigation": "Work",
+      "title": "Work, in detail.",
+      "notice": "Companies I have worked at and projects I have contributed to.",
+      "projects": "Projects",
+      "technologies": "Project technologies",
+      "contribution": "My contribution",
+      "placeholder": "Placeholder",
+      "closed": "RIP — project closed",
+      "companyWebsite": "Company website",
+      "projectWebsite": "About the project"
+    },
     "hero": {
       "role": "Author and engineer.",
       "description": "I bring ideas to life through systems, code, and interfaces.{lineBreak}For {experience}, I've been turning complex challenges into {outcome}.",

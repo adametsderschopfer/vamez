@@ -1,0 +1,14 @@
+{
+  "key": "video-streaming",
+  "company": "itspecial",
+  "order": 4,
+  "title": { "ru": "Видеостриминговый сервис", "en": "Video streaming service" },
+  "description": {
+    "ru": "Веб-приложение видеостримингового сервиса.",
+    "en": "A video streaming service’s web application."
+  },
+  "contribution": {
+    "ru": "Принимал участие во фронтенд-разработке сервиса.",
+    "en": "Contributed to the service’s frontend development."
+  }
+}

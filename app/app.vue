@@ -143,6 +143,8 @@ useHead(() => ({
   left: var(--page-gutter);
   z-index: 200;
   padding: 0.75rem 1rem;
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
   color: var(--ink-on-accent);
   background: var(--card-accent);
   transform: translateY(calc(-100% - 2rem));

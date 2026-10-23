@@ -16,6 +16,9 @@ const { scrollToSection } = useSectionScroll()
       vamez<span class="home-header__brand-dot">.</span>
     </a>
     <nav class="home-header__nav" :aria-label="t('home.navigation')">
+      <a class="home-header__link" href="#cases" @click="scrollToSection('cases', $event)">
+        {{ t('home.cases.navigation') }}
+      </a>
       <a class="home-header__link" href="#contacts" @click="scrollToSection('contacts', $event)">
         {{ t('home.contacts.title') }}
       </a>
@@ -67,8 +70,8 @@ const { scrollToSection } = useSectionScroll()
   display: inline-flex;
   align-items: center;
   min-height: 2.75rem;
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
   color: var(--ink);
   text-decoration: none;
 }

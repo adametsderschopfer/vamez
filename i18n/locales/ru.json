@@ -20,6 +20,18 @@
     "skipToContent": "К содержимому"
   },
   "home": {
+    "cases": {
+      "navigation": "Кейсы",
+      "title": "Работа в деталях.",
+      "notice": "Компании, в которых я работал, и проекты, к которым приложил руку.",
+      "projects": "Проекты",
+      "technologies": "Технологии проекта",
+      "contribution": "Моя работа",
+      "placeholder": "Рыба",
+      "closed": "RIP — проект закрыт",
+      "companyWebsite": "Сайт компании",
+      "projectWebsite": "О проекте"
+    },
     "hero": {
       "role": "Автор и инженер.",
       "description": "Воплощаю идеи в системах, коде и интерфейсах.{lineBreak}Уже {experience} превращаю сложные задачи в {outcome}.",

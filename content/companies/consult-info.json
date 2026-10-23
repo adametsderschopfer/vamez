@@ -1,0 +1,21 @@
+{
+  "key": "consult-info",
+  "order": 4,
+  "name": "Consult Info",
+  "logo": "/images/companies/consult.svg",
+  "logoDark": "/images/companies/consult-dark.svg",
+  "url": "https://www.consult-info.ru/",
+  "tone": "paper",
+  "industry": {
+    "ru": "Веб-разработка и цифровые решения",
+    "en": "Web development and digital solutions"
+  },
+  "period": {
+    "ru": "Январь 2021 — декабрь 2022",
+    "en": "January 2021 — December 2022"
+  },
+  "statement": {
+    "ru": "Клиентские проекты и интернет-магазины.",
+    "en": "Client projects and online stores."
+  }
+}

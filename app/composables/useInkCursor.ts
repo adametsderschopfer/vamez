@@ -1,4 +1,5 @@
 import type { Ref } from 'vue'
+import { getInkCursorCreases, getInkCursorPath, inkCursorHotspot } from '@/utils/inkCursorShape'
 
 type InkParticle = {
   element: HTMLElement
@@ -17,6 +18,19 @@ const frameDuration = 1000 / 60
 const pressedScale = 1.5
 const pressResponse = 45
 const minimumPressDuration = 160
+const pointerEnterResponse = 90
+const pointerLeaveResponse = 70
+const clickableSelector = [
+  'a[href]',
+  'button',
+  'summary',
+  '[role="button"]',
+  '[role="link"]',
+  'input[type="button"]',
+  'input[type="submit"]',
+  'input[type="reset"]',
+  '[data-cursor="pointer"]'
+].join(',')
 
 export function useInkCursor(cursor: Readonly<Ref<HTMLElement | null>>) {
   const visible = shallowRef(false)
@@ -24,6 +38,11 @@ export function useInkCursor(cursor: Readonly<Ref<HTMLElement | null>>) {
 
   onMounted(() => {
     if (!cursor.value) return
+
+    const shape = cursor.value.querySelector<SVGSVGElement>('.ink-cursor__shape')
+    const outline = cursor.value.querySelector<SVGPathElement>('.ink-cursor__outline')
+    const creases = cursor.value.querySelector<SVGPathElement>('.ink-cursor__creases')
+    if (!shape || !outline) return
 
     const children = cursor.value.querySelectorAll<HTMLElement>('.ink-cursor__particle')
     const particles: InkParticle[] = Array.from(children, (child, index) => {
@@ -49,6 +68,22 @@ export function useInkCursor(cursor: Readonly<Ref<HTMLElement | null>>) {
     let pressed = false
     let pressUntil = 0
     let cursorScale = 1
+    let pointing = false
+    let pointerProgress = 0
+
+    function updateTarget(target: EventTarget | null) {
+      const element = target instanceof Element ? target.closest(clickableSelector) : null
+      pointing = Boolean(element && !element.closest(':disabled, [aria-disabled="true"], [inert]'))
+    }
+
+    function updateHover(event: PointerEvent) {
+      if (event.pointerType === 'mouse') updateTarget(event.target)
+    }
+
+    function updateScrollTarget() {
+      if (!visible.value) return
+      updateTarget(document.elementFromPoint(mouseX + particleSize / 2, mouseY + particleSize / 2))
+    }
 
     function hide() {
       if (frame !== undefined) cancelAnimationFrame(frame)
@@ -57,6 +92,8 @@ export function useInkCursor(cursor: Readonly<Ref<HTMLElement | null>>) {
       pressed = false
       pressUntil = 0
       cursorScale = 1
+      pointing = false
+      pointerProgress = 0
       visible.value = false
     }
 
@@ -67,6 +104,14 @@ export function useInkCursor(cursor: Readonly<Ref<HTMLElement | null>>) {
       const following = Math.pow(followingRatio, frameRatio)
       const targetScale = pressed || time < pressUntil ? pressedScale : 1
       cursorScale += (targetScale - cursorScale) * (1 - Math.exp(-elapsed / pressResponse))
+      const pointerResponse = pointing ? pointerEnterResponse : pointerLeaveResponse
+      pointerProgress +=
+        ((pointing ? 1 : 0) - pointerProgress) * (1 - Math.exp(-elapsed / pointerResponse))
+      if (Math.abs(pointerProgress - (pointing ? 1 : 0)) < 0.001) pointerProgress = pointing ? 1 : 0
+      outline!.setAttribute('d', getInkCursorPath(pointerProgress, time))
+      creases?.setAttribute('d', getInkCursorCreases(pointerProgress, time))
+      creases?.setAttribute('opacity', String(Math.max(0, (pointerProgress - 0.75) / 0.25)))
+      shape!.style.transform = `translate(${mouseX + particleSize / 2 - inkCursorHotspot.x}px, ${mouseY + particleSize / 2 - inkCursorHotspot.y}px) scale(${cursorScale})`
       let x = mouseX
       let y = mouseY
 
@@ -83,7 +128,7 @@ export function useInkCursor(cursor: Readonly<Ref<HTMLElement | null>>) {
           offsetY = Math.sin(particle.angleY) * particle.range * cursorScale
         }
 
-        particle.element.style.transform = `translate(${particle.x + offsetX}px, ${particle.y + offsetY}px) scale(${particle.scale * cursorScale})`
+        particle.element.style.transform = `translate(${particle.x + offsetX}px, ${particle.y + offsetY}px) scale(${particle.scale * cursorScale * (1 - pointerProgress)})`
 
         const next = particles[index + 1]
         if (!next) continue
@@ -99,6 +144,7 @@ export function useInkCursor(cursor: Readonly<Ref<HTMLElement | null>>) {
       mouseX = event.clientX - particleSize / 2
       mouseY = event.clientY - particleSize / 2
       pressed = (event.buttons & 1) !== 0
+      updateTarget(event.target)
 
       if (!visible.value) {
         for (const particle of particles) {
@@ -132,6 +178,8 @@ export function useInkCursor(cursor: Readonly<Ref<HTMLElement | null>>) {
     }
 
     window.addEventListener('pointermove', move, { passive: true })
+    window.addEventListener('pointerover', updateHover, { passive: true })
+    window.addEventListener('scroll', updateScrollTarget, { passive: true, capture: true })
     window.addEventListener('pointerdown', press, { passive: true, capture: true })
     window.addEventListener('pointerup', release, { passive: true, capture: true })
     window.addEventListener('pointercancel', hide)
@@ -145,6 +193,8 @@ export function useInkCursor(cursor: Readonly<Ref<HTMLElement | null>>) {
     dispose = () => {
       hide()
       window.removeEventListener('pointermove', move)
+      window.removeEventListener('pointerover', updateHover)
+      window.removeEventListener('scroll', updateScrollTarget, true)
       window.removeEventListener('pointerdown', press, true)
       window.removeEventListener('pointerup', release, true)
       window.removeEventListener('pointercancel', hide)

@@ -1,0 +1,14 @@
+{
+  "key": "idesk-schedule",
+  "company": "itspecial",
+  "order": 3,
+  "title": { "ru": "Учебное расписание iDesk", "en": "iDesk academic timetable" },
+  "description": {
+    "ru": "Модуль для составления и управления расписанием в школах, колледжах и университетах.",
+    "en": "A module for creating and managing timetables in schools, colleges, and universities."
+  },
+  "contribution": {
+    "ru": "Разработал модуль учебного расписания в составе существующей системы iDesk.",
+    "en": "Built the academic timetable module within the existing iDesk system."
+  }
+}

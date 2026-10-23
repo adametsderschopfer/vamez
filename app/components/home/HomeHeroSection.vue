@@ -99,6 +99,7 @@ onMounted(() => {
   margin: 0;
   font-size: clamp(1.25rem, 2vw, 1.75rem);
   font-weight: 500;
+  line-height: 1.3;
   letter-spacing: -0.02em;
 }
 
@@ -118,9 +119,12 @@ onMounted(() => {
 }
 
 .home-hero__description {
-  max-width: 48ch;
+  width: 100%;
+  max-width: 34rem;
+  min-block-size: 3lh;
   margin: 0;
-  font-size: clamp(1rem, 1.35vw, 1.25rem);
+  font-size: clamp(var(--font-size-body), 1.35vw, 1.25rem);
+  font-weight: var(--font-weight-body);
   line-height: 1.65;
   color: var(--ink-muted);
   text-wrap: pretty;
@@ -142,12 +146,14 @@ onMounted(() => {
   gap: 2rem;
   align-items: center;
   justify-content: space-between;
-  min-width: min(100%, 14rem);
-  min-height: 3.75rem;
+  width: min(100%, 15rem);
+  height: 3.75rem;
   padding: 1rem 1.25rem;
   font-size: 1rem;
   font-weight: 600;
+  line-height: 1.25;
   color: var(--ink-on-accent);
+  white-space: nowrap;
   text-decoration: none;
   cursor: pointer;
   background: var(--card-accent);
@@ -164,6 +170,7 @@ onMounted(() => {
 }
 
 .home-hero__contact-arrow {
+  flex: none;
   transition: transform var(--motion-fast) var(--ease-out);
 }
 
@@ -197,7 +204,14 @@ onMounted(() => {
   }
 
   .home-hero__description {
-    max-width: 36ch;
+    max-width: 22rem;
+    min-block-size: 4lh;
+  }
+}
+
+@media (max-width: 360px) {
+  .home-hero__description {
+    min-block-size: 5lh;
   }
 }
 </style>

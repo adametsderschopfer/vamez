@@ -1,0 +1,30 @@
+{
+  "key": "itspecial",
+  "order": 3,
+  "name": "АйТи Спейшл",
+  "logo": "/images/companies/itspecial.svg",
+  "logoDark": "/images/companies/itspecial.svg",
+  "logoKind": "symbol",
+  "url": "https://itspecial.net/",
+  "tone": "paper",
+  "industry": {
+    "ru": "Веб-разработка и автоматизация бизнеса",
+    "en": "Web development and business automation"
+  },
+  "period": {
+    "ru": "Декабрь 2022 — июль 2023",
+    "en": "December 2022 — July 2023"
+  },
+  "role": {
+    "ru": "Senior Frontend Developer",
+    "en": "Senior Frontend Developer"
+  },
+  "statement": {
+    "ru": "Развитие веб-продуктов и клиентской части iDesk.",
+    "en": "Developing web products and the iDesk frontend."
+  },
+  "summary": {
+    "ru": "Работал с React/Next.js и Vue/Nuxt: переносил проекты с Nuxt 2 на 3, обновлял зависимости и оптимизировал Webpack. Участвовал в UX/UI-решениях, декомпозиции задач и планировании релизов. Развивал дизайн-систему, помогал младшему разработчику и проводил технические собеседования.",
+    "en": "Worked with React/Next.js and Vue/Nuxt, migrated projects from Nuxt 2 to 3, updated dependencies, and optimized Webpack. Contributed to UX/UI decisions, task breakdown, and release planning. Developed a frontend design system, mentored a junior developer, and conducted technical interviews."
+  }
+}

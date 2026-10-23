@@ -1,0 +1,24 @@
+{
+  "key": "placeholder-2",
+  "company": "consult-info",
+  "order": 3,
+  "isPlaceholder": true,
+  "title": {
+    "ru": "Название проекта",
+    "en": "Project title"
+  },
+  "description": {
+    "ru": "Здесь появится ещё один кейс: задача, моя работа и результат. Пока котик помогает примерить размер и расположение карточки.",
+    "en": "Another case will go here: the challenge, my contribution, and the outcome. For now, a cat helps preview the card size and layout."
+  },
+  "preview": {
+    "src": "/images/projects/cat-napping.jpg",
+    "alt": {
+      "ru": "Спящий котик на карточке-заглушке",
+      "en": "A sleeping cat on a placeholder card"
+    },
+    "width": 1200,
+    "height": 800,
+    "kind": "photo"
+  }
+}

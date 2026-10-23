@@ -1,0 +1,54 @@
+{
+  "key": "getarent",
+  "company": "geptop",
+  "order": 1,
+  "title": {
+    "ru": "Getarent",
+    "en": "Getarent"
+  },
+  "description": {
+    "ru": "Единый маркетплейс: мобильное приложение, сайт и общая система сервисов. Работал над продуктом от пользовательских сценариев до архитектуры и инфраструктуры.",
+    "en": "One marketplace spanning a mobile app, a website, and shared services. Worked across the product, from user flows to architecture and infrastructure."
+  },
+  "sections": [
+    {
+      "title": { "ru": "Приложение", "en": "Mobile app" },
+      "description": {
+        "ru": "Разрабатывал новые функции и дорабатывал существующие сценарии приложения на React Native и Redux. Участвовал в проработке решений и прототипировании.",
+        "en": "Built new features and improved existing flows in the React Native and Redux app. Contributed to solution design and prototyping."
+      }
+    },
+    {
+      "title": { "ru": "Сайт", "en": "Website" },
+      "description": {
+        "ru": "Развивал веб-приложение маркетплейса на TypeScript, React и Next.js, связанное с общими сервисами продукта.",
+        "en": "Developed the marketplace web app with TypeScript, React, and Next.js, connected to the product’s shared services."
+      }
+    },
+    {
+      "title": { "ru": "Бэкенд и инфраструктура", "en": "Backend and infrastructure" },
+      "description": {
+        "ru": "Проектировал сервисы на NestJS с DDD, CQS и Clean Architecture. Работал с TypeORM, PostgreSQL, SQL, представлениями, триггерами и процедурами. Настраивал сервисы в Kubernetes, инфраструктуру Yandex Cloud и GitLab CI/CD.",
+        "en": "Designed NestJS services using DDD, CQS, and Clean Architecture. Worked with TypeORM, PostgreSQL, SQL, views, triggers, and procedures. Configured Kubernetes services, Yandex Cloud infrastructure, and GitLab CI/CD."
+      }
+    }
+  ],
+  "contribution": {
+    "ru": "Как TechLead проводил Code Review, помогал команде проектировать задачи и планировать реализацию, развивал процессы разработки и тестирования. Внедрил документацию API, базы данных и архитектуры. Участвовал в стратегических сессиях с руководством и инвесторами как технический эксперт.",
+    "en": "As TechLead, reviewed code, helped the team scope tasks and plan implementation, and improved development and testing processes. Introduced API, database, and architecture documentation. Joined strategy sessions with management and investors as a technical expert."
+  },
+  "stack": [
+    "TypeScript",
+    "React Native",
+    "Redux",
+    "React",
+    "Next.js",
+    "NestJS",
+    "TypeORM",
+    "PostgreSQL",
+    "Yandex Cloud",
+    "Kubernetes",
+    "Docker",
+    "GitLab CI/CD"
+  ]
+}

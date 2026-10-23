@@ -44,7 +44,8 @@ const year = new Date().getFullYear()
 
 .home-footer__copyright,
 .home-footer__top {
-  font-size: 0.875rem;
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
   line-height: 1.5;
   color: var(--ink-muted);
 }

@@ -100,7 +100,8 @@ useHead(() => ({
 .error-screen__description {
   max-width: 30rem;
   margin: 0;
-  font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+  font-size: clamp(var(--font-size-body), 1.5vw, 1.15rem);
+  font-weight: var(--font-weight-body);
   line-height: 1.65;
   color: var(--ink-muted);
 }
@@ -112,8 +113,8 @@ useHead(() => ({
   min-height: 3.25rem;
   padding: 0 1.4rem;
   margin-top: 1rem;
-  font-size: 0.85rem;
-  font-weight: 700;
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
   color: var(--ink-on-accent);
   text-decoration: none;
   cursor: pointer;
