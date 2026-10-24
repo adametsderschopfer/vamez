@@ -28,22 +28,12 @@ onNuxtReady(() => {
 const localeLanguage = computed(() => (locale.value === 'ru' ? 'ru-RU' : 'en-US'))
 const pageTitle = computed(() => t('seo.ogTitle'))
 const pageDescription = computed(() => t('seo.description'))
-const personName = computed(() => `${t('home.intro.firstName')} ${t('home.intro.lastName')}`)
 const personId = computed(() => `${baseUrl.value}/#person`)
+const personSchema = await usePersonSchema(baseUrl)
 const structuredData = computed(() => ({
   '@context': 'https://schema.org',
   '@graph': [
-    {
-      '@id': personId.value,
-      '@type': 'Person',
-      name: personName.value,
-      url: `${baseUrl.value}/`,
-      sameAs: [
-        'https://github.com/adametsderschopfer',
-        'https://www.youtube.com/@vlad_adamets',
-        'https://t.me/adametsderschopfer'
-      ]
-    },
+    personSchema.value,
     {
       '@id': `${baseUrl.value}/#website`,
       '@type': 'WebSite',
@@ -54,8 +44,9 @@ const structuredData = computed(() => ({
     },
     {
       '@id': `${canonicalUrl.value}#webpage`,
-      '@type': 'WebPage',
+      '@type': 'ProfilePage',
       about: { '@id': personId.value },
+      mainEntity: { '@id': personId.value },
       description: pageDescription.value,
       inLanguage: localeLanguage.value,
       isPartOf: { '@id': `${baseUrl.value}/#website` },

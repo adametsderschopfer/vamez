@@ -9,7 +9,16 @@ const strengths = {
 } as const
 
 type Kind = keyof typeof strengths
-type Target = { element: HTMLElement; kind: Kind; x: number; y: number; angle: number }
+type Target = {
+  element: HTMLElement
+  kind: Kind
+  x: number
+  y: number
+  angle: number
+  goalX: number
+  goalY: number
+  goalAngle: number
+}
 
 export function useHeroPointerMotion(root: Readonly<Ref<HTMLElement | null>>) {
   let cleanup = () => {}
@@ -25,15 +34,18 @@ export function useHeroPointerMotion(root: Readonly<Ref<HTMLElement | null>>) {
     let pointer: { x: number; y: number } | null = null
     let frame = 0
     let previousTime = 0
+    let needsMeasurement = false
 
     function reset() {
       cancelAnimationFrame(frame)
       frame = 0
       previousTime = 0
       pointer = null
+      needsMeasurement = false
       targets.forEach((target) => {
-        target.element.style.removeProperty('--hero-pointer-transform')
+        target.element.style.removeProperty('transform')
         target.x = target.y = target.angle = 0
+        target.goalX = target.goalY = target.goalAngle = 0
       })
     }
 
@@ -42,7 +54,9 @@ export function useHeroPointerMotion(root: Readonly<Ref<HTMLElement | null>>) {
       targets = Array.from(hero.querySelectorAll<HTMLElement>('[data-hero-react]')).flatMap(
         (element) => {
           const kind = element.dataset.heroReact as Kind
-          return kind in strengths ? [{ element, kind, x: 0, y: 0, angle: 0 }] : []
+          return kind in strengths
+            ? [{ element, kind, x: 0, y: 0, angle: 0, goalX: 0, goalY: 0, goalAngle: 0 }]
+            : []
         }
       )
     }
@@ -51,36 +65,40 @@ export function useHeroPointerMotion(root: Readonly<Ref<HTMLElement | null>>) {
       const delta = previousTime ? Math.min(time - previousTime, 64) : 16
       const blend = 1 - Math.exp(-delta / responseTime)
       previousTime = time
-      // Read geometry together before writing transforms, without changing text layout.
-      const bounds = targets.map((target) => target.element.getBoundingClientRect())
+      // Measure once for the latest mouse move, never on every settling frame.
+      if (needsMeasurement && pointer) {
+        const bounds = targets.map((target) => target.element.getBoundingClientRect())
+        targets.forEach((target, index) => {
+          const box = bounds[index]!
+          const strength = strengths[target.kind]
+          const dx = box.left + box.width / 2 - target.x - (pointer?.x ?? 0)
+          const dy = box.top + box.height / 2 - target.y - (pointer?.y ?? 0)
+          const distance = Math.hypot(dx, dy)
+          const radius = Math.max(strength.radius, box.width * 0.65)
+          const influence = Math.max(0, 1 - distance / radius) ** 2
+          const force = influence * strength.distance
+          target.goalX = (dx / Math.max(distance, 1)) * force
+          target.goalY = (dy / Math.max(distance, 1)) * force
+          target.goalAngle = (dx / Math.max(distance, 1)) * influence * strength.rotation
+        })
+        needsMeasurement = false
+      }
       let moving = false
-      targets.forEach((target, index) => {
-        const box = bounds[index]!
-        const strength = strengths[target.kind]
-        const dx = box.left + box.width / 2 - target.x - (pointer?.x ?? 0)
-        const dy = box.top + box.height / 2 - target.y - (pointer?.y ?? 0)
-        const distance = Math.hypot(dx, dy)
-        const radius = Math.max(strength.radius, box.width * 0.65)
-        const influence = pointer ? Math.max(0, 1 - distance / radius) ** 2 : 0
-        const force = influence * strength.distance
-        const x = (dx / Math.max(distance, 1)) * force
-        const y = (dy / Math.max(distance, 1)) * force
-        const angle = (dx / Math.max(distance, 1)) * influence * strength.rotation
-        target.x += (x - target.x) * blend
-        target.y += (y - target.y) * blend
-        target.angle += (angle - target.angle) * blend
+      targets.forEach((target) => {
+        target.x += (target.goalX - target.x) * blend
+        target.y += (target.goalY - target.y) * blend
+        target.angle += (target.goalAngle - target.angle) * blend
         const unsettled =
-          Math.abs(x - target.x) + Math.abs(y - target.y) + Math.abs(angle - target.angle) >
+          Math.abs(target.goalX - target.x) +
+            Math.abs(target.goalY - target.y) +
+            Math.abs(target.goalAngle - target.angle) >
           settleThreshold
         moving ||= unsettled
         if (!pointer && !unsettled) {
-          target.element.style.removeProperty('--hero-pointer-transform')
+          target.element.style.removeProperty('transform')
           target.x = target.y = target.angle = 0
         } else {
-          target.element.style.setProperty(
-            '--hero-pointer-transform',
-            `translate(${target.x.toFixed(2)}px, ${target.y.toFixed(2)}px) rotate(${target.angle.toFixed(2)}deg)`
-          )
+          target.element.style.transform = `translate3d(${target.x.toFixed(2)}px, ${target.y.toFixed(2)}px, 0) rotate(${target.angle.toFixed(2)}deg)`
         }
       })
       frame = moving ? requestAnimationFrame(render) : 0
@@ -93,6 +111,10 @@ export function useHeroPointerMotion(root: Readonly<Ref<HTMLElement | null>>) {
 
     function leave() {
       pointer = null
+      needsMeasurement = false
+      targets.forEach((target) => {
+        target.goalX = target.goalY = target.goalAngle = 0
+      })
       schedule()
     }
 
@@ -100,6 +122,7 @@ export function useHeroPointerMotion(root: Readonly<Ref<HTMLElement | null>>) {
       if (!media.matches || event.pointerType !== 'mouse' || document.hidden) return
       if (event.buttons || hero?.querySelector('[inert]')) return leave()
       pointer = { x: event.clientX, y: event.clientY }
+      needsMeasurement = true
       schedule()
     }
 

@@ -13,13 +13,14 @@
   },
   "url": "https://itspecial.net/portfolio/directory",
   "preview": {
-    "src": "/images/projects/idesk-directory.png",
+    "src": "/images/projects/idesk-directory.webp",
+    "srcSmall": "/images/projects/idesk-directory-640.webp",
     "alt": {
       "ru": "Сенсорный навигационный терминал iDESK в торговом центре",
       "en": "An iDESK touchscreen navigation kiosk in a shopping center"
     },
-    "width": 4240,
-    "height": 2412,
+    "width": 1600,
+    "height": 910,
     "kind": "photo"
   }
 }

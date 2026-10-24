@@ -4,7 +4,7 @@ import { getInkCursorPath } from '@/utils/inkCursorShape'
 const cursor = useTemplateRef<HTMLElement>('cursor')
 const filterId = `ink-cursor-${useId()}`
 const detailMaskId = `${filterId}-details`
-const particleCount = 20
+const particleCount = 16
 
 const { visible } = useInkCursor(cursor)
 
@@ -17,7 +17,14 @@ useHead(() => ({
   <Teleport to="body">
     <svg class="ink-cursor-filter" width="0" height="0" aria-hidden="true">
       <defs>
-        <filter :id="filterId">
+        <filter
+          :id="filterId"
+          filterUnits="userSpaceOnUse"
+          x="-104"
+          y="-104"
+          width="234"
+          height="234"
+        >
           <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
           <feColorMatrix
             in="blur"
@@ -80,8 +87,11 @@ body[data-ink-cursor='active'] *::after {
   left: 0;
   z-index: 1000;
   display: none;
+  width: var(--ink-cursor-size);
+  height: var(--ink-cursor-size);
   pointer-events: none;
   mix-blend-mode: difference;
+  will-change: transform;
 }
 
 .ink-cursor__particle {

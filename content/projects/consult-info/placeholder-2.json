@@ -12,7 +12,8 @@
     "en": "Another case will go here: the challenge, my contribution, and the outcome. For now, a cat helps preview the card size and layout."
   },
   "preview": {
-    "src": "/images/projects/cat-napping.jpg",
+    "src": "/images/projects/cat-napping.webp",
+    "srcSmall": "/images/projects/cat-napping-640.webp",
     "alt": {
       "ru": "Спящий котик на карточке-заглушке",
       "en": "A sleeping cat on a placeholder card"

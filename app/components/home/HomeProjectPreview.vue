@@ -11,6 +11,14 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
     <img
       class="project-preview__image"
       :src="preview.src"
+      :srcset="
+        preview.srcSmall ? `${preview.srcSmall} 640w, ${preview.src} ${preview.width}w` : undefined
+      "
+      :sizes="
+        preview.kind === 'app'
+          ? '200px'
+          : '(max-width: 799px) calc(100vw - 5rem), (max-width: 2988px) 60vw, 1800px'
+      "
       :alt="preview.alt[language]"
       :width="preview.width"
       :height="preview.height"

@@ -15,13 +15,12 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
     :class="`case-study--${company.tone}`"
     :aria-labelledby="`case-title-${company.key}`"
   >
-    <header class="case-study__header">
-      <span>{{ company.industry[language] }}</span>
-      <span class="case-study__period">{{ company.period[language] }}</span>
-    </header>
-
     <div class="case-study__body">
       <div class="case-study__identity">
+        <header class="case-study__header">
+          <span>{{ company.industry[language] }}</span>
+          <span class="case-study__period">{{ company.period[language] }}</span>
+        </header>
         <h3 :id="`case-title-${company.key}`" class="case-study__company">
           <HomeCaseLogo
             :src="company.logo"
@@ -79,9 +78,10 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
 
 .case-study__header {
   display: flex;
-  gap: 1rem;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
   font-size: var(--font-size-label);
   font-weight: var(--font-weight-label);
   line-height: 1.5;
@@ -105,10 +105,6 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
 .case-study__company {
   width: 100%;
   margin: 0;
-}
-
-.case-study__period {
-  text-align: right;
 }
 
 .case-study__role {

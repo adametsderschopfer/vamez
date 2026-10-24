@@ -32,7 +32,7 @@
   --panel-border: var(--line);
   --page-gutter: clamp(1rem, 1.5vw, 2rem);
   --section-space: clamp(3rem, 7vw, 7rem);
-  --content-width: 100%;
+  --content-width: 2988px;
   --grid-gap: clamp(1rem, 2vw, 2rem);
   --header-height: 6rem;
   --motion-fast: 160ms;

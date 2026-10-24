@@ -1,4 +1,5 @@
 import { fileURLToPath } from 'node:url'
+import webpImages from './tools/webp-module'
 
 const appBaseURL = (process.env.NUXT_APP_BASE_URL || '/').replace(/\/?$/, '/')
 const siteUrl = (process.env.NUXT_PUBLIC_SITE_URL || 'https://vamez.ru').replace(/\/$/, '')
@@ -77,7 +78,7 @@ export default defineNuxtConfig({
       ]
     }
   },
-  modules: ['@nuxt/eslint', '@nuxtjs/i18n', '@nuxt/content'],
+  modules: [webpImages, '@nuxt/eslint', '@nuxtjs/i18n', '@nuxt/content'],
   content: {
     experimental: {
       sqliteConnector: 'native'

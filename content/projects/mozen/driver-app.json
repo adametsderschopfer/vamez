@@ -18,6 +18,7 @@
   "url": "https://mozen.ru/solutions/taxi",
   "preview": {
     "src": "/images/projects/mozen-driver.webp",
+    "srcSmall": "/images/projects/mozen-driver-640.webp",
     "alt": {
       "ru": "Экран приложения Mozen: баланс водителя и история операций",
       "en": "Mozen app screen showing the driver balance and transaction history"

@@ -13,7 +13,8 @@
   },
   "url": "https://itspecial.net/portfolio/digital",
   "preview": {
-    "src": "/images/projects/idesk-digital.png",
+    "src": "/images/projects/idesk-digital.webp",
+    "srcSmall": "/images/projects/idesk-digital-640.webp",
     "alt": {
       "ru": "Цифровые менюборды в кафе — изображение из кейса iDESK Digital Signage",
       "en": "Digital menu boards in a cafe, from the iDESK Digital Signage case study"

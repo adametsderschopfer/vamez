@@ -3,6 +3,9 @@ pre-commit:
   env:
     PATH: /Users/v_adamets/.nvm/versions/node/v24.14.1/bin:/usr/local/bin:/usr/bin:/bin
   commands:
+    images-webp:
+      run: npm run images:check
+
     eslint:
       glob: '**/*.{js,ts,vue}'
       run: npx eslint --fix {staged_files} && git add {staged_files}

@@ -1,17 +1,23 @@
 <script setup lang="ts">
 import { ArrowDown } from 'lucide-vue-next'
 import HomeHeroPrimitives from './HomeHeroPrimitives.vue'
-import HomeHeroLiquidFilters from './HomeHeroLiquidFilters.vue'
 
 const { t, locale } = useI18n()
 const { scrollToSection } = useSectionScroll()
 const hero = useTemplateRef<HTMLElement>('hero')
-const filterId = useId()
-const nameFilterId = `${filterId}-hero-name`
-const detailFilterId = `${filterId}-hero-detail`
 const { entering } = useHeroEntrance(hero)
-useFloatingMotion(hero, { selector: '.home-hero__float', driftDistance: 4, rotationRange: 0.6 })
-useFloatingMotion(hero, { selector: '.home-hero__letter', driftDistance: 2, rotationRange: 3.5 })
+useFloatingMotion(hero, {
+  selector: '.home-hero__float',
+  driftDistance: 4,
+  rotationRange: 0.6,
+  deformation: 0.006
+})
+useFloatingMotion(hero, {
+  selector: '.home-hero__letter',
+  driftDistance: 2,
+  rotationRange: 3.5,
+  deformation: 0.025
+})
 useHeroPointerMotion(hero)
 const careerStartYear = 2020
 const currentYear = useState('career-current-year', () => new Date().getFullYear())
@@ -27,16 +33,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section
-    ref="hero"
-    class="home-hero"
-    aria-labelledby="home-hero-title"
-    :style="{
-      '--hero-name-filter': `url(#${nameFilterId})`,
-      '--hero-detail-filter': `url(#${detailFilterId})`
-    }"
-  >
-    <HomeHeroLiquidFilters :name-id="nameFilterId" :detail-id="detailFilterId" />
+  <section ref="hero" class="home-hero" aria-labelledby="home-hero-title">
     <HomeHeroPrimitives />
     <div class="home-hero__body" :inert="entering">
       <div class="home-hero__identity home-hero__float">
@@ -148,7 +145,6 @@ onMounted(() => {
 
 .home-hero__letter {
   display: inline-block;
-  transform: var(--hero-pointer-transform, none);
 }
 
 .home-hero__first-name {
@@ -262,18 +258,8 @@ onMounted(() => {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .home-hero__name {
-    filter: var(--hero-name-filter);
-  }
-
-  .home-hero__role,
-  .home-hero__description,
-  .home-hero__action {
-    filter: var(--hero-detail-filter);
-  }
-
   [data-hero-enter] {
-    animation: hero-appear var(--motion-entrance) var(--ease-out) var(--hero-enter-delay) both;
+    animation: hero-appear var(--motion-entrance) var(--ease-out) var(--hero-enter-delay) backwards;
   }
 
   .home-hero__contact:active {
@@ -284,12 +270,12 @@ onMounted(() => {
 @keyframes hero-appear {
   from {
     opacity: 0;
-    transform: translateY(1.25rem) var(--hero-pointer-transform, translate(0));
+    transform: translateY(1.25rem);
   }
 
   to {
     opacity: 1;
-    transform: var(--hero-pointer-transform, translate(0));
+    transform: translateY(0);
   }
 }
 

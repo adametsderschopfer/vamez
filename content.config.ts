@@ -15,6 +15,12 @@ export default defineContentConfig({
       source: 'legal/*.json',
       schema: z.object({
         businessName: z.string(),
+        owner: z.object({
+          name: z.string(),
+          givenName: z.string(),
+          familyName: z.string(),
+          additionalName: z.string()
+        }),
         inn: z.string().regex(/^\d{12}$/),
         ogrnip: z.string().regex(/^\d{15}$/),
         registrationDate: z.string().date(),
@@ -77,6 +83,7 @@ export default defineContentConfig({
         isPlaceholder: z.boolean().default(false),
         preview: image
           .extend({
+            srcSmall: z.string().optional(),
             alt: localizedText,
             kind: z.enum(['app', 'website', 'photo'])
           })

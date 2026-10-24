@@ -4,9 +4,7 @@ import HomeLegalField from './HomeLegalField.vue'
 const { t, locale } = useI18n()
 const isExpanded = ref(false)
 const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
-const { data: business, error } = await useAsyncData('legal-business', () =>
-  queryCollection('legal').first()
-)
+const { data: business, error } = await useLegalBusiness()
 
 if (error.value) throw createError(error.value)
 

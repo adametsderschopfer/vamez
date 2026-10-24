@@ -5,6 +5,8 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "images:convert": "node tools/convert-images.ts",
+    "images:check": "node tools/convert-images.ts --check",
     "generate": "nuxt generate",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -30,6 +32,7 @@
     "eslint-config-prettier": "^10.1.8",
     "postcss-html": "^2.0.0",
     "prettier": "^3.9.9",
+    "sharp": "^0.35.5",
     "stylelint": "^17.15.0",
     "stylelint-config-html": "^2.0.0",
     "stylelint-config-recess-order": "^7.8.0",

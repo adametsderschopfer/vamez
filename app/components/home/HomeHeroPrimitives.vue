@@ -53,7 +53,6 @@ const primitives = [
   inset: 0;
   background: var(--primitive-color);
   mask: var(--primitive-image) center / contain no-repeat;
-  transform: var(--hero-pointer-transform, none);
 }
 
 .home-hero-primitives__item--code {

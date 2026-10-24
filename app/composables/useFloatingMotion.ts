@@ -10,11 +10,13 @@ export function useFloatingMotion(
   {
     selector,
     driftDistance = 12,
-    rotationRange = 4
+    rotationRange = 4,
+    deformation = 0
   }: {
     selector: string
     driftDistance?: number
     rotationRange?: number
+    deformation?: number
   }
 ) {
   let cleanup = () => {}
@@ -44,11 +46,13 @@ export function useFloatingMotion(
         const origin = {
           translate: '0px 0px',
           rotate: `${baseRotation}deg`,
+          scale: '1 1',
           easing: floatEasing
         }
         const waypoints = Array.from({ length: waypointCount }, () => ({
           translate: `${(Math.random() * 2 - 1) * driftDistance}px ${(Math.random() * 2 - 1) * driftDistance}px`,
           rotate: `${baseRotation + (Math.random() * 2 - 1) * rotationRange}deg`,
+          scale: `${1 + (Math.random() * 2 - 1) * deformation} ${1 + (Math.random() * 2 - 1) * deformation}`,
           easing: floatEasing
         }))
 

@@ -20,6 +20,8 @@ const pressResponse = 45
 const minimumPressDuration = 160
 const pointerEnterResponse = 90
 const pointerLeaveResponse = 70
+const trailRadius = 72
+const idlePath = getInkCursorPath(0, 0)
 const clickableSelector = [
   'a[href]',
   'button',
@@ -38,6 +40,7 @@ export function useInkCursor(cursor: Readonly<Ref<HTMLElement | null>>) {
 
   onMounted(() => {
     if (!cursor.value) return
+    const cursorElement = cursor.value
 
     const shape = cursor.value.querySelector<SVGSVGElement>('.ink-cursor__shape')
     const outline = cursor.value.querySelector<SVGPathElement>('.ink-cursor__outline')
@@ -70,6 +73,7 @@ export function useInkCursor(cursor: Readonly<Ref<HTMLElement | null>>) {
     let cursorScale = 1
     let pointing = false
     let pointerProgress = 0
+    let lastPointerProgress = -1
 
     function updateTarget(target: EventTarget | null) {
       const element = target instanceof Element ? target.closest(clickableSelector) : null
@@ -94,6 +98,7 @@ export function useInkCursor(cursor: Readonly<Ref<HTMLElement | null>>) {
       cursorScale = 1
       pointing = false
       pointerProgress = 0
+      lastPointerProgress = -1
       visible.value = false
     }
 
@@ -108,10 +113,18 @@ export function useInkCursor(cursor: Readonly<Ref<HTMLElement | null>>) {
       pointerProgress +=
         ((pointing ? 1 : 0) - pointerProgress) * (1 - Math.exp(-elapsed / pointerResponse))
       if (Math.abs(pointerProgress - (pointing ? 1 : 0)) < 0.001) pointerProgress = pointing ? 1 : 0
-      outline!.setAttribute('d', getInkCursorPath(pointerProgress, time))
-      creases?.setAttribute('d', getInkCursorCreases(pointerProgress, time))
+      if (pointerProgress > 0 || pointerProgress !== lastPointerProgress) {
+        outline!.setAttribute(
+          'd',
+          pointerProgress ? getInkCursorPath(pointerProgress, time) : idlePath
+        )
+        lastPointerProgress = pointerProgress
+      }
+      if (pointerProgress > 0.75)
+        creases?.setAttribute('d', getInkCursorCreases(pointerProgress, time))
       creases?.setAttribute('opacity', String(Math.max(0, (pointerProgress - 0.75) / 0.25)))
-      shape!.style.transform = `translate(${mouseX + particleSize / 2 - inkCursorHotspot.x}px, ${mouseY + particleSize / 2 - inkCursorHotspot.y}px) scale(${cursorScale})`
+      cursorElement.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`
+      shape!.style.transform = `translate(${particleSize / 2 - inkCursorHotspot.x}px, ${particleSize / 2 - inkCursorHotspot.y}px) scale(${cursorScale})`
       let x = mouseX
       let y = mouseY
 
@@ -128,7 +141,11 @@ export function useInkCursor(cursor: Readonly<Ref<HTMLElement | null>>) {
           offsetY = Math.sin(particle.angleY) * particle.range * cursorScale
         }
 
-        particle.element.style.transform = `translate(${particle.x + offsetX}px, ${particle.y + offsetY}px) scale(${particle.scale * cursorScale * (1 - pointerProgress)})`
+        const localX = particle.x - mouseX + offsetX
+        const localY = particle.y - mouseY + offsetY
+        const distance = Math.hypot(localX, localY)
+        const clamp = distance > trailRadius ? trailRadius / distance : 1
+        particle.element.style.transform = `translate(${localX * clamp}px, ${localY * clamp}px) scale(${particle.scale * cursorScale * (1 - pointerProgress)})`
 
         const next = particles[index + 1]
         if (!next) continue
