@@ -40,8 +40,7 @@ export function useCompanyDeckTransition(
     if (!list || !outgoing || !incoming) return
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches
     switching.value = true
-    const direction = index > activeIndex.value ? 1 : -1
-    const duration = 180
+    const duration = 120
     const easing = getComputedStyle(element).getPropertyValue('--ease-out').trim()
 
     try {
@@ -53,46 +52,39 @@ export function useCompanyDeckTransition(
       }
       const previousHeight = list.offsetHeight
       list.style.height = `${previousHeight}px`
-      list.style.overflow = 'hidden'
-      outgoing.classList.add('company-deck__card--leaving')
+      list.style.clipPath = 'inset(0)'
+      const fadeOut = outgoing.animate([{ opacity: 1 }, { opacity: 0 }], {
+        duration: 60,
+        easing,
+        fill: 'forwards'
+      })
+      animations = [fadeOut]
+      await fadeOut.finished
+      if (disposed) return
       incoming.style.opacity = '0'
       activeIndex.value = index
       await nextTick()
       if (disposed) return
       const nextHeight = incoming.offsetHeight
-      animations = [
-        outgoing.animate(
-          [
-            { opacity: 1, transform: 'translateX(0)' },
-            { opacity: 0, transform: `translateX(${-direction * 0.75}rem)` }
-          ],
-          { duration, easing, fill: 'both' }
-        ),
-        incoming.animate(
-          [
-            { opacity: 0, transform: `translateX(${direction * 0.75}rem)` },
-            { opacity: 1, transform: 'translateX(0)' }
-          ],
-          {
-            duration,
-            easing,
-            fill: 'both'
-          }
-        ),
+      animations.push(
+        incoming.animate([{ opacity: 0 }, { opacity: 1 }], {
+          duration,
+          easing,
+          fill: 'both'
+        }),
         list.animate([{ height: `${previousHeight}px` }, { height: `${nextHeight}px` }], {
           duration,
           easing,
           fill: 'forwards'
         })
-      ]
+      )
       await Promise.all(animations.map((animation) => animation.finished))
     } catch (error) {
       if (!(error instanceof DOMException && error.name === 'AbortError')) throw error
     } finally {
-      outgoing.classList.remove('company-deck__card--leaving')
       incoming.style.removeProperty('opacity')
       list.style.removeProperty('height')
-      list.style.removeProperty('overflow')
+      list.style.removeProperty('clip-path')
       animations.forEach((animation) => animation.cancel())
       animations = []
       switching.value = false

@@ -4,7 +4,7 @@ import type { WorkCase } from '@/types/workCases'
 import HomeCaseLogo from './HomeCaseLogo.vue'
 import HomeProjectGrid from './HomeProjectGrid.vue'
 
-defineProps<{ company: WorkCase }>()
+defineProps<{ company: WorkCase; tabbed?: boolean }>()
 const { t, locale } = useI18n()
 const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
 </script>
@@ -14,7 +14,7 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
     class="case-study"
     :class="[
       `case-study--${company.tone}`,
-      { 'case-study--company-only': !company.projects.length }
+      { 'case-study--company-only': !company.projects.length, 'case-study--tabbed': tabbed }
     ]"
     :aria-labelledby="`case-title-${company.key}`"
   >
@@ -87,6 +87,11 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
 .case-study--accent {
   --case-background: var(--deck-card-surface, var(--card-accent));
   --case-ink: var(--deck-card-ink, var(--ink-on-accent));
+}
+
+.case-study--tabbed {
+  border-color: var(--line);
+  border-top: 0;
 }
 
 .case-study__header {
@@ -192,7 +197,7 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
 @media (min-width: 800px) and (min-height: 700px) {
   .case-study__identity {
     position: sticky;
-    top: calc(var(--header-height) + var(--case-sticky-inset));
+    top: calc(var(--header-height) + var(--company-tabs-height, 0px) + var(--case-sticky-inset));
   }
 }
 

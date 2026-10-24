@@ -6,6 +6,7 @@ defineProps<{
   kind?: 'wordmark' | 'symbol'
   monochrome?: boolean
   size?: 'regular' | 'large'
+  compact?: boolean
 }>()
 </script>
 
@@ -16,7 +17,8 @@ defineProps<{
       'case-logo--symbol': kind === 'symbol',
       'case-logo--monochrome': monochrome,
       'case-logo--text': !src,
-      'case-logo--large': size === 'large'
+      'case-logo--large': size === 'large',
+      'case-logo--compact': compact
     }"
   >
     <img
@@ -96,6 +98,27 @@ defineProps<{
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.035em;
+}
+
+.case-logo--compact {
+  flex: none;
+  width: 3.5rem;
+  height: 1.5rem;
+  min-height: 0;
+}
+
+.case-logo--compact.case-logo--symbol {
+  width: 1.5rem;
+}
+
+.case-logo--compact .case-logo__image {
+  width: 100%;
+  height: 100%;
+  object-position: center;
+}
+
+.case-logo--compact .case-logo__name {
+  display: none;
 }
 
 [data-theme='dark'] .case-logo__image--light {

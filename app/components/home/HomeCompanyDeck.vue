@@ -6,6 +6,20 @@ import HomeCompanyTabs from './HomeCompanyTabs.vue'
 
 const props = defineProps<{ companies: WorkCase[] }>()
 const root = useTemplateRef<HTMLElement>('root')
+const tabs = useTemplateRef<HTMLElement>('tabs')
+const tabsHeight = shallowRef(0)
+let tabsObserver: ResizeObserver | undefined
+
+onMounted(() => {
+  if (!tabs.value) return
+  tabsHeight.value = tabs.value.offsetHeight
+  tabsObserver = new ResizeObserver(() => {
+    tabsHeight.value = tabs.value?.offsetHeight ?? 0
+  })
+  tabsObserver.observe(tabs.value)
+})
+
+onBeforeUnmount(() => tabsObserver?.disconnect())
 const { activeIndex, switching, goTo } = useCompanyDeckTransition(
   root,
   () => props.companies.length
@@ -20,25 +34,25 @@ useFloatingMotion(root, {
 const cards = computed(() =>
   props.companies.map((company, index) => {
     const active = index === activeIndex.value
-    const depth = active ? 0 : index < activeIndex.value ? index + 1 : index
     return {
       company,
       index,
-      active,
-      style: { zIndex: props.companies.length - depth }
+      active
     }
   })
 )
 </script>
 
 <template>
-  <div ref="root" class="company-deck">
-    <HomeCompanyTabs
-      :companies="companies"
-      :active-index="activeIndex"
-      :busy="switching"
-      @navigate="goTo"
-    />
+  <div ref="root" class="company-deck" :style="{ '--company-tabs-height': `${tabsHeight}px` }">
+    <div ref="tabs" class="company-deck__tabs">
+      <HomeCompanyTabs
+        :companies="companies"
+        :active-index="activeIndex"
+        :busy="switching"
+        @navigate="goTo"
+      />
+    </div>
     <ul class="company-deck__cards">
       <li
         v-for="card in cards"
@@ -48,7 +62,6 @@ const cards = computed(() =>
           'company-deck__card--active': card.active,
           'company-deck__card--accent': card.company.tone === 'accent'
         }"
-        :style="card.style"
         :data-company-index="card.index"
       >
         <div
@@ -58,7 +71,7 @@ const cards = computed(() =>
           :tabindex="card.active ? 0 : -1"
           :aria-label="card.company.name"
         >
-          <HomeCaseCard :company="card.company" />
+          <HomeCaseCard :company="card.company" tabbed />
         </div>
       </li>
     </ul>
@@ -79,7 +92,15 @@ const cards = computed(() =>
   min-width: 0;
   padding-bottom: 1rem;
   scroll-margin-top: 1rem;
+  overflow-anchor: none;
   isolation: isolate;
+}
+
+.company-deck__tabs {
+  position: sticky;
+  top: var(--header-height);
+  z-index: 20;
+  background: var(--page-background);
 }
 
 .company-deck__cards {
@@ -87,17 +108,16 @@ const cards = computed(() =>
   padding: 0;
   margin: 0;
   list-style: none;
+  background: var(--card-surface);
 }
 
 .company-deck__card {
   --deck-card-surface: var(--card-surface);
   --deck-card-ink: var(--ink);
 
-  position: absolute;
-  inset: 0;
+  display: none;
   min-width: 0;
   background: var(--deck-card-surface);
-  transform-origin: top left;
   transition: background-color var(--motion-fast) ease;
 }
 
@@ -106,18 +126,8 @@ const cards = computed(() =>
   --deck-card-ink: var(--ink-on-accent);
 }
 
-.company-deck__content {
-  visibility: hidden;
-}
-
 .company-deck__card--active {
-  position: relative;
-  inset: auto;
-}
-
-.company-deck__card--active .company-deck__content,
-.company-deck__card--leaving .company-deck__content {
-  visibility: visible;
+  display: block;
 }
 
 .company-deck__content:focus-visible {
