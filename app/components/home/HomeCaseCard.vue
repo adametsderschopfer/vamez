@@ -197,9 +197,13 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
 }
 
 @media (max-width: 799px) {
+  .case-study {
+    --case-padding: 1rem;
+  }
+
   .case-study__body {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
   }
 
   .case-study__header {
@@ -213,7 +217,12 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
   }
 
   .case-study__statement {
-    max-width: 28ch;
+    max-width: 100%;
+  }
+
+  .case-study__summary {
+    max-width: 100%;
+    overflow-wrap: anywhere;
   }
 }
 </style>

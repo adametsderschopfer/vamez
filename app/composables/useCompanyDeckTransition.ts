@@ -40,37 +40,43 @@ export function useCompanyDeckTransition(
     if (!list || !outgoing || !incoming) return
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches
     switching.value = true
-    const previousHeight = list.offsetHeight
-    const incomingTransform = getComputedStyle(incoming).transform
-    const duration = reduced ? 0 : 120
+    const direction = index > activeIndex.value ? 1 : -1
+    const duration = 180
     const easing = getComputedStyle(element).getPropertyValue('--ease-out').trim()
 
     try {
       await scrollToStart(element, reduced)
       if (disposed) return
-      const lift = outgoing.animate(
-        [{ transform: 'translateY(0) scale(1)' }, { transform: 'translateY(-1.5rem) scale(0.97)' }],
-        { duration: reduced ? 0 : 60, easing, fill: 'forwards' }
-      )
-      animations = [lift]
-      await lift.finished
-      if (disposed) return
+      if (reduced) {
+        activeIndex.value = index
+        return
+      }
+      const previousHeight = list.offsetHeight
       list.style.height = `${previousHeight}px`
+      list.style.overflow = 'hidden'
+      outgoing.classList.add('company-deck__card--leaving')
+      incoming.style.opacity = '0'
       activeIndex.value = index
       await nextTick()
+      if (disposed) return
       const nextHeight = incoming.offsetHeight
-      const outgoingTransform = getComputedStyle(outgoing).getPropertyValue('--deck-rest-transform')
-      lift.cancel()
       animations = [
         outgoing.animate(
-          [{ transform: 'translateY(-1.5rem) scale(0.97)' }, { transform: outgoingTransform }],
-          { duration, easing }
+          [
+            { opacity: 1, transform: 'translateX(0)' },
+            { opacity: 0, transform: `translateX(${-direction * 0.75}rem)` }
+          ],
+          { duration, easing, fill: 'both' }
         ),
         incoming.animate(
-          [{ transform: incomingTransform }, { transform: 'translateY(0) scale(1)' }],
+          [
+            { opacity: 0, transform: `translateX(${direction * 0.75}rem)` },
+            { opacity: 1, transform: 'translateX(0)' }
+          ],
           {
             duration,
-            easing
+            easing,
+            fill: 'both'
           }
         ),
         list.animate([{ height: `${previousHeight}px` }, { height: `${nextHeight}px` }], {
@@ -83,7 +89,10 @@ export function useCompanyDeckTransition(
     } catch (error) {
       if (!(error instanceof DOMException && error.name === 'AbortError')) throw error
     } finally {
+      outgoing.classList.remove('company-deck__card--leaving')
+      incoming.style.removeProperty('opacity')
       list.style.removeProperty('height')
+      list.style.removeProperty('overflow')
       animations.forEach((animation) => animation.cancel())
       animations = []
       switching.value = false
