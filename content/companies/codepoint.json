@@ -1,0 +1,21 @@
+{
+  "key": "codepoint",
+  "order": 2,
+  "name": "CodePoint",
+  "logo": "/images/companies/codepoint.svg",
+  "logoDark": "/images/companies/codepoint.svg",
+  "url": "https://codepoint.pro/",
+  "tone": "paper",
+  "industry": {
+    "ru": "Разработка цифровых продуктов",
+    "en": "Digital product development"
+  },
+  "statement": {
+    "ru": "Бэкенд и развитие продуктовых сервисов.",
+    "en": "Backend development and product services."
+  },
+  "summary": {
+    "ru": "Основной фокус — серверная часть продуктов: разработка нового функционала и доработка существующих возможностей. Один из проектов — сервис AutoProof.",
+    "en": "The main focus is on product backends: building new functionality and improving existing capabilities. One of the projects is AutoProof."
+  }
+}

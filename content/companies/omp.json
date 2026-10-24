@@ -1,0 +1,30 @@
+{
+  "key": "omp",
+  "order": 4,
+  "name": "Открытая мобильная платформа",
+  "logo": "/images/companies/omp.svg",
+  "logoDark": "/images/companies/omp-dark.svg",
+  "logoSize": "large",
+  "url": "https://www.omp.ru/",
+  "tone": "paper",
+  "industry": {
+    "ru": "ОС Аврора и инструменты для разработчиков",
+    "en": "Aurora OS and developer tools"
+  },
+  "period": {
+    "ru": "Апрель — июль 2024 · 4 месяца",
+    "en": "April — July 2024 · 4 months"
+  },
+  "role": {
+    "ru": "Lead Developer",
+    "en": "Lead Developer"
+  },
+  "statement": {
+    "ru": "Развитие портала документации ОС Аврора.",
+    "en": "Developing the Aurora OS documentation portal."
+  },
+  "summary": {
+    "ru": "Разрабатывал и дорабатывал портал для разработчиков: от архитектуры и публикации материалов до производительности и автоматизации поставки.",
+    "en": "Developed and improved the developer portal, from architecture and content publishing to performance and delivery automation."
+  }
+}

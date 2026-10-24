@@ -15,6 +15,10 @@
     "ru": "Интернет-магазин цветов с доставкой по Калининграду и области. Конструктор букетов, каталог с выбором цвета, размера и упаковки и оформление заказа.",
     "en": "An online flower shop delivering across Kaliningrad and the surrounding region. A bouquet builder, a catalog with color, size, and wrapping options, and checkout."
   },
+  "contribution": {
+    "ru": "Разработал конфигуратор для гибкой сборки букета: пользователь может подобрать состав и параметры заказа.",
+    "en": "Built a flexible bouquet configurator that lets customers choose the bouquet composition and order options."
+  },
   "url": "https://www.consult-info.ru/portfolio/tsvety-gollandii/",
   "preview": {
     "src": "/images/projects/flowers-of-holland.webp",

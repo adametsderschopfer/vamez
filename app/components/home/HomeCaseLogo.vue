@@ -1,19 +1,26 @@
 <script setup lang="ts">
 defineProps<{
-  src: string
-  srcDark: string
+  src?: string
+  srcDark?: string
   name: string
   kind?: 'wordmark' | 'symbol'
   monochrome?: boolean
+  size?: 'regular' | 'large'
 }>()
 </script>
 
 <template>
   <span
     class="case-logo"
-    :class="{ 'case-logo--symbol': kind === 'symbol', 'case-logo--monochrome': monochrome }"
+    :class="{
+      'case-logo--symbol': kind === 'symbol',
+      'case-logo--monochrome': monochrome,
+      'case-logo--text': !src,
+      'case-logo--large': size === 'large'
+    }"
   >
     <img
+      v-if="src"
       class="case-logo__image case-logo__image--light"
       :src="src"
       :alt="kind === 'symbol' ? '' : name"
@@ -23,6 +30,7 @@ defineProps<{
       decoding="async"
     />
     <img
+      v-if="srcDark"
       class="case-logo__image case-logo__image--dark"
       :src="srcDark"
       :alt="kind === 'symbol' ? '' : name"
@@ -31,7 +39,7 @@ defineProps<{
       loading="lazy"
       decoding="async"
     />
-    <span v-if="kind === 'symbol'" class="case-logo__name">{{ name }}</span>
+    <span v-if="kind === 'symbol' || !src" class="case-logo__name">{{ name }}</span>
   </span>
 </template>
 
@@ -48,6 +56,16 @@ defineProps<{
   height: 100%;
   object-fit: contain;
   object-position: left center;
+}
+
+.case-logo--text {
+  width: 100%;
+  height: auto;
+}
+
+.case-logo--large {
+  width: min(100%, 24rem);
+  height: clamp(4.5rem, 6vw, 6rem);
 }
 
 .case-logo__image--dark {

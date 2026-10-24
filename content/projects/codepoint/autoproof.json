@@ -1,0 +1,29 @@
+{
+  "key": "autoproof",
+  "company": "codepoint",
+  "order": 1,
+  "title": {
+    "ru": "AutoProof",
+    "en": "AutoProof"
+  },
+  "description": {
+    "ru": "Онлайн-сервис оценки ущерба после ДТП. Пользователь создаёт заявку, загружает фотографии и документы и получает экспертное заключение.",
+    "en": "An online service for assessing vehicle damage after an accident. Users submit a request, upload photos and documents, and receive an expert report."
+  },
+  "contribution": {
+    "ru": "Большая работа по развитию и доработке проекта с основным фокусом на бэкенде: расширение функциональности и улучшение существующих возможностей сервиса.",
+    "en": "Substantial development and improvement of the project, primarily focused on the backend: expanding functionality and improving the service’s existing capabilities."
+  },
+  "url": "https://auto-proof.ru/",
+  "preview": {
+    "src": "/images/projects/autoproof.webp",
+    "srcSmall": "/images/projects/autoproof-640.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": {
+      "ru": "Иллюстрация автомобиля с повреждениями с сайта AutoProof",
+      "en": "Damaged vehicle illustration from the AutoProof website"
+    },
+    "kind": "website"
+  }
+}

@@ -48,6 +48,10 @@
       "failed": "Could not copy"
     },
     "cases": {
+      "deckNavigation": "Company navigation",
+      "selectCompany": "Show {company}",
+      "previousCompany": "Previous company",
+      "nextCompany": "Next company",
       "navigation": "Work",
       "title": "Work, in detail.",
       "notice": "Companies I have worked at and projects I have contributed to.",

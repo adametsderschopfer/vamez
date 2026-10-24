@@ -12,14 +12,19 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
 <template>
   <article
     class="case-study"
-    :class="`case-study--${company.tone}`"
+    :class="[
+      `case-study--${company.tone}`,
+      { 'case-study--company-only': !company.projects.length }
+    ]"
     :aria-labelledby="`case-title-${company.key}`"
   >
     <div class="case-study__body">
       <div class="case-study__identity">
         <header class="case-study__header">
           <span>{{ company.industry[language] }}</span>
-          <span class="case-study__period">{{ company.period[language] }}</span>
+          <span v-if="company.period" class="case-study__period">{{
+            company.period[language]
+          }}</span>
         </header>
         <h3 :id="`case-title-${company.key}`" class="case-study__company">
           <HomeCaseLogo
@@ -28,6 +33,7 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
             :name="company.name"
             :kind="company.logoKind"
             :monochrome="company.logoMonochrome"
+            :size="company.logoSize"
           />
         </h3>
         <p v-if="company.role" class="case-study__role">{{ company.role[language] }}</p>
@@ -48,15 +54,19 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
         </a>
       </div>
 
-      <HomeProjectGrid :projects="company.projects" :company-id="company.key" />
+      <HomeProjectGrid
+        v-if="company.projects.length"
+        :projects="company.projects"
+        :company-id="company.key"
+      />
     </div>
   </article>
 </template>
 
 <style scoped>
 .case-study {
-  --case-background: var(--card-surface);
-  --case-ink: var(--ink);
+  --case-background: var(--deck-card-surface, var(--card-surface));
+  --case-ink: var(--deck-card-ink, var(--ink));
   --case-padding: clamp(1.25rem, 2.5vw, 2.5rem);
   --case-rule: color-mix(in srgb, var(--case-ink) 24%, transparent);
 
@@ -69,11 +79,14 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
   background: var(--case-background);
   border: 1px solid var(--case-rule);
   isolation: isolate;
+  transition:
+    background-color var(--motion-fast) ease,
+    color var(--motion-fast) ease;
 }
 
 .case-study--accent {
-  --case-background: var(--card-accent);
-  --case-ink: var(--ink-on-accent);
+  --case-background: var(--deck-card-surface, var(--card-accent));
+  --case-ink: var(--deck-card-ink, var(--ink-on-accent));
 }
 
 .case-study__header {
@@ -100,6 +113,18 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
   flex-direction: column;
   align-items: flex-start;
   min-width: 0;
+}
+
+.case-study--company-only .case-study__body {
+  grid-template-columns: 1fr;
+}
+
+.case-study--company-only .case-study__statement {
+  max-width: 36ch;
+}
+
+.case-study--company-only .case-study__summary {
+  max-width: 65ch;
 }
 
 .case-study__company {

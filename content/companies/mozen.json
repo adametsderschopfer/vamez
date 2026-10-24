@@ -2,8 +2,8 @@
   "key": "mozen",
   "order": 1,
   "name": "Mozen",
-  "logo": "/images/companies/mozen-light.svg",
-  "logoDark": "/images/companies/mozen.svg",
+  "logo": "/images/companies/mozen-lockup-light.svg",
+  "logoDark": "/images/companies/mozen-lockup-dark.svg",
   "url": "https://mozen.ru/",
   "tone": "accent",
   "industry": {

@@ -54,6 +54,20 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
   background: #dfe8ff;
 }
 
+.project-preview--brand {
+  --preview-brand-background: linear-gradient(100deg, #00acef, #0874e3 55%, #00a5bb);
+
+  background: var(--preview-brand-background);
+}
+
+.project-preview--brand .project-preview__image {
+  position: relative;
+  inset: auto;
+  width: auto;
+  max-width: 100%;
+  mask-image: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
+}
+
 .project-preview--photo .project-preview__image {
   object-fit: cover;
 }

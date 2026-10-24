@@ -1,0 +1,30 @@
+{
+  "key": "mobile-apps",
+  "company": "consult-info",
+  "order": 3,
+  "title": {
+    "ru": "Два мобильных приложения",
+    "en": "Two mobile apps"
+  },
+  "description": {
+    "ru": "Разработал два приложения на React Native, которые были выпущены в продакшн: для магазина косметики и для взаимодействия с городским рынком.",
+    "en": "Developed two React Native apps that were released to production: a cosmetics shopping app and an app for interacting with a city market."
+  },
+  "sections": [
+    {
+      "title": { "ru": "Магазин косметики", "en": "Cosmetics store" },
+      "description": {
+        "ru": "Покупка косметических товаров, информация о новинках и интеграция с системой лояльности для использования бонусов.",
+        "en": "Cosmetics shopping, information about new products, and loyalty program integration for using bonuses."
+      }
+    },
+    {
+      "title": { "ru": "Городской рынок", "en": "City market" },
+      "description": {
+        "ru": "Информация о товарах, услугах и расписании рынка, а также возможность связаться с продавцами.",
+        "en": "Information about market products, services, and opening hours, with a way to contact sellers."
+      }
+    }
+  ],
+  "stack": ["TypeScript", "React", "React Native", "MobX"]
+}

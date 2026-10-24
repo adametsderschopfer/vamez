@@ -1,0 +1,25 @@
+{
+  "key": "elm-tech",
+  "order": 3,
+  "name": "ЭЛМ Технологии",
+  "logo": "/images/companies/elm-tech.svg",
+  "logoDark": "/images/companies/elm-tech-dark.svg",
+  "url": "https://elm-tech.ru/",
+  "tone": "paper",
+  "industry": {
+    "ru": "Разработка программного обеспечения",
+    "en": "Software development"
+  },
+  "role": {
+    "ru": "Senior Frontend Developer",
+    "en": "Senior Frontend Developer"
+  },
+  "statement": {
+    "ru": "Встраиваемые виджеты и лид-формы.",
+    "en": "Embeddable widgets and lead forms."
+  },
+  "summary": {
+    "ru": "Разработка виджетов и лид-форм на Vue 2/3 с Pinia и Vuex, написание тестов для Vue-проекта и доработка бэкенда на Python, Django и Django REST Framework.",
+    "en": "Development of widgets and lead forms with Vue 2/3, Pinia, and Vuex; tests for the Vue project; and backend improvements with Python, Django, and Django REST Framework."
+  }
+}

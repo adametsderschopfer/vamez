@@ -1,0 +1,17 @@
+{
+  "key": "psychologist-service",
+  "company": "consult-info",
+  "order": 4,
+  "title": {
+    "ru": "Сервис подбора психологов",
+    "en": "Psychologist matching service"
+  },
+  "description": {
+    "ru": "Разработал сервис с гибким фильтром для подбора специалиста, записью на приём и отдельными личными кабинетами для клиентов и психологов.",
+    "en": "Built a service with flexible specialist search filters, appointment booking, and separate accounts for clients and psychologists."
+  },
+  "contribution": {
+    "ru": "Реализовал сценарии поиска и записи, а также календарь, в котором психологи могут выставлять доступное время для приёма.",
+    "en": "Implemented search and booking flows and a calendar where psychologists can publish available appointment times."
+  }
+}

@@ -46,17 +46,18 @@ export default defineContentConfig({
         key: z.string(),
         order: z.number().int().nonnegative(),
         name: z.string(),
-        logo: z.string(),
-        logoDark: z.string(),
+        logo: z.string().optional(),
+        logoDark: z.string().optional(),
         logoKind: z.enum(['wordmark', 'symbol']).default('wordmark'),
         logoMonochrome: z.boolean().default(false),
+        logoSize: z.enum(['regular', 'large']).default('regular'),
         role: localizedText.optional(),
         summary: localizedText.optional(),
         status: z.enum(['active', 'closed']).default('active'),
         url: z.string().url(),
         tone: z.enum(['accent', 'paper']),
         industry: localizedText,
-        period: localizedText,
+        period: localizedText.optional(),
         statement: localizedText
       })
     }),
@@ -85,7 +86,7 @@ export default defineContentConfig({
           .extend({
             srcSmall: z.string().optional(),
             alt: localizedText,
-            kind: z.enum(['app', 'website', 'photo'])
+            kind: z.enum(['app', 'website', 'photo', 'brand'])
           })
           .optional(),
         logo: image.optional()

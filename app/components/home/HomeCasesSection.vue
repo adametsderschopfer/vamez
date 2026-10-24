@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import HomeCaseCard from './HomeCaseCard.vue'
+import HomeCompanyDeck from './HomeCompanyDeck.vue'
 
 const { t } = useI18n()
 const { data: workCases, error } = await useAsyncData('work-cases', async () => {
@@ -26,24 +26,22 @@ if (error.value) throw createError(error.value)
       </div>
     </div>
 
-    <ul class="home-cases__list">
-      <li v-for="company in workCases" :key="company.key" class="home-cases__item">
-        <HomeCaseCard :company="company" />
-      </li>
-    </ul>
+    <HomeCompanyDeck v-if="workCases?.length" :companies="workCases" />
   </section>
 </template>
 
 <style scoped>
 .home-cases {
   --case-sticky-inset: 1.5rem;
-  --case-section-gap: clamp(1.5rem, 3vw, 3rem);
 
+  position: relative;
   padding: var(--section-space) 0;
+  isolation: isolate;
 }
 
 .home-cases__intro {
   display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
   align-items: flex-end;
   justify-content: space-between;
@@ -51,12 +49,13 @@ if (error.value) throw createError(error.value)
 }
 
 .home-cases__title {
-  max-width: 10ch;
+  flex-shrink: 0;
   margin: 0;
   font-size: clamp(2.75rem, 6vw, 6rem);
   font-weight: 700;
   line-height: 1.02;
   letter-spacing: -0.04em;
+  white-space: nowrap;
 }
 
 .home-cases__context {
@@ -71,23 +70,9 @@ if (error.value) throw createError(error.value)
   color: var(--ink-muted);
 }
 
-.home-cases__list {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.home-cases__item {
-  margin-bottom: var(--case-section-gap);
-}
-
-.home-cases__item:last-child {
-  margin-bottom: 0;
-}
-
 @media (max-width: 799px) {
-  .home-cases {
-    --case-section-gap: 1.5rem;
+  .home-cases__title {
+    font-size: clamp(1.5rem, 7vw, 3.25rem);
   }
 
   .home-cases__intro {

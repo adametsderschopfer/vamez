@@ -1,0 +1,30 @@
+{
+  "key": "skoltech",
+  "company": "consult-info",
+  "order": 2,
+  "title": {
+    "ru": "Порталы Сколтеха",
+    "en": "Skoltech portals"
+  },
+  "description": {
+    "ru": "Инструменты для сотрудников и студентов Сколковского института науки и технологий: интерактивная форма раскрытия результатов интеллектуальной деятельности и корпоративный портал общежития.",
+    "en": "Tools for staff and students at the Skolkovo Institute of Science and Technology: an interactive intellectual property disclosure form and a corporate dormitory portal."
+  },
+  "sections": [
+    {
+      "title": { "ru": "Интерактивная ФРРИД", "en": "Interactive IP disclosure form" },
+      "description": {
+        "ru": "Разработал интерфейс формы для уведомления отдела трансфера знаний о программах, технологиях и других результатах интеллектуальной деятельности. Реализовал уникальные ссылки и пароли, синхронизацию с Bitrix24 и автоматические уведомления о статусе заполнения.",
+        "en": "Built the form interface for notifying the knowledge transfer team about software, technologies, and other intellectual property. Implemented unique links and passwords, synchronization with Bitrix24, and automatic form status notifications."
+      }
+    },
+    {
+      "title": { "ru": "Портал общежития", "en": "Dormitory portal" },
+      "description": {
+        "ru": "Разрабатывал новые функции и дорабатывал существующие сценарии корпоративного портала для взаимодействия со студентами.",
+        "en": "Developed new features and improved existing flows in a corporate portal for interaction with students."
+      }
+    }
+  ],
+  "stack": ["Vue", "Vuex", "Bitrix24"]
+}

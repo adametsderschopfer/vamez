@@ -1,0 +1,68 @@
+{
+  "key": "aurora-documentation",
+  "company": "omp",
+  "order": 1,
+  "title": {
+    "ru": "Портал документации ОС Аврора",
+    "en": "Aurora OS documentation portal"
+  },
+  "description": {
+    "ru": "Портал для разработчиков ПО: техническая документация, учебные материалы и инструменты поиска информации. Занимался разработкой и доработками сайта, проектировал архитектуру с учётом требований к скорости публикации и обновления контента.",
+    "en": "A software developer portal with technical documentation, learning materials, and information search tools. Developed and improved the website and designed its architecture around content publishing and update speed requirements."
+  },
+  "sections": [
+    {
+      "title": { "ru": "Портал и контент", "en": "Portal and content" },
+      "description": {
+        "ru": "Развивал системы WIKI, форума, CMS и поиска с историей запросов и популярными ответами, а также интеллектуального ассистента портала. Внедрял автоматизацию обработки документации и учебных материалов.",
+        "en": "Worked on the wiki, forum, CMS, search with query history and popular answers, and the portal’s intelligent assistant. Introduced automation for processing documentation and learning materials."
+      }
+    },
+    {
+      "title": { "ru": "Производительность", "en": "Performance" },
+      "description": {
+        "ru": "Выявил проблемы производительности и подготовил план развития и устранения узких мест. План согласовали и взяли в работу.",
+        "en": "Identified performance issues and prepared a development plan to address the bottlenecks. The plan was approved and taken into implementation."
+      }
+    },
+    {
+      "title": { "ru": "CI/CD и документация проекта", "en": "CI/CD and project documentation" },
+      "description": {
+        "ru": "Автоматизировал сборку и деплой для используемых сред средствами GitLab CI/CD. Описал развёртывание, сборку, деплой, архитектуру и инфраструктуру проекта.",
+        "en": "Automated builds and deployments across the project environments using GitLab CI/CD. Documented setup, builds, deployment, architecture, and infrastructure."
+      }
+    }
+  ],
+  "contribution": {
+    "ru": "Технически вёл разработку портала, декомпозировал задачи и контролировал их выполнение. Представил проделанную работу на внутренней презентации в компании.",
+    "en": "Led the portal’s technical development, broke down tasks, and tracked their delivery. Presented the completed work at an internal company presentation."
+  },
+  "stack": [
+    "Python",
+    "Django",
+    "PostgreSQL",
+    "TypeScript",
+    "React",
+    "Redux",
+    "RTK",
+    "Next.js",
+    "GraphQL",
+    "Docker",
+    "Docker Compose",
+    "GitLab CI/CD",
+    "Jira",
+    "Confluence"
+  ],
+  "url": "https://auroraos.ru/documentation",
+  "preview": {
+    "src": "/images/projects/aurora-documentation.webp",
+    "srcSmall": "/images/projects/aurora-documentation-640.webp",
+    "width": 1200,
+    "height": 675,
+    "alt": {
+      "ru": "Логотип ОС Аврора на синем градиентном фоне",
+      "en": "Aurora OS logo on a blue gradient background"
+    },
+    "kind": "brand"
+  }
+}

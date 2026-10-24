@@ -1,6 +1,6 @@
 {
   "key": "consult-info",
-  "order": 4,
+  "order": 7,
   "name": "Consult Info",
   "logo": "/images/companies/consult.svg",
   "logoDark": "/images/companies/consult-dark.svg",
@@ -14,8 +14,16 @@
     "ru": "Январь 2021 — декабрь 2022",
     "en": "January 2021 — December 2022"
   },
+  "role": {
+    "ru": "Middle Frontend Developer",
+    "en": "Middle Frontend Developer"
+  },
   "statement": {
-    "ru": "Клиентские проекты и интернет-магазины.",
-    "en": "Client projects and online stores."
+    "ru": "Веб-сервисы, корпоративные порталы и мобильные приложения.",
+    "en": "Web services, corporate portals, and mobile apps."
+  },
+  "summary": {
+    "ru": "Разрабатывал на React, Vue и React Native, работал с Bitrix и Bitrix24. Участвовал в проектировании интерфейсов и дизайн-системы, планировании спринтов и релизов, оценке и декомпозиции задач. Дорабатывал легаси. Два мобильных приложения на React Native вышли в продакшн.",
+    "en": "Developed with React, Vue, and React Native, and worked with Bitrix and Bitrix24. Contributed to interface and design system development, sprint and release planning, estimation, and task breakdown. Improved legacy code. Two React Native mobile apps were released to production."
   }
 }

@@ -24,6 +24,8 @@
   --card-soft: #d8d8d3;
   --card-accent: #1938bb;
   --ink-on-accent: #fff;
+  --card-hover: #ead7b0;
+  --ink-on-card-hover: #42321c;
   --ink: #141414;
   --ink-muted: #3c3c38;
   --line: #babbb4;
@@ -58,6 +60,8 @@
   --card-soft: #2c2c2a;
   --card-accent: #d5deff;
   --ink-on-accent: #141414;
+  --card-hover: #625037;
+  --ink-on-card-hover: #fff0d8;
   --ink: #f0f0e9;
   --ink-muted: #deded6;
   --line: #474743;
