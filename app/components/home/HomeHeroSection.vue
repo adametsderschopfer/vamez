@@ -5,6 +5,8 @@ import HomeHeroPrimitives from './HomeHeroPrimitives.vue'
 const { t, locale } = useI18n()
 const { scrollToSection } = useSectionScroll()
 const hero = useTemplateRef<HTMLElement>('hero')
+const name = useTemplateRef<HTMLElement>('name')
+useNameCopy(name)
 const { entering } = useHeroEntrance(hero)
 useFloatingMotion(hero, {
   selector: '.home-hero__float',
@@ -39,10 +41,11 @@ onMounted(() => {
       <div class="home-hero__identity home-hero__float">
         <h1
           id="home-hero-title"
+          ref="name"
           class="home-hero__name"
           :aria-label="`${t('home.intro.firstName')} ${t('home.intro.lastName')}`"
         >
-          <span class="home-hero__first-name" data-hero-enter
+          <span class="home-hero__first-name" data-hero-enter data-name-part="first"
             ><span
               v-for="(letter, index) in Array.from(t('home.intro.firstName'))"
               :key="index"
@@ -50,10 +53,10 @@ onMounted(() => {
               data-hero-react="letter"
               aria-hidden="true"
               >{{ letter }}</span
-            >{{ '\u00a0' }}</span
+            ></span
           >
           <br />
-          <span class="home-hero__last-name" data-hero-enter
+          <span class="home-hero__last-name" data-hero-enter data-name-part="last"
             ><span
               v-for="(letter, index) in Array.from(t('home.intro.lastName'))"
               :key="index"

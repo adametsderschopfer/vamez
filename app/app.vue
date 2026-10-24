@@ -3,7 +3,6 @@ import golosCyrillic from '@/assets/fonts/golos-text-cyrillic.woff2?url'
 import golosLatin from '@/assets/fonts/golos-text-latin.woff2?url'
 
 const { t, locale } = useI18n()
-const { scrollToSection } = useSectionScroll()
 const route = useRoute()
 const runtimeConfig = useRuntimeConfig()
 const i18nHead = useLocaleHead({ seo: true })
@@ -113,35 +112,9 @@ useHead(() => ({
 <template>
   <div class="app-shell">
     <NuxtRouteAnnouncer />
-    <a
-      class="app-shell__skip"
-      href="#main-content"
-      @click="scrollToSection('main-content', $event)"
-    >
-      {{ t('controls.skipToContent') }}
-    </a>
     <NuxtPage />
     <ClientOnly>
       <InkCursor />
     </ClientOnly>
   </div>
 </template>
-
-<style scoped>
-.app-shell__skip {
-  position: fixed;
-  top: 1rem;
-  left: var(--page-gutter);
-  z-index: 200;
-  padding: 0.75rem 1rem;
-  font-size: var(--font-size-label);
-  font-weight: var(--font-weight-label);
-  color: var(--ink-on-accent);
-  background: var(--card-accent);
-  transform: translateY(calc(-100% - 2rem));
-}
-
-.app-shell__skip:focus {
-  transform: none;
-}
-</style>

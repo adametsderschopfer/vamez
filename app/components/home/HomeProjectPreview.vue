@@ -17,7 +17,7 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
       :sizes="
         preview.kind === 'app'
           ? '200px'
-          : '(max-width: 799px) calc(100vw - 5rem), (max-width: 2988px) 60vw, 1800px'
+          : '(max-width: 799px) calc(100vw - 5rem), (max-width: 1988px) 60vw, 1200px'
       "
       :alt="preview.alt[language]"
       :width="preview.width"

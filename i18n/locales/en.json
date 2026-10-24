@@ -1,6 +1,6 @@
 {
   "seo": {
-    "description": "Vladislav Andreevich Adamets — author, engineer and individual entrepreneur. Web and mobile development. Russian registered name: ИП Адамец Владислав Андреевич. INN 391303532354.",
+    "description": "Vladislav Adamets — author and engineer. System architecture, reliable services, and clear interfaces. INN 391303532354.",
     "ogTitle": "Vladislav Adamets — author and engineer"
   },
   "nav": {
@@ -16,8 +16,7 @@
     "switchToLight": "Switch to light theme",
     "switchLanguage": "Switch language",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu",
-    "skipToContent": "Skip to content"
+    "closeMenu": "Close menu"
   },
   "home": {
     "legal": {
