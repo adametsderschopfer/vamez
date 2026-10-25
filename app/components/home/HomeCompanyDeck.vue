@@ -20,10 +20,7 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => tabsObserver?.disconnect())
-const { activeIndex, switching, goTo } = useCompanyDeckTransition(
-  root,
-  () => props.companies.length
-)
+const { activeIndex, goTo } = useCompanyDeckTransition(root, () => props.companies.length)
 
 useFloatingMotion(root, {
   selector: '.company-deck__navigation',
@@ -46,12 +43,7 @@ const cards = computed(() =>
 <template>
   <div ref="root" class="company-deck" :style="{ '--company-tabs-height': `${tabsHeight}px` }">
     <div ref="tabs" class="company-deck__tabs">
-      <HomeCompanyTabs
-        :companies="companies"
-        :active-index="activeIndex"
-        :busy="switching"
-        @navigate="goTo"
-      />
+      <HomeCompanyTabs :companies="companies" :active-index="activeIndex" @navigate="goTo" />
     </div>
     <ul class="company-deck__cards">
       <li
@@ -79,7 +71,6 @@ const cards = computed(() =>
       <HomeCaseDeckNavigation
         :active-index="activeIndex"
         :count="companies.length"
-        :busy="switching"
         @navigate="goTo"
       />
     </div>

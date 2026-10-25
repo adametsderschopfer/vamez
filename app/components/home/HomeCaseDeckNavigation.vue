@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ArrowLeft, ArrowRight } from 'lucide-vue-next'
 
-defineProps<{ activeIndex: number; count: number; busy?: boolean }>()
+defineProps<{ activeIndex: number; count: number }>()
 defineEmits<{ navigate: [index: number] }>()
 const { t } = useI18n()
 </script>
@@ -11,7 +11,7 @@ const { t } = useI18n()
     <button
       class="case-navigation__button"
       type="button"
-      :disabled="busy || activeIndex === 0"
+      :disabled="activeIndex === 0"
       :aria-label="t('home.cases.previousCompany')"
       @click="$emit('navigate', activeIndex - 1)"
     >
@@ -24,7 +24,7 @@ const { t } = useI18n()
     <button
       class="case-navigation__button"
       type="button"
-      :disabled="busy || activeIndex === count - 1"
+      :disabled="activeIndex === count - 1"
       :aria-label="t('home.cases.nextCompany')"
       @click="$emit('navigate', activeIndex + 1)"
     >

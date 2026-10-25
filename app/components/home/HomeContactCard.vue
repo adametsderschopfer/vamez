@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onBeforeUnmount, shallowRef } from 'vue'
-import { ArrowUpRight, Check, Copy, Github, Mail, Send, Youtube } from 'lucide-vue-next'
+import { ArrowUpRight, Check, Copy, Mail, Send } from 'lucide-vue-next'
 
 const { t } = useI18n()
 const copyStatus = shallowRef<'copied' | 'failed' | null>(null)
@@ -14,20 +14,6 @@ const contacts = [
     detail: email,
     href: `mailto:${email}`,
     external: false
-  },
-  {
-    label: 'GitHub',
-    icon: Github,
-    detail: 'adametsderschopfer',
-    href: 'https://github.com/adametsderschopfer',
-    external: true
-  },
-  {
-    label: 'YouTube',
-    icon: Youtube,
-    detail: '@vlad_adamets',
-    href: 'https://www.youtube.com/@vlad_adamets',
-    external: true
   }
 ] as const
 

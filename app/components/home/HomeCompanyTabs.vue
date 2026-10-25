@@ -5,7 +5,6 @@ import HomeCaseLogo from './HomeCaseLogo.vue'
 const props = defineProps<{
   companies: WorkCase[]
   activeIndex: number
-  busy: boolean
 }>()
 defineEmits<{ navigate: [index: number] }>()
 const { t } = useI18n()
@@ -55,7 +54,6 @@ watch(
         'company-tabs__button--accent': index === activeIndex && company.tone === 'accent'
       }"
       type="button"
-      :disabled="busy"
       :aria-current="index === activeIndex ? 'true' : undefined"
       :aria-label="t('home.cases.selectCompany', { company: company.name })"
       @click="$emit('navigate', index)"

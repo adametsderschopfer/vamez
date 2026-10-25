@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import HomeContactCard from './HomeContactCard.vue'
+import HomeSocialLinks from './HomeSocialLinks.vue'
 
 const { t } = useI18n()
 </script>
@@ -14,6 +15,7 @@ const { t } = useI18n()
     </div>
 
     <HomeContactCard />
+    <HomeSocialLinks />
   </section>
 </template>
 

@@ -75,6 +75,7 @@
       "action": "Get in touch",
       "closeAction": "Hide contacts",
       "linksLabel": "Contact me",
+      "socialsLabel": "Social media",
       "copied": "Copied",
       "failed": "Could not copy",
       "copyEmail": "Copy email address",
