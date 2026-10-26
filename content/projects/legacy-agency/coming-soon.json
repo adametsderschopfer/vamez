@@ -1,0 +1,25 @@
+{
+  "key": "coming-soon",
+  "company": "legacy-agency",
+  "order": 1,
+  "isPlaceholder": true,
+  "title": {
+    "ru": "Скоро здесь появятся кейсы",
+    "en": "Case studies are coming soon"
+  },
+  "description": {
+    "ru": "Расскажу о задачах, решениях и своём вкладе. А пока здесь отдыхает котик.",
+    "en": "I’ll share the challenges, solutions, and my contribution. For now, a cat is taking a break here."
+  },
+  "preview": {
+    "src": "/images/projects/cat-cozy.webp",
+    "srcSmall": "/images/projects/cat-cozy-640.webp",
+    "alt": {
+      "ru": "Котик в ожидании будущих кейсов",
+      "en": "A cat waiting for future case studies"
+    },
+    "width": 1200,
+    "height": 800,
+    "kind": "photo"
+  }
+}

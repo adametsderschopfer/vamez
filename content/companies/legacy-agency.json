@@ -1,0 +1,21 @@
+{
+  "key": "legacy-agency",
+  "order": 4,
+  "name": "Legacy Agency",
+  "logo": "/images/companies/legacy-agency.svg",
+  "logoDark": "/images/companies/legacy-agency-dark.svg",
+  "url": "https://legacy-agency.ru/",
+  "tone": "paper",
+  "industry": {
+    "ru": "Веб-разработка и автоматизация бизнеса",
+    "en": "Web development and business automation"
+  },
+  "statement": {
+    "ru": "Сайты, интернет-магазины и внедрение Битрикс24.",
+    "en": "Websites, online stores, and Bitrix24 implementation."
+  },
+  "summary": {
+    "ru": "Агентство разрабатывает и сопровождает сайты на 1С-Битрикс и автоматизирует бизнес-процессы в Битрикс24.",
+    "en": "The agency builds and maintains websites on 1C-Bitrix and automates business processes with Bitrix24."
+  }
+}
