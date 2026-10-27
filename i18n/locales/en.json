@@ -47,6 +47,38 @@
       "copied": "Copied",
       "failed": "Could not copy"
     },
+    "personalProjects": {
+      "navigation": "Side projects",
+      "title": "Personal projects.",
+      "description": "A space for my own ideas, small tools, and experiments.",
+      "comingSoon": "Case studies coming soon.",
+      "notice": "My own projects will appear here soon: from the idea and early decisions to a working product.",
+      "demo": "Demo project",
+      "shelf": {
+        "title": "Shelf",
+        "category": "A collection of finds",
+        "description": "Links, articles, and visual discoveries in a place worth coming back to.",
+        "previewTitle": "Keep good ideas close.",
+        "collection": "For later",
+        "itemOne": "Interfaces worth keeping",
+        "itemTwo": "Thoughts on simplicity",
+        "itemThree": "Good typography"
+      },
+      "pause": {
+        "title": "Pause",
+        "category": "Focus timer",
+        "description": "One task. A little quiet. Time that belongs to nothing else.",
+        "previewTitle": "Just one thing, right now.",
+        "session": "Time to focus"
+      },
+      "spectrum": {
+        "title": "Spectrum",
+        "category": "A tool for color",
+        "description": "Find combinations, capture a mood, and save your own palette.",
+        "previewTitle": "A good combination.",
+        "palette": "Paper and cobalt"
+      }
+    },
     "cases": {
       "deckNavigation": "Company navigation",
       "selectCompany": "Show {company}",

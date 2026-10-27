@@ -1,4 +1,4 @@
-type SectionId = 'about' | 'cases' | 'contacts' | 'top' | 'main-content'
+type SectionId = 'about' | 'personal-projects' | 'cases' | 'contacts' | 'top' | 'main-content'
 
 export function useSectionScroll() {
   function scrollToSection(id: SectionId, event?: MouseEvent) {

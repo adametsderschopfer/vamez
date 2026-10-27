@@ -16,6 +16,13 @@ const { scrollToSection } = useSectionScroll()
       vamez<span class="home-header__brand-dot">.</span>
     </a>
     <nav class="home-header__nav" :aria-label="t('home.navigation')">
+      <a
+        class="home-header__link"
+        href="#personal-projects"
+        @click="scrollToSection('personal-projects', $event)"
+      >
+        {{ t('home.personalProjects.navigation') }}
+      </a>
       <a class="home-header__link" href="#cases" @click="scrollToSection('cases', $event)">
         {{ t('home.cases.navigation') }}
       </a>

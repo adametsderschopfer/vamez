@@ -2,6 +2,7 @@
 import HomeHeader from '@/components/home/HomeHeader.vue'
 import HomeHeroSection from '@/components/home/HomeHeroSection.vue'
 import HomeCasesSection from '@/components/home/HomeCasesSection.vue'
+import HomePersonalProjectsSection from '@/components/home/HomePersonalProjectsSection.vue'
 import HomeContactSection from '@/components/home/HomeContactSection.vue'
 import HomeLegalSection from '@/components/home/HomeLegalSection.vue'
 import HomeFooter from '@/components/home/HomeFooter.vue'
@@ -13,6 +14,7 @@ import HomeFooter from '@/components/home/HomeFooter.vue'
       <HomeHeader />
       <main id="main-content">
         <HomeHeroSection />
+        <HomePersonalProjectsSection />
         <HomeCasesSection />
         <HomeContactSection />
         <HomeLegalSection />
