@@ -126,14 +126,14 @@ onMounted(() => {
   gap: var(--hero-title-gap);
   align-content: center;
   justify-items: center;
-  min-height: max(42rem, calc(100svh - var(--header-height)));
+  min-height: calc(100svh - var(--header-height));
   padding: var(--hero-space) 0;
 }
 
 .home-hero__name {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(4rem, 12vw, 12rem);
+  font-size: clamp(4rem, min(8vw, 13vh), 8rem);
   font-weight: 800;
   line-height: 0.88;
   text-align: center;
@@ -284,7 +284,6 @@ onMounted(() => {
 
 @media (max-width: 600px) {
   .home-hero__body {
-    min-height: max(35rem, calc(90svh - var(--header-height)));
     padding: 5rem 0;
   }
 

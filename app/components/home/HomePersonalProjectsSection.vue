@@ -1,5 +1,12 @@
 <script setup lang="ts">
+import HomePersonalProjectCard from './HomePersonalProjectCard.vue'
+
 const { t } = useI18n()
+const { data: projects, error } = await useAsyncData('personal-projects', () =>
+  queryCollection('projects').where('company', '=', 'personal').order('order', 'ASC').all()
+)
+
+if (error.value) throw createError(error.value)
 </script>
 
 <template>
@@ -14,12 +21,14 @@ const { t } = useI18n()
       </h2>
       <p class="personal-projects__description">{{ t('home.personalProjects.description') }}</p>
     </div>
-    <div class="personal-projects__placeholder">
-      <h3 class="personal-projects__placeholder-title">
-        {{ t('home.personalProjects.comingSoon') }}
-      </h3>
-      <p class="personal-projects__notice">{{ t('home.personalProjects.notice') }}</p>
-    </div>
+    <ul v-if="projects?.length" class="personal-projects__list">
+      <li v-for="project in projects" :key="project.key" class="personal-projects__item">
+        <HomePersonalProjectCard :project="project" />
+      </li>
+    </ul>
+    <p class="personal-projects__continuation">
+      {{ t('home.personalProjects.growingCollection') }}
+    </p>
   </section>
 </template>
 
@@ -53,37 +62,40 @@ const { t } = useI18n()
   line-height: 1.6;
 }
 
-.personal-projects__placeholder {
+.personal-projects__list {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--personal-gap);
-  justify-items: center;
-  padding: var(--section-space) 0;
-  text-align: center;
+  align-items: start;
+  padding: 0;
+  margin: clamp(2rem, 5vw, 4rem) 0 0;
+  list-style: none;
 }
 
-.personal-projects__placeholder-title {
-  margin: 0;
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.025em;
+.personal-projects__item {
+  min-width: 0;
 }
 
-.personal-projects__notice {
-  max-width: 48ch;
-  margin: 0;
-  font-size: var(--font-size-body);
+.personal-projects__continuation {
+  max-width: 54ch;
+  margin: var(--personal-gap) 0 0;
+  font-size: var(--font-size-meta);
   line-height: 1.6;
   color: var(--ink-muted);
 }
 
-@media (max-width: 599px) {
+@media (max-width: 799px) {
+  .personal-projects__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .personal-projects__intro {
     flex-direction: column;
     align-items: flex-start;
   }
+}
 
+@media (max-width: 599px) {
   .personal-projects__title {
     font-size: clamp(2.25rem, 10vw, 3.5rem);
   }

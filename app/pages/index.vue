@@ -14,8 +14,8 @@ import HomeFooter from '@/components/home/HomeFooter.vue'
       <HomeHeader />
       <main id="main-content">
         <HomeHeroSection />
-        <HomePersonalProjectsSection />
         <HomeCasesSection />
+        <HomePersonalProjectsSection />
         <HomeContactSection />
         <HomeLegalSection />
       </main>

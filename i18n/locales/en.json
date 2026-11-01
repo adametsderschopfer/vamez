@@ -48,9 +48,12 @@
       "failed": "Could not copy"
     },
     "personalProjects": {
+      "developmentDetails": "Development details",
+      "growingCollection": "The collection is growing. More projects and development stories will appear here.",
+      "visitWebsite": "Visit website",
       "navigation": "Side projects",
       "title": "Personal projects.",
-      "description": "A space for my own ideas, small tools, and experiments.",
+      "description": "My own ideas and products built together. From the idea and architecture to a working service.",
       "comingSoon": "Case studies coming soon.",
       "notice": "My own projects will appear here soon: from the idea and early decisions to a working product.",
       "demo": "Demo project",

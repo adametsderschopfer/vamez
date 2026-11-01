@@ -1,0 +1,57 @@
+{
+  "key": "zachli",
+  "company": "personal",
+  "order": 1,
+  "title": { "ru": "Зачли.Ру", "en": "Zachli.ru" },
+  "description": {
+    "ru": "Сервис автоматизации работы с учебной платформой «Синергия». Сайт, личный кабинет и расширение Chrome объединены в один продукт для прохождения онлайн-семестра.",
+    "en": "A service that automates workflows on the Synergy learning platform. A website, personal account, and Chrome extension form a single product for completing an online semester."
+  },
+  "sections": [
+    {
+      "title": { "ru": "Команда", "en": "Team" },
+      "description": {
+        "ru": "Делали проект вдвоём с товарищем: я отвечал за разработку и нейроинженерию, он — за маркетинг и юридические вопросы.",
+        "en": "Built together with a friend: I handled development and AI engineering, while he took care of marketing and legal matters."
+      }
+    },
+    {
+      "title": { "ru": "Платёжная интеграция", "en": "Payment integration" },
+      "description": {
+        "ru": "Занимался интеграцией платёжного сервиса PayAnyWay.",
+        "en": "Worked on integrating the PayAnyWay payment service."
+      }
+    },
+    {
+      "title": { "ru": "Расширение Chrome", "en": "Chrome extension" },
+      "description": {
+        "ru": "Виджет внутри LMS: управление прохождением уроков и тестов, отслеживание прогресса и работа с вопросами через LLM.",
+        "en": "An in-page LMS widget for running lessons and tests, tracking progress, and processing questions with an LLM."
+      }
+    },
+    {
+      "title": { "ru": "Сайт и серверная часть", "en": "Website and backend" },
+      "description": {
+        "ru": "Личный кабинет и единая авторизация сайта и расширения. Go API, PostgreSQL, администрирование пользователей и автоматическая доставка обновлений.",
+        "en": "A personal account with shared authentication for the website and extension. A Go API, PostgreSQL, user administration, and automated deployment."
+      }
+    }
+  ],
+  "contribution": {
+    "ru": "Разработчик и нейроинженер: архитектура, разработка сайта и расширения, интеграции LLM и PayAnyWay, серверная часть и инфраструктура.",
+    "en": "Developer and AI engineer: architecture, website and extension development, LLM and PayAnyWay integrations, backend, and infrastructure."
+  },
+  "stack": [
+    "Nuxt",
+    "Vue",
+    "TypeScript",
+    "Chrome Extensions",
+    "Go",
+    "PostgreSQL",
+    "GitHub Actions",
+    "PayAnyWay",
+    "Codex"
+  ],
+  "url": "https://zachli.ru/",
+  "logo": { "src": "/images/projects/zachli.svg", "width": 128, "height": 128 }
+}
