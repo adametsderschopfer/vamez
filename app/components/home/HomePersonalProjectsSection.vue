@@ -26,9 +26,6 @@ if (error.value) throw createError(error.value)
         <HomePersonalProjectCard :project="project" />
       </li>
     </ul>
-    <p class="personal-projects__continuation">
-      {{ t('home.personalProjects.growingCollection') }}
-    </p>
   </section>
 </template>
 
@@ -74,14 +71,6 @@ if (error.value) throw createError(error.value)
 
 .personal-projects__item {
   min-width: 0;
-}
-
-.personal-projects__continuation {
-  max-width: 54ch;
-  margin: var(--personal-gap) 0 0;
-  font-size: var(--font-size-meta);
-  line-height: 1.6;
-  color: var(--ink-muted);
 }
 
 @media (max-width: 799px) {
