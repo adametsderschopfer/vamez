@@ -50,6 +50,7 @@
     "personalProjects": {
       "developmentDetails": "Подробнее о разработке",
       "visitWebsite": "Сайт проекта",
+      "sourceCode": "Исходный код на GitHub",
       "navigation": "Свои проекты",
       "title": "Собственные проекты.",
       "description": "Собственные идеи и совместные продукты. От идеи и архитектуры до работающего сервиса.",

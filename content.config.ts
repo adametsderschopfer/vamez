@@ -81,6 +81,7 @@ export default defineContentConfig({
         contribution: localizedText.optional(),
         stack: z.array(z.string()).optional(),
         url: z.string().url().optional(),
+        repositoryUrl: z.string().url().optional(),
         isPlaceholder: z.boolean().default(false),
         preview: image
           .extend({

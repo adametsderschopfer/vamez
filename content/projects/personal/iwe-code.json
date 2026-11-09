@@ -1,0 +1,41 @@
+{
+  "key": "iwe-code",
+  "company": "personal",
+  "order": 2,
+  "title": { "ru": "IWE Code", "en": "IWE Code" },
+  "description": {
+    "ru": "Настольное приложение для работы с локальными проектами. Объединяет просмотр кода, историю Git, сравнение изменений и процессы сборки GitHub и GitLab.",
+    "en": "A desktop workspace for local projects. Brings source previews, Git history, change comparisons, and GitHub and GitLab pipelines into one application."
+  },
+  "sections": [
+    {
+      "title": { "ru": "Рабочие пространства и код", "en": "Workspaces and source code" },
+      "description": {
+        "ru": "Локальные папки объединяются в именованные пространства. Дерево файлов, вкладки и подсветка синтаксиса помогают изучать код. Просмотр не изменяет файлы; содержимое остаётся на компьютере.",
+        "en": "Local folders are grouped into named spaces. A file tree, tabs, and syntax highlighting help explore source code. Read-only previews keep files unchanged and their contents local."
+      }
+    },
+    {
+      "title": { "ru": "История Git и изменения", "en": "Git history and changes" },
+      "description": {
+        "ru": "Просмотр веток, коммитов и прошлых версий файлов. Сравнение изменений в двух колонках или одной ленте. История проекта и его вложенных репозиториев доступна в одном интерфейсе.",
+        "en": "Browse branches, commits, and historical file versions. Compare changes side by side or in a single column. Explore a project's history alongside its direct child repositories."
+      }
+    },
+    {
+      "title": { "ru": "Интеграции и выпуск", "en": "Integrations and releases" },
+      "description": {
+        "ru": "Интеграции с GitHub Actions и GitLab показывают состояние сборок и заданий рядом с кодом. GitHub Actions собирает пакеты для macOS, Windows и Linux. Приложение поддерживает подписанные обновления и три языка: русский, английский и испанский.",
+        "en": "GitHub Actions and GitLab integrations show pipeline and job status alongside the code. GitHub Actions builds packages for macOS, Windows, and Linux. The application supports signed updates and three languages: Russian, English, and Spanish."
+      }
+    }
+  ],
+  "contribution": {
+    "ru": "Спроектировал и разработал приложение на Rust и Iced: рабочие пространства, просмотр файлов, историю Git и интеграции сборок. Подготовил сайт на Nuxt, автоматическую сборку пакетов и механизм обновлений.",
+    "en": "Designed and built the Rust and Iced application: workspaces, file previews, Git history, and pipeline integrations. Created the Nuxt website, automated package builds, and the update mechanism."
+  },
+  "stack": ["Rust", "Iced", "Git", "GitHub Actions", "GitLab CI", "Nuxt", "TypeScript"],
+  "url": "https://adametsderschopfer.github.io/iwe-code/",
+  "repositoryUrl": "https://github.com/adametsderschopfer/iwe-code",
+  "logo": { "src": "/images/projects/iwe-code.webp", "width": 144, "height": 144 }
+}

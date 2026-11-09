@@ -50,6 +50,7 @@
     "personalProjects": {
       "developmentDetails": "Development details",
       "visitWebsite": "Visit website",
+      "sourceCode": "Source code on GitHub",
       "navigation": "Side projects",
       "title": "Personal projects.",
       "description": "My own ideas and products built together. From the idea and architecture to a working service.",

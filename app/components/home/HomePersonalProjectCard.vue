@@ -59,16 +59,28 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
         </div>
       </div>
     </details>
-    <a
-      v-if="project.url"
-      class="personal-project__link"
-      :href="project.url"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {{ t('home.personalProjects.visitWebsite') }}
-      <ArrowUpRight :size="20" aria-hidden="true" />
-    </a>
+    <div v-if="project.url || project.repositoryUrl" class="personal-project__links">
+      <a
+        v-if="project.url"
+        class="personal-project__link"
+        :href="project.url"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {{ t('home.personalProjects.visitWebsite') }}
+        <ArrowUpRight :size="20" aria-hidden="true" />
+      </a>
+      <a
+        v-if="project.repositoryUrl"
+        class="personal-project__link"
+        :href="project.repositoryUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {{ t('home.personalProjects.sourceCode') }}
+        <ArrowUpRight :size="20" aria-hidden="true" />
+      </a>
+    </div>
   </article>
 </template>
 
@@ -193,13 +205,17 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
   line-height: 1.5;
 }
 
+.personal-project__links {
+  display: grid;
+  margin-top: auto;
+}
+
 .personal-project__link {
   display: flex;
   gap: 1rem;
   align-items: center;
   justify-content: space-between;
   min-height: 2.75rem;
-  margin-top: auto;
   font-size: var(--font-size-label);
   font-weight: var(--font-weight-label);
   color: var(--card-accent);
