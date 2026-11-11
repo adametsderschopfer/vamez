@@ -34,6 +34,10 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
         v-for="technology in project.stack"
         :key="technology"
         class="personal-project__technology"
+        :class="{
+          'personal-project__technology--accent':
+            project.key === 'iwe-code' && technology === 'Rust'
+        }"
       >
         {{ technology }}
       </li>
@@ -91,10 +95,10 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
   --project-logo-size: 3rem;
 
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: var(--project-gap);
   min-width: 0;
-  height: 100%;
   padding: var(--project-padding);
   background: var(--card-surface);
   border: 1px solid var(--line);
@@ -146,6 +150,11 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
   line-height: 1.4;
   color: var(--ink-muted);
   background: var(--card-soft);
+}
+
+.personal-project__technology--accent {
+  font-weight: var(--font-weight-label);
+  color: var(--card-accent);
 }
 
 .personal-project__disclosure {

@@ -63,13 +63,13 @@ if (error.value) throw createError(error.value)
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--personal-gap);
-  align-items: start;
   padding: 0;
   margin: clamp(2rem, 5vw, 4rem) 0 0;
   list-style: none;
 }
 
 .personal-projects__item {
+  display: flex;
   min-width: 0;
 }
 

@@ -18,8 +18,8 @@
     {
       "title": { "ru": "Платёжная интеграция", "en": "Payment integration" },
       "description": {
-        "ru": "Занимался интеграцией платёжного сервиса PayAnyWay.",
-        "en": "Worked on integrating the PayAnyWay payment service."
+        "ru": "Интегрировали оплату через Озон Банк.",
+        "en": "We integrated payments through Ozon Bank."
       }
     },
     {
@@ -38,8 +38,8 @@
     }
   ],
   "contribution": {
-    "ru": "Разработчик и нейроинженер: архитектура, разработка сайта и расширения, интеграции LLM и PayAnyWay, серверная часть и инфраструктура.",
-    "en": "Developer and AI engineer: architecture, website and extension development, LLM and PayAnyWay integrations, backend, and infrastructure."
+    "ru": "Разработчик и нейроинженер: архитектура, разработка сайта и расширения, интеграции LLM и Озон Банка, серверная часть и инфраструктура.",
+    "en": "Developer and AI engineer: architecture, website and extension development, LLM and Ozon Bank integrations, backend, and infrastructure."
   },
   "stack": [
     "Nuxt",
@@ -49,7 +49,7 @@
     "Go",
     "PostgreSQL",
     "GitHub Actions",
-    "PayAnyWay",
+    "Ozon Bank",
     "Codex"
   ],
   "url": "https://zachli.ru/",
