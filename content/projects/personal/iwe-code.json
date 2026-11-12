@@ -1,7 +1,7 @@
 {
   "key": "iwe-code",
   "company": "personal",
-  "order": 2,
+  "order": 1,
   "title": { "ru": "IWE Code", "en": "IWE Code" },
   "description": {
     "ru": "Настольное приложение для работы с локальными проектами. Объединяет просмотр кода, историю Git, сравнение изменений и процессы сборки GitHub и GitLab.",

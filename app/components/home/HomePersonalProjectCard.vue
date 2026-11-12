@@ -8,7 +8,11 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
 </script>
 
 <template>
-  <article class="personal-project" :aria-labelledby="`personal-project-${project.key}`">
+  <article
+    class="personal-project"
+    :class="{ 'personal-project--featured': project.key === 'iwe-code' }"
+    :aria-labelledby="`personal-project-${project.key}`"
+  >
     <div class="personal-project__heading">
       <h3 :id="`personal-project-${project.key}`" class="personal-project__title">
         {{ project.title[language] }}
@@ -102,6 +106,14 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
   padding: var(--project-padding);
   background: var(--card-surface);
   border: 1px solid var(--line);
+}
+
+.personal-project--featured {
+  --project-accent-size: 0.25rem;
+
+  background: color-mix(in srgb, var(--card-accent) 7%, var(--card-surface));
+  border-color: var(--card-accent);
+  box-shadow: inset 0 var(--project-accent-size) 0 var(--card-accent);
 }
 
 .personal-project__heading {
