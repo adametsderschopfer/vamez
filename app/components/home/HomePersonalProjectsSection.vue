@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import HomePersonalProjectCard from './HomePersonalProjectCard.vue'
+import type { WorkProject } from '@/types/workCases'
+import ProjectCard from '@/components/projects/ProjectCard.vue'
+import ProjectDialog from '@/components/projects/ProjectDialog.vue'
+import HomeUpcomingProjectCard from './HomeUpcomingProjectCard.vue'
 
 const { t } = useI18n()
+const selected = shallowRef<WorkProject | null>(null)
 const { data: projects, error } = await useAsyncData('personal-projects', () =>
   queryCollection('projects').where('company', '=', 'personal').order('order', 'ASC').all()
 )
@@ -23,9 +27,13 @@ if (error.value) throw createError(error.value)
     </div>
     <ul v-if="projects?.length" class="personal-projects__list">
       <li v-for="project in projects" :key="project.key" class="personal-projects__item">
-        <HomePersonalProjectCard :project="project" />
+        <ProjectCard :project="project" show-website @select="selected = project" />
+      </li>
+      <li class="personal-projects__item">
+        <HomeUpcomingProjectCard />
       </li>
     </ul>
+    <ProjectDialog v-if="selected" :project="selected" @close="selected = null" />
   </section>
 </template>
 
@@ -71,6 +79,12 @@ if (error.value) throw createError(error.value)
 .personal-projects__item {
   display: flex;
   min-width: 0;
+}
+
+@media (min-width: 1200px) {
+  .personal-projects__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 799px) {

@@ -9,7 +9,7 @@ const { t } = useI18n()
 const { data: companies, error } = await useWorkCases()
 if (error.value) throw createError(error.value)
 const kind = shallowRef('all')
-const technology = shallowRef('')
+const selectedTechnologies = shallowRef<string[]>([])
 const selected = shallowRef<{ project: WorkProject; company: WorkCase } | null>(null)
 const root = useTemplateRef<HTMLElement>('root')
 const technologies = computed(() =>
@@ -33,7 +33,8 @@ const filtered = computed(() =>
           )
         return (
           (kind.value === 'all' || (kind.value === 'app' ? app : !app)) &&
-          (!technology.value || project.stack?.includes(technology.value))
+          (!selectedTechnologies.value.length ||
+            project.stack?.some((item) => selectedTechnologies.value.includes(item)))
         )
       })
     }))
@@ -51,7 +52,7 @@ const { active, navigate } = useCompanyScroll(root, () =>
   <div class="project-gallery">
     <ProjectFilters
       v-model:kind="kind"
-      v-model:technology="technology"
+      v-model:selected-technologies="selectedTechnologies"
       :technologies="technologies"
       :count="count"
     />

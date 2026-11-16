@@ -1,0 +1,30 @@
+{
+  "key": "kdmarket",
+  "company": "legacy-agency",
+  "order": 11,
+  "title": {
+    "ru": "KD Market",
+    "en": "KD Market"
+  },
+  "description": {
+    "ru": "Интернет-магазин электроники в Калининграде. На сайте есть каталог техники и аксессуаров, корзина, программа лояльности и раздел трейд-ин.",
+    "en": "An electronics store in Kaliningrad with a product catalog, checkout, a loyalty program, and a trade-in section."
+  },
+  "contribution": {
+    "ru": "На фронтенде обновил мобильное меню, разработал страницы рассрочки и бонусной программы. В карточке товара добавил блок бонусов и возможность открыть форму трейд-ин. На сервере добавил обработку заявок на рассрочку и трейд-ин на PHP, а калькулятор трейд-ин вынес в отдельный компонент 1С-Битрикс.",
+    "en": "On the frontend, I updated the mobile menu and built the installment payment and loyalty program pages. I added loyalty information and a trade-in form entry point to product pages. On the backend, I added PHP handlers for installment and trade-in requests. I also extracted the trade-in calculator into a reusable 1C-Bitrix component."
+  },
+  "stack": ["1С-Битрикс", "PHP", "JavaScript", "Sass", "Gulp", "Webpack"],
+  "url": "https://kdmarket.ru/",
+  "preview": {
+    "src": "/images/projects/legacy-kdmarket.webp",
+    "srcSmall": "/images/projects/legacy-kdmarket-640.webp",
+    "alt": {
+      "ru": "Главная страница KD Market с предложением трейд-ин",
+      "en": "KD Market homepage with its trade-in offer"
+    },
+    "width": 1366,
+    "height": 810,
+    "kind": "website"
+  }
+}

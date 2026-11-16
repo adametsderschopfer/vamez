@@ -1,0 +1,30 @@
+{
+  "key": "age-field",
+  "company": "legacy-agency",
+  "order": 22,
+  "title": {
+    "ru": "Возраст и знак зодиака в CRM",
+    "en": "Age and zodiac sign in CRM"
+  },
+  "description": {
+    "ru": "Приложение показывает возраст и знак зодиака клиента по дате рождения в карточке Битрикс24.",
+    "en": "The app displays a customer’s age and zodiac sign from their birth date in Bitrix24."
+  },
+  "contribution": {
+    "ru": "Добавил вывод знака зодиака и доработал интерфейс поля.",
+    "en": "Added the zodiac sign and updated the field’s interface."
+  },
+  "stack": ["Битрикс24", "JavaScript"],
+  "preview": {
+    "src": "/images/projects/legacy-age-field.webp",
+    "srcSmall": "/images/projects/legacy-age-field-640.webp",
+    "alt": {
+      "ru": "Поле возраста и знака зодиака в Битрикс24",
+      "en": "Age and zodiac field in Bitrix24"
+    },
+    "width": 671,
+    "height": 660,
+    "kind": "marketplace"
+  },
+  "url": "https://www.bitrix24.ru/apps/app/dbogdanoff.age_field/"
+}

@@ -1,0 +1,43 @@
+{
+  "key": "mars-capital",
+  "company": "legacy-agency",
+  "order": 10,
+  "title": {
+    "ru": "Марс Капитал Групп",
+    "en": "Mars Capital Group"
+  },
+  "description": {
+    "ru": "Корпоративный сайт инвестиционной компании с интерактивной 3D-сценой на главной.",
+    "en": "An investment firm’s corporate website with an interactive 3D scene on the homepage."
+  },
+  "contribution": {
+    "ru": "Работал над 3D-сценой с солнцем на Three.js и React Three Fiber. Камера движется при прокрутке, а сцена реагирует на курсор. Доработал 3D-анимацию в подвале, загрузочный экран и вёрстку внутренних страниц. Сайт выпустила Deluxe Interactive.",
+    "en": "Worked on the 3D sun scene with Three.js and React Three Fiber. The camera moves as visitors scroll, and the scene responds to the pointer. Updated the footer animation, loading screen, and interior page layouts. Deluxe Interactive released the site."
+  },
+  "stack": ["Three.js", "React Three Fiber", "React", "TypeScript", "GSAP", "Twig", "Sass"],
+  "preview": {
+    "src": "/images/projects/legacy-mars-capital.webp",
+    "srcSmall": "/images/projects/legacy-mars-capital-640.webp",
+    "alt": {
+      "ru": "Главная страница с 3D-сценой солнца",
+      "en": "Homepage with the 3D sun scene"
+    },
+    "width": 1366,
+    "height": 810,
+    "kind": "website"
+  },
+  "url": "https://www.marscapital.ru/",
+  "screenshots": [
+    {
+      "src": "/images/projects/legacy-mars-capital-scroll.webp",
+      "srcSmall": "/images/projects/legacy-mars-capital-scroll-640.webp",
+      "alt": {
+        "ru": "3D-сцена после прокрутки",
+        "en": "3D scene after scrolling"
+      },
+      "width": 1366,
+      "height": 810,
+      "kind": "website"
+    }
+  ]
+}

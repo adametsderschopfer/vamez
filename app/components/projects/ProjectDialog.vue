@@ -2,8 +2,9 @@
 import { ArrowUpRight, X } from 'lucide-vue-next'
 import type { WorkCase, WorkProject } from '@/types/workCases'
 import HomeProjectPreview from '@/components/home/HomeProjectPreview.vue'
+import ProjectScreenshots from '@/components/projects/ProjectScreenshots.vue'
 
-defineProps<{ project: WorkProject; company: WorkCase }>()
+defineProps<{ project: WorkProject; company?: WorkCase }>()
 const emit = defineEmits<{ close: [] }>()
 const { t, locale } = useI18n()
 const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
@@ -67,7 +68,7 @@ onBeforeUnmount(() => {
     @click="backdrop"
   >
     <div class="project-dialog__toolbar">
-      <span>{{ company.name }}</span>
+      <span>{{ company?.name ?? t('home.personalProjects.title') }}</span>
       <button
         class="project-dialog__close"
         type="button"
@@ -78,11 +79,20 @@ onBeforeUnmount(() => {
         <X :size="18" :stroke-width="1.75" aria-hidden="true" />
       </button>
     </div>
-    <HomeProjectPreview v-if="project.preview" :preview="project.preview" />
+    <ProjectScreenshots
+      v-if="project.preview && project.screenshots?.length"
+      :screenshots="[project.preview, ...project.screenshots]"
+      :framed="project.company === 'legacy-agency'"
+    />
+    <HomeProjectPreview
+      v-else-if="project.preview"
+      :preview="project.preview"
+      :framed="project.company === 'legacy-agency'"
+    />
     <div class="project-dialog__content">
       <h2 id="project-dialog-title" class="project-dialog__title">{{ project.title[language] }}</h2>
       <p class="project-dialog__text">{{ project.description[language] }}</p>
-      <dl v-if="company.role || company.period" class="project-dialog__facts">
+      <dl v-if="company && (company.role || company.period)" class="project-dialog__facts">
         <div v-if="company.role">
           <dt>{{ t('portfolio.role') }}</dt>
           <dd>{{ company.role[language] }}</dd>
@@ -92,18 +102,21 @@ onBeforeUnmount(() => {
           <dd>{{ company.period[language] }}</dd>
         </div>
       </dl>
-      <section
-        v-for="section in project.sections"
-        :key="section.title.ru"
-        class="project-dialog__section"
-      >
-        <h3>{{ section.title[language] }}</h3>
-        <p class="project-dialog__text">{{ section.description[language] }}</p>
-      </section>
-      <section v-if="project.contribution" class="project-dialog__section">
-        <h3>{{ t('home.cases.contribution') }}</h3>
-        <p class="project-dialog__text">{{ project.contribution[language] }}</p>
-      </section>
+      <div v-if="project.sections?.length || project.contribution" class="project-dialog__details">
+        <h3 v-if="!company">{{ t('home.personalProjects.developmentDetails') }}</h3>
+        <section
+          v-for="section in project.sections"
+          :key="section.title.ru"
+          class="project-dialog__section"
+        >
+          <component :is="company ? 'h3' : 'h4'">{{ section.title[language] }}</component>
+          <p class="project-dialog__text">{{ section.description[language] }}</p>
+        </section>
+        <section v-if="project.contribution" class="project-dialog__section">
+          <component :is="company ? 'h3' : 'h4'">{{ t('home.cases.contribution') }}</component>
+          <p class="project-dialog__text">{{ project.contribution[language] }}</p>
+        </section>
+      </div>
       <ul
         v-if="project.stack?.length"
         class="project-dialog__stack"
@@ -111,14 +124,26 @@ onBeforeUnmount(() => {
       >
         <li v-for="technology in project.stack" :key="technology">{{ technology }}</li>
       </ul>
-      <a
-        v-if="project.url"
-        class="project-dialog__link"
-        :href="project.url"
-        target="_blank"
-        rel="noopener noreferrer"
-        >{{ t('home.personalProjects.visitWebsite') }} <ArrowUpRight :size="20"
-      /></a>
+      <div v-if="project.repositoryUrl || (company && project.url)" class="project-dialog__links">
+        <a
+          v-if="project.repositoryUrl"
+          class="project-dialog__link"
+          :href="project.repositoryUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {{ t('home.personalProjects.sourceCode') }}
+          <ArrowUpRight :size="20" aria-hidden="true" />
+        </a>
+        <a
+          v-if="company && project.url"
+          class="project-dialog__link"
+          :href="project.url"
+          target="_blank"
+          rel="noopener noreferrer"
+          >{{ t('home.personalProjects.visitWebsite') }} <ArrowUpRight :size="20"
+        /></a>
+      </div>
     </div>
   </dialog>
 </template>
@@ -246,7 +271,12 @@ onBeforeUnmount(() => {
   margin-top: 2rem;
 }
 
-.project-dialog__section h3 {
+.project-dialog__details {
+  margin-top: 2rem;
+}
+
+.project-dialog__section h3,
+.project-dialog__section h4 {
   font-size: 1.125rem;
 }
 
@@ -264,6 +294,13 @@ onBeforeUnmount(() => {
   font-size: 0.875rem;
   background: var(--card-soft);
   border-radius: 0.5rem;
+}
+
+.project-dialog__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
 .project-dialog__link {

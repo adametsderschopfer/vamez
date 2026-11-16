@@ -1,0 +1,30 @@
+{
+  "key": "yacht-parts",
+  "company": "legacy-agency",
+  "order": 12,
+  "title": {
+    "ru": "Яхтенные товары",
+    "en": "Yacht Parts"
+  },
+  "description": {
+    "ru": "Интернет-магазин запчастей и оборудования для яхт и катеров.",
+    "en": "An online store for yacht and boat parts and equipment."
+  },
+  "contribution": {
+    "ru": "Доработал шапку сайта, карточку товара, мобильное меню и корзину.",
+    "en": "Updated the site header, product page, mobile menu, and cart."
+  },
+  "stack": ["1С-Битрикс", "PHP", "JavaScript", "CSS"],
+  "preview": {
+    "src": "/images/projects/legacy-yacht-parts.webp",
+    "srcSmall": "/images/projects/legacy-yacht-parts-640.webp",
+    "alt": {
+      "ru": "Главная страница магазина «Яхтенные товары»",
+      "en": "Yacht Parts storefront"
+    },
+    "width": 1366,
+    "height": 810,
+    "kind": "website"
+  },
+  "url": "https://yacht-parts.ru/"
+}

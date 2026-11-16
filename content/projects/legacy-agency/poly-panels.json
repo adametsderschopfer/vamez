@@ -1,0 +1,53 @@
+{
+  "key": "poly-panels",
+  "company": "legacy-agency",
+  "order": 14,
+  "title": {
+    "ru": "Рабочие панели PolyLab и PolyLow",
+    "en": "PolyLab and PolyLow work dashboards"
+  },
+  "description": {
+    "ru": "Рабочие панели для заказчиков, мастеров и руководителей. В них можно просматривать задачи, часы, акты и заявки на материалы.",
+    "en": "Dashboards for customers, supervisors, and managers with tasks, work hours, records, and material requests."
+  },
+  "contribution": {
+    "ru": "Доработал карточки задач, учёт рабочего времени, окно закрытых актов и отображение статусов заявок на материалы.",
+    "en": "Updated task cards, time tracking, the closed records dialog, and material request statuses."
+  },
+  "stack": ["Twig", "TypeScript", "Sass", "Gulp"],
+  "preview": {
+    "src": "/images/projects/legacy-poly-panels.webp",
+    "srcSmall": "/images/projects/legacy-poly-panels-640.webp",
+    "alt": {
+      "ru": "Рабочая панель мастера PolyLab",
+      "en": "PolyLab supervisor dashboard"
+    },
+    "width": 1366,
+    "height": 810,
+    "kind": "website"
+  },
+  "screenshots": [
+    {
+      "src": "/images/projects/legacy-poly-panels-polilom.webp",
+      "srcSmall": "/images/projects/legacy-poly-panels-polilom-640.webp",
+      "alt": {
+        "ru": "Рабочая панель мастера PolyLow",
+        "en": "PolyLow supervisor dashboard"
+      },
+      "width": 1366,
+      "height": 810,
+      "kind": "website"
+    },
+    {
+      "src": "/images/projects/legacy-poly-panels-director.webp",
+      "srcSmall": "/images/projects/legacy-poly-panels-director-640.webp",
+      "alt": {
+        "ru": "Рабочая панель руководителя PolyLow",
+        "en": "PolyLow manager dashboard"
+      },
+      "width": 1366,
+      "height": 810,
+      "kind": "website"
+    }
+  ]
+}

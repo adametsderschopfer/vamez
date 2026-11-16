@@ -27,6 +27,7 @@ import HomeFooter from '@/components/home/HomeFooter.vue'
 <style scoped>
 .home-page {
   min-height: 100dvh;
+  container-type: inline-size;
   background: var(--page-background);
 }
 

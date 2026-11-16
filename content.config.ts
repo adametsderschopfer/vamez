@@ -7,6 +7,11 @@ const image = z.object({
   width: z.number().int().positive(),
   height: z.number().int().positive()
 })
+const projectScreenshot = image.extend({
+  srcSmall: z.string().optional(),
+  alt: localizedText,
+  kind: z.enum(['app', 'website', 'photo', 'brand', 'marketplace'])
+})
 
 export default defineContentConfig({
   collections: {
@@ -70,6 +75,7 @@ export default defineContentConfig({
         company: z.string(),
         order: z.number().int().nonnegative(),
         title: localizedText,
+        label: localizedText.optional(),
         description: localizedText,
         sections: z
           .array(
@@ -84,11 +90,20 @@ export default defineContentConfig({
         url: z.string().url().optional(),
         repositoryUrl: z.string().url().optional(),
         isPlaceholder: z.boolean().default(false),
-        preview: image
+        screenshots: z.array(projectScreenshot).optional(),
+        preview: projectScreenshot
           .extend({
-            srcSmall: z.string().optional(),
-            alt: localizedText,
-            kind: z.enum(['app', 'website', 'photo', 'brand'])
+            screen: image
+              .extend({
+                alt: localizedText,
+                tone: z.enum(['leaf', 'rose']).optional(),
+                crop: z.object({
+                  x: z.number().int().nonnegative(),
+                  y: z.number().int().nonnegative(),
+                  width: z.number().int().positive()
+                })
+              })
+              .optional()
           })
           .optional(),
         logo: image.optional()

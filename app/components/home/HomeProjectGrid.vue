@@ -17,7 +17,11 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
           class="project-grid__card"
           :aria-labelledby="`project-title-${companyId}-${project.key}`"
         >
-          <HomeProjectPreview v-if="project.preview" :preview="project.preview" />
+          <HomeProjectPreview
+            v-if="project.preview"
+            :preview="project.preview"
+            :framed="companyId === 'legacy-agency'"
+          />
           <div class="project-grid__content">
             <span v-if="project.isPlaceholder" class="project-grid__placeholder">
               {{ t('home.cases.placeholder') }}

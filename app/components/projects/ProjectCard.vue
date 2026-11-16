@@ -1,18 +1,23 @@
 <script setup lang="ts">
-import { ArrowUpRight } from 'lucide-vue-next'
+import { ArrowUpRight, Sparkles } from 'lucide-vue-next'
 import type { WorkProject } from '@/types/workCases'
 import HomeProjectPreview from '@/components/home/HomeProjectPreview.vue'
+import ProjectCardFrame from './ProjectCardFrame.vue'
 
-defineProps<{ project: WorkProject }>()
+defineProps<{ project: WorkProject; showWebsite?: boolean }>()
 defineEmits<{ select: [] }>()
 const { t, locale } = useI18n()
 const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
 </script>
 
 <template>
-  <button class="project-card" type="button" aria-haspopup="dialog" @click="$emit('select')">
-    <div class="project-card__visual">
-      <HomeProjectPreview v-if="project.preview" :preview="project.preview" />
+  <ProjectCardFrame class="project-card" interactive>
+    <template #visual>
+      <HomeProjectPreview
+        v-if="project.preview"
+        :preview="project.preview"
+        :framed="project.company === 'legacy-agency'"
+      />
       <div v-else class="project-card__cover">
         <img
           v-if="project.logo"
@@ -23,48 +28,49 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
         />
         <span v-else>{{ project.title[language] }}</span>
       </div>
-      <span v-if="project.url" class="project-card__open" aria-hidden="true"
+      <span v-if="project.url || showWebsite" class="project-card__open" aria-hidden="true"
         ><ArrowUpRight :size="22"
       /></span>
-    </div>
-    <div class="project-card__body">
+    </template>
+    <template #default>
       <span v-if="project.isPlaceholder" class="project-card__meta">{{
         t('home.cases.placeholder')
       }}</span>
-      <h3 class="project-card__title">{{ project.title[language] }}</h3>
+      <span v-else-if="project.label" class="project-card__meta project-card__meta--label">
+        {{ project.label[language] }}
+      </span>
+      <h3 class="project-card__title">
+        <button
+          class="project-card__trigger"
+          type="button"
+          aria-haspopup="dialog"
+          @click="$emit('select')"
+        >
+          {{ project.title[language] }}
+          <Sparkles
+            v-if="project.key === 'iwe-code'"
+            class="project-card__sparkles"
+            aria-hidden="true"
+          />
+        </button>
+      </h3>
+      <a
+        v-if="showWebsite && project.url"
+        class="project-card__website"
+        :href="project.url"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {{ t('home.personalProjects.visitWebsite') }}
+        <ArrowUpRight :size="16" aria-hidden="true" />
+      </a>
       <p class="project-card__description">{{ project.description[language] }}</p>
-    </div>
-  </button>
+    </template>
+  </ProjectCardFrame>
 </template>
 
 <style scoped>
-.project-card {
-  --preview-height: clamp(12rem, 20vw, 19rem);
-
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  overflow: hidden;
-  color: var(--ink);
-  text-align: left;
-  cursor: pointer;
-  background: var(--card-surface);
-  border: 1px solid var(--line);
-  border-radius: 1.25rem;
-  transition:
-    border-color var(--motion-fast),
-    box-shadow var(--motion-fast);
-}
-
-.project-card__visual {
-  position: relative;
-  width: 100%;
-  padding: 0.65rem;
-}
-
-.project-card__visual :deep(.project-preview) {
+.project-card :deep(.project-preview) {
   height: var(--preview-height);
   border: 0;
   border-radius: 0.8rem;
@@ -101,15 +107,59 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
   border-radius: 50%;
 }
 
-.project-card__body {
-  padding: 0.75rem 1.25rem 1.5rem;
-}
-
 .project-card__title {
   margin: 0;
   font-size: 1.125rem;
   font-weight: 600;
   line-height: 1.4;
+}
+
+.project-card__trigger {
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+
+.project-card__trigger::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  content: '';
+  border-radius: var(--project-card-radius);
+}
+
+.project-card__trigger:focus-visible {
+  outline: none;
+}
+
+.project-card__trigger:focus-visible::after {
+  outline: 2px solid var(--card-accent);
+  outline-offset: 2px;
+}
+
+.project-card__website {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  gap: 0.35rem;
+  align-items: center;
+  min-height: 1.75rem;
+  margin-top: 0.25rem;
+  font-size: var(--font-size-meta);
+  font-weight: var(--font-weight-label);
+  color: var(--card-accent);
+}
+
+.project-card__sparkles {
+  width: 0.65em;
+  height: 0.65em;
+  margin-inline-start: 0.1em;
+  vertical-align: 0.3em;
+  color: var(--card-accent);
 }
 
 .project-card__description {
@@ -130,16 +180,28 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
   color: var(--ink-muted);
 }
 
-@media (hover: hover) {
-  .project-card:hover {
-    border-color: var(--card-accent);
-    box-shadow: 0 0.75rem 2rem rgb(0 0 0 / 15%);
+.project-card__meta--label {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  font-weight: 500;
+  line-height: 1.5;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .project-card:hover .project-card__sparkles {
+    animation: project-card-twinkle 800ms ease-in-out;
   }
 }
 
-@media (max-width: 600px) {
-  .project-card {
-    --preview-height: 15rem;
+@keyframes project-card-twinkle {
+  25% {
+    opacity: 0.65;
+  }
+
+  60% {
+    filter: drop-shadow(0 0 0.15em currentColor);
   }
 }
 </style>

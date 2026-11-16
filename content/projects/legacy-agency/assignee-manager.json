@@ -1,0 +1,29 @@
+{
+  "key": "assignee-manager",
+  "company": "legacy-agency",
+  "order": 23,
+  "title": {
+    "ru": "Массовая смена ответственных",
+    "en": "Bulk reassignment"
+  },
+  "description": {
+    "ru": "Интерфейс для массовой и запланированной смены ответственных в Битрикс24.",
+    "en": "An interface for bulk and scheduled reassignment in Bitrix24."
+  },
+  "contribution": {
+    "ru": "Разработал форму выбора сотрудников и даты. Добавил список операций со статусами, фильтрацией и сортировкой.",
+    "en": "Built the employee and date selection form. Added an operation list with statuses, filters, and sorting."
+  },
+  "stack": ["Vue 3", "TypeScript", "Битрикс24"],
+  "preview": {
+    "src": "/images/projects/legacy-assignee-manager.webp",
+    "srcSmall": "/images/projects/legacy-assignee-manager-640.webp",
+    "alt": {
+      "ru": "Список операций смены ответственных с демонстрационными данными",
+      "en": "Reassignment history with demo data"
+    },
+    "width": 1366,
+    "height": 810,
+    "kind": "website"
+  }
+}

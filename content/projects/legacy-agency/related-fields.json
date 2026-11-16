@@ -1,0 +1,42 @@
+{
+  "key": "related-fields",
+  "company": "legacy-agency",
+  "order": 24,
+  "title": {
+    "ru": "Зависимые поля CRM",
+    "en": "Dependent CRM fields"
+  },
+  "description": {
+    "ru": "Интерфейс для настройки зависимостей между полями в карточках Битрикс24.",
+    "en": "An interface for configuring dependencies between fields in Bitrix24 records."
+  },
+  "contribution": {
+    "ru": "Разработал редактор правил показа полей и ограничения вариантов выбора. Например, список городов зависит от выбранного региона.",
+    "en": "Built a rule editor for showing fields and restricting available options. For example, the list of cities depends on the selected region."
+  },
+  "stack": ["Vue 3", "TypeScript", "Битрикс24"],
+  "preview": {
+    "src": "/images/projects/legacy-related-fields.webp",
+    "srcSmall": "/images/projects/legacy-related-fields-640.webp",
+    "alt": {
+      "ru": "Интерфейс настройки зависимых полей с демонстрационными данными",
+      "en": "Dependent field configuration with demo data"
+    },
+    "width": 1366,
+    "height": 810,
+    "kind": "website"
+  },
+  "screenshots": [
+    {
+      "src": "/images/projects/legacy-related-fields-card.webp",
+      "srcSmall": "/images/projects/legacy-related-fields-card-640.webp",
+      "alt": {
+        "ru": "Каскад страны, региона и города в демонстрационной сделке",
+        "en": "Country, region, and city cascade in a demo deal"
+      },
+      "width": 1366,
+      "height": 810,
+      "kind": "website"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "key": "inn24",
+  "company": "legacy-agency",
+  "order": 21,
+  "title": {
+    "ru": "Реквизиты компании по ссылке",
+    "en": "Share company details by link"
+  },
+  "description": {
+    "ru": "Модуль создаёт публичную карточку с реквизитами компании из Битрикс24. Ссылку можно отправить контрагенту, например при подготовке договора или счёта. Получатель открывает карточку в браузере.",
+    "en": "The module creates a public page with company details from Bitrix24. Users can share it with a business partner who is preparing a contract or invoice. The recipient opens the page in a browser."
+  },
+  "contribution": {
+    "ru": "Вёл проект и разработал список компаний и экран со ссылкой для отправки контрагенту. Сделал публичную карточку с возможностью копировать отдельные реквизиты.",
+    "en": "I managed the project and built the company list and link-sharing screen. I also built the public company page with controls for copying individual fields."
+  },
+  "stack": ["Vue 3", "TypeScript", "Pinia", "Tailwind CSS", "Vite"],
+  "url": "https://www.bitrix24.ru/apps/app/dbogdanoff.inn24/",
+  "label": {
+    "ru": "Модуль Битрикс24",
+    "en": "Bitrix24 module"
+  },
+  "preview": {
+    "src": "/images/projects/legacy-inn24.webp",
+    "srcSmall": "/images/projects/legacy-inn24-640.webp",
+    "alt": {
+      "ru": "Онлайн-карточка с реквизитами компании",
+      "en": "Online page with company details"
+    },
+    "width": 673,
+    "height": 484,
+    "kind": "marketplace"
+  }
+}

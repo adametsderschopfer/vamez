@@ -7,6 +7,7 @@ defineProps<{
   monochrome?: boolean
   size?: 'regular' | 'large'
   compact?: boolean
+  naturalSize?: boolean
 }>()
 </script>
 
@@ -26,9 +27,9 @@ defineProps<{
       class="case-logo__image case-logo__image--light"
       :src="src"
       :alt="kind === 'symbol' ? '' : name"
-      width="288"
-      height="40"
-      loading="lazy"
+      :width="naturalSize ? undefined : 288"
+      :height="naturalSize ? undefined : 40"
+      :loading="naturalSize ? 'eager' : 'lazy'"
       decoding="async"
     />
     <img
@@ -36,9 +37,9 @@ defineProps<{
       class="case-logo__image case-logo__image--dark"
       :src="srcDark"
       :alt="kind === 'symbol' ? '' : name"
-      width="288"
-      height="40"
-      loading="lazy"
+      :width="naturalSize ? undefined : 288"
+      :height="naturalSize ? undefined : 40"
+      :loading="naturalSize ? 'eager' : 'lazy'"
       decoding="async"
     />
     <span v-if="kind === 'symbol' || !src" class="case-logo__name">{{ name }}</span>
@@ -120,8 +121,10 @@ defineProps<{
 .case-logo--compact .case-logo__name {
   display: none;
 }
+</style>
 
-[data-theme='dark'] .case-logo__image--light {
+<style>
+[data-theme='dark'] .case-logo__image--light:has(+ .case-logo__image--dark) {
   display: none;
 }
 

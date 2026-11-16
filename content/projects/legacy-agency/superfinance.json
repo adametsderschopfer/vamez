@@ -1,0 +1,34 @@
+{
+  "key": "superfinance",
+  "company": "legacy-agency",
+  "order": 19,
+  "title": {
+    "ru": "Финансовая аналитика для руководителя",
+    "en": "Financial analytics for managers"
+  },
+  "description": {
+    "ru": "Отчёт собирает выручку, расходы и прибыль компании в одном месте. Руководитель может выбрать месяц, квартал или год и сравнить фактические показатели с планом. Графики показывают, как менялись доходы и расходы.",
+    "en": "The report brings together company revenue, expenses, and profit. Managers can select a month, quarter, or year and compare actual results with the plan. Charts show how income and expenses changed over time."
+  },
+  "contribution": {
+    "ru": "Вёл проект и разработал таблицу финансового отчёта, графики и сводку показателей. Сделал выбор периода и форму редактирования финансового плана.",
+    "en": "I managed the project and built the financial report table, charts, and metrics summary. I also built the period selector and the financial plan editor."
+  },
+  "stack": ["Vue 3", "TypeScript", "Apache ECharts", "Vite"],
+  "url": "https://www.bitrix24.ru/apps/app/dbogdanoff.superfinance/",
+  "label": {
+    "ru": "Модуль Битрикс24",
+    "en": "Bitrix24 module"
+  },
+  "preview": {
+    "src": "/images/projects/legacy-superfinance.webp",
+    "srcSmall": "/images/projects/legacy-superfinance-640.webp",
+    "alt": {
+      "ru": "Панель финансовой аналитики с графиками",
+      "en": "Financial analytics dashboard with charts"
+    },
+    "width": 953,
+    "height": 526,
+    "kind": "marketplace"
+  }
+}

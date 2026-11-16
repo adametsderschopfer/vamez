@@ -1,0 +1,45 @@
+{
+  "key": "green-market",
+  "company": "consult-info",
+  "order": 2,
+  "title": {
+    "ru": "Зелёный рынок",
+    "en": "Green Market"
+  },
+  "description": {
+    "ru": "С фермерского рынка домой. В приложении можно собрать корзину из свежих овощей, выпечки и фермерских продуктов или заказать готовые блюда с доставкой.",
+    "en": "From the farmers’ market to your door. Shop for fresh produce, bread, and other farm goods, or order prepared meals for delivery."
+  },
+  "contribution": {
+    "ru": "Самостоятельно разработал приложение на React Native. Для управления состоянием использовал MobX.",
+    "en": "Built the app independently with React Native and used MobX for state management."
+  },
+  "stack": ["React Native", "MobX"],
+  "url": "https://apps.apple.com/by/app/id6488028713?l=ru",
+  "preview": {
+    "src": "/images/projects/green-market.webp",
+    "srcSmall": "/images/projects/green-market-640.webp",
+    "alt": {
+      "ru": "Фермерские овощи и зелень на тёмно-зелёном фоне",
+      "en": "Farm vegetables and herbs on a dark green backdrop"
+    },
+    "width": 1536,
+    "height": 512,
+    "kind": "photo",
+    "screen": {
+      "src": "/images/projects/green-market-screen.webp",
+      "width": 600,
+      "height": 1299,
+      "alt": {
+        "ru": "Каталог товаров в приложении «Зелёный рынок»",
+        "en": "Product catalog in the Green Market app"
+      },
+      "tone": "leaf",
+      "crop": {
+        "x": 88,
+        "y": 437,
+        "width": 492
+      }
+    }
+  }
+}

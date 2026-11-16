@@ -1,0 +1,33 @@
+{
+  "key": "elapsed-time",
+  "company": "legacy-agency",
+  "order": 18,
+  "title": {
+    "ru": "Время за сотрудника",
+    "en": "Log time for an employee"
+  },
+  "description": {
+    "ru": "Руководитель может внести затраченное время за сотрудника прямо из задачи в Битрикс24. Для этого он выбирает сотрудника, указывает длительность и при необходимости добавляет комментарий. Запись сохраняется в задаче, к которой относится работа.",
+    "en": "Managers can log time for an employee directly from a Bitrix24 task. They select the employee, enter the duration, and add a comment if needed. The time entry stays with the task it belongs to."
+  },
+  "contribution": {
+    "ru": "Вёл проект и разработал боковую панель для записи времени. В ней можно выбрать задачу и сотрудника, указать длительность и добавить комментарий.",
+    "en": "I managed the project and built the time entry side panel. It lets users select a task and employee, enter a duration, and add a comment."
+  },
+  "stack": ["Vue 3", "TypeScript", "Vue Router", "Rspack"],
+  "url": "https://www.bitrix24.ru/apps/app/dbogdanoff.app15/",
+  "label": {
+    "ru": "Модуль Битрикс24",
+    "en": "Bitrix24 module"
+  },
+  "preview": {
+    "src": "/images/projects/legacy-elapsed-time.webp",
+    "alt": {
+      "ru": "Выбор задачи для учёта времени в Битрикс24",
+      "en": "Selecting a task to log time in Bitrix24"
+    },
+    "width": 621,
+    "height": 450,
+    "kind": "marketplace"
+  }
+}

@@ -19,6 +19,10 @@
     "closeMenu": "Close menu"
   },
   "home": {
+    "companyMarquee": {
+      "title": "Who trusted me with their projects",
+      "labteacher": "Teacher’s Lab"
+    },
     "legal": {
       "title": "Legal information",
       "businessName": "Registered business name",
@@ -55,6 +59,7 @@
       "title": "Founder",
       "description": "My own ideas and products built together. From the idea and architecture to a working service.",
       "comingSoon": "Case studies coming soon.",
+      "nextProject": "New project coming soon",
       "notice": "My own projects will appear here soon: from the idea and early decisions to a working product.",
       "demo": "Demo project",
       "shelf": {
@@ -87,16 +92,16 @@
       "selectCompany": "Show {company}",
       "previousCompany": "Previous company",
       "nextCompany": "Next company",
-      "navigation": "Work",
+      "navigation": "Company Projects",
       "title": "Work, in detail.",
       "notice": "Companies I have worked at and projects I have contributed to.",
-      "projects": "Case studies",
+      "projects": "Projects",
       "technologies": "Project technologies",
       "contribution": "My contribution",
       "placeholder": "Placeholder",
       "closed": "RIP — project closed",
       "companyWebsite": "Company website",
-      "projectWebsite": "About the case"
+      "projectWebsite": "About the project"
     },
     "hero": {
       "role": "Author and engineer.",
@@ -157,18 +162,26 @@
     "rightsReserved": "All rights reserved"
   },
   "portfolio": {
-    "title": "Projects",
-    "open": "Explore cases",
+    "title": "Company Projects",
+    "open": "Explore projects",
     "all": "All projects",
     "app": "Apps",
     "web": "Websites & services",
     "filters": "Project filters",
     "close": "Close project",
+    "previousScreenshot": "Previous screenshot",
+    "nextScreenshot": "Next screenshot",
     "role": "Role",
     "back": "Back home",
     "count": "Projects: {count}",
     "empty": "No projects match these filters.",
     "technology": "All technologies",
+    "selectedTechnologies": "Technologies · {count}",
+    "searchTechnology": "Find a technology",
+    "technologySearchEmpty": "No technologies found.",
+    "clearTechnologies": "Clear selection",
+    "resetTechnologies": "Clear all",
+    "removeTechnology": "Remove {technology} from the filter",
     "development": {
       "manual": "Manually written code",
       "ai": "Code written with AI assistance",
@@ -177,7 +190,7 @@
       "aiLabel": "AI-assisted"
     },
     "seo": {
-      "title": "Projects & Case Studies — Vladislav Adamets, Fullstack Developer",
+      "title": "Company Projects — Vladislav Adamets, Fullstack Developer",
       "description": "Vladislav Adamets’s portfolio: web services, mobile apps, and backend development. Projects at Mozen, CodePoint, and more, with roles and technologies."
     }
   }

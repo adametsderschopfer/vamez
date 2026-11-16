@@ -1,0 +1,30 @@
+{
+  "key": "cifra",
+  "company": "legacy-agency",
+  "order": 13,
+  "title": {
+    "ru": "Цифра",
+    "en": "Cifra"
+  },
+  "description": {
+    "ru": "Интернет-магазин электроники в Калининграде и Москве.",
+    "en": "An electronics store in Kaliningrad and Moscow."
+  },
+  "contribution": {
+    "ru": "Доработал фильтры каталога, карточки товаров и страницу трейд-ин.",
+    "en": "Updated catalog filters, product pages, and the trade-in page."
+  },
+  "stack": ["1С-Битрикс", "PHP", "JavaScript", "CSS"],
+  "preview": {
+    "src": "/images/projects/legacy-cifra.webp",
+    "srcSmall": "/images/projects/legacy-cifra-640.webp",
+    "alt": {
+      "ru": "Главная страница интернет-магазина «Цифра»",
+      "en": "Cifra storefront"
+    },
+    "width": 1366,
+    "height": 810,
+    "kind": "website"
+  },
+  "url": "https://cifra-77.ru/"
+}

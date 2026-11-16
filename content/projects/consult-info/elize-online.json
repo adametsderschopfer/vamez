@@ -1,0 +1,45 @@
+{
+  "key": "elize-online",
+  "company": "consult-info",
+  "order": 3,
+  "title": {
+    "ru": "Элизэ Онлайн",
+    "en": "Elize Online"
+  },
+  "description": {
+    "ru": "Мобильный магазин косметики и парфюмерии сети «Элизэ». В приложении можно найти любимые средства, применить купон в корзине и показать дисконтную карту на кассе.",
+    "en": "A mobile cosmetics and fragrance store for the Elize retail chain. Find your favorites, apply coupons at checkout, and show your digital discount card in store."
+  },
+  "contribution": {
+    "ru": "Самостоятельно разработал приложение на React Native. Для управления состоянием использовал MobX.",
+    "en": "Built the app independently with React Native and used MobX for state management."
+  },
+  "stack": ["React Native", "MobX"],
+  "url": "https://apps.apple.com/ru/app/%D1%8D%D0%BB%D0%B8%D0%B7%D1%8D-%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD/id6760475268",
+  "preview": {
+    "src": "/images/projects/elize-online.webp",
+    "srcSmall": "/images/projects/elize-online-640.webp",
+    "alt": {
+      "ru": "Парфюм, помада и румяна на розовом фоне",
+      "en": "Perfume, lipstick, and blush against a pink backdrop"
+    },
+    "width": 1536,
+    "height": 512,
+    "kind": "photo",
+    "screen": {
+      "src": "/images/projects/elize-online-screen.webp",
+      "width": 600,
+      "height": 1299,
+      "alt": {
+        "ru": "Скидки и акции в приложении «Элизэ Онлайн»",
+        "en": "Discounts and offers in the Elize Online app"
+      },
+      "tone": "rose",
+      "crop": {
+        "x": 64,
+        "y": 184,
+        "width": 484
+      }
+    }
+  }
+}

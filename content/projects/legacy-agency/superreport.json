@@ -1,0 +1,34 @@
+{
+  "key": "superreport",
+  "company": "legacy-agency",
+  "order": 20,
+  "title": {
+    "ru": "Отчет времени и денег по ставке часа",
+    "en": "Time and cost report by hourly rate"
+  },
+  "description": {
+    "ru": "Модуль переводит учтённые часы в стоимость работ по заданным ставкам. В отчёте можно увидеть, сколько времени и денег ушло на проект. Разбивка по сотрудникам помогает понять, из чего сложилась итоговая сумма.",
+    "en": "The module calculates labor cost from logged hours and hourly rates. The report shows how much time and money went into a project. A breakdown by employee shows how the total was calculated."
+  },
+  "contribution": {
+    "ru": "Вёл проект и разработал представления отчёта по проектам и сотрудникам. Добавил выбор периода и форму настройки общих и проектных ставок сотрудников.",
+    "en": "I managed the project and built the project and employee report views. I added a date range selector and a form for setting base and project-specific employee rates."
+  },
+  "stack": ["Vue 3", "TypeScript", "Pinia", "Vue Router", "Sass", "Vite"],
+  "url": "https://www.bitrix24.ru/apps/app/dbogdanoff.superreport/",
+  "label": {
+    "ru": "Модуль Битрикс24",
+    "en": "Bitrix24 module"
+  },
+  "preview": {
+    "src": "/images/projects/legacy-superreport.webp",
+    "srcSmall": "/images/projects/legacy-superreport-640.webp",
+    "alt": {
+      "ru": "Отчёт о времени и стоимости работ",
+      "en": "Time and labor cost report"
+    },
+    "width": 797,
+    "height": 427,
+    "kind": "marketplace"
+  }
+}

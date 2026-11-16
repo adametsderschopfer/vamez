@@ -1,0 +1,54 @@
+{
+  "key": "enterplan",
+  "company": "legacy-agency",
+  "order": 15,
+  "title": {
+    "ru": "EnterPlan",
+    "en": "EnterPlan"
+  },
+  "description": {
+    "ru": "Система для продавцов на маркетплейсах. Объединяет товарный каталог, складской учёт, закупки и расходы.",
+    "en": "A platform for marketplace sellers that brings together product catalogs, inventory, purchasing, and expenses."
+  },
+  "contribution": {
+    "ru": "Работал над фронтендом и бэкендом. Доработал раздел расходов, графики и дерево категорий товаров. На бэкенде добавил импорт товаров из CSV и доработал обработку данных по заказам со склада продавца. Также сверстал лендинг EnterPlan.",
+    "en": "Worked on the frontend and backend. Updated the expenses section, charts, and product category tree. On the backend, added CSV product imports and updated how the system handles orders fulfilled from the seller’s warehouse. Also built the EnterPlan landing page."
+  },
+  "stack": ["PHP", "Laravel", "Inertia.js", "Vue 3", "TypeScript"],
+  "url": "https://enterplan.ru/",
+  "preview": {
+    "src": "/images/projects/legacy-enterplan.webp",
+    "srcSmall": "/images/projects/legacy-enterplan-640.webp",
+    "alt": {
+      "ru": "Главная страница EnterPlan",
+      "en": "EnterPlan homepage"
+    },
+    "width": 1366,
+    "height": 810,
+    "kind": "website"
+  },
+  "screenshots": [
+    {
+      "src": "/images/projects/legacy-enterplan-product.webp",
+      "srcSmall": "/images/projects/legacy-enterplan-product-640.webp",
+      "alt": {
+        "ru": "Форма создания товара в EnterPlan",
+        "en": "Product creation form in EnterPlan"
+      },
+      "width": 1366,
+      "height": 796,
+      "kind": "website"
+    },
+    {
+      "src": "/images/projects/legacy-enterplan-marketplaces.webp",
+      "srcSmall": "/images/projects/legacy-enterplan-marketplaces-640.webp",
+      "alt": {
+        "ru": "Раздел интеграций с маркетплейсами в EnterPlan",
+        "en": "Marketplace integrations in EnterPlan"
+      },
+      "width": 1366,
+      "height": 796,
+      "kind": "website"
+    }
+  ]
+}

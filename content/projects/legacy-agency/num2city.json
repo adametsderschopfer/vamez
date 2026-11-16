@@ -1,0 +1,34 @@
+{
+  "key": "num2city",
+  "company": "legacy-agency",
+  "order": 17,
+  "title": {
+    "ru": "Определение города и страны по телефону",
+    "en": "City and country by phone number"
+  },
+  "description": {
+    "ru": "Модуль показывает, откуда звонит клиент и какое там местное время. Страну и регион можно посмотреть в карточке лида или контакта. Менеджер также может ввести номер вручную, чтобы выбрать время для обратного звонка.",
+    "en": "The module shows where a customer is calling from and the local time there. The country and region are also available in the lead or contact record. A sales rep can enter a number manually to pick a time to call back."
+  },
+  "contribution": {
+    "ru": "Вёл проект и разработал форму ручной проверки номера. Сделал блок для карточки CRM и экран входящего звонка с регионом и местным временем.",
+    "en": "I managed the project and built the manual phone lookup form. I also built the CRM panel and incoming call view that show the region and local time."
+  },
+  "stack": ["JavaScript", "HTML", "CSS", "libphonenumber-js", "Bitrix24 JavaScript SDK"],
+  "url": "https://www.bitrix24.ru/apps/app/dbogdanoff.opredelenie_goroda_i_strany_po_telefonu/",
+  "label": {
+    "ru": "Модуль Битрикс24",
+    "en": "Bitrix24 module"
+  },
+  "preview": {
+    "src": "/images/projects/legacy-num2city.webp",
+    "srcSmall": "/images/projects/legacy-num2city-640.webp",
+    "alt": {
+      "ru": "Страна и регион клиента во время входящего звонка",
+      "en": "Caller country and region during an incoming call"
+    },
+    "width": 759,
+    "height": 346,
+    "kind": "marketplace"
+  }
+}

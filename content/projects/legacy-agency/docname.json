@@ -1,0 +1,33 @@
+{
+  "key": "docname",
+  "company": "legacy-agency",
+  "order": 16,
+  "title": {
+    "ru": "Имена файлов по своим правилам",
+    "en": "Custom document filenames"
+  },
+  "description": {
+    "ru": "Модуль автоматически даёт документам понятные имена по шаблону. В имя файла можно включить номер, дату, сумму и данные клиента из CRM. Например, бухгалтер может сразу отличить один счёт от другого в папке загрузок.",
+    "en": "The module automatically names documents using a template. The filename can include the document number, date, amount, and customer details from the CRM. This helps an accountant tell downloaded invoices apart at a glance."
+  },
+  "contribution": {
+    "ru": "Вёл проект и разработал редактор шаблонов имён файлов. Добавил выбор полей CRM, чтобы пользователь мог вставлять их в шаблон кнопками.",
+    "en": "I managed the project and built the filename template editor. I added controls for inserting CRM fields into a template."
+  },
+  "stack": ["Vue 3", "TypeScript", "Pinia", "Tailwind CSS", "Vite"],
+  "url": "https://www.bitrix24.ru/apps/app/dbogdanoff.docname/",
+  "label": {
+    "ru": "Модуль Битрикс24",
+    "en": "Bitrix24 module"
+  },
+  "preview": {
+    "src": "/images/projects/legacy-docname.webp",
+    "alt": {
+      "ru": "Настройка имён документов в Битрикс24",
+      "en": "Document naming settings in Bitrix24"
+    },
+    "width": 607,
+    "height": 574,
+    "kind": "marketplace"
+  }
+}
