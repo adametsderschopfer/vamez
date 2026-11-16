@@ -12,7 +12,7 @@ function escapeXml(value: string): string {
 export default defineEventHandler((event) => {
   const runtimeConfig = useRuntimeConfig(event)
   const siteUrl = String(runtimeConfig.public.siteUrl || 'https://vamez.ru').replace(/\/$/, '')
-  const paths = ['/', '/en']
+  const paths = ['/', '/en', '/projects', '/en/projects']
 
   const xml =
     `<?xml version="1.0" encoding="UTF-8"?>\n` +

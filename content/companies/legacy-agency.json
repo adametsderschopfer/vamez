@@ -17,5 +17,10 @@
   "summary": {
     "ru": "Агентство разрабатывает и сопровождает сайты на 1С-Битрикс и автоматизирует бизнес-процессы в Битрикс24.",
     "en": "The agency builds and maintains websites on 1C-Bitrix and automates business processes with Bitrix24."
+  },
+  "developmentMode": "mixed",
+  "role": {
+    "ru": "Fullstack-разработчик",
+    "en": "Fullstack Developer"
   }
 }

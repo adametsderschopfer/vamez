@@ -26,5 +26,6 @@
   "summary": {
     "ru": "Разрабатывал и дорабатывал портал для разработчиков: от архитектуры и публикации материалов до производительности и автоматизации поставки.",
     "en": "Developed and improved the developer portal, from architecture and content publishing to performance and delivery automation."
-  }
+  },
+  "developmentMode": "manual"
 }

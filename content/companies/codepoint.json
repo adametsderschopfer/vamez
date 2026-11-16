@@ -17,5 +17,10 @@
   "summary": {
     "ru": "Основной фокус — серверная часть продуктов: разработка нового функционала и доработка существующих возможностей. Один из проектов — сервис AutoProof.",
     "en": "The main focus is on product backends: building new functionality and improving existing capabilities. One of the projects is AutoProof."
+  },
+  "developmentMode": "ai",
+  "role": {
+    "ru": "Fullstack-разработчик",
+    "en": "Fullstack Developer"
   }
 }

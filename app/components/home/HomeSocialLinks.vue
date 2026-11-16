@@ -1,8 +1,14 @@
 <script setup lang="ts">
-import { ArrowUpRight, Github, Instagram, Youtube } from 'lucide-vue-next'
+import { ArrowUpRight, Github, Instagram, Linkedin, Youtube } from 'lucide-vue-next'
 
 const { t } = useI18n()
 const socials = [
+  {
+    name: 'LinkedIn',
+    handle: 'adametsderschopfer',
+    href: 'https://www.linkedin.com/in/adametsderschopfer/',
+    icon: Linkedin
+  },
   {
     name: 'GitHub',
     handle: 'adametsderschopfer',

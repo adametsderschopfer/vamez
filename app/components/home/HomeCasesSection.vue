@@ -1,83 +1,103 @@
 <script setup lang="ts">
-import HomeCompanyDeck from './HomeCompanyDeck.vue'
+import { ArrowUpRight } from 'lucide-vue-next'
+import HomeCaseLogo from './HomeCaseLogo.vue'
 
 const { t } = useI18n()
-const { data: workCases, error } = await useAsyncData('work-cases', async () => {
-  const [companies, projects] = await Promise.all([
-    queryCollection('companies').order('order', 'ASC').all(),
-    queryCollection('projects').order('order', 'ASC').all()
-  ])
-
-  return companies.map((company) => ({
-    ...company,
-    projects: projects.filter((project) => project.company === company.key)
-  }))
-})
-
+const localePath = useLocalePath()
+const { data: companies, error } = await useWorkCases()
 if (error.value) throw createError(error.value)
 </script>
 
 <template>
   <section id="cases" class="home-cases" aria-labelledby="home-cases-title">
-    <div class="home-cases__intro">
-      <h2 id="home-cases-title" class="home-cases__title">{{ t('home.cases.title') }}</h2>
-      <div class="home-cases__context">
-        <p class="home-cases__notice">{{ t('home.cases.notice') }}</p>
+    <NuxtLink class="home-cases__link" :to="localePath('/projects')">
+      <div class="home-cases__intro">
+        <h2 id="home-cases-title" class="home-cases__title">{{ t('home.cases.navigation') }}</h2>
+        <ArrowUpRight class="home-cases__arrow" :size="72" aria-hidden="true" />
       </div>
-    </div>
-
-    <HomeCompanyDeck v-if="workCases?.length" :companies="workCases" />
+      <p class="home-cases__notice">{{ t('home.cases.notice') }}</p>
+      <div class="home-cases__companies" aria-hidden="true">
+        <HomeCaseLogo
+          v-for="company in companies"
+          :key="company.key"
+          :src="company.logo"
+          :src-dark="company.logoDark"
+          :name="company.name"
+          :kind="company.logoKind"
+          :monochrome="company.logoMonochrome"
+          compact
+        />
+      </div>
+      <span class="home-cases__action">{{ t('portfolio.open') }}</span>
+    </NuxtLink>
   </section>
 </template>
 
 <style scoped>
 .home-cases {
-  --case-sticky-inset: 1.5rem;
+  padding: 0 0 var(--section-space);
+}
 
-  position: relative;
-  padding: var(--section-space) 0;
-  isolation: isolate;
+.home-cases__link {
+  display: block;
+  padding: clamp(1.5rem, 4vw, 4rem);
+  color: var(--ink);
+  text-decoration: none;
+  background: var(--card-surface);
+  border: 1px solid var(--line);
+  transition: background-color var(--motion-state);
 }
 
 .home-cases__intro {
   display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  align-items: flex-end;
+  gap: var(--grid-gap);
+  align-items: center;
   justify-content: space-between;
-  padding-bottom: clamp(2rem, 5vw, 4rem);
 }
 
 .home-cases__title {
-  flex-shrink: 0;
   margin: 0;
-  font-size: clamp(2.75rem, 6vw, 6rem);
-  font-weight: 700;
-  line-height: 1.02;
-  letter-spacing: -0.04em;
-  white-space: nowrap;
+  font-size: clamp(3rem, 8vw, 8rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
 }
 
-.home-cases__context {
-  max-width: 28rem;
+.home-cases__arrow {
+  flex: none;
+  width: clamp(2.5rem, 6vw, 5rem);
+  transition: transform var(--motion-state);
 }
 
 .home-cases__notice {
-  margin: 0;
+  max-width: 38ch;
+  margin: 1.5rem 0 2.5rem;
   font-size: var(--font-size-body);
-  font-weight: var(--font-weight-body);
   line-height: 1.6;
   color: var(--ink-muted);
 }
 
-@media (max-width: 799px) {
-  .home-cases__title {
-    font-size: clamp(1.5rem, 7vw, 3.25rem);
+.home-cases__companies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+}
+
+.home-cases__action {
+  display: inline-block;
+  margin-top: 3rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+@media (hover: hover) {
+  .home-cases__link:hover {
+    background: var(--card-soft);
   }
 
-  .home-cases__intro {
-    flex-direction: column;
-    align-items: flex-start;
+  .home-cases__link:hover .home-cases__arrow {
+    transform: translate(4px, -4px);
   }
 }
 </style>

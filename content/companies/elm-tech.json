@@ -21,5 +21,6 @@
   "summary": {
     "ru": "Разработка виджетов и лид-форм на Vue 2/3 с Pinia и Vuex, написание тестов для Vue-проекта и доработка бэкенда на Python, Django и Django REST Framework.",
     "en": "Development of widgets and lead forms with Vue 2/3, Pinia, and Vuex; tests for the Vue project; and backend improvements with Python, Django, and Django REST Framework."
-  }
+  },
+  "developmentMode": "mixed"
 }

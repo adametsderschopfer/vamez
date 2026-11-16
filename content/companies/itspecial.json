@@ -26,5 +26,6 @@
   "summary": {
     "ru": "Работал с React/Next.js и Vue/Nuxt: переносил проекты с Nuxt 2 на 3, обновлял зависимости и оптимизировал Webpack. Участвовал в UX/UI-решениях, декомпозиции задач и планировании релизов. Развивал дизайн-систему, помогал младшему разработчику и проводил технические собеседования.",
     "en": "Worked with React/Next.js and Vue/Nuxt, migrated projects from Nuxt 2 to 3, updated dependencies, and optimized Webpack. Contributed to UX/UI decisions, task breakdown, and release planning. Developed a frontend design system, mentored a junior developer, and conducted technical interviews."
-  }
+  },
+  "developmentMode": "manual"
 }

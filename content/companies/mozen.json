@@ -17,5 +17,10 @@
   "statement": {
     "ru": "Мобильные сервисы для водителей и таксопарков.",
     "en": "Mobile services for drivers and taxi fleets."
+  },
+  "developmentMode": "mixed",
+  "role": {
+    "ru": "Fullstack-разработчик",
+    "en": "Fullstack Developer"
   }
 }

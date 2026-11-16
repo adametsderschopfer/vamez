@@ -24,5 +24,6 @@
   "statement": {
     "ru": "Приложение, веб-платформа, сервисы и инфраструктура Getarent.",
     "en": "The Getarent app, web platform, services, and infrastructure."
-  }
+  },
+  "developmentMode": "manual"
 }

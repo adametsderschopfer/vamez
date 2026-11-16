@@ -7,6 +7,33 @@ const detailMaskId = `${filterId}-details`
 const particleCount = 16
 
 const { visible } = useInkCursor(cursor)
+let layerObserver: MutationObserver | undefined
+
+function raiseCursor() {
+  const element = cursor.value
+  if (!visible.value || !element?.showPopover) return
+  if (element.matches(':popover-open')) element.hidePopover()
+  element.showPopover()
+}
+
+watch(visible, async (value) => {
+  await nextTick()
+  if (value) raiseCursor()
+  else if (cursor.value?.matches(':popover-open')) cursor.value.hidePopover()
+})
+
+onMounted(() => {
+  layerObserver = new MutationObserver((records) => {
+    if (records.some((record) => record.target instanceof HTMLDialogElement)) raiseCursor()
+  })
+  layerObserver.observe(document.body, {
+    subtree: true,
+    attributes: true,
+    attributeFilter: ['open']
+  })
+})
+
+onBeforeUnmount(() => layerObserver?.disconnect())
 
 useHead(() => ({
   bodyAttrs: { 'data-ink-cursor': visible.value ? 'active' : undefined }
@@ -36,7 +63,7 @@ useHead(() => ({
         </filter>
       </defs>
     </svg>
-    <div v-show="visible" ref="cursor" class="ink-cursor" aria-hidden="true">
+    <div v-show="visible" ref="cursor" class="ink-cursor" popover="manual" aria-hidden="true">
       <svg class="ink-cursor__shape" viewBox="0 0 104 116" aria-hidden="true">
         <defs>
           <mask :id="detailMaskId" maskUnits="userSpaceOnUse" x="0" y="0" width="104" height="116">
@@ -71,6 +98,10 @@ body[data-ink-cursor='active'] *::before,
 body[data-ink-cursor='active'] *::after {
   cursor: none !important;
 }
+
+body[data-ink-cursor='active'] dialog::backdrop {
+  cursor: none;
+}
 </style>
 
 <style scoped>
@@ -83,13 +114,19 @@ body[data-ink-cursor='active'] *::after {
   --ink-cursor-size: 26px;
 
   position: fixed;
+  inset: auto;
   top: 0;
   left: 0;
   z-index: 1000;
   display: none;
   width: var(--ink-cursor-size);
   height: var(--ink-cursor-size);
+  padding: 0;
+  margin: 0;
+  overflow: visible;
   pointer-events: none;
+  background: transparent;
+  border: 0;
   mix-blend-mode: difference;
   will-change: transform;
 }

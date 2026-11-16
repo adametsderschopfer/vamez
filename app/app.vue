@@ -25,8 +25,11 @@ onNuxtReady(() => {
   analyticsReady.value = !import.meta.dev
 })
 const localeLanguage = computed(() => (locale.value === 'ru' ? 'ru-RU' : 'en-US'))
-const pageTitle = computed(() => t('seo.ogTitle'))
-const pageDescription = computed(() => t('seo.description'))
+const isProjectsPage = computed(() => route.meta.seoPage === 'projects')
+const pageTitle = computed(() => t(isProjectsPage.value ? 'portfolio.seo.title' : 'seo.ogTitle'))
+const pageDescription = computed(() =>
+  t(isProjectsPage.value ? 'portfolio.seo.description' : 'seo.description')
+)
 const personId = computed(() => `${baseUrl.value}/#person`)
 const personSchema = await usePersonSchema(baseUrl)
 const structuredData = computed(() => ({
@@ -43,9 +46,9 @@ const structuredData = computed(() => ({
     },
     {
       '@id': `${canonicalUrl.value}#webpage`,
-      '@type': 'ProfilePage',
+      '@type': isProjectsPage.value ? 'CollectionPage' : 'ProfilePage',
       about: { '@id': personId.value },
-      mainEntity: { '@id': personId.value },
+      ...(isProjectsPage.value ? {} : { mainEntity: { '@id': personId.value } }),
       description: pageDescription.value,
       inLanguage: localeLanguage.value,
       isPartOf: { '@id': `${baseUrl.value}/#website` },

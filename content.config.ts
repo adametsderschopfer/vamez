@@ -58,6 +58,7 @@ export default defineContentConfig({
         tone: z.enum(['accent', 'paper']),
         industry: localizedText,
         period: localizedText.optional(),
+        developmentMode: z.enum(['manual', 'ai', 'mixed']).optional(),
         statement: localizedText
       })
     }),
