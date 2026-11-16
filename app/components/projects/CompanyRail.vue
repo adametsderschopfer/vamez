@@ -1,16 +1,34 @@
 <script setup lang="ts">
+import { ChevronDown } from 'lucide-vue-next'
 import type { WorkCase } from '@/types/workCases'
 import HomeCaseLogo from '@/components/home/HomeCaseLogo.vue'
 import DevelopmentBadge from './DevelopmentBadge.vue'
 
 defineProps<{ companies: WorkCase[]; active: string }>()
-defineEmits<{ navigate: [key: string] }>()
+const emit = defineEmits<{ navigate: [key: string] }>()
 const { t, locale } = useI18n()
 const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
+
+function selectCompany(event: Event) {
+  if (event.target instanceof HTMLSelectElement) emit('navigate', event.target.value)
+}
 </script>
 
 <template>
   <nav class="company-rail" :aria-label="t('home.cases.deckNavigation')">
+    <div class="company-rail__mobile">
+      <select
+        class="company-rail__select"
+        :aria-label="t('home.cases.deckNavigation')"
+        :value="active || companies[0]?.key"
+        @change="selectCompany"
+      >
+        <option v-for="company in companies" :key="company.key" :value="company.key">
+          {{ company.name }} ({{ company.projects.length }})
+        </option>
+      </select>
+      <ChevronDown :size="16" class="company-rail__chevron" aria-hidden="true" />
+    </div>
     <div class="company-rail__panel">
       <button
         v-for="company in companies"
@@ -75,6 +93,10 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
   transition:
     width var(--motion-state) var(--ease-out),
     box-shadow var(--motion-state);
+}
+
+.company-rail__mobile {
+  display: none;
 }
 
 .company-rail__panel:hover,
@@ -160,25 +182,43 @@ const language = computed(() => (locale.value === 'en' ? 'en' : 'ru'))
   opacity: 1;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 799px) {
   .company-rail {
-    --rail-width: 4rem;
+    top: var(--header-height);
+    width: 100%;
+    padding-block: var(--company-picker-space);
+    background: var(--page-background);
   }
 
   .company-rail__panel {
-    padding: 0.25rem;
+    display: none;
   }
 
-  .company-rail__item {
-    padding: 0.25rem;
+  .company-rail__mobile {
+    position: relative;
+    display: block;
   }
 
-  .company-rail__mark {
-    width: 2.75rem;
+  .company-rail__select {
+    width: 100%;
+    height: var(--company-picker-height);
+    padding-inline: 1rem 2.5rem;
+    font: inherit;
+    color: var(--ink);
+    appearance: none;
+    cursor: pointer;
+    background: var(--card-surface);
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
   }
 
-  .company-rail__mark :deep(.case-logo) {
-    max-width: 2.5rem;
+  .company-rail__chevron {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-end: 1rem;
+    color: var(--ink-muted);
+    pointer-events: none;
+    transform: translateY(-50%);
   }
 }
 </style>

@@ -92,6 +92,8 @@ const { active, navigate } = useCompanyScroll(root, () =>
 .project-gallery {
   --gallery-gap: clamp(1rem, 2vw, 2rem);
   --company-group-gap: 3.5rem;
+  --company-picker-height: 2.75rem;
+  --company-picker-space: 0.5rem;
 
   padding-bottom: var(--company-group-gap);
 }
@@ -154,12 +156,18 @@ const { active, navigate } = useCompanyScroll(root, () =>
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 799px) {
   .project-gallery__layout {
-    grid-template-columns: 4rem minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.75rem;
   }
 
+  .project-gallery__group {
+    scroll-margin-top: calc(var(--company-picker-height) + 3 * var(--company-picker-space));
+  }
+}
+
+@media (max-width: 600px) {
   .project-gallery__grid {
     grid-template-columns: minmax(0, 1fr);
   }

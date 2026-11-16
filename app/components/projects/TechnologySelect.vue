@@ -7,6 +7,7 @@ const { t } = useI18n()
 const root = useTemplateRef<HTMLElement>('root')
 const trigger = useTemplateRef<HTMLButtonElement>('trigger')
 const search = useTemplateRef<HTMLInputElement>('search')
+defineExpose({ focus: () => trigger.value?.focus() })
 const open = shallowRef(false)
 const query = shallowRef('')
 const id = useId()
@@ -129,16 +130,21 @@ onBeforeUnmount(() => document.removeEventListener('pointerdown', outside))
   display: flex;
   gap: 0.65rem;
   align-items: center;
-  min-height: 2.75rem;
+  min-height: var(--filter-height, 2.75rem);
   padding: 0.65rem 1rem;
   color: var(--ink);
   cursor: pointer;
   background: var(--card-surface);
   border: 1px solid var(--line);
-  border-radius: 2rem;
+  border-radius: 0.75rem;
   transition:
     border-color var(--motion-fast),
     background-color var(--motion-fast) ease;
+}
+
+.technology-select__trigger > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .technology-select__trigger--open {
@@ -146,7 +152,8 @@ onBeforeUnmount(() => document.removeEventListener('pointerdown', outside))
 }
 
 .technology-select__chevron {
-  margin-left: 0.5rem;
+  flex: none;
+  margin-inline-start: auto;
   transition: transform var(--motion-fast);
 }
 
