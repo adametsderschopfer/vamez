@@ -41,14 +41,7 @@ const groups = computed<{ key: string; fields: LegalField[] }[]>(() => {
           datetime: data.registrationDate
         },
         { key: 'region', value: data.region[lang] },
-        { key: 'citizenship', value: data.citizenship[lang] },
-        {
-          key: 'status',
-          value: t('home.legal.statusAsOf', {
-            status: data.status.label[lang],
-            date: formatDate(data.status.asOf)
-          })
-        }
+        { key: 'citizenship', value: data.citizenship[lang] }
       ]
     },
     {

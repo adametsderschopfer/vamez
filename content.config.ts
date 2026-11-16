@@ -31,7 +31,6 @@ export default defineContentConfig({
         registrationDate: z.string().date(),
         region: localizedText,
         citizenship: localizedText,
-        status: z.object({ label: localizedText, asOf: z.string().date() }),
         activity: legalActivity,
         additionalActivities: z.array(legalActivity),
         taxAuthority: z.object({ code: z.string(), name: localizedText }),

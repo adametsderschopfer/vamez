@@ -37,8 +37,6 @@
       "registrationGroup": "Регистрация и учёт",
       "smeGroup": "Реестр МСП",
       "citizenship": "Гражданство",
-      "status": "Статус",
-      "statusAsOf": "{status} (по данным на {date})",
       "taxAuthority": "Налоговый орган",
       "taxAuthorityCode": "Код налогового органа",
       "pensionNumber": "Регистрационный номер в ПФР",

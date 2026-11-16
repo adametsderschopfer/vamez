@@ -17,10 +17,6 @@
     "ru": "Российская Федерация",
     "en": "Russian Federation"
   },
-  "status": {
-    "label": { "ru": "Действующий ИП", "en": "Active individual entrepreneur" },
-    "asOf": "2026-06-04"
-  },
   "activity": {
     "code": "62.01",
     "label": {

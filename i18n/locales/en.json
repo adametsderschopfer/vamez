@@ -37,8 +37,6 @@
       "registrationGroup": "Registration and authorities",
       "smeGroup": "SME register",
       "citizenship": "Citizenship",
-      "status": "Status",
-      "statusAsOf": "{status} (as of {date})",
       "taxAuthority": "Tax authority",
       "taxAuthorityCode": "Tax authority code",
       "pensionNumber": "Pension Fund registration number",
