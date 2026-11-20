@@ -35,7 +35,7 @@
     "en": "Designed and built the Rust and Iced application: workspaces, file previews, Git history, and pipeline integrations. Created the Nuxt website, automated package builds, and the update mechanism."
   },
   "stack": ["Rust", "Iced", "Git", "GitHub Actions", "GitLab CI", "Nuxt", "TypeScript"],
-  "url": "https://adametsderschopfer.github.io/iwe-code/",
+  "url": "https://iwe-code.ru/",
   "repositoryUrl": "https://github.com/adametsderschopfer/iwe-code",
   "logo": { "src": "/images/projects/iwe-code.webp", "width": 144, "height": 144 }
 }
