@@ -3,7 +3,14 @@ export function useWorkCases() {
     const [companies, projects] = await Promise.all([
       queryCollection('companies').order('order', 'ASC').all(),
       queryCollection('projects')
-        .where('company', 'NOT IN', ['elm-tech', 'codepoint'])
+        .where('company', 'NOT IN', [
+          'elm-tech',
+          'codepoint',
+          'omp',
+          'geptop',
+          'itspecial',
+          'mozen'
+        ])
         .order('order', 'ASC')
         .all()
     ])
